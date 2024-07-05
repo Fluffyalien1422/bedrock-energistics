@@ -1,0 +1,25 @@
+{
+  "version": [0, 4, 0],
+  "minEngineVersion": [1, 21, 20],
+  "scriptModules": [
+    {
+      "name": "@minecraft/server",
+      "version": "1.14.0-beta"
+    },
+    {
+      "name": "@minecraft/server-ui",
+      "version": "1.3.0-beta"
+    }
+  ],
+  "uuids": {
+    "bp": {
+      "header": "34dbc9d1-1e2b-421e-a816-d0418896b665",
+      "data": "5243f317-00c6-4405-8d41-dbf6c42ec2d4",
+      "script": "9ff133e0-1754-4ac9-8976-8c212f90577d"
+    },
+    "rp": {
+      "header": "92ebebbb-78b7-4e3a-90ce-9fdb394b3a48",
+      "resources": "e258f0e1-7767-4d49-bb2c-f24791b16500"
+    }
+  }
+}

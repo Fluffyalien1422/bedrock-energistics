@@ -1,0 +1,22 @@
+{
+  "texture_data": {
+    "fluffyalien_energistics:machine_casing_side": {
+      "textures": "textures/fluffyalien/energistics/blocks/machine_casing_side"
+    },
+    "fluffyalien_energistics:machine_casing_top": {
+      "textures": "textures/fluffyalien/energistics/blocks/machine_casing_top"
+    },
+    "fluffyalien_energistics:machine_casing_bottom": {
+      "textures": "textures/fluffyalien/energistics/blocks/machine_casing_bottom"
+    },
+    "fluffyalien_energistics:solar_panel_top": {
+      "textures": "textures/fluffyalien/energistics/blocks/solar_panel_top"
+    },
+    "fluffyalien_energistics:crusher_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/crusher_front_off"
+    },
+    "fluffyalien_energistics:crusher_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/crusher_front_on"
+    }
+  }
+}

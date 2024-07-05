@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Bedrock-OSS/regolith-schemas/main/config/v1.2.json",
+  "author": "Fluffyalien",
+  "name": "bedrock_energistics",
+  "packs": {
+    "behaviorPack": "./packs/BP",
+    "resourcePack": "./packs/RP"
+  },
+  "regolith": {
+    "dataPath": "./packs/data",
+    "filterDefinitions": {
+      "build_scripts": {
+        "runWith": "shell",
+        "command": "npx esbuild BP/scripts/index.ts --outfile=BP/scripts/__bundle.js --bundle --format=esm --external:@minecraft/common --external:@minecraft/debug-utilities --external:@minecraft/server --external:@minecraft/server-*"
+      },
+      "prod_finish_up_build_scripts": {
+        "runWith": "shell",
+        "command": "npx terser BP/scripts/__bundle.js --module -cmo BP/scripts/__bundle.js; Remove-Item BP/scripts/* -Recurse -Exclude __bundle.js"
+      },
+      "simple_manifest": {
+        "runWith": "shell",
+        "command": "npm run tsx scripts/filters/simple_manifest"
+      }
+    },
+    "profiles": {
+      "default": {
+        "export": {
+          "target": "preview"
+        },
+        "filters": [
+          {
+            "filter": "build_scripts"
+          },
+          {
+            "filter": "simple_manifest"
+          }
+        ]
+      },
+      "prod": {
+        "export": {
+          "target": "local"
+        },
+        "filters": [
+          {
+            "profile": "default"
+          },
+          {
+            "filter": "prod_finish_up_build_scripts"
+          }
+        ]
+      }
+    }
+  }
+}

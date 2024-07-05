@@ -1,0 +1,35 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fluffyalien_energistics:solar_panel",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:custom_components": ["fluffyalien_energisticscore:machine"],
+      "tag:fluffyalien_energisticscore:io_energy": {},
+
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "fluffyalien_energistics:machine_casing_side"
+        },
+        "up": {
+          "texture": "fluffyalien_energistics:solar_panel_top"
+        },
+        "down": {
+          "texture": "fluffyalien_energistics:machine_casing_bottom"
+        }
+      },
+      "minecraft:destructible_by_explosion": false,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 2
+      },
+      "minecraft:tick": {
+        "interval_range": [20, 20]
+      }
+    }
+  }
+}

@@ -20,6 +20,10 @@
       "simple_manifest": {
         "runWith": "shell",
         "command": "npm run tsx scripts/filters/simple_manifest"
+      },
+      "machine_entities": {
+        "runWith": "shell",
+        "command": "npm run tsx scripts/filters/machine_entities"
       }
     },
     "profiles": {
@@ -33,6 +37,9 @@
           },
           {
             "filter": "simple_manifest"
+          },
+          {
+            "filter": "machine_entities"
           }
         ]
       },

@@ -22,16 +22,15 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
     fs.readFileSync(path.join(machineEntitiesDir, fileName), "utf8"),
   ) as Machine;
 
-  const entityShortId = `${content.id}_entity`;
-  const namespacedEntityId = `fluffyalien_energistics:${entityShortId}`;
+  const entityId = `${content.id}_entity`;
 
   fs.writeFileSync(
-    path.join(entitiesDir, `${entityShortId}.json`),
+    path.join(entitiesDir, path.basename(fileName)),
     JSON.stringify({
       format_version: "1.21.0",
       "minecraft:entity": {
         description: {
-          identifier: namespacedEntityId,
+          identifier: entityId,
           is_summonable: true,
           is_spawnable: false,
         },
@@ -48,7 +47,7 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
             },
           },
           "minecraft:timer": {
-            time: 20,
+            time: 60,
             time_down_event: {
               event: "fluffyalien_energistics:despawn",
             },

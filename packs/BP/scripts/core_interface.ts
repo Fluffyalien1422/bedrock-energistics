@@ -47,7 +47,7 @@ interface TimedCraftingSystemRecipe {
   result: {
     slot: string;
     item: string;
-    count: number;
+    count?: number;
   }[];
 }
 

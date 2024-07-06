@@ -1,0 +1,8 @@
+[
+  {
+    "atlas_tile": "fluffyalien_energistics:crusher_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/crusher_front_on",
+    "ticks_per_frame": 5,
+    "blend_frames": false
+  }
+]

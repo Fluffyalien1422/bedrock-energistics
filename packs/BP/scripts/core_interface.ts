@@ -62,8 +62,11 @@ interface TimedCraftingSystemOptions {
 
 // registered machine
 interface RegisteredMachine {
-  id: string;
-  uiElements: Record<string, MachineUiElement>;
+  description: {
+    id: string;
+    uiElements: Record<string, MachineUiElement>;
+    workingState?: string;
+  };
   systems: {
     solarGenerator?: SolarGeneratorSystemOptions;
     timedCrafting?: TimedCraftingSystemOptions;

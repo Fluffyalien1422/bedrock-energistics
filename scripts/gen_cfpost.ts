@@ -6,25 +6,20 @@ const CONTENT_BEGINNING = `
 <p>
 Expands Bedrock with energistics! Adds technology to Minecraft, inspired by Java Edition mods.
 </p>
-<br />
 
-<h2 style="color:red;">
-Beware! This add-on is in a beta stage. Minor updates may contain breaking changes!
-</h2>
-<h2 style="color:red;">
+<h2>
 Enable Beta APIs under Experiments in the world settings
 </h2>
-<br />
-
-<p>
-The following information is all available in the Bedrock Energistics tutorial book
-given to players when they spawn. It can also be crafted if you lose it.
-</p>
-<br />
+<h2>
+Requires Minecraft 1.21.x
+</h2>
+<h2>
+No official realms support
+</h2>
 `;
 
 const CONTENT_END =
-  '<a href="https://x.com/Fluffyalien1422">Follow me on X</a>';
+  '<p><a href="https://x.com/Fluffyalien1422">Follow me on X</a></p>';
 
 function htmlEscape(s: string): string {
   return s
@@ -100,7 +95,7 @@ fs.writeFileSync(
     Object.values(entries)
       .map(
         (entry) =>
-          `<h2>${htmlEscape(entry.title)}</h2><div class="spoiler"><ul><li>${entry.bullets.map(htmlEscape).join("</li><li>")}</li></ul></div><br/>`,
+          `<h2>${htmlEscape(entry.title)}</h2><div class="spoiler"><ul><li>${entry.bullets.map(htmlEscape).join("</li><li>")}</li></ul></div>`,
       )
       .join("") +
     CONTENT_END,

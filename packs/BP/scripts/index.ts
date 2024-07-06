@@ -12,13 +12,14 @@ world.afterEvents.worldInitialize.subscribe(() => {
         },
       },
     },
-    systems: {
-      solarGenerator: {
+    systems: [
+      {
+        system: "solarGenerator",
         baseGeneration: 2,
         rainGeneration: 1,
         outputBar: "energyBar",
       },
-    },
+    ],
   });
 
   registerMachine({
@@ -57,8 +58,9 @@ world.afterEvents.worldInitialize.subscribe(() => {
         },
       },
     },
-    systems: {
-      timedCrafting: {
+    systems: [
+      {
+        system: "timedCrafting",
         progressIndicator: "arrowIndicator",
         storageBars: [
           {
@@ -132,6 +134,6 @@ world.afterEvents.worldInitialize.subscribe(() => {
           },
         ],
       },
-    },
+    ],
   });
 });

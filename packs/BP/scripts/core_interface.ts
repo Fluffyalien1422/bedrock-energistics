@@ -29,6 +29,7 @@ type MachineUiElement =
 
 // systems
 interface SolarGeneratorSystemOptions {
+  system: "solarGenerator";
   baseGeneration: number;
   rainGeneration: number;
   outputBar: string;
@@ -52,6 +53,7 @@ interface TimedCraftingSystemRecipe {
 }
 
 interface TimedCraftingSystemOptions {
+  system: "timedCrafting";
   progressIndicator: string;
   storageBars: {
     type: MachineStorageType;
@@ -60,6 +62,8 @@ interface TimedCraftingSystemOptions {
   recipes: TimedCraftingSystemRecipe[];
 }
 
+type SystemOptions = SolarGeneratorSystemOptions | TimedCraftingSystemOptions;
+
 // registered machine
 interface RegisteredMachine {
   description: {
@@ -67,10 +71,7 @@ interface RegisteredMachine {
     uiElements: Record<string, MachineUiElement>;
     workingState?: string;
   };
-  systems: {
-    solarGenerator?: SolarGeneratorSystemOptions;
-    timedCrafting?: TimedCraftingSystemOptions;
-  };
+  systems: SystemOptions[];
 }
 
 const overworld = world.getDimension("overworld");

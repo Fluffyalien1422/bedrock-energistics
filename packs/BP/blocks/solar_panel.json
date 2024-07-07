@@ -9,7 +9,8 @@
     },
     "components": {
       "minecraft:custom_components": ["fluffyalien_energisticscore:machine"],
-      "tag:fluffyalien_energisticscore:io_energy": {},
+      "tag:fluffyalien_energisticscore:machine": {},
+      "tag:fluffyalien_energisticscore:io.energy": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
       "minecraft:material_instances": {

@@ -22,15 +22,13 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
     fs.readFileSync(path.join(machineEntitiesDir, fileName), "utf8"),
   ) as Machine;
 
-  const entityId = `${content.id}_entity`;
-
   fs.writeFileSync(
     path.join(entitiesDir, path.basename(fileName)),
     JSON.stringify({
       format_version: "1.21.0",
       "minecraft:entity": {
         description: {
-          identifier: entityId,
+          identifier: content.id,
           is_summonable: true,
           is_spawnable: false,
         },

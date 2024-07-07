@@ -1,5 +1,5 @@
 import { world } from "@minecraft/server";
-import { registerMachine } from "./core_interface";
+import { registerMachine } from "@/becore_api";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine({
@@ -25,7 +25,28 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine({
     description: {
       id: "fluffyalien_energistics:crusher",
-      workingState: "fluffyalien_energistics:working",
+      stateManager: {
+        states: [
+          {
+            state: "fluffyalien_energistics:working",
+            value: true,
+            condition: {
+              test: "energyChange",
+              operator: "!=",
+              value: 0,
+            },
+          },
+          {
+            state: "fluffyalien_energistics:working",
+            value: false,
+            condition: {
+              test: "energyChange",
+              operator: "==",
+              value: 0,
+            },
+          },
+        ],
+      },
       uiElements: {
         energyBar: {
           type: "storageBar",
@@ -70,7 +91,7 @@ world.afterEvents.worldInitialize.subscribe(() => {
         ],
         recipes: [
           {
-            maxProgress: 10,
+            maxProgress: 8,
             consumption: [
               {
                 type: "energy",
@@ -91,7 +112,7 @@ world.afterEvents.worldInitialize.subscribe(() => {
             ],
           },
           {
-            maxProgress: 10,
+            maxProgress: 8,
             consumption: [
               {
                 type: "energy",
@@ -112,7 +133,7 @@ world.afterEvents.worldInitialize.subscribe(() => {
             ],
           },
           {
-            maxProgress: 10,
+            maxProgress: 8,
             consumption: [
               {
                 type: "energy",

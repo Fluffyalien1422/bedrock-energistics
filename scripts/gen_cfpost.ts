@@ -8,6 +8,9 @@ Expands Bedrock with energistics! Adds technology to Minecraft, inspired by Java
 </p>
 
 <h2>
+Beware! This add-on is in a beta stage. Minor updates may contain breaking changes!
+</h2>
+<h2>
 Enable Beta APIs under Experiments in the world settings
 </h2>
 <h2>

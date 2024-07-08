@@ -3,6 +3,15 @@
     "fluffyalien_energistics:energy_conduit": {
       "textures": "textures/fluffyalien/energistics/blocks/energy_conduit"
     },
+    "fluffyalien_energistics:fluid_conduit": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_conduit"
+    },
+    "fluffyalien_energistics:gas_conduit": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_conduit"
+    },
+    "fluffyalien_energistics:multi_conduit": {
+      "textures": "textures/fluffyalien/energistics/blocks/multi_conduit"
+    },
     "fluffyalien_energistics:machine_casing_side": {
       "textures": "textures/fluffyalien/energistics/blocks/machine_casing_side"
     },

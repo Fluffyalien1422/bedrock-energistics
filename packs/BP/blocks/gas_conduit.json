@@ -2,7 +2,7 @@
   "format_version": "1.20.80",
   "minecraft:block": {
     "description": {
-      "identifier": "fluffyalien_energistics:energy_conduit",
+      "identifier": "fluffyalien_energistics:gas_conduit",
       "menu_category": {
         "category": "items"
       },
@@ -18,10 +18,10 @@
     "components": {
       "minecraft:custom_components": [
         "fluffyalien_energisticscore:conduit",
-        "fluffyalien_energistics:energy_conduit"
+        "fluffyalien_energistics:gas_conduit"
       ],
       "tag:fluffyalien_energisticscore:conduit": {},
-      "tag:fluffyalien_energisticscore:io.energy": {},
+      "tag:fluffyalien_energisticscore:io.gas": {},
 
       "minecraft:geometry": {
         "identifier": "geometry.fluffyalien_energistics.conduit",
@@ -36,7 +36,7 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "fluffyalien_energistics:energy_conduit"
+          "texture": "fluffyalien_energistics:gas_conduit"
         }
       },
       "minecraft:collision_box": {

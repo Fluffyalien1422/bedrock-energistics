@@ -1,4 +1,5 @@
-export type StorageType = "energy";
+export type FluidType = "oil";
+export type StorageType = "energy" | FluidType;
 export type UiProgressIndicatorElementType = "arrow";
 export interface UiStorageBarElement {
     type: "storageBar";

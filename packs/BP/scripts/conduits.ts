@@ -8,6 +8,7 @@ import {
 import { updateBlockConnectStates } from "./utils/block_connect";
 import { STR_DIRECTIONS } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
+import { updateBlockAdjacentNetworks } from "@/becore_api";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
@@ -168,6 +169,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:energy", true),
         );
+        updateBlockAdjacentNetworks(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:fluid_conduit":
@@ -178,6 +180,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:fluid", true),
         );
+        updateBlockAdjacentNetworks(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:gas_conduit":
@@ -188,6 +191,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:gas", true),
         );
+        updateBlockAdjacentNetworks(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
     }

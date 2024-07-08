@@ -1,5 +1,8 @@
 {
   "texture_data": {
+    "fluffyalien_energistics:energy_conduit": {
+      "textures": "textures/fluffyalien/energistics/blocks/energy_conduit"
+    },
     "fluffyalien_energistics:machine_casing_side": {
       "textures": "textures/fluffyalien/energistics/blocks/machine_casing_side"
     },

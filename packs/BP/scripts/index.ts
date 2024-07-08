@@ -1,6 +1,8 @@
 import { world } from "@minecraft/server";
 import { registerMachine } from "@/becore_api";
 
+import "./custom_components";
+
 world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine({
     description: {

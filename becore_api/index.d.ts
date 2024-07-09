@@ -59,3 +59,21 @@ export declare function getItemInMachineSlot(loc: DimensionLocation, slotId: num
  * @param newItemStack The {@link MachineItemStack} to put in the slot. Pass `undefined` to remove the item in the slot
  */
 export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: number, newItemStack?: MachineItemStack): void;
+/**
+ * Note: in most cases, prefer {@link generate} over this function.
+ * Queue sending energy, gas, or fluid over a machine network.
+ * Automatically sets the machine's reserve storage to the amount that was not received.
+ * @param blockLocation The location of the machine that is sending the energy, gas, or fluid.
+ * @param type The storage type to send.
+ * @param amount The amount to send.
+ * @see {@link generate}
+ */
+export declare function queueSend(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
+/**
+ * Sends energy, gas, or fluid over a machine network. Includes reserve storage as well.
+ * @param blockLocation The location of the machine that is generating.
+ * @param type The storage type to generate.
+ * @param amount The amount to generate
+ * @see {@link queueSend}
+ */
+export declare function generate(blockLocation: DimensionLocation, type: StorageType, amount: number): void;

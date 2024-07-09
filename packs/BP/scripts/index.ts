@@ -15,16 +15,6 @@ world.afterEvents.worldInitialize.subscribe(() => {
       },
     },
     handlers: {
-      onTick() {
-        return {
-          changes: [
-            {
-              type: "energy",
-              change: 1,
-            },
-          ],
-        };
-      },
       updateUi() {
         return {
           storageBars: [

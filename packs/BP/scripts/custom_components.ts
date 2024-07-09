@@ -5,6 +5,7 @@ import {
   gasConduitComponent,
   multiConduitComponent,
 } from "./conduits";
+import { solarPanelComponent } from "./machines/solar_panel";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -25,5 +26,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:multi_conduit",
     multiConduitComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:solar_panel",
+    solarPanelComponent,
   );
 });

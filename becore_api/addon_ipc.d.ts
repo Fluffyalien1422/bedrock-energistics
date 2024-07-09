@@ -5,4 +5,4 @@ export declare function removeScriptEventListener(event: string): void;
 export declare function registerScriptEventHandler<TPayload, TResponse>(event: string, callback: ScriptEventHandler<TPayload, TResponse>): void;
 export declare function removeScriptEventHandler(event: string): void;
 export declare function dispatchScriptEvent(event: string, payload: unknown): void;
-export declare function invokeScriptEvent<TPayload, TResponse>(event: string, payload: TPayload): Promise<TResponse>;
+export declare function invokeScriptEvent<TPayload, TResponse>(event: string, namespace: string, payload: TPayload): Promise<TResponse>;

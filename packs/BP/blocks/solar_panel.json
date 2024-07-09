@@ -8,7 +8,10 @@
       }
     },
     "components": {
-      "minecraft:custom_components": ["fluffyalien_energisticscore:machine"],
+      "minecraft:custom_components": [
+        "fluffyalien_energisticscore:machine",
+        "fluffyalien_energistics:solar_panel"
+      ],
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.energy": {},
 

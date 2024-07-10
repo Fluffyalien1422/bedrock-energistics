@@ -71,6 +71,9 @@ export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: num
 export declare function queueSend(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
 /**
  * Sends energy, gas, or fluid over a machine network. Includes reserve storage as well.
+ * This function should be called every block tick for generators even if the generation is `0` because it sends reserve storage.
+ * Automatically sets the machine's reserve storage to the amount that was not received.
+ * This function is a wrapper around {@link queueSend}.
  * @param blockLocation The location of the machine that is generating.
  * @param type The storage type to generate.
  * @param amount The amount to generate

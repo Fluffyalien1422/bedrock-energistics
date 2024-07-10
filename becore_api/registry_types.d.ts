@@ -1,5 +1,5 @@
-export type FluidType = "oil";
-export type StorageType = "energy" | FluidType;
+import { DimensionLocation } from "@minecraft/server";
+export type StorageType = "energy" | "oil";
 export type UiProgressIndicatorElementType = "arrow";
 export interface UiStorageBarElement {
     type: "storageBar";
@@ -71,12 +71,26 @@ export interface StateManagerState {
 export interface StateManager {
     states: StateManagerState[];
 }
-export interface RegisteredMachineDescription {
+export interface Description {
     id: string;
     uiElements: Record<string, UiElement>;
     stateManager?: StateManager;
 }
-export interface RegisteredMachine {
-    description: RegisteredMachineDescription;
-    systems: SystemOptions[];
+export interface UiElementUpdateOptions {
+    element: string;
+}
+export interface UiStorageBarUpdateOptions extends UiElementUpdateOptions {
+    type: StorageType;
+    change: number;
+}
+export interface UpdateUiHandlerResponse {
+    storageBars?: UiStorageBarUpdateOptions[];
+    progressIndicators?: Record<string, number>;
+}
+export interface Handlers {
+    updateUi?(blockLocation: DimensionLocation): UpdateUiHandlerResponse;
+}
+export interface RegisterMachineOptions {
+    description: Description;
+    handlers: Handlers;
 }

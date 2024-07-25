@@ -38,7 +38,7 @@ export interface UpdateUiHandlerResponse {
 export interface Handlers {
     updateUi?(blockLocation: DimensionLocation): UpdateUiHandlerResponse;
 }
-export interface RegisterMachineOptions {
+export interface MachineDefinition {
     description: Description;
     handlers?: Handlers;
 }

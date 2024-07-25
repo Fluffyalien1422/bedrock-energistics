@@ -1,5 +1,5 @@
 import { DimensionLocation } from "@minecraft/server";
-import { RegisterMachineOptions, StorageType } from "./registry_types";
+import { Description, MachineDefinition, StorageType } from "./registry_types";
 export * from "./registry_types";
 /**
  * Representation of an item stack stored in a machine inventory.
@@ -16,10 +16,18 @@ export interface MachineItemStack {
     count: number;
 }
 /**
+ * Serializable {@link MachineDefinition}.
+ * @see {@link MachineDefinition}, {@link registerMachine}
+ */
+export interface RegisteredMachine {
+    description: Description;
+    updateUiEvent?: string;
+}
+/**
  * @beta
  * Registers a machine. This function should be called in the `worldInitialize` after event.
  */
-export declare function registerMachine(options: RegisterMachineOptions): void;
+export declare function registerMachine(options: MachineDefinition): void;
 /**
  * @beta
  * Updates the network that a block belongs to, if it has one.
@@ -60,8 +68,9 @@ export declare function getItemInMachineSlot(loc: DimensionLocation, slotId: num
  */
 export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: number, newItemStack?: MachineItemStack): void;
 /**
- * Note: in most cases, prefer {@link generate} over this function.
  * Queue sending energy, gas, or fluid over a machine network.
+ * @remarks
+ * Note: in most cases, prefer {@link generate} over this function.
  * Automatically sets the machine's reserve storage to the amount that was not received.
  * @param blockLocation The location of the machine that is sending the energy, gas, or fluid.
  * @param type The storage type to send.
@@ -71,6 +80,7 @@ export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: num
 export declare function queueSend(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
 /**
  * Sends energy, gas, or fluid over a machine network. Includes reserve storage as well.
+ * @remarks
  * This function should be called every block tick for generators even if the generation is `0` because it sends reserve storage.
  * Automatically sets the machine's reserve storage to the amount that was not received.
  * This function is a wrapper around {@link queueSend}.
@@ -80,3 +90,11 @@ export declare function queueSend(blockLocation: DimensionLocation, type: Storag
  * @see {@link queueSend}
  */
 export declare function generate(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
+/**
+ * Gets a {@link RegisteredMachine} with the specified `id` or `null` if it doesn't exist.
+ * @param id The ID of the machine.
+ * @param namespace The namespace of THIS add-on. This is used by mcbe-addon-ipc to generate a script event to listen for the response from Bedrock Energistics Core.
+ * @returns The RegisteredMachine with the specified `id` or `null` if it doesn't exist.
+ * @throws if Bedrock Energistics Core takes too long to respond.
+ */
+export declare function getRegisteredMachine(id: string, namespace: string): Promise<RegisteredMachine | null>;

@@ -2,6 +2,7 @@ import { DimensionLocation } from "@minecraft/server";
 import { Description, MachineDefinition, StorageType } from "./registry_types";
 export * from "./registry_types";
 /**
+ * @beta
  * Representation of an item stack stored in a machine inventory.
  */
 export interface MachineItemStack {
@@ -16,6 +17,7 @@ export interface MachineItemStack {
     count: number;
 }
 /**
+ * @beta
  * Serializable {@link MachineDefinition}.
  * @see {@link MachineDefinition}, {@link registerMachine}
  */
@@ -23,6 +25,14 @@ export interface RegisteredMachine {
     description: Description;
     updateUiEvent?: string;
 }
+export interface InitOptions {
+    namespace: string;
+}
+/**
+ * @beta
+ * Sets global info to be used by functions in this package.
+ */
+export declare function init(options: InitOptions): void;
 /**
  * @beta
  * Registers a machine. This function should be called in the `worldInitialize` after event.
@@ -54,6 +64,7 @@ export declare function getMachineStorage(loc: DimensionLocation, type: StorageT
  */
 export declare function setMachineStorage(loc: DimensionLocation, type: StorageType, value: number): void;
 /**
+ * @beta
  * Gets an item from a machine inventory.
  * @param loc The location of the machine.
  * @param slotId The number ID of the slot as defined when the machine was registered (see {@link UiItemSlotElement}).
@@ -61,6 +72,7 @@ export declare function setMachineStorage(loc: DimensionLocation, type: StorageT
  */
 export declare function getItemInMachineSlot(loc: DimensionLocation, slotId: number): MachineItemStack | undefined;
 /**
+ * @beta
  * Sets an item in a machine inventory
  * @param loc The location of the machine
  * @param slotId The number ID of the slot as defined when the machine was registered (see {@link UiItemSlotElement}).
@@ -68,6 +80,7 @@ export declare function getItemInMachineSlot(loc: DimensionLocation, slotId: num
  */
 export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: number, newItemStack?: MachineItemStack): void;
 /**
+ * @beta
  * Queue sending energy, gas, or fluid over a machine network.
  * @remarks
  * Note: in most cases, prefer {@link generate} over this function.
@@ -75,15 +88,18 @@ export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: num
  * @param blockLocation The location of the machine that is sending the energy, gas, or fluid.
  * @param type The storage type to send.
  * @param amount The amount to send.
+ * @throws if `amount` is <= 0
  * @see {@link generate}
  */
 export declare function queueSend(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
 /**
+ * @beta
  * Sends energy, gas, or fluid over a machine network. Includes reserve storage as well.
  * @remarks
  * This function should be called every block tick for generators even if the generation is `0` because it sends reserve storage.
  * Automatically sets the machine's reserve storage to the amount that was not received.
  * This function is a wrapper around {@link queueSend}.
+ * Unlike `queueSend`, this function does not throw if `amount` <= 0.
  * @param blockLocation The location of the machine that is generating.
  * @param type The storage type to generate.
  * @param amount The amount to generate
@@ -91,10 +107,10 @@ export declare function queueSend(blockLocation: DimensionLocation, type: Storag
  */
 export declare function generate(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
 /**
+ * @beta
  * Gets a {@link RegisteredMachine} with the specified `id` or `null` if it doesn't exist.
  * @param id The ID of the machine.
- * @param namespace The namespace of THIS add-on. This is used by mcbe-addon-ipc to generate a script event to listen for the response from Bedrock Energistics Core.
  * @returns The RegisteredMachine with the specified `id` or `null` if it doesn't exist.
  * @throws if Bedrock Energistics Core takes too long to respond.
  */
-export declare function getRegisteredMachine(id: string, namespace: string): Promise<RegisteredMachine | null>;
+export declare function getRegisteredMachine(id: string): Promise<RegisteredMachine | null>;

@@ -82,13 +82,13 @@
       },
       {
         "arrow_indicator@fluffyalien_energistics:common.container_slot_icon": {
-          "$index": 5,
+          "$index": 6,
           "offset": ["50%", "50%"]
         }
       },
       {
         "output_slot@fluffyalien_energistics:common.container_item_slot": {
-          "$index": 6,
+          "$index": 5,
           "offset": ["50%+17px", "50%-9px"]
         }
       }

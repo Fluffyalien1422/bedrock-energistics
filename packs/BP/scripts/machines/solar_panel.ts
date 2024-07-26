@@ -6,6 +6,7 @@ import {
   WeatherType,
   world,
 } from "@minecraft/server";
+import { MACHINE_TICK_INTERVAL } from "../constants";
 
 function getGeneration(location: DimensionLocation): number {
   if (
@@ -45,7 +46,7 @@ export const solarPanelMachine: MachineDefinition = {
           {
             element: "energyBar",
             type: "energy",
-            change: getGeneration(location),
+            change: getGeneration(location) / MACHINE_TICK_INTERVAL,
           },
         ],
       };

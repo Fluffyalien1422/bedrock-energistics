@@ -35,6 +35,11 @@ export interface InitOptions {
 export declare function init(options: InitOptions): void;
 /**
  * @beta
+ * Tests whether Bedrock Energistics Core is in the world or not.
+ */
+export declare function isBedrockEnergisticsCoreInWorld(): boolean;
+/**
+ * @beta
  * Registers a machine. This function should be called in the `worldInitialize` after event.
  */
 export declare function registerMachine(options: MachineDefinition): void;

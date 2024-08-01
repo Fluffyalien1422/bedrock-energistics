@@ -31,3 +31,31 @@ export function updateBlockConnectStates<TDirection extends StrDirection>(
     block.setPermutation(permutation);
   }
 }
+
+export class BlockStateAccessor<TValue extends string | number | boolean> {
+  private cachedValue: TValue | undefined;
+
+  constructor(
+    readonly block: Block,
+    readonly stateId: string,
+  ) {}
+
+  get(): TValue {
+    if (this.cachedValue === undefined) {
+      this.cachedValue = this.block.permutation.getState(
+        this.stateId,
+      ) as TValue;
+    }
+
+    return this.cachedValue;
+  }
+
+  set(newVal: TValue): void {
+    if (this.get() === newVal) return;
+
+    this.cachedValue = newVal;
+    this.block.setPermutation(
+      this.block.permutation.withState(this.stateId, newVal),
+    );
+  }
+}

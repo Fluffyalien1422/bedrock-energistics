@@ -28,7 +28,7 @@
 
       "minecraft:destructible_by_explosion": false,
       "minecraft:destructible_by_mining": {
-        "seconds_to_destroy": 2
+        "seconds_to_destroy": 1
       },
       "minecraft:tick": {
         "interval_range": [20, 20]

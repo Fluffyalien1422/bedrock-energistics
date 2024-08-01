@@ -8,6 +8,7 @@ import {
 import { blockLocationToUid } from "../utils/location";
 import { MACHINE_TICK_INTERVAL } from "../constants";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
+import { BlockStateAccessor } from "../utils/block";
 
 const INPUT_ITEMS = [
   "minecraft:stone",
@@ -77,16 +78,21 @@ export const crusherMachine: MachineDefinition = {
   },
 };
 
-//TODO: update working state
 //TODO: add hopper interactions
 
 export const crusherComponent: BlockCustomComponent = {
   onTick(e) {
     const uid = blockLocationToUid(e.block);
 
+    const workingState = new BlockStateAccessor(
+      e.block,
+      "fluffyalien_energistics:working",
+    );
+
     const inputItem = getItemInMachineSlot(e.block, 0);
     if (!inputItem) {
       progressMap.delete(uid);
+      workingState.set(false);
       return;
     }
 
@@ -98,6 +104,7 @@ export const crusherComponent: BlockCustomComponent = {
           new ItemStack(OUTPUT_ITEMS[outputItem.type]).maxAmount)
     ) {
       progressMap.delete(uid);
+      workingState.set(false);
       return;
     }
 
@@ -109,6 +116,7 @@ export const crusherComponent: BlockCustomComponent = {
       ENERGY_CONSUMPTION_PER_PROGRESS * (MAX_PROGRESS - progress)
     ) {
       progressMap.delete(uid);
+      workingState.set(false);
       return;
     }
 
@@ -119,6 +127,7 @@ export const crusherComponent: BlockCustomComponent = {
       });
 
       progressMap.delete(uid);
+      workingState.set(false);
       return;
     }
 
@@ -128,5 +137,7 @@ export const crusherComponent: BlockCustomComponent = {
       "energy",
       storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,
     );
+
+    workingState.set(true);
   },
 };

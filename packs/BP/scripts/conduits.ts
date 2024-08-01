@@ -5,7 +5,7 @@ import {
   GameMode,
   ItemStack,
 } from "@minecraft/server";
-import { updateBlockConnectStates } from "./utils/block_connect";
+import { updateBlockConnectStates } from "./utils/block";
 import { STR_DIRECTIONS } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
 import { updateBlockAdjacentNetworks } from "@/becore_api";

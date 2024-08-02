@@ -10,7 +10,7 @@ export interface MachineItemStack {
      * The index of the item in the slot's `allowedItems`.
      * @see {@link UiItemSlotElement}
      */
-    type: number;
+    typeIndex: number;
     /**
      * The amount of this item.
      */

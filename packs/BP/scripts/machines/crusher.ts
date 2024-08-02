@@ -99,9 +99,9 @@ export const crusherComponent: BlockCustomComponent = {
     const outputItem = getItemInMachineSlot(e.block, 1);
     if (
       outputItem &&
-      (outputItem.type !== inputItem.type ||
+      (outputItem.typeIndex !== inputItem.typeIndex ||
         outputItem.count >=
-          new ItemStack(OUTPUT_ITEMS[outputItem.type]).maxAmount)
+          new ItemStack(OUTPUT_ITEMS[outputItem.typeIndex]).maxAmount)
     ) {
       progressMap.delete(uid);
       workingState.set(false);
@@ -122,8 +122,8 @@ export const crusherComponent: BlockCustomComponent = {
 
     if (progress >= MAX_PROGRESS) {
       setItemInMachineSlot(e.block, 1, {
-        type: inputItem.type,
-        count: (outputItem?.type ?? 0) + 1,
+        typeIndex: inputItem.typeIndex,
+        count: (outputItem?.typeIndex ?? 0) + 1,
       });
 
       progressMap.delete(uid);

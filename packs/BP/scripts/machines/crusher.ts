@@ -8,7 +8,11 @@ import {
 import { blockLocationToUid } from "../utils/location";
 import { MACHINE_TICK_INTERVAL } from "../constants";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
-import { BlockStateAccessor } from "../utils/block";
+import {
+  BlockStateAccessor,
+  getFirstSlotWithItemInConnectedHoppers,
+} from "../utils/block";
+import { decrementSlot } from "../utils/item";
 
 const INPUT_ITEMS = [
   "minecraft:stone",
@@ -78,8 +82,6 @@ export const crusherMachine: MachineDefinition = {
   },
 };
 
-//TODO: add hopper interactions
-
 export const crusherComponent: BlockCustomComponent = {
   onTick(e) {
     const uid = blockLocationToUid(e.block);
@@ -89,11 +91,39 @@ export const crusherComponent: BlockCustomComponent = {
       "fluffyalien_energistics:working",
     );
 
-    const inputItem = getItemInMachineSlot(e.block, 0);
-    if (!inputItem) {
-      progressMap.delete(uid);
-      workingState.set(false);
-      return;
+    let inputItem = getItemInMachineSlot(e.block, 0);
+
+    if (inputItem) {
+      const inputItemTypeId = INPUT_ITEMS[inputItem.typeIndex];
+      if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+        const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
+          inputItemTypeId,
+        ]);
+
+        if (hopperSlot) {
+          inputItem.count++;
+          setItemInMachineSlot(e.block, 0, inputItem);
+          decrementSlot(hopperSlot);
+        }
+      }
+    } else {
+      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
+        e.block,
+        INPUT_ITEMS,
+      );
+
+      if (hopperSlot) {
+        inputItem = {
+          typeIndex: INPUT_ITEMS.indexOf(hopperSlot.typeId),
+          count: 1,
+        };
+        setItemInMachineSlot(e.block, 0, inputItem);
+        decrementSlot(hopperSlot);
+      } else {
+        progressMap.delete(uid);
+        workingState.set(false);
+        return;
+      }
     }
 
     const outputItem = getItemInMachineSlot(e.block, 1);

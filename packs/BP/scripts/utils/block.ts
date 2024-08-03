@@ -1,4 +1,4 @@
-import { Block } from "@minecraft/server";
+import { Block, Container, ContainerSlot, ItemStack } from "@minecraft/server";
 import { getBlockInDirection, StrDirection } from "./direction";
 
 /**
@@ -29,6 +29,117 @@ export function updateBlockConnectStates<TDirection extends StrDirection>(
 
   if (anyStatesChanged) {
     block.setPermutation(permutation);
+  }
+}
+
+/**
+ * deposits an item to a hopper below `block`
+ * @returns a boolean indicating whether the item was added or not
+ */
+export function depositItemToHopper(
+  block: Block,
+  itemStack: ItemStack,
+): boolean {
+  const below = block.below();
+  if (below?.typeId !== "minecraft:hopper") {
+    return false;
+  }
+
+  const container = below.getComponent("inventory")!.container!;
+
+  const itemAdded = !container.addItem(itemStack);
+
+  return itemAdded;
+}
+
+export function getConnectedHoppers(block: Block): Block[] {
+  const hoppers: Block[] = [];
+
+  {
+    const north = block.north();
+    if (
+      north?.typeId === "minecraft:hopper" &&
+      !north.getRedstonePower() &&
+      north.permutation.getState("facing_direction") === 3
+    ) {
+      hoppers.push(north);
+    }
+  }
+
+  {
+    const east = block.east();
+    if (
+      east?.typeId === "minecraft:hopper" &&
+      !east.getRedstonePower() &&
+      east.permutation.getState("facing_direction") === 4
+    ) {
+      hoppers.push(east);
+    }
+  }
+
+  {
+    const south = block.south();
+    if (
+      south?.typeId === "minecraft:hopper" &&
+      !south.getRedstonePower() &&
+      south.permutation.getState("facing_direction") === 2
+    ) {
+      hoppers.push(south);
+    }
+  }
+
+  {
+    const west = block.west();
+    if (
+      west?.typeId === "minecraft:hopper" &&
+      !west.getRedstonePower() &&
+      west.permutation.getState("facing_direction") === 5
+    ) {
+      hoppers.push(west);
+    }
+  }
+
+  {
+    const above = block.above();
+    if (
+      above?.typeId === "minecraft:hopper" &&
+      !above.getRedstonePower() &&
+      above.permutation.getState("facing_direction") === 0
+    ) {
+      hoppers.push(above);
+    }
+  }
+
+  return hoppers;
+}
+
+export function getFirstSlotWithItem(
+  container: Container,
+  allowedItems?: string[],
+): ContainerSlot | undefined {
+  for (let i = 0; i < container.size; i++) {
+    const slot = container.getSlot(i);
+    if (
+      slot.hasItem() &&
+      (!allowedItems || allowedItems.includes(slot.typeId))
+    ) {
+      return slot;
+    }
+  }
+}
+
+export function getFirstSlotWithItemInConnectedHoppers(
+  block: Block,
+  allowedItems?: string[],
+): ContainerSlot | undefined {
+  const hoppers = getConnectedHoppers(block);
+
+  for (const hopper of hoppers) {
+    const slot = getFirstSlotWithItem(
+      hopper.getComponent("inventory")!.container!,
+      allowedItems,
+    );
+    if (slot) return slot;
   }
 }
 

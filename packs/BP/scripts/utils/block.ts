@@ -32,6 +32,15 @@ export function updateBlockConnectStates<TDirection extends StrDirection>(
   }
 }
 
+export function getHopperBelow(block: Block): Block | undefined {
+  const below = block.below();
+  if (below?.typeId !== "minecraft:hopper") {
+    return;
+  }
+
+  return below;
+}
+
 /**
  * deposits an item to a hopper below `block`
  * @returns a boolean indicating whether the item was added or not
@@ -40,12 +49,12 @@ export function depositItemToHopper(
   block: Block,
   itemStack: ItemStack,
 ): boolean {
-  const below = block.below();
-  if (below?.typeId !== "minecraft:hopper") {
+  const hopper = getHopperBelow(block);
+  if (!hopper) {
     return false;
   }
 
-  const container = below.getComponent("inventory")!.container!;
+  const container = hopper.getComponent("inventory")!.container!;
 
   const itemAdded = !container.addItem(itemStack);
 

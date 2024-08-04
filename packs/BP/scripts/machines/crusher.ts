@@ -10,7 +10,9 @@ import { MACHINE_TICK_INTERVAL } from "../constants";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
 import {
   BlockStateAccessor,
+  depositItemToHopper,
   getFirstSlotWithItemInConnectedHoppers,
+  getHopperBelow,
 } from "../utils/block";
 import { decrementSlot } from "../utils/item";
 
@@ -91,6 +93,21 @@ export const crusherComponent: BlockCustomComponent = {
       "fluffyalien_energistics:working",
     );
 
+    let outputItem = getItemInMachineSlot(e.block, 1);
+
+    if (outputItem && getHopperBelow(e.block)) {
+      const itemStack = new ItemStack(OUTPUT_ITEMS[outputItem.typeIndex]);
+      if (depositItemToHopper(e.block, itemStack)) {
+        outputItem.count--;
+        if (outputItem.count > 0) {
+          setItemInMachineSlot(e.block, 1, outputItem);
+        } else {
+          setItemInMachineSlot(e.block, 1);
+          outputItem = undefined;
+        }
+      }
+    }
+
     let inputItem = getItemInMachineSlot(e.block, 0);
 
     if (inputItem) {
@@ -126,7 +143,6 @@ export const crusherComponent: BlockCustomComponent = {
       }
     }
 
-    const outputItem = getItemInMachineSlot(e.block, 1);
     if (
       outputItem &&
       (outputItem.typeIndex !== inputItem.typeIndex ||
@@ -151,13 +167,19 @@ export const crusherComponent: BlockCustomComponent = {
     }
 
     if (progress >= MAX_PROGRESS) {
+      inputItem.count--;
+      setItemInMachineSlot(
+        e.block,
+        0,
+        inputItem.count > 0 ? inputItem : undefined,
+      );
+
       setItemInMachineSlot(e.block, 1, {
         typeIndex: inputItem.typeIndex,
-        count: (outputItem?.typeIndex ?? 0) + 1,
+        count: (outputItem?.count ?? 0) + 1,
       });
 
       progressMap.delete(uid);
-      workingState.set(false);
       return;
     }
 

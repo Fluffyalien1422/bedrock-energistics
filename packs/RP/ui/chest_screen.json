@@ -15,6 +15,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:crusher')",
             "$screen_content": "fluffyalien_energistics:crusher.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:oil_extractor')",
+            "$screen_content": "fluffyalien_energistics:oil_extractor.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

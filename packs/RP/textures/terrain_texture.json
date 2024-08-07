@@ -35,6 +35,12 @@
     },
     "fluffyalien_energistics:oil_extractor_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/oil_extractor_front_on"
+    },
+    "fluffyalien_energistics:oil_generator_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/oil_generator_front_off"
+    },
+    "fluffyalien_energistics:oil_generator_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/oil_generator_front_on"
     }
   }
 }

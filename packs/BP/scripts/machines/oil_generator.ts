@@ -9,21 +9,21 @@ import { BlockCustomComponent } from "@minecraft/server";
 import { MACHINE_TICK_INTERVAL } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
-const OIL_GENERATION = 5;
-const OIL_GENERATION_PER_TICK = OIL_GENERATION / MACHINE_TICK_INTERVAL;
-const ENERGY_CONSUMPTION = 10;
-const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
+const OIL_CONSUMPTION = 2;
+const OIL_CONSUMPTION_PER_TICK = OIL_CONSUMPTION / MACHINE_TICK_INTERVAL;
+const ENERGY_GENERATION = 15;
+const ENERGY_GENERATION_PER_TICK = ENERGY_GENERATION / MACHINE_TICK_INTERVAL;
 
-export const oilExtractorMachine: MachineDefinition = {
+export const oilGeneratorMachine: MachineDefinition = {
   description: {
-    id: "fluffyalien_energistics:oil_extractor",
+    id: "fluffyalien_energistics:oil_generator",
     ui: {
       elements: {
-        energyBar: {
+        oilBar: {
           type: "storageBar",
           startIndex: 0,
         },
-        oilBar: {
+        energyBar: {
           type: "storageBar",
           startIndex: 4,
         },
@@ -42,12 +42,12 @@ export const oilExtractorMachine: MachineDefinition = {
           {
             element: "energyBar",
             type: "energy",
-            change: working ? -ENERGY_CONSUMPTION_PER_TICK : 0,
+            change: working ? ENERGY_GENERATION_PER_TICK : 0,
           },
           {
             element: "oilBar",
             type: "oil",
-            change: working ? OIL_GENERATION_PER_TICK : 0,
+            change: working ? -OIL_CONSUMPTION_PER_TICK : 0,
           },
         ],
       };
@@ -55,29 +55,29 @@ export const oilExtractorMachine: MachineDefinition = {
   },
 };
 
-export const oilExtractorComponent: BlockCustomComponent = {
+export const oilGeneratorComponent: BlockCustomComponent = {
   onTick(e) {
     const workingState = new BlockStateAccessor<boolean>(
       e.block,
       "fluffyalien_energistics:working",
     );
 
-    const storedEnergy = getMachineStorage(e.block, "energy");
-
-    if (storedEnergy < ENERGY_CONSUMPTION) {
-      workingState.set(false);
-      return;
-    }
-
     const storedOil = getMachineStorage(e.block, "oil");
 
-    if (storedOil >= MAX_MACHINE_STORAGE) {
+    if (storedOil < OIL_CONSUMPTION) {
       workingState.set(false);
       return;
     }
 
-    setMachineStorage(e.block, "energy", storedEnergy - ENERGY_CONSUMPTION);
-    generate(e.block, "oil", OIL_GENERATION);
+    const storedEnergy = getMachineStorage(e.block, "energy");
+
+    if (storedEnergy >= MAX_MACHINE_STORAGE) {
+      workingState.set(false);
+      return;
+    }
+
+    setMachineStorage(e.block, "oil", storedOil - OIL_CONSUMPTION);
+    generate(e.block, "energy", ENERGY_GENERATION);
 
     workingState.set(true);
   },

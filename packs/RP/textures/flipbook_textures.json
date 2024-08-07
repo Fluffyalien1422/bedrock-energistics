@@ -4,5 +4,10 @@
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/crusher_front_on",
     "ticks_per_frame": 5,
     "blend_frames": false
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:oil_generator_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/oil_generator_front_on",
+    "ticks_per_frame": 10
   }
 ]

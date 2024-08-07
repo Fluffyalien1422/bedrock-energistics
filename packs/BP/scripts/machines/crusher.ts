@@ -88,7 +88,7 @@ export const crusherComponent: BlockCustomComponent = {
   onTick(e) {
     const uid = blockLocationToUid(e.block);
 
-    const workingState = new BlockStateAccessor(
+    const workingState = new BlockStateAccessor<boolean>(
       e.block,
       "fluffyalien_energistics:working",
     );

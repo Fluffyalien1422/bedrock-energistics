@@ -29,6 +29,14 @@ export interface InitOptions {
     namespace: string;
 }
 /**
+ * The amount that each storage bar segment in a machine is worth
+ */
+export declare const STORAGE_AMOUNT_PER_BAR_SEGMENT = 100;
+/**
+ * The max storage of each storage type in a machine
+ */
+export declare const MAX_MACHINE_STORAGE: number;
+/**
  * @beta
  * Sets global info to be used by functions in this package.
  */

@@ -11,6 +11,21 @@ world.afterEvents.worldInitialize.subscribe(() => {
     color: "black",
     name: "oil",
   });
+  registerStorageType({
+    id: "hydrogen",
+    color: "pink",
+    name: "hydrogen",
+  });
+  registerStorageType({
+    id: "carbon",
+    color: "red",
+    name: "carbon",
+  });
+  registerStorageType({
+    id: "nitrogen",
+    color: "purple",
+    name: "nitrogen",
+  });
 
   registerMachine(solarPanelMachine);
   registerMachine(crusherMachine);

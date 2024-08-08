@@ -9,5 +9,20 @@
     "atlas_tile": "fluffyalien_energistics:oil_generator_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/oil_generator_front_on",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:atmospheric_condenser_front_on_hydrogen",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_hydrogen",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:atmospheric_condenser_front_on_nitrogen",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_nitrogen",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:atmospheric_condenser_front_on_carbon",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_carbon",
+    "ticks_per_frame": 10
   }
 ]

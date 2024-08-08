@@ -9,4 +9,3 @@ export declare function getStorageScoreboard(type: string): ScoreboardObjective;
 export declare function getItemTypeScoreboard(slot: number): ScoreboardObjective;
 export declare function getItemCountScoreboard(slot: number): ScoreboardObjective;
 export declare function getScore(objective: ScoreboardObjective, participant: string): number | undefined;
-export declare function logInfo(message: string): void;

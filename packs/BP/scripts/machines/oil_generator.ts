@@ -72,12 +72,11 @@ export const oilGeneratorComponent: BlockCustomComponent = {
     const storedEnergy = getMachineStorage(e.block, "energy");
 
     if (storedEnergy >= MAX_MACHINE_STORAGE) {
-      workingState.set(false);
-      return;
+      generate(e.block, "energy", 0);
+    } else {
+      setMachineStorage(e.block, "oil", storedOil - OIL_CONSUMPTION);
+      generate(e.block, "energy", ENERGY_GENERATION);
     }
-
-    setMachineStorage(e.block, "oil", storedOil - OIL_CONSUMPTION);
-    generate(e.block, "energy", ENERGY_GENERATION);
 
     workingState.set(true);
   },

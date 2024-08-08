@@ -41,6 +41,21 @@
     },
     "fluffyalien_energistics:oil_generator_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/oil_generator_front_on"
+    },
+    "fluffyalien_energistics:atmospheric_condenser_top": {
+      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_top"
+    },
+    "fluffyalien_energistics:atmospheric_condenser_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_off"
+    },
+    "fluffyalien_energistics:atmospheric_condenser_front_on_hydrogen": {
+      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_hydrogen"
+    },
+    "fluffyalien_energistics:atmospheric_condenser_front_on_nitrogen": {
+      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_nitrogen"
+    },
+    "fluffyalien_energistics:atmospheric_condenser_front_on_carbon": {
+      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_carbon"
     }
   }
 }

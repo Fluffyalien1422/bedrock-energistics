@@ -5,7 +5,8 @@ export interface SerializableDimensionLocation extends Vector3 {
 export declare function makeSerializableDimensionLocation(loc: DimensionLocation): SerializableDimensionLocation;
 export declare function deserializeDimensionLocation(loc: SerializableDimensionLocation): DimensionLocation;
 export declare function getBlockUniqueId(loc: DimensionLocation): string;
-export declare function getStorageScoreboard(type: string): ScoreboardObjective;
-export declare function getItemTypeScoreboard(slot: number): ScoreboardObjective;
-export declare function getItemCountScoreboard(slot: number): ScoreboardObjective;
+export declare function getStorageScoreboardObjective(type: string): ScoreboardObjective | undefined;
+export declare function getItemTypeScoreboardObjective(slot: number): ScoreboardObjective;
+export declare function getItemCountScoreboardObjective(slot: number): ScoreboardObjective;
 export declare function getScore(objective: ScoreboardObjective, participant: string): number | undefined;
+export declare function makeErrorString(message: string): string;

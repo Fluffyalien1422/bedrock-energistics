@@ -1,5 +1,5 @@
 import { DimensionLocation } from "@minecraft/server";
-import { Description, MachineDefinition, StorageType } from "./registry_types";
+import { Description, MachineDefinition, StorageTypeDefinition } from "./registry_types";
 export * from "./registry_types";
 /**
  * @beta
@@ -53,6 +53,11 @@ export declare function isBedrockEnergisticsCoreInWorld(): boolean;
 export declare function registerMachine(options: MachineDefinition): void;
 /**
  * @beta
+ * Registers a storage type. This function should be called in the `worldInitialize` after event.
+ */
+export declare function registerStorageType(definition: StorageTypeDefinition): void;
+/**
+ * @beta
  * Updates the network that a block belongs to, if it has one.
  */
 export declare function updateBlockNetwork(blockLocation: DimensionLocation): void;
@@ -67,7 +72,7 @@ export declare function updateBlockAdjacentNetworks(blockLocation: DimensionLoca
  * @param loc The location of the machine.
  * @param type The type of storage to get.
  */
-export declare function getMachineStorage(loc: DimensionLocation, type: StorageType): number;
+export declare function getMachineStorage(loc: DimensionLocation, type: string): number;
 /**
  * @beta
  * Sets the storage of a specific type in a machine.
@@ -75,7 +80,7 @@ export declare function getMachineStorage(loc: DimensionLocation, type: StorageT
  * @param type The type of storage to set.
  * @param value The new value.
  */
-export declare function setMachineStorage(loc: DimensionLocation, type: StorageType, value: number): void;
+export declare function setMachineStorage(loc: DimensionLocation, type: string, value: number): void;
 /**
  * @beta
  * Gets an item from a machine inventory.
@@ -104,7 +109,7 @@ export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: num
  * @throws if `amount` is <= 0
  * @see {@link generate}
  */
-export declare function queueSend(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
+export declare function queueSend(blockLocation: DimensionLocation, type: string, amount: number): void;
 /**
  * @beta
  * Sends energy, gas, or fluid over a machine network. Includes reserve storage as well.
@@ -118,7 +123,7 @@ export declare function queueSend(blockLocation: DimensionLocation, type: Storag
  * @param amount The amount to generate
  * @see {@link queueSend}
  */
-export declare function generate(blockLocation: DimensionLocation, type: StorageType, amount: number): void;
+export declare function generate(blockLocation: DimensionLocation, type: string, amount: number): void;
 /**
  * @beta
  * Gets a {@link RegisteredMachine} with the specified `id` or `null` if it doesn't exist.

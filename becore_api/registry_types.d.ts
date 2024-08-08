@@ -1,5 +1,4 @@
 import { DimensionLocation } from "@minecraft/server";
-export type StorageType = "energy" | "oil";
 export type UiProgressIndicatorElementType = "arrow";
 export interface UiStorageBarElement {
     type: "storageBar";
@@ -28,7 +27,10 @@ export interface UiElementUpdateOptions {
     element: string;
 }
 export interface UiStorageBarUpdateOptions extends UiElementUpdateOptions {
-    type: StorageType;
+    /**
+     * The type of this storage bar. Set to "_disabled" to disable the storage bar.
+     */
+    type: string;
     change: number;
 }
 export interface UpdateUiHandlerResponse {
@@ -41,4 +43,10 @@ export interface Handlers {
 export interface MachineDefinition {
     description: Description;
     handlers?: Handlers;
+}
+export type StorageTypeColor = "black" | "orange" | "pink" | "purple" | "red" | "yellow";
+export interface StorageTypeDefinition {
+    id: string;
+    color: StorageTypeColor;
+    name: string;
 }

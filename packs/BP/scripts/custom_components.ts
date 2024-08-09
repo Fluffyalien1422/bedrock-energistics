@@ -10,6 +10,7 @@ import { crusherComponent } from "./machines/crusher";
 import { oilExtractorComponent } from "./machines/oil_extractor";
 import { oilGeneratorComponent } from "./machines/oil_generator";
 import { atmosphericCondenserComponent } from "./machines/atmospheric_condenser";
+import { poweredFurnaceComponent } from "./machines/powered_furnace";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -55,5 +56,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:atmospheric_condenser",
     atmosphericCondenserComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:powered_furnace",
+    poweredFurnaceComponent,
   );
 });

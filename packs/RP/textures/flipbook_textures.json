@@ -24,5 +24,10 @@
     "atlas_tile": "fluffyalien_energistics:atmospheric_condenser_front_on_carbon",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_carbon",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:powered_furnace_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/powered_furnace_front_on",
+    "ticks_per_frame": 10
   }
 ]

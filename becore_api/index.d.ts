@@ -1,4 +1,4 @@
-import { DimensionLocation } from "@minecraft/server";
+import { Block, DimensionLocation } from "@minecraft/server";
 import { Description, MachineDefinition, StorageTypeDefinition } from "./registry_types";
 export * from "./registry_types";
 /**
@@ -82,14 +82,14 @@ export declare function getMachineStorage(loc: DimensionLocation, type: string):
 /**
  * Sets the storage of a specific type in a machine.
  * @beta
- * @param loc The location of the machine.
+ * @param block The machine block.
  * @param type The type of storage to set.
  * @param value The new value. Must be an integer.
  * @throws Throws if the storage type does not exist.
  * @throws Throws if the new value is negative or greater than {@link MAX_MACHINE_STORAGE}.
  * @throws Throws if the new value is not an integer.
  */
-export declare function setMachineStorage(loc: DimensionLocation, type: string, value: number): void;
+export declare function setMachineStorage(block: Block, type: string, value: number): void;
 /**
  * Gets an item from a machine inventory.
  * @beta

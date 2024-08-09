@@ -57,10 +57,15 @@ export declare function registerMachine(options: MachineDefinition): void;
  */
 export declare function registerStorageType(definition: StorageTypeDefinition): void;
 /**
- * Updates the network that a block belongs to, if it has one.
+ * Updates the networks that a block belongs to, if it has any.
  * @beta
  */
-export declare function updateBlockNetwork(blockLocation: DimensionLocation): void;
+export declare function updateBlockNetworks(blockLocation: DimensionLocation): void;
+/**
+ * Updates the networks adjacent to a block that the block can connect to.
+ * @beta
+ */
+export declare function updateBlockConnectableNetworks(blockLocation: DimensionLocation): void;
 /**
  * Updates the networks adjacent to a block.
  * @beta

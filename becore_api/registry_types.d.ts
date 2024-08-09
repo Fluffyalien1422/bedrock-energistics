@@ -47,6 +47,7 @@ export interface MachineDefinition {
 export type StorageTypeColor = "black" | "orange" | "pink" | "purple" | "red" | "yellow";
 export interface StorageTypeDefinition {
     id: string;
+    category: string;
     color: StorageTypeColor;
     name: string;
 }

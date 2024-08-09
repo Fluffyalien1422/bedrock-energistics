@@ -10,21 +10,25 @@ import { poweredFurnaceMachine } from "./machines/powered_furnace";
 world.afterEvents.worldInitialize.subscribe(() => {
   registerStorageType({
     id: "oil",
+    category: "fluid",
     color: "black",
     name: "oil",
   });
   registerStorageType({
     id: "hydrogen",
+    category: "gas",
     color: "pink",
     name: "hydrogen",
   });
   registerStorageType({
     id: "carbon",
+    category: "gas",
     color: "red",
     name: "carbon",
   });
   registerStorageType({
     id: "nitrogen",
+    category: "gas",
     color: "purple",
     name: "nitrogen",
   });

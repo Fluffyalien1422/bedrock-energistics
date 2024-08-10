@@ -5,7 +5,6 @@
     "ui/fluffyalien/energistics/crusher.json",
     "ui/fluffyalien/energistics/oil_extractor.json",
     "ui/fluffyalien/energistics/oil_generator.json",
-    "ui/fluffyalien/energistics/atmospheric_condenser.json",
-    "ui/fluffyalien/energistics/powered_furnace.json"
+    "ui/fluffyalien/energistics/atmospheric_condenser.json"
   ]
 }

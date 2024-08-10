@@ -5,7 +5,6 @@ import { crusherMachine } from "./machines/crusher";
 import { oilExtractorMachine } from "./machines/oil_extractor";
 import { oilGeneratorMachine } from "./machines/oil_generator";
 import { atmosphericCondenserMachine } from "./machines/atmospheric_condenser";
-import { poweredFurnaceMachine } from "./machines/powered_furnace";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   registerStorageType({
@@ -38,5 +37,4 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(oilExtractorMachine);
   registerMachine(oilGeneratorMachine);
   registerMachine(atmosphericCondenserMachine);
-  registerMachine(poweredFurnaceMachine);
 });

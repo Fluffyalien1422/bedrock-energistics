@@ -5,6 +5,7 @@ import { TMP_DIR } from "./common";
 interface Machine {
   id: string;
   inventorySize: number;
+  persistent: boolean;
 }
 
 const bpDir = path.join(TMP_DIR, "BP");
@@ -21,6 +22,57 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
   const content = JSON.parse(
     fs.readFileSync(path.join(machineEntitiesDir, fileName), "utf8"),
   ) as Machine;
+
+  if (content.persistent) {
+    fs.writeFileSync(
+      path.join(entitiesDir, path.basename(fileName)),
+      JSON.stringify({
+        format_version: "1.21.0",
+        "minecraft:entity": {
+          description: {
+            identifier: content.id,
+            is_summonable: true,
+            is_spawnable: false,
+          },
+          components: {
+            "minecraft:persistent": {},
+            "minecraft:breathable": {
+              breathes_water: true,
+            },
+            "minecraft:physics": {
+              has_gravity: false,
+              has_collision: false,
+            },
+            "minecraft:damage_sensor": {
+              triggers: {
+                deals_damage: false,
+              },
+            },
+            "minecraft:pushable": {
+              is_pushable: false,
+              is_pushable_by_piston: false,
+            },
+            "minecraft:knockback_resistance": {
+              value: 1,
+            },
+            "minecraft:collision_box": {
+              width: 1,
+              height: 1,
+            },
+            "minecraft:inventory": {
+              container_type: "container",
+              inventory_size: content.inventorySize,
+            },
+            "minecraft:type_family": {
+              family: ["fluffyalien_energisticscore:machine_entity"],
+            },
+          },
+        },
+      }),
+    );
+
+    continue;
+  }
 
   fs.writeFileSync(
     path.join(entitiesDir, path.basename(fileName)),

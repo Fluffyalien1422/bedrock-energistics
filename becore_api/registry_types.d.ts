@@ -21,6 +21,7 @@ export interface UiOptions {
 }
 export interface Description {
     id: string;
+    persistentEntity?: boolean;
     ui?: UiOptions;
 }
 export interface UiElementUpdateOptions {

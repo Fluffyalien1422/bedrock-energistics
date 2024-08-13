@@ -88,6 +88,7 @@ export declare function getMachineStorage(loc: DimensionLocation, type: string):
  * @throws Throws if the storage type does not exist.
  * @throws Throws if the new value is negative or greater than {@link MAX_MACHINE_STORAGE}.
  * @throws Throws if the new value is not an integer.
+ * @throws Throws if the block is not valid
  */
 export declare function setMachineStorage(block: Block, type: string, value: number): void;
 /**

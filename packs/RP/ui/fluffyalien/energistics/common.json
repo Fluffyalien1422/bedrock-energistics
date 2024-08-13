@@ -32,7 +32,8 @@
   },
   "container_slot_icon@fluffyalien_energistics:common.container_item_slot": {
     "$slot_size": [0, 0],
-    "$slot_image_size": [0, 0]
+    "$slot_image_size": [0, 0],
+    "enabled": false
   },
   "machine_storage_bar": {
     "type": "panel",

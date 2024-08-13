@@ -55,10 +55,9 @@ const ID_OVERRIDES: Record<string, string | null> = {
   "minecraft:horsearmoriron": "minecraft:iron_horse_armor",
   "minecraft:muttonRaw": "minecraft:mutton",
   "minecraft:muttonCooked": "minecraft:cooked_mutton",
-  // unflattened IDS
-  "minecraft:quartz_block:3": null,
-  "minecraft:red_sandstone:3": null,
-  "minecraft:sandstone:3": null,
+  "minecraft:quartz_block:3": "minecraft:smooth_quartz",
+  "minecraft:red_sandstone:3": "minecraft:smooth_red_sandstone",
+  "minecraft:sandstone:3": "minecraft:smooth_sandstone",
 };
 
 console.log("preparing");

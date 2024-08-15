@@ -10,3 +10,4 @@ tile.fluffyalien_energistics:oil_extractor.name=Oil Extractor
 tile.fluffyalien_energistics:oil_generator.name=Oil Generator
 tile.fluffyalien_energistics:atmospheric_condenser.name=Atmospheric Condenser
 tile.fluffyalien_energistics:powered_furnace.name=Powered Furnace
+tile.fluffyalien_energistics:coal_generator.name=Coal Generator

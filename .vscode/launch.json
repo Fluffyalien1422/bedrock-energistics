@@ -4,7 +4,16 @@
     {
       "type": "minecraft-js",
       "request": "attach",
-      "name": "Debug with Minecraft",
+      "name": "Minecraft Stable Debug",
+      "mode": "listen",
+      "targetModuleUuid": "9ff133e0-1754-4ac9-8976-8c212f90577d",
+      "localRoot": "%localappdata%/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/LocalState/games/com.mojang/development_behavior_packs/bedrock_energistics_bp/scripts",
+      "port": 19144
+    },
+    {
+      "type": "minecraft-js",
+      "request": "attach",
+      "name": "Minecraft Preview Debug",
       "mode": "listen",
       "targetModuleUuid": "9ff133e0-1754-4ac9-8976-8c212f90577d",
       "localRoot": "%localappdata%/Packages/Microsoft.MinecraftWindowsBeta_8wekyb3d8bbwe/LocalState/games/com.mojang/development_behavior_packs/bedrock_energistics_bp/scripts",

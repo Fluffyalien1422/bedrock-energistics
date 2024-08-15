@@ -35,6 +35,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:powered_furnace')",
             "$screen_content": "fluffyalien_energistics:powered_furnace.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:coal_generator')",
+            "$screen_content": "fluffyalien_energistics:coal_generator.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

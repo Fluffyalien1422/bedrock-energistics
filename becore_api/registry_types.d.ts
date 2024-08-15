@@ -1,5 +1,5 @@
 import { DimensionLocation } from "@minecraft/server";
-export type UiProgressIndicatorElementType = "arrow";
+export type UiProgressIndicatorElementType = "arrow" | "flame";
 export interface UiStorageBarElement {
     type: "storageBar";
     startIndex: number;

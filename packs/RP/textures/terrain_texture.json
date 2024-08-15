@@ -62,6 +62,12 @@
     },
     "fluffyalien_energistics:powered_furnace_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/powered_furnace_front_on"
+    },
+    "fluffyalien_energistics:coal_generator_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/coal_generator_front_off"
+    },
+    "fluffyalien_energistics:coal_generator_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/coal_generator_front_on"
     }
   }
 }

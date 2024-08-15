@@ -151,3 +151,10 @@ export declare function generate(blockLocation: DimensionLocation, type: string,
  * @throws if Bedrock Energistics Core takes too long to respond.
  */
 export declare function getRegisteredMachine(id: string): Promise<RegisteredMachine | null>;
+/**
+ * Cleans up machine data and updates it's networks.
+ * This is automatically done by Bedrock Energistics Core when a machine is destroyed by a player.
+ * If you destroy a machine from script, call this function before the block is removed.
+ * @param blockLocation The location of the machine.
+ */
+export declare function removeMachine(blockLocation: DimensionLocation): void;

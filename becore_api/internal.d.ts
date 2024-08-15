@@ -28,4 +28,5 @@ export declare function getStorageScoreboardObjective(type: string): ScoreboardO
 export declare function getItemTypeScoreboardObjective(slot: number): ScoreboardObjective;
 export declare function getItemCountScoreboardObjective(slot: number): ScoreboardObjective;
 export declare function getScore(objective: ScoreboardObjective, participant: string): number | undefined;
+export declare function removeBlockFromScoreboards(loc: DimensionLocation): void;
 export declare function makeErrorString(message: string): string;

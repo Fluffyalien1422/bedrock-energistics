@@ -1,4 +1,4 @@
-import { updateBlockNetworks } from "@/becore_api";
+import { removeMachine } from "@/becore_api";
 import { Vector3Utils } from "@minecraft/math";
 import { ItemStack, Player, world } from "@minecraft/server";
 
@@ -32,7 +32,7 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
     ...blockLocation,
   };
 
-  updateBlockNetworks(blockDimensionLocation);
+  removeMachine(blockDimensionLocation);
   e.hitEntity.dimension.setBlockType(blockLocation, "air");
   e.hitEntity.remove();
 });

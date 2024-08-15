@@ -1,5 +1,6 @@
 import { Block, DimensionLocation } from "@minecraft/server";
-import { Description, MachineDefinition, StorageTypeDefinition } from "./registry_types";
+import { MachineDefinition, StorageTypeDefinition, UiElement } from "./registry_types";
+import { MangledRegisteredMachine } from "./internal";
 export * from "./registry_types";
 /**
  * Representation of an item stack stored in a machine inventory.
@@ -16,26 +17,34 @@ export interface MachineItemStack {
      */
     count: number;
 }
-/**
- * Serializable {@link MachineDefinition}.
- * @beta
- * @see {@link MachineDefinition}, {@link registerMachine}
- */
-export interface RegisteredMachine {
-    description: Description;
-    updateUiEvent?: string;
-}
 export interface InitOptions {
     namespace: string;
 }
 /**
  * The amount that each storage bar segment in a machine is worth.
+ * @beta
  */
 export declare const STORAGE_AMOUNT_PER_BAR_SEGMENT = 100;
 /**
  * The max storage of each storage type in a machine.
+ * @beta
  */
 export declare const MAX_MACHINE_STORAGE: number;
+/**
+ * Representation of a machine definition that has been registered.
+ * @beta
+ * @see {@link MachineDefinition}, {@link registerMachine}
+ */
+export declare class RegisteredMachine {
+    protected readonly internal: MangledRegisteredMachine;
+    /**
+     * @internal This class should not be manually constructed. Use {@link getRegisteredMachine} to get this object.
+     */
+    constructor(internal: MangledRegisteredMachine);
+    get id(): string;
+    get persistentEntity(): boolean;
+    get uiElements(): Record<string, UiElement> | undefined;
+}
 /**
  * Sets global info to be used by functions in this package.
  * @beta
@@ -50,7 +59,7 @@ export declare function isBedrockEnergisticsCoreInWorld(): boolean;
  * Registers a machine. This function should be called in the `worldInitialize` after event.
  * @beta
  */
-export declare function registerMachine(options: MachineDefinition): void;
+export declare function registerMachine(definition: MachineDefinition): void;
 /**
  * Registers a storage type. This function should be called in the `worldInitialize` after event.
  * @beta

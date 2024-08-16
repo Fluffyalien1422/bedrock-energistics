@@ -34,5 +34,29 @@
     "atlas_tile": "fluffyalien_energistics:coal_generator_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/coal_generator_front_on",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:centrifuge_front_on_dirt",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_dirt",
+    "ticks_per_frame": 2,
+    "blend_frames": false
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:centrifuge_front_on_sand",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_sand",
+    "ticks_per_frame": 2,
+    "blend_frames": false
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:centrifuge_front_on_gravel",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_gravel",
+    "ticks_per_frame": 2,
+    "blend_frames": false
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:centrifuge_front_on_soul_sand",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_soul_sand",
+    "ticks_per_frame": 2,
+    "blend_frames": false
   }
 ]

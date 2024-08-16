@@ -17,6 +17,9 @@ export interface MachineItemStack {
      */
     count: number;
 }
+/**
+ * @beta
+ */
 export interface InitOptions {
     namespace: string;
 }
@@ -33,12 +36,12 @@ export declare const MAX_MACHINE_STORAGE: number;
 /**
  * Representation of a machine definition that has been registered.
  * @beta
- * @see {@link MachineDefinition}, {@link registerMachine}
+ * @see {@link MachineDefinition}, {@link registerMachine}, {@link getRegisteredMachine}
  */
 export declare class RegisteredMachine {
     protected readonly internal: MangledRegisteredMachine;
     /**
-     * @internal This class should not be manually constructed. Use {@link getRegisteredMachine} to get this object.
+     * @internal This class shouldn't be manually constructed. Use {@link getRegisteredMachine} to get this object.
      */
     constructor(internal: MangledRegisteredMachine);
     get id(): string;
@@ -59,7 +62,7 @@ export declare function isBedrockEnergisticsCoreInWorld(): boolean;
  * Registers a machine. This function should be called in the `worldInitialize` after event.
  * @beta
  */
-export declare function registerMachine(definition: MachineDefinition): void;
+export declare function registerMachine(definition: MachineDefinition, fallbackToStream?: boolean): void;
 /**
  * Registers a storage type. This function should be called in the `worldInitialize` after event.
  * @beta
@@ -153,6 +156,8 @@ export declare function generate(blockLocation: DimensionLocation, type: string,
 export declare function getRegisteredMachine(id: string): Promise<RegisteredMachine | null>;
 /**
  * Cleans up machine data and updates it's networks.
+ * @beta
+ * @remarks
  * This is automatically done by Bedrock Energistics Core when a machine is destroyed by a player.
  * If you destroy a machine from script, call this function before the block is removed.
  * @param blockLocation The location of the machine.

@@ -68,6 +68,21 @@
     },
     "fluffyalien_energistics:coal_generator_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/coal_generator_front_on"
+    },
+    "fluffyalien_energistics:centrifuge_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_off"
+    },
+    "fluffyalien_energistics:centrifuge_front_on_dirt": {
+      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_dirt"
+    },
+    "fluffyalien_energistics:centrifuge_front_on_sand": {
+      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_sand"
+    },
+    "fluffyalien_energistics:centrifuge_front_on_gravel": {
+      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_gravel"
+    },
+    "fluffyalien_energistics:centrifuge_front_on_soul_sand": {
+      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_soul_sand"
     }
   }
 }

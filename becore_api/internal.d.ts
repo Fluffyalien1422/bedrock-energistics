@@ -30,3 +30,4 @@ export declare function getItemCountScoreboardObjective(slot: number): Scoreboar
 export declare function getScore(objective: ScoreboardObjective, participant: string): number | undefined;
 export declare function removeBlockFromScoreboards(loc: DimensionLocation): void;
 export declare function makeErrorString(message: string): string;
+export declare function logInfo(message: string): void;

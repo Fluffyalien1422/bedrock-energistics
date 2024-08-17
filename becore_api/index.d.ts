@@ -72,20 +72,20 @@ export declare function registerMachine(definition: MachineDefinition, shortId?:
  */
 export declare function registerStorageType(definition: StorageTypeDefinition): void;
 /**
- * Updates the networks that a block belongs to, if it has any.
+ * Updates the networks that a machine belongs to, if it has any.
  * @beta
  */
-export declare function updateBlockNetworks(blockLocation: DimensionLocation): void;
+export declare function updateMachineNetworks(blockLocation: DimensionLocation): void;
 /**
- * Updates the networks adjacent to a block that the block can connect to.
+ * Updates the networks adjacent to a machine that the machine can connect to.
  * @beta
  */
-export declare function updateBlockConnectableNetworks(blockLocation: DimensionLocation): void;
+export declare function updateMachineConnectableNetworks(blockLocation: DimensionLocation): void;
 /**
  * Updates the networks adjacent to a block.
  * @beta
  */
-export declare function updateBlockAdjacentNetworks(blockLocation: DimensionLocation): void;
+export declare function updateMachineAdjacentNetworks(blockLocation: DimensionLocation): void;
 /**
  * Gets the storage of a specific type in a machine.
  * @beta
@@ -113,7 +113,7 @@ export declare function setMachineStorage(block: Block, type: string, value: num
  * @param slotId The number ID of the slot as defined when the machine was registered (see {@link UiItemSlotElement}).
  * @returns The {@link MachineItemStack}.
  */
-export declare function getItemInMachineSlot(loc: DimensionLocation, slotId: number): MachineItemStack | undefined;
+export declare function getMachineSlotItem(loc: DimensionLocation, slotId: number): MachineItemStack | undefined;
 /**
  * Sets an item in a machine inventory.
  * @beta
@@ -121,7 +121,7 @@ export declare function getItemInMachineSlot(loc: DimensionLocation, slotId: num
  * @param slotId The number ID of the slot as defined when the machine was registered (see {@link UiItemSlotElement}).
  * @param newItemStack The {@link MachineItemStack} to put in the slot. Pass `undefined` to remove the item in the slot.
  */
-export declare function setItemInMachineSlot(loc: DimensionLocation, slotId: number, newItemStack?: MachineItemStack): void;
+export declare function setMachineSlotItem(loc: DimensionLocation, slotId: number, newItemStack?: MachineItemStack): void;
 /**
  * Queue sending energy, gas, or fluid over a machine network.
  * @beta

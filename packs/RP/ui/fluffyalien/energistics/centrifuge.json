@@ -65,47 +65,47 @@
     "anchor_from": "top_left",
     "controls": [
       {
-        "title@fluffyalien_energistics:common.container_title": {
+        "title@fluffyalien_energisticscore:common.container_title": {
           "text": "Centrifuge"
         }
       },
       {
-        "power_bar@fluffyalien_energistics:common.machine_storage_bar": {
+        "power_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
           "offset": [9, 12]
         }
       },
       {
-        "input_slot@fluffyalien_energistics:common.container_item_slot": {
+        "input_slot@fluffyalien_energisticscore:common.container_item_slot": {
           "$index": 4,
           "offset": ["50%-35px", "50%-9px"]
         }
       },
       {
-        "arrow_indicator@fluffyalien_energistics:common.container_slot_icon": {
+        "arrow_indicator@fluffyalien_energisticscore:common.container_slot_icon": {
           "$index": 9,
           "offset": ["50%", "50%"]
         }
       },
       {
-        "output_slot0@fluffyalien_energistics:common.container_item_slot": {
+        "output_slot0@fluffyalien_energisticscore:common.container_item_slot": {
           "$index": 5,
           "offset": ["50%+18px", "50%-18px"]
         }
       },
       {
-        "output_slot1@fluffyalien_energistics:common.container_item_slot": {
+        "output_slot1@fluffyalien_energisticscore:common.container_item_slot": {
           "$index": 6,
           "offset": ["50%+36px", "50%-18px"]
         }
       },
       {
-        "output_slot2@fluffyalien_energistics:common.container_item_slot": {
+        "output_slot2@fluffyalien_energisticscore:common.container_item_slot": {
           "$index": 7,
           "offset": ["50%+18px", "50%"]
         }
       },
       {
-        "output_slot3@fluffyalien_energistics:common.container_item_slot": {
+        "output_slot3@fluffyalien_energisticscore:common.container_item_slot": {
           "$index": 8,
           "offset": ["50%+36px", "50%"]
         }

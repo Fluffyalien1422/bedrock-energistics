@@ -1,6 +1,5 @@
 {
   "ui_defs": [
-    "ui/fluffyalien/energistics/common.json",
     "ui/fluffyalien/energistics/solar_panel.json",
     "ui/fluffyalien/energistics/crusher.json",
     "ui/fluffyalien/energistics/oil_extractor.json",

@@ -65,23 +65,23 @@
     "anchor_from": "top_left",
     "controls": [
       {
-        "title@fluffyalien_energistics:common.container_title": {
+        "title@fluffyalien_energisticscore:common.container_title": {
           "text": "Coal Generator"
         }
       },
       {
-        "energy_bar@fluffyalien_energistics:common.machine_storage_bar": {
+        "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
           "offset": [9, 12]
         }
       },
       {
-        "flame_icon@fluffyalien_energistics:common.container_slot_icon": {
+        "flame_icon@fluffyalien_energisticscore:common.container_slot_icon": {
           "$index": 5,
           "offset": ["50%+1.5px", "50%+16.5px"]
         }
       },
       {
-        "fuel_slot@fluffyalien_energistics:common.container_item_slot": {
+        "fuel_slot@fluffyalien_energisticscore:common.container_item_slot": {
           "$index": 4,
           "offset": ["50%-9px", "50%-9px"]
         }

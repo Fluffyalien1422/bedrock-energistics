@@ -65,12 +65,12 @@
     "anchor_from": "top_left",
     "controls": [
       {
-        "title@fluffyalien_energistics:common.container_title": {
+        "title@fluffyalien_energisticscore:common.container_title": {
           "text": "Solar Panel"
         }
       },
       {
-        "energy_bar@fluffyalien_energistics:common.machine_storage_bar": {
+        "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
           "offset": [9, 12]
         }
       }

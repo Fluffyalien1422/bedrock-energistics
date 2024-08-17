@@ -1,4 +1,21 @@
-import { MachineDefinition } from "@/becore_api";
+import {
+  getItemInMachineSlot,
+  getMachineStorage,
+  MachineDefinition,
+  setItemInMachineSlot,
+  setMachineStorage,
+} from "@/becore_api";
+import { BlockCustomComponent, ItemStack } from "@minecraft/server";
+import { blockLocationToUid } from "../utils/location";
+import { MACHINE_TICK_INTERVAL } from "../constants";
+import {
+  BlockStateAccessor,
+  depositItemToHopper,
+  getFirstSlotWithItemInConnectedHoppers,
+  getHopperBelow,
+} from "../utils/block";
+import { decrementSlot } from "../utils/item";
+import { weightedRandom } from "../utils/math";
 
 const OUTPUT_ITEM_TYPES = [
   "minecraft:beetroot_seeds",
@@ -39,7 +56,9 @@ const INPUT_ITEM_TYPES = [
   "minecraft:soul_sand",
 ];
 
-const LOOT = [
+const INPUT_STATE_VALUES = ["dirt", "gravel", "sand", "soul_sand"];
+
+const LOOT: Record<string, number>[] = [
   {
     "minecraft:beetroot_seeds": 1,
     "minecraft:melon_seeds": 1,
@@ -82,6 +101,14 @@ const LOOT = [
     "minecraft:quartz": 3,
   },
 ];
+
+const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
+const ENERGY_CONSUMPTION_PER_TICK =
+  ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
+
+const MAX_PROGRESS = 16;
+
+const progressMap = new Map<string, number>();
 
 export const centrifugeMachine: MachineDefinition = {
   description: {
@@ -129,5 +156,148 @@ export const centrifugeMachine: MachineDefinition = {
         },
       },
     },
+  },
+  handlers: {
+    updateUi(location) {
+      const uid = blockLocationToUid(location);
+
+      return {
+        storageBars: [
+          {
+            element: "energyBar",
+            type: "energy",
+            change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
+          },
+        ],
+        progressIndicators: {
+          arrowIndicator: progressMap.get(uid) ?? 0,
+        },
+      };
+    },
+  },
+};
+
+export const centrifugeComponent: BlockCustomComponent = {
+  onTick(e) {
+    const uid = blockLocationToUid(e.block);
+
+    const inputState = new BlockStateAccessor<string>(
+      e.block,
+      "fluffyalien_energistics:input",
+    );
+
+    const hasHopperBelow = getHopperBelow(e.block);
+
+    for (let i = 0; i < 4; i++) {
+      const slotId = i + 1;
+      const outputItem = getItemInMachineSlot(e.block, slotId);
+      if (!outputItem) continue;
+
+      if (!hasHopperBelow) {
+        progressMap.delete(uid);
+        inputState.set("none");
+        return;
+      }
+
+      const itemStack = new ItemStack(OUTPUT_ITEM_TYPES[outputItem.typeIndex]);
+
+      if (!depositItemToHopper(e.block, itemStack)) {
+        progressMap.delete(uid);
+        inputState.set("none");
+        return;
+      }
+
+      outputItem.count--;
+      if (outputItem.count > 0) {
+        setItemInMachineSlot(e.block, slotId, outputItem);
+        progressMap.delete(uid);
+        inputState.set("none");
+        return;
+      } else {
+        setItemInMachineSlot(e.block, slotId);
+      }
+
+      return; // we don't want hoppers to take all items at once
+    }
+
+    let inputItem = getItemInMachineSlot(e.block, 0);
+
+    if (inputItem) {
+      const inputItemTypeId = INPUT_ITEM_TYPES[inputItem.typeIndex];
+      if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+        const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
+          inputItemTypeId,
+        ]);
+
+        if (hopperSlot) {
+          inputItem.count++;
+          setItemInMachineSlot(e.block, 0, inputItem);
+          decrementSlot(hopperSlot);
+        }
+      }
+    } else {
+      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
+        e.block,
+        INPUT_ITEM_TYPES,
+      );
+
+      if (hopperSlot) {
+        inputItem = {
+          typeIndex: INPUT_ITEM_TYPES.indexOf(hopperSlot.typeId),
+          count: 1,
+        };
+        setItemInMachineSlot(e.block, 0, inputItem);
+        decrementSlot(hopperSlot);
+      } else {
+        progressMap.delete(uid);
+        inputState.set("none");
+        return;
+      }
+    }
+
+    const progress = progressMap.get(uid) ?? 0;
+    const storedEnergy = getMachineStorage(e.block, "energy");
+
+    if (
+      storedEnergy <
+      ENERGY_CONSUMPTION_PER_PROGRESS * (MAX_PROGRESS - progress)
+    ) {
+      progressMap.delete(uid);
+      inputState.set("none");
+      return;
+    }
+
+    if (progress >= MAX_PROGRESS) {
+      inputItem.count--;
+      setItemInMachineSlot(
+        e.block,
+        0,
+        inputItem.count > 0 ? inputItem : undefined,
+      );
+
+      for (let i = 0; i < 4; i++) {
+        const itemId = weightedRandom(LOOT[inputItem.typeIndex]);
+        const itemIndex = OUTPUT_ITEM_TYPES.indexOf(itemId);
+
+        const slotId = i + 1;
+
+        setItemInMachineSlot(e.block, slotId, {
+          typeIndex: itemIndex,
+          count: 1,
+        });
+      }
+
+      progressMap.delete(uid);
+      return;
+    }
+
+    progressMap.set(uid, progress + 1);
+    setMachineStorage(
+      e.block,
+      "energy",
+      storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,
+    );
+
+    inputState.set(INPUT_STATE_VALUES[inputItem.typeIndex]);
   },
 };

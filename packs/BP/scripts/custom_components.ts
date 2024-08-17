@@ -12,6 +12,7 @@ import { oilGeneratorComponent } from "./machines/oil_generator";
 import { atmosphericCondenserComponent } from "./machines/atmospheric_condenser";
 import { poweredFurnaceComponent } from "./machines/powered_furnace";
 import { coalGeneratorComponent } from "./machines/coal_generator";
+import { centrifugeComponent } from "./machines/centrifuge";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -67,5 +68,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:coal_generator",
     coalGeneratorComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:centrifuge",
+    centrifugeComponent,
   );
 });

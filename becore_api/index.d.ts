@@ -60,9 +60,12 @@ export declare function init(options: InitOptions): void;
 export declare function isBedrockEnergisticsCoreInWorld(): boolean;
 /**
  * Registers a machine. This function should be called in the `worldInitialize` after event.
+ * @param shortId If a handler event cannot be created because the block ID is too long, pass a string here to use it as the prefix instead of the block ID.
+ * @param fallbackToStream If the {@link MachineDefinition} cannot be sent, fall back to streaming.
+ * @throws If the block ID is too long and a handler is defined, this function will throw an error. Pass `shortId` to use that as the prefix for handler event IDs instead of the block ID.
  * @beta
  */
-export declare function registerMachine(definition: MachineDefinition, fallbackToStream?: boolean): void;
+export declare function registerMachine(definition: MachineDefinition, shortId?: string, fallbackToStream?: boolean): void;
 /**
  * Registers a storage type. This function should be called in the `worldInitialize` after event.
  * @beta

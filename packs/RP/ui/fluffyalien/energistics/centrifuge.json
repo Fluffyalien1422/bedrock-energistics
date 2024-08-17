@@ -89,25 +89,25 @@
       {
         "output_slot0@fluffyalien_energistics:common.container_item_slot": {
           "$index": 5,
-          "offset": ["50%", "50%-9px"]
+          "offset": ["50%+18px", "50%-18px"]
         }
       },
       {
         "output_slot1@fluffyalien_energistics:common.container_item_slot": {
           "$index": 6,
-          "offset": ["50%+18px", "50%-9px"]
+          "offset": ["50%+36px", "50%-18px"]
         }
       },
       {
         "output_slot2@fluffyalien_energistics:common.container_item_slot": {
           "$index": 7,
-          "offset": ["50%", "50%+9px"]
+          "offset": ["50%+18px", "50%"]
         }
       },
       {
         "output_slot3@fluffyalien_energistics:common.container_item_slot": {
           "$index": 8,
-          "offset": ["50%+18px", "50%+9px"]
+          "offset": ["50%+36px", "50%"]
         }
       }
     ]

@@ -76,6 +76,15 @@ const LOOT: Record<string, number>[] = [
   {
     "minecraft:diamond": 1,
     "minecraft:emerald": 1,
+    "minecraft:amethyst_shard": 2,
+    "minecraft:iron_nugget": 4,
+    "minecraft:gold_nugget": 4,
+    "minecraft:coal": 5,
+    "minecraft:flint": 6,
+  },
+  {
+    "minecraft:diamond": 1,
+    "minecraft:emerald": 1,
     "minecraft:prismarine_shard": 3,
     "minecraft:prismarine_crystals": 3,
     "minecraft:heart_of_the_sea": 4,
@@ -84,15 +93,6 @@ const LOOT: Record<string, number>[] = [
     "minecraft:nautilus_shell": 6,
     "minecraft:clay_ball": 6,
     "minecraft:turtle_scute": 6,
-  },
-  {
-    "minecraft:diamond": 1,
-    "minecraft:emerald": 1,
-    "minecraft:amethyst_shard": 2,
-    "minecraft:iron_nugget": 4,
-    "minecraft:gold_nugget": 4,
-    "minecraft:coal": 5,
-    "minecraft:flint": 6,
   },
   {
     "minecraft:blaze_powder": 1,

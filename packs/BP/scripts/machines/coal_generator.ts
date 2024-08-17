@@ -1,10 +1,10 @@
 import {
   generate,
-  getItemInMachineSlot,
+  getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
   MAX_MACHINE_STORAGE,
-  setItemInMachineSlot,
+  setMachineSlotItem,
 } from "@/becore_api";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
 import {
@@ -79,7 +79,7 @@ export const coalGeneratorComponent: BlockCustomComponent = {
       "fluffyalien_energistics:working",
     );
 
-    let inputItem = getItemInMachineSlot(e.block, 0);
+    let inputItem = getMachineSlotItem(e.block, 0);
 
     if (inputItem) {
       const inputItemTypeId = INPUT_ITEMS[inputItem.typeIndex];
@@ -90,7 +90,7 @@ export const coalGeneratorComponent: BlockCustomComponent = {
 
         if (hopperSlot) {
           inputItem.count++;
-          setItemInMachineSlot(e.block, 0, inputItem);
+          setMachineSlotItem(e.block, 0, inputItem);
           decrementSlot(hopperSlot);
         }
       }
@@ -105,7 +105,7 @@ export const coalGeneratorComponent: BlockCustomComponent = {
           typeIndex: INPUT_ITEMS.indexOf(hopperSlot.typeId),
           count: 1,
         };
-        setItemInMachineSlot(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -134,10 +134,6 @@ export const coalGeneratorComponent: BlockCustomComponent = {
     progressMap.set(uid, MAX_PROGRESS);
 
     inputItem.count--;
-    setItemInMachineSlot(
-      e.block,
-      0,
-      inputItem.count > 0 ? inputItem : undefined,
-    );
+    setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
   },
 };

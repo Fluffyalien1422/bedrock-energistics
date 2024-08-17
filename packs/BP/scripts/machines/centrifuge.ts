@@ -1,8 +1,8 @@
 import {
-  getItemInMachineSlot,
+  getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
-  setItemInMachineSlot,
+  setMachineSlotItem,
   setMachineStorage,
 } from "@/becore_api";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
@@ -190,7 +190,7 @@ export const centrifugeComponent: BlockCustomComponent = {
 
     for (let i = 0; i < 4; i++) {
       const slotId = i + 1;
-      const outputItem = getItemInMachineSlot(e.block, slotId);
+      const outputItem = getMachineSlotItem(e.block, slotId);
       if (!outputItem) continue;
 
       if (!hasHopperBelow) {
@@ -209,18 +209,18 @@ export const centrifugeComponent: BlockCustomComponent = {
 
       outputItem.count--;
       if (outputItem.count > 0) {
-        setItemInMachineSlot(e.block, slotId, outputItem);
+        setMachineSlotItem(e.block, slotId, outputItem);
         progressMap.delete(uid);
         inputState.set("none");
         return;
       } else {
-        setItemInMachineSlot(e.block, slotId);
+        setMachineSlotItem(e.block, slotId);
       }
 
       return; // we don't want hoppers to take all items at once
     }
 
-    let inputItem = getItemInMachineSlot(e.block, 0);
+    let inputItem = getMachineSlotItem(e.block, 0);
 
     if (inputItem) {
       const inputItemTypeId = INPUT_ITEM_TYPES[inputItem.typeIndex];
@@ -231,7 +231,7 @@ export const centrifugeComponent: BlockCustomComponent = {
 
         if (hopperSlot) {
           inputItem.count++;
-          setItemInMachineSlot(e.block, 0, inputItem);
+          setMachineSlotItem(e.block, 0, inputItem);
           decrementSlot(hopperSlot);
         }
       }
@@ -246,7 +246,7 @@ export const centrifugeComponent: BlockCustomComponent = {
           typeIndex: INPUT_ITEM_TYPES.indexOf(hopperSlot.typeId),
           count: 1,
         };
-        setItemInMachineSlot(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       } else {
         progressMap.delete(uid);
@@ -269,7 +269,7 @@ export const centrifugeComponent: BlockCustomComponent = {
 
     if (progress >= MAX_PROGRESS) {
       inputItem.count--;
-      setItemInMachineSlot(
+      setMachineSlotItem(
         e.block,
         0,
         inputItem.count > 0 ? inputItem : undefined,
@@ -281,7 +281,7 @@ export const centrifugeComponent: BlockCustomComponent = {
 
         const slotId = i + 1;
 
-        setItemInMachineSlot(e.block, slotId, {
+        setMachineSlotItem(e.block, slotId, {
           typeIndex: itemIndex,
           count: 1,
         });

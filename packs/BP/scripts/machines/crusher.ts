@@ -1,8 +1,8 @@
 import {
-  getItemInMachineSlot,
+  getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
-  setItemInMachineSlot,
+  setMachineSlotItem,
   setMachineStorage,
 } from "@/becore_api";
 import { blockLocationToUid } from "../utils/location";
@@ -93,22 +93,22 @@ export const crusherComponent: BlockCustomComponent = {
       "fluffyalien_energistics:working",
     );
 
-    let outputItem = getItemInMachineSlot(e.block, 1);
+    let outputItem = getMachineSlotItem(e.block, 1);
 
     if (outputItem && getHopperBelow(e.block)) {
       const itemStack = new ItemStack(OUTPUT_ITEMS[outputItem.typeIndex]);
       if (depositItemToHopper(e.block, itemStack)) {
         outputItem.count--;
         if (outputItem.count > 0) {
-          setItemInMachineSlot(e.block, 1, outputItem);
+          setMachineSlotItem(e.block, 1, outputItem);
         } else {
-          setItemInMachineSlot(e.block, 1);
+          setMachineSlotItem(e.block, 1);
           outputItem = undefined;
         }
       }
     }
 
-    let inputItem = getItemInMachineSlot(e.block, 0);
+    let inputItem = getMachineSlotItem(e.block, 0);
 
     if (inputItem) {
       const inputItemTypeId = INPUT_ITEMS[inputItem.typeIndex];
@@ -119,7 +119,7 @@ export const crusherComponent: BlockCustomComponent = {
 
         if (hopperSlot) {
           inputItem.count++;
-          setItemInMachineSlot(e.block, 0, inputItem);
+          setMachineSlotItem(e.block, 0, inputItem);
           decrementSlot(hopperSlot);
         }
       }
@@ -134,7 +134,7 @@ export const crusherComponent: BlockCustomComponent = {
           typeIndex: INPUT_ITEMS.indexOf(hopperSlot.typeId),
           count: 1,
         };
-        setItemInMachineSlot(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       } else {
         progressMap.delete(uid);
@@ -168,13 +168,13 @@ export const crusherComponent: BlockCustomComponent = {
 
     if (progress >= MAX_PROGRESS) {
       inputItem.count--;
-      setItemInMachineSlot(
+      setMachineSlotItem(
         e.block,
         0,
         inputItem.count > 0 ? inputItem : undefined,
       );
 
-      setItemInMachineSlot(e.block, 1, {
+      setMachineSlotItem(e.block, 1, {
         typeIndex: inputItem.typeIndex,
         count: (outputItem?.count ?? 0) + 1,
       });

@@ -8,6 +8,7 @@ import { atmosphericCondenserMachine } from "./machines/atmospheric_condenser";
 import { poweredFurnaceMachine } from "./machines/powered_furnace";
 import { coalGeneratorMachine } from "./machines/coal_generator";
 import { centrifugeMachine } from "./machines/centrifuge";
+import { organicGeneratorMachine } from "./machines/organic_generator";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   registerStorageType({
@@ -43,4 +44,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(poweredFurnaceMachine);
   registerMachine(coalGeneratorMachine);
   registerMachine(centrifugeMachine);
+  registerMachine(organicGeneratorMachine);
 });

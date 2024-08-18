@@ -58,5 +58,10 @@
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_soul_sand",
     "ticks_per_frame": 2,
     "blend_frames": false
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:organic_generator_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/organic_generator_front_on",
+    "ticks_per_frame": 10
   }
 ]

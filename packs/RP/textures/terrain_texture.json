@@ -83,6 +83,18 @@
     },
     "fluffyalien_energistics:centrifuge_front_on_soul_sand": {
       "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_soul_sand"
+    },
+    "fluffyalien_energistics:organic_generator_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/organic_generator_front_off"
+    },
+    "fluffyalien_energistics:organic_generator_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/organic_generator_front_on"
+    },
+    "fluffyalien_energistics:void_miner_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/void_miner_front_off"
+    },
+    "fluffyalien_energistics:void_miner_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/void_miner_front_on"
     }
   }
 }

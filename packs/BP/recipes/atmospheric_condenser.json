@@ -1,0 +1,46 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:atmospheric_condenser"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        "EPE",
+        "C#G",
+        "DMD"
+      ],
+    "key": {
+      "E": {
+        "item": "amethyst_shard"
+      },
+      "P": {
+        "item": "iron_trapdoor"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "G": {
+        "item": "fluffyalien_energistics:gas_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "D": {
+        "item": "diamond"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:atmospheric_condenser"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

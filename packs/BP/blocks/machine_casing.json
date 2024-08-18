@@ -1,0 +1,28 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fluffyalien_energistics:machine_casing",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "fluffyalien_energistics:machine_casing_side"
+        },
+        "up": {
+          "texture": "fluffyalien_energistics:machine_casing_top"
+        },
+        "down": {
+          "texture": "fluffyalien_energistics:machine_casing_bottom"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1
+      }
+    }
+  }
+}

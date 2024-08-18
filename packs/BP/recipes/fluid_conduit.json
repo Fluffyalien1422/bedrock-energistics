@@ -1,0 +1,30 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:fluid_conduit"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        "IEI"
+      ],
+    "key": {
+      "I": {
+        "item": "iron_ingot"
+      },
+      "E": {
+        "item": "gold_ingot"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:fluid_conduit",
+      "count": 16
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:crusher"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        " P ",
+        "C#C",
+        "IMI"
+      ],
+    "key": {
+      "P": {
+        "item": "piston"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "I": {
+        "item": "iron_ingot"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:crusher"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

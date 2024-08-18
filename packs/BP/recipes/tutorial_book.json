@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.70",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "fluffyalien_energistics:tutorial_book"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      {
+        "item": "book"
+      },
+      {
+        "item": "redstone"
+      }
+    ],
+    "result": {
+      "item": "fluffyalien_energistics:tutorial_book"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

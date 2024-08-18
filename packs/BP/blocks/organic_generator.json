@@ -37,6 +37,7 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:working')",
         "components": {
+          "minecraft:light_emission": 13,
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"

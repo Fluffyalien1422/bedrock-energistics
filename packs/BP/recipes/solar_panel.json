@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:solar_panel"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        "LDL",
+        "C#C",
+        "GMG"
+      ],
+    "key": {
+      "L": {
+        "item": "lapis_block"
+      },
+      "D": {
+        "item": "daylight_detector"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "G": {
+        "item": "copper_ingot"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:solar_panel"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

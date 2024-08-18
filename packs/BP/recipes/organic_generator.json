@@ -1,0 +1,40 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:organic_generator"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        " F ",
+        "C#C",
+        "SMS"
+      ],
+    "key": {
+      "F": {
+        "item": "smoker"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "S": {
+        "item": "brick_block"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:organic_generator"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

@@ -1,6 +1,10 @@
 pack.name=Bedrock Energistics
 pack.description=Expands Bedrock with energistics! Adds technology to Minecraft, inspired by Java Edition mods.
 
+item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Tutorial Book
+item.fluffyalien_energistics:basic_machine_part=Basic Machine Part
+
+tile.fluffyalien_energistics:machine_casing.name=Machine Casing
 tile.fluffyalien_energistics:energy_conduit.name=Energy Conduit
 tile.fluffyalien_energistics:fluid_conduit.name=Fluid Conduit
 tile.fluffyalien_energistics:gas_conduit.name=Gas Conduit

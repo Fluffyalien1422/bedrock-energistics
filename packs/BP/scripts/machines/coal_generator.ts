@@ -17,9 +17,9 @@ import { blockLocationToUid } from "../utils/location";
 
 const INPUT_ITEMS = ["minecraft:coal"];
 
-const MAX_PROGRESS = 13;
+const MAX_PROGRESS = 26;
 
-const ENERGY_GENERATION_PER_PROGRESS = 10;
+const ENERGY_GENERATION_PER_PROGRESS = 14;
 const ENERGY_GENERATION_PER_TICK =
   ENERGY_GENERATION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 const ENERGY_GENERATION_PER_FUEL =
@@ -64,7 +64,7 @@ export const coalGeneratorMachine: MachineDefinition = {
           },
         ],
         progressIndicators: {
-          flameIndicator: progress,
+          flameIndicator: progress * 2,
         },
       };
     },

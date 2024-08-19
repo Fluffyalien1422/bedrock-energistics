@@ -30,9 +30,9 @@ const INPUT_ITEMS = [
   "minecraft:spruce_sapling",
 ];
 
-const MAX_PROGRESS = [8, 8, 8, 8, 8, 10, 10, 10, 10, 10, 10, 10];
+const MAX_PROGRESS = [13, 13, 13, 13, 13, 19, 19, 19, 19, 19, 19, 19];
 
-const ENERGY_GENERATION_PER_PROGRESS = 8;
+const ENERGY_GENERATION_PER_PROGRESS = 10;
 const ENERGY_GENERATION_PER_TICK =
   ENERGY_GENERATION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
@@ -65,6 +65,7 @@ export const organicGeneratorMachine: MachineDefinition = {
     updateUi(blockLocation) {
       const uid = blockLocationToUid(blockLocation);
       const progress = progressMap.get(uid) ?? 0;
+      const inputItem = getMachineSlotItem(blockLocation, 0);
 
       return {
         storageBars: [
@@ -75,7 +76,9 @@ export const organicGeneratorMachine: MachineDefinition = {
           },
         ],
         progressIndicators: {
-          flameIndicator: progress,
+          flameIndicator: inputItem
+            ? Math.floor((progress / MAX_PROGRESS[inputItem.typeIndex]) * 13)
+            : 0,
         },
       };
     },

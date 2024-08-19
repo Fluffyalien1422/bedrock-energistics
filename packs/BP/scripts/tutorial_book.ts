@@ -17,6 +17,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/networks_icon",
   },
   {
+    id: "conduits",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/networks_icon",
+  },
+  {
     id: "generators",
     bullets: 5,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/generic_icon",
@@ -53,7 +58,7 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
   },
   {
     id: "oilGenerator",
-    bullets: 2,
+    bullets: 1,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/oil_generator_icon",
   },
   {
@@ -63,7 +68,7 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
   },
   {
     id: "solarPanel",
-    bullets: 5,
+    bullets: 4,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/solar_panel_icon",
   },
   {

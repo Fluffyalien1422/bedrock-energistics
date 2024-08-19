@@ -24,7 +24,7 @@ function getGeneration(location: DimensionLocation): number {
     return 0;
   }
 
-  return location.dimension.getWeather() === WeatherType.Clear ? 2 : 1;
+  return location.dimension.getWeather() === WeatherType.Clear ? 5 : 2;
 }
 
 export const solarPanelMachine: MachineDefinition = {

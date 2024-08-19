@@ -85,9 +85,9 @@ const LOOT: Record<string, number>[] = [
   {
     "minecraft:diamond": 1,
     "minecraft:emerald": 1,
+    "minecraft:heart_of_the_sea": 1,
     "minecraft:prismarine_shard": 3,
     "minecraft:prismarine_crystals": 3,
-    "minecraft:heart_of_the_sea": 4,
     "minecraft:iron_nugget": 5,
     "minecraft:gold_nugget": 5,
     "minecraft:nautilus_shell": 6,
@@ -102,7 +102,7 @@ const LOOT: Record<string, number>[] = [
   },
 ];
 
-const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
+const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
 const ENERGY_CONSUMPTION_PER_TICK =
   ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 

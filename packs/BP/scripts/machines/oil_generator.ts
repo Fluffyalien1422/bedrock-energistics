@@ -11,7 +11,7 @@ import { BlockStateAccessor } from "../utils/block";
 
 const OIL_CONSUMPTION = 2;
 const OIL_CONSUMPTION_PER_TICK = OIL_CONSUMPTION / MACHINE_TICK_INTERVAL;
-const ENERGY_GENERATION = 15;
+const ENERGY_GENERATION = 20;
 const ENERGY_GENERATION_PER_TICK = ENERGY_GENERATION / MACHINE_TICK_INTERVAL;
 
 export const oilGeneratorMachine: MachineDefinition = {

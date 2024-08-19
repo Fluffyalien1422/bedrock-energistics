@@ -18,7 +18,7 @@ import {
 import { decrementSlot } from "../utils/item";
 import { POWERED_FURNACE_RECIPES } from "../generated/powered_furnace_recipes";
 
-const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
+const ENERGY_CONSUMPTION_PER_PROGRESS = 5;
 const ENERGY_CONSUMPTION_PER_TICK =
   ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 

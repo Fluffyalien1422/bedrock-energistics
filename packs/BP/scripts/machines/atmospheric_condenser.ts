@@ -14,7 +14,7 @@ type GasStateValue = "hydrogen" | "carbon" | "nitrogen" | "none";
 const ENERGY_CONSUMPTION = 100;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
-const GAS_GENERATION = 1;
+const GAS_GENERATION = 2;
 const GAS_GENERATION_PER_TICK = GAS_GENERATION / MACHINE_TICK_INTERVAL;
 
 const GAS_TYPES: Record<string, GasStateValue> = {

@@ -17,3 +17,74 @@ tile.fluffyalien_energistics:powered_furnace.name=Powered Furnace
 tile.fluffyalien_energistics:coal_generator.name=Coal Generator
 tile.fluffyalien_energistics:centrifuge.name=Centrifuge
 tile.fluffyalien_energistics:organic_generator.name=Organic Generator
+
+fluffyalien_energistics.ui.common.back=Back
+
+fluffyalien_energistics.ui.tutorialBook.entry.networks.title=Networks
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet0=A network is a group of devices that share energy, gas, or fluid.
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet1=Devices can be connected with conduits. They will also connect if they are next to each other.
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet2=A device can be part of multiple networks at the same time.
+
+fluffyalien_energistics.ui.tutorialBook.entry.conduits.title=Conduits
+fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet0=Conduits connect devices in a machine network.
+fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet1=Interact with a conduit while holding another conduit to merge them.
+
+fluffyalien_energistics.ui.tutorialBook.entry.generators.title=Generators
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet0=A generator is a device that produces energy, gas, or fluid.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet1=Generators will send whatever they generate to the consumers in the network with the lowest storage. This ensures that one device will not consume everything that is generated.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet2=All generators have reserve storage (up to 6,400u). Reserve storage is the first to be used. A device that is operating at maximum efficiency would not have any reserves.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet3=Hover over the reserve storage (or tap on mobile) to see how much the generator is producing per game tick.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet4=A device can be both a generator and a consumer at the same time (eg. consumes energy but generates a fluid).
+
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.title=Consumers
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet0=A consumer is a device that uses energy, gas, or fluid.
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet1=All consumers can store up to 6,400u of the thing(s) that they consume.
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet2=Hover over the storage (or tap on mobile) to see how much the consumer is using per game tick.
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet3=A device can be both a generator and a consumer at the same time (eg. consumes energy but generates a fluid).
+
+fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.title=Atmospheric Condenser
+fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet0=Generates nitrogen in the overworld, carbon in the nether, or hydrogen in the end when active.
+fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet1=Consumes energy while active.
+
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.title=Centrifuge
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet0=Separates items from dirt, sand, gravel, and soul sand.
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet2=Hoppers can insert and extract items.
+
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.title=Coal Generator
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet0=Generates energy while burning fuel.
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet1=Coal burns for 26s.
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet2=Hoppers can insert coal.
+
+fluffyalien_energistics.ui.tutorialBook.entry.crusher.title=Crusher
+fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet0=Crushes stone into cobblestone, cobblestone into gravel, and gravel into sand.
+fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet2=Hoppers can insert and extract items.
+
+fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.title=Oil Extractor
+fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Generates oil while active.
+fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet1=Consumes energy while active.
+
+fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.title=Oil Generator
+fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.bullet0=Generates energy while burning oil.
+
+fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.title=Organic Generator
+fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet0=Generates energy while burning fuel.
+fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet1=Seeds burn for 13s and saplings burn for 19s.
+fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet2=Hoppers can insert fuel.
+
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.title=Solar Panel
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet0=Generates energy during the day.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet1=Generation is decreased when the weather is not clear.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet2=Only works in the overworld.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet3=No energy is generated if the sky is obstructed.
+
+fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.title=Powered Furnace
+fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet0=Smelts items (only works on vanilla items).
+fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet2=Hoppers can insert and extract items.
+
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.title=Void Miner
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources depending on the dimension.
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet2=Hoppers can extract items.

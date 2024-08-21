@@ -1,4 +1,4 @@
-import { removeMachine } from "@/becore_api";
+import { removeMachine } from "bedrock-energistics-core-api";
 import { Vector3Utils } from "@minecraft/math";
 import { ItemStack, Player, world } from "@minecraft/server";
 

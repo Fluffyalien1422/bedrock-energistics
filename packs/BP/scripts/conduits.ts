@@ -8,7 +8,7 @@ import {
 import { updateBlockConnectStates } from "./utils/block";
 import { STR_DIRECTIONS } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
-import { updateMachineConnectableNetworks } from "@/becore_api";
+import { updateMachineConnectableNetworks } from "bedrock-energistics-core-api";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {

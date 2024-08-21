@@ -4,7 +4,7 @@ import {
   MachineDefinition,
   setMachineSlotItem,
   setMachineStorage,
-} from "@/becore_api";
+} from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
 import { MACHINE_TICK_INTERVAL } from "../constants";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";

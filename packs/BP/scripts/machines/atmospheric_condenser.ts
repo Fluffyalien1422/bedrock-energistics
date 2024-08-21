@@ -4,7 +4,7 @@ import {
   MachineDefinition,
   MAX_MACHINE_STORAGE,
   setMachineStorage,
-} from "@/becore_api";
+} from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
 import { MACHINE_TICK_INTERVAL } from "../constants";
 import { BlockStateAccessor } from "../utils/block";

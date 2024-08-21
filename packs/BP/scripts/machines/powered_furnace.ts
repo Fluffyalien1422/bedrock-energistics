@@ -2,7 +2,7 @@ import {
   getMachineStorage,
   MachineDefinition,
   setMachineStorage,
-} from "@/becore_api";
+} from "bedrock-energistics-core-api";
 import {
   blockLocationToUid,
   getEntityAtBlockLocation,

@@ -1,4 +1,4 @@
-import { init as beCoreInit } from "@/becore_api";
+import { init as beCoreInit } from "bedrock-energistics-core-api";
 import "./custom_components";
 import "./persistent_machine_entities";
 import "./register_machines";

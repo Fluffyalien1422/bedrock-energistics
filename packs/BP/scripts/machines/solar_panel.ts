@@ -1,4 +1,4 @@
-import { generate, MachineDefinition } from "@/becore_api";
+import { generate, MachineDefinition } from "bedrock-energistics-core-api";
 import { VECTOR3_UP, Vector3Utils } from "@minecraft/math";
 import {
   BlockCustomComponent,

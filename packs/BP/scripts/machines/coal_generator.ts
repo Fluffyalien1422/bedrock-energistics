@@ -5,7 +5,7 @@ import {
   MachineDefinition,
   MAX_MACHINE_STORAGE,
   setMachineSlotItem,
-} from "@/becore_api";
+} from "bedrock-energistics-core-api";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
 import {
   BlockStateAccessor,

@@ -1,5 +1,8 @@
 import { world } from "@minecraft/server";
-import { registerMachine, registerStorageType } from "@/becore_api";
+import {
+  registerMachine,
+  registerStorageType,
+} from "bedrock-energistics-core-api";
 import { solarPanelMachine } from "./machines/solar_panel";
 import { crusherMachine } from "./machines/crusher";
 import { oilExtractorMachine } from "./machines/oil_extractor";

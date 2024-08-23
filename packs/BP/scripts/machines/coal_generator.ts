@@ -64,7 +64,7 @@ export const coalGeneratorMachine: MachineDefinition = {
           },
         ],
         progressIndicators: {
-          flameIndicator: progress * 2,
+          flameIndicator: Math.floor(progress / 2),
         },
       };
     },

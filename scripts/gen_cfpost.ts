@@ -4,7 +4,7 @@ const NAMESPACE = "fluffyalien_energistics";
 
 const CONTENT_BEGINNING = `
 <p>
-Expands Bedrock with energistics! Adds technology to Minecraft, inspired by Java Edition mods.
+Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.
 </p>
 
 <h2>
@@ -14,7 +14,10 @@ Beware! This add-on is in a beta stage. Minor updates may contain breaking chang
 Enable Beta APIs under Experiments in the world settings
 </h2>
 <h2>
-Requires Minecraft 1.21.x
+Requires <a href="https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core">Bedrock Energistics Core</a> v0.1.x (since v0.4)
+</h2>
+<h2>
+Requires Minecraft 1.21.2x (since v0.4)
 </h2>
 <h2>
 No official realms support

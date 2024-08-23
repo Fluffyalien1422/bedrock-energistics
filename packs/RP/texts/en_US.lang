@@ -1,5 +1,5 @@
 pack.name=Bedrock Energistics
-pack.description=Expands Bedrock with energistics! Adds technology to Minecraft, inspired by Java Edition mods.
+pack.description=Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.
 
 item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Tutorial Book
 item.fluffyalien_energistics:basic_machine_part=Basic Machine Part

@@ -14,14 +14,14 @@ Beware! This add-on is in a beta stage. Minor updates may contain breaking chang
 Enable Beta APIs under Experiments in the world settings
 </h2>
 <h2>
-Requires Bedrock Energistics Core v0.1.x (since v0.4)
+Requires Bedrock Energistics Core v0.1.x or v0.2.x
 </h2>
 <ul>
 <li><a href="https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core">Download Bedrock Energistics Core from CurseForge</a></li>
 <li><a href="https://mcpedl.com/bedrock-energistics-core">Download Bedrock Energistics Core from MCPEDL</a></li>
 </ul>
 <h2>
-Requires Minecraft 1.21.2x (since v0.4)
+Requires Minecraft 1.21.3x
 </h2>
 <h2>
 No official realms support

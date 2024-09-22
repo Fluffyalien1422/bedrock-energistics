@@ -32,7 +32,7 @@
         "seconds_to_destroy": 1
       },
       "minecraft:tick": {
-        "interval_range": [20, 20]
+        "interval_range": [10, 10]
       }
     },
     "permutations": [

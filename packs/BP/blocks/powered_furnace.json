@@ -31,7 +31,7 @@
       "minecraft:destructible_by_mining": false,
       "minecraft:selection_box": false,
       "minecraft:tick": {
-        "interval_range": [20, 20]
+        "interval_range": [10, 10]
       }
     },
     "permutations": [

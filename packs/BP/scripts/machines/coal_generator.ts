@@ -16,7 +16,7 @@ import { blockLocationToUid } from "../utils/location";
 
 const INPUT_ITEMS = ["minecraft:coal"];
 
-const MAX_PROGRESS = 26;
+const MAX_PROGRESS = 52;
 
 const ENERGY_GENERATION_PER_PROGRESS = 14;
 const ENERGY_GENERATION_PER_TICK =
@@ -63,7 +63,7 @@ export const coalGeneratorMachine: MachineDefinition = {
           },
         ],
         progressIndicators: {
-          flameIndicator: Math.floor(progress / 2),
+          flameIndicator: Math.floor(progress / 4),
         },
       };
     },
@@ -72,12 +72,6 @@ export const coalGeneratorMachine: MachineDefinition = {
 
 export const coalGeneratorComponent: BlockCustomComponent = {
   onTick(e) {
-    const uid = blockLocationToUid(e.block);
-    const workingState = new BlockStateAccessor(
-      e.block,
-      "fluffyalien_energistics:working",
-    );
-
     let inputItem = getMachineSlotItem(e.block, 0);
 
     if (inputItem) {
@@ -108,6 +102,13 @@ export const coalGeneratorComponent: BlockCustomComponent = {
         decrementSlot(hopperSlot);
       }
     }
+
+    const uid = blockLocationToUid(e.block);
+
+    const workingState = new BlockStateAccessor(
+      e.block,
+      "fluffyalien_energistics:working",
+    );
 
     const progress = progressMap.get(uid) ?? 0;
 

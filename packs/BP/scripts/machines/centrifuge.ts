@@ -106,7 +106,7 @@ const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
 const ENERGY_CONSUMPTION_PER_TICK =
   ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
-const MAX_PROGRESS = 16;
+const MAX_PROGRESS = 32;
 
 const progressMap = new Map<string, number>();
 
@@ -170,7 +170,7 @@ export const centrifugeMachine: MachineDefinition = {
           },
         ],
         progressIndicators: {
-          arrowIndicator: progressMap.get(uid) ?? 0,
+          arrowIndicator: Math.floor((progressMap.get(uid) ?? 0) / 2),
         },
       };
     },
@@ -188,6 +188,8 @@ export const centrifugeComponent: BlockCustomComponent = {
 
     const hasHopperBelow = getHopperBelow(e.block);
 
+    let returnAfterHopperInput = false;
+
     for (let i = 0; i < 4; i++) {
       const slotId = i + 1;
       const outputItem = getMachineSlotItem(e.block, slotId);
@@ -196,7 +198,8 @@ export const centrifugeComponent: BlockCustomComponent = {
       if (!hasHopperBelow) {
         progressMap.delete(uid);
         inputState.set("none");
-        return;
+        returnAfterHopperInput = true;
+        break;
       }
 
       const itemStack = new ItemStack(OUTPUT_ITEM_TYPES[outputItem.typeIndex]);
@@ -204,7 +207,8 @@ export const centrifugeComponent: BlockCustomComponent = {
       if (!depositItemToHopper(e.block, itemStack)) {
         progressMap.delete(uid);
         inputState.set("none");
-        return;
+        returnAfterHopperInput = true;
+        break;
       }
 
       outputItem.count--;
@@ -212,12 +216,14 @@ export const centrifugeComponent: BlockCustomComponent = {
         setMachineSlotItem(e.block, slotId, outputItem);
         progressMap.delete(uid);
         inputState.set("none");
-        return;
+        returnAfterHopperInput = true;
+        break;
       } else {
         setMachineSlotItem(e.block, slotId);
       }
 
-      return; // we don't want hoppers to take all items at once
+      returnAfterHopperInput = true;
+      break;
     }
 
     let inputItem = getMachineSlotItem(e.block, 0);
@@ -248,11 +254,13 @@ export const centrifugeComponent: BlockCustomComponent = {
         };
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
-      } else {
-        progressMap.delete(uid);
-        inputState.set("none");
-        return;
       }
+    }
+
+    if (!inputItem || returnAfterHopperInput) {
+      progressMap.delete(uid);
+      inputState.set("none");
+      return;
     }
 
     const progress = progressMap.get(uid) ?? 0;

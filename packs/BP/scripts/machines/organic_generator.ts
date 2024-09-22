@@ -29,7 +29,7 @@ const INPUT_ITEMS = [
   "minecraft:spruce_sapling",
 ];
 
-const MAX_PROGRESS = [13, 13, 13, 13, 13, 19, 19, 19, 19, 19, 19, 19];
+const MAX_PROGRESS = [26, 26, 26, 26, 26, 38, 38, 38, 38, 38, 38, 38];
 
 const ENERGY_GENERATION_PER_PROGRESS = 10;
 const ENERGY_GENERATION_PER_TICK =
@@ -87,10 +87,6 @@ export const organicGeneratorMachine: MachineDefinition = {
 export const organicGeneratorComponent: BlockCustomComponent = {
   onTick(e) {
     const uid = blockLocationToUid(e.block);
-    const workingState = new BlockStateAccessor(
-      e.block,
-      "fluffyalien_energistics:working",
-    );
 
     let inputItem = getMachineSlotItem(e.block, 0);
 
@@ -122,6 +118,11 @@ export const organicGeneratorComponent: BlockCustomComponent = {
         decrementSlot(hopperSlot);
       }
     }
+
+    const workingState = new BlockStateAccessor(
+      e.block,
+      "fluffyalien_energistics:working",
+    );
 
     const progress = progressMap.get(uid) ?? 0;
 

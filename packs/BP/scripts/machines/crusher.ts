@@ -31,7 +31,7 @@ const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
 const ENERGY_CONSUMPTION_PER_TICK =
   ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
-const MAX_PROGRESS = 8;
+const MAX_PROGRESS = 16;
 
 const progressMap = new Map<string, number>();
 
@@ -77,7 +77,7 @@ export const crusherMachine: MachineDefinition = {
           },
         ],
         progressIndicators: {
-          progressIndicator: (progressMap.get(uid) ?? 0) * 2,
+          progressIndicator: progressMap.get(uid) ?? 0,
         },
       };
     },

@@ -32,7 +32,7 @@
   },
   {
     "atlas_tile": "fluffyalien_energistics:coal_generator_front_on",
-    "flipbook_texture": "textures/fluffyalien/energistics/blocks/coal_generator_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/new/coal_generator_front_on",
     "ticks_per_frame": 10
   },
   {
@@ -63,5 +63,11 @@
     "atlas_tile": "fluffyalien_energistics:organic_generator_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/organic_generator_front_on",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:block_breaker_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/block_breaker_front_on",
+    "ticks_per_frame": 10,
+    "blend_frames": false
   }
 ]

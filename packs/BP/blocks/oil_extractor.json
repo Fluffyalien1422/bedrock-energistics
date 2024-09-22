@@ -51,7 +51,7 @@
               "texture": "fluffyalien_energistics:machine_casing_top"
             },
             "down": {
-              "texture": "fluffyalien_energistics:machine_casing_bottom"
+              "texture": "fluffyalien_energistics:machine_casing_top"
             }
           }
         }
@@ -70,7 +70,7 @@
               "texture": "fluffyalien_energistics:machine_casing_top"
             },
             "down": {
-              "texture": "fluffyalien_energistics:machine_casing_bottom"
+              "texture": "fluffyalien_energistics:machine_casing_top"
             }
           }
         }

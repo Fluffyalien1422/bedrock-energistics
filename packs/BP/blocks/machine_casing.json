@@ -17,7 +17,7 @@
           "texture": "fluffyalien_energistics:machine_casing_top"
         },
         "down": {
-          "texture": "fluffyalien_energistics:machine_casing_bottom"
+          "texture": "fluffyalien_energistics:machine_casing_top"
         }
       },
       "minecraft:destructible_by_mining": {

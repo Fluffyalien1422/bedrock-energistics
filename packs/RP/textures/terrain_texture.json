@@ -13,13 +13,10 @@
       "textures": "textures/fluffyalien/energistics/blocks/multi_conduit"
     },
     "fluffyalien_energistics:machine_casing_side": {
-      "textures": "textures/fluffyalien/energistics/blocks/machine_casing_side"
+      "textures": "textures/fluffyalien/energistics/blocks/new/machine_casing_side"
     },
     "fluffyalien_energistics:machine_casing_top": {
-      "textures": "textures/fluffyalien/energistics/blocks/machine_casing_top"
-    },
-    "fluffyalien_energistics:machine_casing_bottom": {
-      "textures": "textures/fluffyalien/energistics/blocks/machine_casing_bottom"
+      "textures": "textures/fluffyalien/energistics/blocks/new/machine_casing_top"
     },
     "fluffyalien_energistics:solar_panel_top": {
       "textures": "textures/fluffyalien/energistics/blocks/solar_panel_top"
@@ -64,10 +61,10 @@
       "textures": "textures/fluffyalien/energistics/blocks/powered_furnace_front_on"
     },
     "fluffyalien_energistics:coal_generator_front_off": {
-      "textures": "textures/fluffyalien/energistics/blocks/coal_generator_front_off"
+      "textures": "textures/fluffyalien/energistics/blocks/new/coal_generator_front_off"
     },
     "fluffyalien_energistics:coal_generator_front_on": {
-      "textures": "textures/fluffyalien/energistics/blocks/coal_generator_front_on"
+      "textures": "textures/fluffyalien/energistics/blocks/new/coal_generator_front_on"
     },
     "fluffyalien_energistics:centrifuge_front_off": {
       "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_off"
@@ -95,6 +92,18 @@
     },
     "fluffyalien_energistics:void_miner_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/void_miner_front_on"
+    },
+    "fluffyalien_energistics:block_breaker_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/block_breaker_front_off"
+    },
+    "fluffyalien_energistics:block_breaker_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/block_breaker_front_on"
+    },
+    "fluffyalien_energistics:block_placer_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/block_placer_front_off"
+    },
+    "fluffyalien_energistics:block_placer_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/block_placer_front_on"
     }
   }
 }

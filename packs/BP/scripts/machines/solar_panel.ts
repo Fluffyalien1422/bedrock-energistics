@@ -40,7 +40,7 @@ export const solarPanelMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi(location) {
+    updateUi({ blockLocation: location }) {
       return {
         storageBars: [
           {

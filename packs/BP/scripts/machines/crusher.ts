@@ -65,7 +65,7 @@ export const crusherMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi(location) {
+    updateUi({ blockLocation: location }) {
       const uid = blockLocationToUid(location);
 
       return {

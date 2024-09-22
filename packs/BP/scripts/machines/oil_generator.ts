@@ -2,11 +2,10 @@ import {
   generate,
   getMachineStorage,
   MachineDefinition,
-  MAX_MACHINE_STORAGE,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL } from "../constants";
+import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
 const OIL_CONSUMPTION = 2;
@@ -31,7 +30,7 @@ export const oilGeneratorMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi(location) {
+    updateUi({ blockLocation: location }) {
       const block = location.dimension.getBlock(location);
       const working = block?.permutation.getState(
         "fluffyalien_energistics:working",

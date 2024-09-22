@@ -45,7 +45,7 @@ export const poweredFurnaceMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi(location) {
+    updateUi({ blockLocation: location }) {
       const uid = blockLocationToUid(location);
 
       return {

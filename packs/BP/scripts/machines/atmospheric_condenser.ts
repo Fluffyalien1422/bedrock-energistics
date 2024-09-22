@@ -2,11 +2,10 @@ import {
   generate,
   getMachineStorage,
   MachineDefinition,
-  MAX_MACHINE_STORAGE,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL } from "../constants";
+import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
 type GasStateValue = "hydrogen" | "carbon" | "nitrogen" | "none";
@@ -40,7 +39,7 @@ export const atmosphericCondenserMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi(location) {
+    updateUi({ blockLocation: location }) {
       const gasStateValue =
         location.dimension
           .getBlock(location)

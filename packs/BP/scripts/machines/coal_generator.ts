@@ -3,7 +3,6 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
-  MAX_MACHINE_STORAGE,
   setMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent, ItemStack } from "@minecraft/server";
@@ -12,7 +11,7 @@ import {
   getFirstSlotWithItemInConnectedHoppers,
 } from "../utils/block";
 import { decrementSlot } from "../utils/item";
-import { MACHINE_TICK_INTERVAL } from "../constants";
+import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
 import { blockLocationToUid } from "../utils/location";
 
 const INPUT_ITEMS = ["minecraft:coal"];
@@ -51,7 +50,7 @@ export const coalGeneratorMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi(blockLocation) {
+    updateUi({ blockLocation }) {
       const uid = blockLocationToUid(blockLocation);
       const progress = progressMap.get(uid) ?? 0;
 

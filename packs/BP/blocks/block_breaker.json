@@ -1,0 +1,171 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fluffyalien_energistics:block_breaker",
+      "menu_category": {
+        "category": "items"
+      },
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": [
+            "minecraft:cardinal_direction",
+            "minecraft:facing_direction"
+          ],
+          "y_rotation_offset": 180
+        }
+      },
+      "states": {
+        "fluffyalien_energistics:working": [false, true]
+      }
+    },
+    "components": {
+      "minecraft:custom_components": [
+        "fluffyalien_energisticscore:machine",
+        "fluffyalien_energistics:block_breaker"
+      ],
+      "tag:fluffyalien_energisticscore:machine": {},
+      "tag:fluffyalien_energisticscore:io.energy": {},
+      "tag:fluffyalien_energisticscore:consumer.energy": {},
+
+      "minecraft:geometry": "minecraft:geometry.full_block",
+
+      "minecraft:destructible_by_explosion": false,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1
+      },
+      "minecraft:tick": {
+        "interval_range": [10, 10]
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('fluffyalien_energistics:working')",
+        "components": {
+          "minecraft:light_emission": 13,
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:machine_casing_side"
+            },
+            "north": {
+              "texture": "fluffyalien_energistics:block_breaker_front_on"
+            },
+            "up": {
+              "texture": "fluffyalien_energistics:machine_casing_top"
+            },
+            "down": {
+              "texture": "fluffyalien_energistics:machine_casing_top"
+            }
+          }
+        }
+      },
+      {
+        "condition": "!q.block_state('fluffyalien_energistics:working')",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:machine_casing_side"
+            },
+            "north": {
+              "texture": "fluffyalien_energistics:block_breaker_front_off"
+            },
+            "up": {
+              "texture": "fluffyalien_energistics:machine_casing_top"
+            },
+            "down": {
+              "texture": "fluffyalien_energistics:machine_casing_top"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 180, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 90, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, -90, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'up' && q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [-90, 0, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'up' && q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [-90, 180, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'up' && q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [-90, 90, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'up' && q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [-90, -90, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'down' && q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [90, 0, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'down' && q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [90, 180, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'down' && q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [90, 90, 0]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:facing_direction') == 'down' && q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [90, -90, 0]
+          }
+        }
+      }
+    ]
+  }
+}

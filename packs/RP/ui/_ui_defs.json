@@ -8,6 +8,7 @@
     "ui/fluffyalien/energistics/powered_furnace.json",
     "ui/fluffyalien/energistics/coal_generator.json",
     "ui/fluffyalien/energistics/centrifuge.json",
-    "ui/fluffyalien/energistics/organic_generator.json"
+    "ui/fluffyalien/energistics/organic_generator.json",
+    "ui/fluffyalien/energistics/block_breaker.json"
   ]
 }

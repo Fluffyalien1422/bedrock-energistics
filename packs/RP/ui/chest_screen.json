@@ -50,6 +50,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:organic_generator')",
             "$screen_content": "fluffyalien_energistics:organic_generator.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:block_breaker')",
+            "$screen_content": "fluffyalien_energistics:block_breaker.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

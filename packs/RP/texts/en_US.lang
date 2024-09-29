@@ -18,6 +18,7 @@ tile.fluffyalien_energistics:coal_generator.name=Coal Generator
 tile.fluffyalien_energistics:centrifuge.name=Centrifuge
 tile.fluffyalien_energistics:organic_generator.name=Organic Generator
 tile.fluffyalien_energistics:block_breaker.name=Block Breaker
+tile.fluffyalien_energistics:block_placer.name=Block Placer
 
 fluffyalien_energistics.ui.common.back=Back
 

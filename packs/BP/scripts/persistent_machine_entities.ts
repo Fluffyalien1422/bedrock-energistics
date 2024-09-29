@@ -22,6 +22,18 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
     if (outputItem) {
       e.hitEntity.dimension.spawnItem(outputItem, e.hitEntity.location);
     }
+  } else if (e.hitEntity.typeId === "fluffyalien_energistics:block_placer") {
+    e.hitEntity.dimension.spawnItem(
+      new ItemStack("fluffyalien_energistics:block_placer"),
+      e.hitEntity.location,
+    );
+
+    const container = e.hitEntity.getComponent("inventory")!.container!;
+
+    const inputItem = container.getItem(4);
+    if (inputItem) {
+      e.hitEntity.dimension.spawnItem(inputItem, e.hitEntity.location);
+    }
   } else {
     return;
   }

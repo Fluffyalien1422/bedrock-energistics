@@ -37,18 +37,16 @@ export const oilExtractorMachine: MachineDefinition = {
       );
 
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: working ? -ENERGY_CONSUMPTION_PER_TICK : 0,
           },
-          {
-            element: "oilBar",
+          oilBar: {
             type: "oil",
             change: working ? OIL_GENERATION_PER_TICK : 0,
           },
-        ],
+        },
       };
     },
   },

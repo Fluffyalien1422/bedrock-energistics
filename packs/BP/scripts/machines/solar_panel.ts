@@ -42,13 +42,12 @@ export const solarPanelMachine: MachineDefinition = {
   handlers: {
     updateUi({ blockLocation: location }) {
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: getGeneration(location) / MACHINE_TICK_INTERVAL,
           },
-        ],
+        },
       };
     },
   },

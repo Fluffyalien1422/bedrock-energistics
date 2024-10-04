@@ -162,13 +162,12 @@ export const centrifugeMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
           },
-        ],
+        },
         progressIndicators: {
           arrowIndicator: Math.floor((progressMap.get(uid) ?? 0) / 2),
         },

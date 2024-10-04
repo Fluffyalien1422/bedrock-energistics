@@ -24,13 +24,12 @@ export const blockBreakerMachine: MachineDefinition = {
   handlers: {
     updateUi() {
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: 0,
           },
-        ],
+        },
       };
     },
   },

@@ -67,13 +67,12 @@ export const organicGeneratorMachine: MachineDefinition = {
       const inputItem = getMachineSlotItem(blockLocation, 0);
 
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: progress ? ENERGY_GENERATION_PER_TICK : 0,
           },
-        ],
+        },
         progressIndicators: {
           flameIndicator: inputItem
             ? Math.floor((progress / MAX_PROGRESS[inputItem.typeIndex]) * 13)

@@ -40,19 +40,19 @@
       "textures": "textures/fluffyalien/energistics/blocks/oil_generator_front_on"
     },
     "fluffyalien_energistics:atmospheric_condenser_top": {
-      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_top"
+      "textures": "textures/fluffyalien/energistics/blocks/new/atmospheric_condenser_top"
     },
     "fluffyalien_energistics:atmospheric_condenser_front_off": {
-      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_off"
+      "textures": "textures/fluffyalien/energistics/blocks/new/atmospheric_condenser_front_off"
     },
     "fluffyalien_energistics:atmospheric_condenser_front_on_hydrogen": {
-      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_hydrogen"
+      "textures": "textures/fluffyalien/energistics/blocks/new/atmospheric_condenser_front_on_hydrogen"
     },
     "fluffyalien_energistics:atmospheric_condenser_front_on_nitrogen": {
-      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_nitrogen"
+      "textures": "textures/fluffyalien/energistics/blocks/new/atmospheric_condenser_front_on_nitrogen"
     },
     "fluffyalien_energistics:atmospheric_condenser_front_on_carbon": {
-      "textures": "textures/fluffyalien/energistics/blocks/atmospheric_condenser_front_on_carbon"
+      "textures": "textures/fluffyalien/energistics/blocks/new/atmospheric_condenser_front_on_carbon"
     },
     "fluffyalien_energistics:powered_furnace_front_off": {
       "textures": "textures/fluffyalien/energistics/blocks/powered_furnace_front_off"
@@ -67,19 +67,19 @@
       "textures": "textures/fluffyalien/energistics/blocks/new/coal_generator_front_on"
     },
     "fluffyalien_energistics:centrifuge_front_off": {
-      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_off"
+      "textures": "textures/fluffyalien/energistics/blocks/new/centrifuge_front_off"
     },
     "fluffyalien_energistics:centrifuge_front_on_dirt": {
-      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_dirt"
+      "textures": "textures/fluffyalien/energistics/blocks/new/centrifuge_front_on_dirt"
     },
     "fluffyalien_energistics:centrifuge_front_on_sand": {
-      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_sand"
+      "textures": "textures/fluffyalien/energistics/blocks/new/centrifuge_front_on_sand"
     },
     "fluffyalien_energistics:centrifuge_front_on_gravel": {
-      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_gravel"
+      "textures": "textures/fluffyalien/energistics/blocks/new/centrifuge_front_on_gravel"
     },
     "fluffyalien_energistics:centrifuge_front_on_soul_sand": {
-      "textures": "textures/fluffyalien/energistics/blocks/centrifuge_front_on_soul_sand"
+      "textures": "textures/fluffyalien/energistics/blocks/new/centrifuge_front_on_soul_sand"
     },
     "fluffyalien_energistics:organic_generator_front_off": {
       "textures": "textures/fluffyalien/energistics/blocks/organic_generator_front_off"

@@ -69,13 +69,12 @@ export const crusherMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
           },
-        ],
+        },
         progressIndicators: {
           progressIndicator: progressMap.get(uid) ?? 0,
         },

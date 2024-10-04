@@ -48,18 +48,16 @@ export const atmosphericCondenserMachine: MachineDefinition = {
       const isActive = gasStateValue !== "none";
 
       return {
-        storageBars: [
-          {
-            element: "energyBar",
+        storageBars: {
+          energyBar: {
             type: "energy",
             change: isActive ? -ENERGY_CONSUMPTION_PER_TICK : 0,
           },
-          {
-            element: "outputGasBar",
+          outputGasBar: {
             type: GAS_TYPES[location.dimension.id],
             change: isActive ? GAS_GENERATION_PER_TICK : 0,
           },
-        ],
+        },
       };
     },
   },

@@ -17,20 +17,11 @@ export const blockBreakerMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
-        },
-      },
-    },
-  },
-  handlers: {
-    updateUi() {
-      return {
-        storageBars: {
-          energyBar: {
+          defaults: {
             type: "energy",
-            change: 0,
           },
         },
-      };
+      },
     },
   },
 };

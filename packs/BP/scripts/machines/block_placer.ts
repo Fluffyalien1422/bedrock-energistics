@@ -23,20 +23,11 @@ export const blockPlacerMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
-        },
-      },
-    },
-  },
-  handlers: {
-    updateUi() {
-      return {
-        storageBars: {
-          energyBar: {
+          defaults: {
             type: "energy",
-            change: 0,
           },
         },
-      };
+      },
     },
   },
 };
@@ -108,6 +99,7 @@ export const blockPlacerComponent: BlockCustomComponent = {
       return;
     }
 
+    decrementSlot(inputSlot);
     setMachineStorage(
       e.block,
       "energy",

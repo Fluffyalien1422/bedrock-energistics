@@ -23,6 +23,8 @@ export const energyConduitComponent: BlockCustomComponent = {
       .getComponent("equippable")!
       .getEquipmentSlot(EquipmentSlot.Mainhand);
 
+    if (!heldSlot.hasItem()) return;
+
     switch (heldSlot.typeId) {
       case "fluffyalien_energistics:fluid_conduit":
         e.block.setPermutation(
@@ -59,6 +61,8 @@ export const fluidConduitComponent: BlockCustomComponent = {
       .getComponent("equippable")!
       .getEquipmentSlot(EquipmentSlot.Mainhand);
 
+    if (!heldSlot.hasItem()) return;
+
     switch (heldSlot.typeId) {
       case "fluffyalien_energistics:energy_conduit":
         e.block.setPermutation(
@@ -94,6 +98,8 @@ export const gasConduitComponent: BlockCustomComponent = {
     const heldSlot = player
       .getComponent("equippable")!
       .getEquipmentSlot(EquipmentSlot.Mainhand);
+
+    if (!heldSlot.hasItem()) return;
 
     switch (heldSlot.typeId) {
       case "fluffyalien_energistics:fluid_conduit":
@@ -159,6 +165,8 @@ export const multiConduitComponent: BlockCustomComponent = {
     const heldSlot = player
       .getComponent("equippable")!
       .getEquipmentSlot(EquipmentSlot.Mainhand);
+
+    if (!heldSlot.hasItem()) return;
 
     switch (heldSlot.typeId) {
       case "fluffyalien_energistics:energy_conduit":

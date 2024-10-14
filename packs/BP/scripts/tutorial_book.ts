@@ -37,6 +37,16 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/atmospheric_condenser_icon",
   },
   {
+    id: "blockBreaker",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/block_breaker_icon",
+  },
+  {
+    id: "blockPlacer",
+    bullets: 3,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/block_placer_icon",
+  },
+  {
     id: "centrifuge",
     bullets: 3,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/centrifuge_icon",

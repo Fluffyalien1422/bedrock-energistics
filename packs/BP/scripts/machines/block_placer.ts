@@ -11,6 +11,7 @@ import {
 } from "../utils/block";
 import { getBlockInDirection, StrDirection } from "../utils/direction";
 import { decrementSlot } from "../utils/item";
+import { getEntityComponent } from "../polyfills/component_type_map";
 
 const ENERGY_CONSUMPTION_PER_BLOCK = 5;
 
@@ -45,7 +46,7 @@ export const blockPlacerComponent: BlockCustomComponent = {
       "fluffyalien_energistics:working",
     );
 
-    const container = entity.getComponent("inventory")!.container!;
+    const container = getEntityComponent(entity, "inventory")!.container!;
     const inputSlot = container.getSlot(4);
 
     if (inputSlot.hasItem()) {

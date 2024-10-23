@@ -1,5 +1,6 @@
 import { Block, Container, ContainerSlot, ItemStack } from "@minecraft/server";
 import { getBlockInDirection, StrDirection } from "./direction";
+import { getBlockComponent } from "../polyfills/component_type_map";
 
 /**
  * sets the connect states of a block (eg. `fluffyalien_energistics:north`) to a value returned by a callback function
@@ -54,7 +55,7 @@ export function depositItemToHopper(
     return false;
   }
 
-  const container = hopper.getComponent("inventory")!.container!;
+  const container = getBlockComponent(hopper, "inventory")!.container!;
 
   const itemAdded = !container.addItem(itemStack);
 
@@ -145,7 +146,7 @@ export function getFirstSlotWithItemInConnectedHoppers(
 
   for (const hopper of hoppers) {
     const slot = getFirstSlotWithItem(
-      hopper.getComponent("inventory")!.container!,
+      getBlockComponent(hopper, "inventory")!.container!,
       allowedItems,
     );
     if (slot) return slot;

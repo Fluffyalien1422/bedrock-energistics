@@ -102,7 +102,6 @@ export async function showTutorialBookUi(player: Player): Promise<void> {
     );
   }
 
-  // @ts-expect-error wrong player
   const response = await form.show(player);
   if (response.selection === undefined) return;
 
@@ -133,7 +132,6 @@ async function showTutorialBookEntryUi(
     .body({ rawtext })
     .button({ translate: "fluffyalien_energistics.ui.common.back" });
 
-  // @ts-expect-error wrong player
   await form.show(player);
   return showTutorialBookUi(player);
 }

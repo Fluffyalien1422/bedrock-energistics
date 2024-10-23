@@ -3,7 +3,6 @@ import { VECTOR3_UP, Vector3Utils } from "@minecraft/math";
 import {
   BlockCustomComponent,
   DimensionLocation,
-  WeatherType,
   world,
 } from "@minecraft/server";
 import { MACHINE_TICK_INTERVAL } from "../constants";
@@ -24,7 +23,7 @@ function getGeneration(location: DimensionLocation): number {
     return 0;
   }
 
-  return location.dimension.getWeather() === WeatherType.Clear ? 5 : 2;
+  return 5;
 }
 
 export const solarPanelMachine: MachineDefinition = {

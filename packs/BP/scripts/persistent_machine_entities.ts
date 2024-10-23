@@ -1,6 +1,7 @@
 import { removeMachine } from "bedrock-energistics-core-api";
 import { Vector3Utils } from "@minecraft/math";
 import { ItemStack, Player, world } from "@minecraft/server";
+import { getEntityComponent } from "./polyfills/component_type_map";
 
 world.afterEvents.entityHitEntity.subscribe((e) => {
   if (!(e.damagingEntity instanceof Player)) return;
@@ -11,7 +12,7 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
       e.hitEntity.location,
     );
 
-    const container = e.hitEntity.getComponent("inventory")!.container!;
+    const container = getEntityComponent(e.hitEntity, "inventory")!.container!;
 
     const inputItem = container.getItem(4);
     if (inputItem) {
@@ -28,7 +29,7 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
       e.hitEntity.location,
     );
 
-    const container = e.hitEntity.getComponent("inventory")!.container!;
+    const container = getEntityComponent(e.hitEntity, "inventory")!.container!;
 
     const inputItem = container.getItem(4);
     if (inputItem) {

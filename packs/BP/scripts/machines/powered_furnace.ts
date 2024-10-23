@@ -17,6 +17,7 @@ import {
 } from "../utils/block";
 import { decrementSlot } from "../utils/item";
 import { POWERED_FURNACE_RECIPES } from "../generated/powered_furnace_recipes";
+import { getEntityComponent } from "../polyfills/component_type_map";
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 5;
 const ENERGY_CONSUMPTION_PER_TICK =
@@ -78,7 +79,7 @@ export const poweredFurnaceComponent: BlockCustomComponent = {
       "fluffyalien_energistics:working",
     );
 
-    const container = entity.getComponent("inventory")!.container!;
+    const container = getEntityComponent(entity, "inventory")!.container!;
 
     const outputSlot = container.getSlot(5);
 

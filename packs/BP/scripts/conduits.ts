@@ -9,6 +9,7 @@ import { updateBlockConnectStates } from "./utils/block";
 import { STR_DIRECTIONS } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
 import { updateMachineConnectableNetworks } from "bedrock-energistics-core-api";
+import { getEntityComponent } from "./polyfills/component_type_map";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
@@ -19,9 +20,9 @@ export const energyConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = player
-      .getComponent("equippable")!
-      .getEquipmentSlot(EquipmentSlot.Mainhand);
+    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
+      EquipmentSlot.Mainhand,
+    );
 
     if (!heldSlot.hasItem()) return;
 
@@ -57,9 +58,9 @@ export const fluidConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = player
-      .getComponent("equippable")!
-      .getEquipmentSlot(EquipmentSlot.Mainhand);
+    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
+      EquipmentSlot.Mainhand,
+    );
 
     if (!heldSlot.hasItem()) return;
 
@@ -95,9 +96,9 @@ export const gasConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = player
-      .getComponent("equippable")!
-      .getEquipmentSlot(EquipmentSlot.Mainhand);
+    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
+      EquipmentSlot.Mainhand,
+    );
 
     if (!heldSlot.hasItem()) return;
 
@@ -162,9 +163,9 @@ export const multiConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = player
-      .getComponent("equippable")!
-      .getEquipmentSlot(EquipmentSlot.Mainhand);
+    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
+      EquipmentSlot.Mainhand,
+    );
 
     if (!heldSlot.hasItem()) return;
 

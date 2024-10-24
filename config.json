@@ -11,7 +11,7 @@
     "filterDefinitions": {
       "build_scripts": {
         "runWith": "shell",
-        "command": "npx esbuild BP/scripts/index.ts --outfile=BP/scripts/__bundle.js --bundle --format=esm --external:@minecraft/common --external:@minecraft/debug-utilities --external:@minecraft/server --external:@minecraft/server-*"
+        "command": "npx esbuild BP/scripts/index.ts --outfile=BP/scripts/__bundle.js --bundle --format=esm --log-level=warning --external:@minecraft/common --external:@minecraft/debug-utilities --external:@minecraft/server --external:@minecraft/server-*"
       },
       "prod_finish_up_build_scripts": {
         "runWith": "shell",

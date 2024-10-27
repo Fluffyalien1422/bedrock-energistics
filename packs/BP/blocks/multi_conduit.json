@@ -27,7 +27,6 @@
       "minecraft:geometry": {
         "identifier": "geometry.fluffyalien_energistics.multi_conduit",
         "bone_visibility": {
-          "cover": "(q.block_state('fluffyalien_energistics:up') != 'none' || q.block_state('fluffyalien_energistics:down') != 'none') && (q.block_state('fluffyalien_energistics:east') != 'none' || q.block_state('fluffyalien_energistics:west') != 'none')",
           "border_north": "q.block_state('fluffyalien_energistics:north') == 'border'",
           "border_east": "q.block_state('fluffyalien_energistics:east') == 'border'",
           "border_south": "q.block_state('fluffyalien_energistics:south') == 'border'",
@@ -63,12 +62,12 @@
         }
       },
       "minecraft:collision_box": {
-        "origin": [-7, 1, -4],
-        "size": [14, 14, 8]
+        "origin": [-4, 4, -4],
+        "size": [8, 8, 8]
       },
       "minecraft:selection_box": {
-        "origin": [-7, 1, -3],
-        "size": [14, 14, 6]
+        "origin": [-4, 4, -4],
+        "size": [8, 8, 8]
       },
       "minecraft:light_dampening": 0,
 

@@ -14,16 +14,21 @@ Beware! This add-on is in a beta stage. Minor updates may contain breaking chang
 Requires Bedrock Energistics Core v0.4.x
 </h2>
 <ul>
-<li><a href="https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core">Download Bedrock Energistics Core from CurseForge</a></li>
-<li><a href="https://mcpedl.com/bedrock-energistics-core">Download Bedrock Energistics Core from MCPEDL</a></li>
+  <li><a href="https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core">Download Bedrock Energistics Core from CurseForge</a></li>
+  <li><a href="https://mcpedl.com/bedrock-energistics-core">Download Bedrock Energistics Core from MCPEDL</a></li>
 </ul>
 <h2>
 Requires Minecraft 1.21.4x
 </h2>
 `;
 
-const CONTENT_END =
-  '<p><a href="https://x.com/Fluffyalien1422">Follow me on X</a></p>';
+const CONTENT_END = `
+<p><a href="https://x.com/Fluffyalien1422">Follow me on X</a></p>
+<div style="display: inline-flex; align-items: center;">
+  <img width="76.8px" height="48.6px" src="https://vatonage.com/wp-content/uploads/jet-engine-forms/1/2024/06/firebird_pixel_no_shield.png" />
+  <span>Sponsored by <a href="https://vatonage.com">Vatonage</a></span>
+</div>
+`;
 
 function htmlEscape(s: string): string {
   return s

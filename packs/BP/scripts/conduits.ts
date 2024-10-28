@@ -8,8 +8,8 @@ import {
 import { updateBlockConnectStates } from "./utils/block";
 import { STR_DIRECTIONS } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
-import { updateMachineConnectableNetworks } from "bedrock-energistics-core-api";
 import { getEntityComponent } from "./polyfills/component_type_map";
+import { MachineNetwork } from "bedrock-energistics-core-api";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
@@ -178,7 +178,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:energy", true),
         );
-        updateMachineConnectableNetworks(e.block);
+        void MachineNetwork.updateConnectable(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:fluid_conduit":
@@ -189,7 +189,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:fluid", true),
         );
-        updateMachineConnectableNetworks(e.block);
+        void MachineNetwork.updateConnectable(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:gas_conduit":
@@ -200,7 +200,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:gas", true),
         );
-        updateMachineConnectableNetworks(e.block);
+        void MachineNetwork.updateConnectable(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
     }

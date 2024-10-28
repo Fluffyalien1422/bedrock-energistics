@@ -1,5 +1,4 @@
 import { removeMachine } from "bedrock-energistics-core-api";
-import { Vector3Utils } from "@minecraft/math";
 import { ItemStack, Player, world } from "@minecraft/server";
 import { getEntityComponent } from "./polyfills/component_type_map";
 
@@ -39,13 +38,11 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
     return;
   }
 
-  const blockLocation = Vector3Utils.floor(e.hitEntity.location);
-  const blockDimensionLocation = {
-    dimension: e.hitEntity.dimension,
-    ...blockLocation,
-  };
+  const block = e.hitEntity.dimension.getBlock(e.hitEntity.location);
+  if (!block) return;
 
-  removeMachine(blockDimensionLocation);
-  e.hitEntity.dimension.setBlockType(blockLocation, "air");
+  void removeMachine(block).then(() => {
+    block.setType("air");
+  });
   e.hitEntity.remove();
 });

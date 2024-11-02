@@ -69,5 +69,10 @@
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/block_breaker_front_on",
     "ticks_per_frame": 10,
     "blend_frames": false
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:void_miner_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/void_miner_front_on",
+    "ticks_per_frame": 10
   }
 ]

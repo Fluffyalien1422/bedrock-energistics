@@ -16,6 +16,7 @@ import { centrifugeComponent } from "./machines/centrifuge";
 import { organicGeneratorComponent } from "./machines/organic_generator";
 import { blockBreakerComponent } from "./machines/block_breaker";
 import { blockPlacerComponent } from "./machines/block_placer";
+import { voidMinerComponent } from "./machines/void_miner";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -91,5 +92,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:block_placer",
     blockPlacerComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:void_miner",
+    voidMinerComponent,
   );
 });

@@ -14,6 +14,7 @@ import { centrifugeMachine } from "./machines/centrifuge";
 import { organicGeneratorMachine } from "./machines/organic_generator";
 import { blockBreakerMachine } from "./machines/block_breaker";
 import { blockPlacerMachine } from "./machines/block_placer";
+import { voidMinerMachine } from "./machines/void_miner";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   registerStorageType({
@@ -52,4 +53,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(organicGeneratorMachine);
   registerMachine(blockBreakerMachine);
   registerMachine(blockPlacerMachine);
+  registerMachine(voidMinerMachine);
 });

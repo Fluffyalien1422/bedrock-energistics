@@ -65,6 +65,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:void_miner')",
             "$screen_content": "fluffyalien_energistics:void_miner.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:fluid_separator')",
+            "$screen_content": "fluffyalien_energistics:fluid_separator.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

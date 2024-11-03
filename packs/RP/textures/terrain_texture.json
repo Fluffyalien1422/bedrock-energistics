@@ -104,6 +104,15 @@
     },
     "fluffyalien_energistics:block_placer_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/block_placer_front_on"
+    },
+    "fluffyalien_energistics:fluid_separator_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_separator_front_off"
+    },
+    "fluffyalien_energistics:fluid_separator_front_on_oil": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_separator_front_on_oil"
+    },
+    "fluffyalien_energistics:fluid_separator_front_on_water": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_separator_front_on_water"
     }
   }
 }

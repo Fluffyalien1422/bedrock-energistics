@@ -74,5 +74,15 @@
     "atlas_tile": "fluffyalien_energistics:void_miner_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/void_miner_front_on",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:fluid_separator_front_on_oil",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/fluid_separator_front_on_oil",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:fluid_separator_front_on_water",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/fluid_separator_front_on_water",
+    "ticks_per_frame": 10
   }
 ]

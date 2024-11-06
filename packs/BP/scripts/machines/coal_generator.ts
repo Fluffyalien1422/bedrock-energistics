@@ -122,7 +122,7 @@ export const coalGeneratorComponent: BlockCustomComponent = {
 
     if (
       !inputItem ||
-      storedEnergy + ENERGY_GENERATION_PER_FUEL >= MAX_MACHINE_STORAGE
+      storedEnergy + ENERGY_GENERATION_PER_FUEL > MAX_MACHINE_STORAGE
     ) {
       progressMap.delete(uid);
       workingState.set(false);

@@ -8,7 +8,7 @@ import { BlockCustomComponent } from "@minecraft/server";
 import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
-const OIL_GENERATION = 5;
+const OIL_GENERATION = 10;
 const OIL_GENERATION_PER_TICK = OIL_GENERATION / MACHINE_TICK_INTERVAL;
 const ENERGY_CONSUMPTION = 10;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;

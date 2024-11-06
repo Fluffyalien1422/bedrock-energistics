@@ -39,6 +39,25 @@
     },
     "permutations": [
       {
+        "condition": "q.block_state('fluffyalien_energistics:fluid') == 'none'",
+        "components": {
+          "tag:fluffyalien_energisticscore:consumer.oil": {},
+          "tag:fluffyalien_energisticscore:consumer.water": {}
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:fluid') == 'oil'",
+        "components": {
+          "tag:fluffyalien_energisticscore:consumer.oil": {}
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:fluid') == 'water'",
+        "components": {
+          "tag:fluffyalien_energisticscore:consumer.water": {}
+        }
+      },
+      {
         "condition": "!q.block_state('fluffyalien_energistics:working') || q.block_state('fluffyalien_energistics:fluid') == 'none'",
         "components": {
           "minecraft:material_instances": {

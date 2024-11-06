@@ -137,7 +137,7 @@ export const organicGeneratorComponent: BlockCustomComponent = {
     if (
       !inputItem ||
       storedEnergy +
-        ENERGY_GENERATION_PER_PROGRESS * MAX_PROGRESS[inputItem.typeIndex] >=
+        ENERGY_GENERATION_PER_PROGRESS * MAX_PROGRESS[inputItem.typeIndex] >
         MAX_MACHINE_STORAGE
     ) {
       progressMap.delete(uid);

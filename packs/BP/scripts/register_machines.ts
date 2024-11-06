@@ -42,6 +42,12 @@ world.afterEvents.worldInitialize.subscribe(() => {
     color: "purple",
     name: "nitrogen",
   });
+  registerStorageType({
+    id: "water",
+    category: "fluid",
+    color: "black", // temporary
+    name: "water",
+  });
 
   registerMachine(solarPanelMachine);
   registerMachine(crusherMachine);

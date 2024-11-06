@@ -10,7 +10,7 @@ import { BlockStateAccessor } from "../utils/block";
 
 type GasStateValue = "hydrogen" | "carbon" | "nitrogen" | "none";
 
-const ENERGY_CONSUMPTION = 100;
+const ENERGY_CONSUMPTION = 50;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
 const GAS_GENERATION = 2;
@@ -77,7 +77,7 @@ export const atmosphericCondenserComponent: BlockCustomComponent = {
 
     if (
       storedEnergy < ENERGY_CONSUMPTION ||
-      storedGas + GAS_GENERATION >= MAX_MACHINE_STORAGE
+      storedGas + GAS_GENERATION > MAX_MACHINE_STORAGE
     ) {
       generate(e.block, gasType, 0);
       gasState.set("none");

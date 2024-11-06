@@ -1,14 +1,18 @@
 import {
+  generate,
+  getMachineStorage,
   MachineDefinition,
+  setMachineStorage,
   UpdateUiHandlerResponse,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL } from "../constants";
+import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { BlockStateAccessor } from "../utils/block";
 
-const ENERGY_CONSUMPTION = 100;
+const ENERGY_CONSUMPTION = 50;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
-const FLUID_CONSUMPTION = 10;
+const FLUID_CONSUMPTION = 5;
 const FLUID_CONSUMPTION_PER_TICK = FLUID_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
 interface FluidRecipeResult {
@@ -69,20 +73,26 @@ export const fluidSeparatorMachine: MachineDefinition = {
         "fluffyalien_energistics:fluid",
       ) as string;
 
+      const recipeResults = RECIPES[fluid];
+
+      const result1 = recipeResults[0];
+      const result2 = recipeResults[1];
+
       if (!working) {
         return {
           storageBars: {
             inputBar: {
               type: fluid === "none" ? "_disabled" : fluid,
             },
+            outputBar1: {
+              type: result1.type,
+            },
+            outputBar2: {
+              type: result2.type,
+            },
           },
         };
       }
-
-      const recipeResults = RECIPES[fluid];
-
-      const result1 = recipeResults[0];
-      const result2 = recipeResults[1];
 
       return {
         storageBars: {
@@ -108,5 +118,57 @@ export const fluidSeparatorMachine: MachineDefinition = {
 };
 
 export const fluidSeparatorComponent: BlockCustomComponent = {
-  onTick() {},
+  onTick({ block }) {
+    const workingState = new BlockStateAccessor<boolean>(
+      block,
+      "fluffyalien_energistics:working",
+    );
+
+    const fluidState = new BlockStateAccessor<string>(
+      block,
+      "fluffyalien_energistics:fluid",
+    );
+
+    const fluid = fluidState.get();
+
+    if (fluid === "none") {
+      if (getMachineStorage(block, "oil")) {
+        fluidState.set("oil");
+      } else if (getMachineStorage(block, "water")) {
+        fluidState.set("water");
+      } else {
+        workingState.set(false);
+        return;
+      }
+    }
+
+    const results = RECIPES[fluid];
+    const result1 = results[0];
+    const result2 = results[1];
+
+    const storedEnergy = getMachineStorage(block, "energy");
+    const storedFluid = getMachineStorage(block, fluid);
+    const storedResult1 = getMachineStorage(block, result1.type);
+    const storedResult2 = getMachineStorage(block, result2.type);
+
+    if (
+      storedEnergy < ENERGY_CONSUMPTION ||
+      storedFluid < FLUID_CONSUMPTION ||
+      storedResult1 + result1.amount > MAX_MACHINE_STORAGE ||
+      storedResult2 + result2.amount > MAX_MACHINE_STORAGE
+    ) {
+      generate(block, result1.type, 0);
+      generate(block, result2.type, 0);
+      workingState.set(false);
+      return;
+    }
+
+    setMachineStorage(block, "energy", storedEnergy - ENERGY_CONSUMPTION);
+    setMachineStorage(block, fluid, storedFluid - FLUID_CONSUMPTION);
+
+    generate(block, result1.type, result1.amount);
+    generate(block, result2.type, result2.amount);
+
+    workingState.set(true);
+  },
 };

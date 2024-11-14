@@ -8,3 +8,4 @@ becInit("fluffyalien_energistics");
 
 //TODO: void miner recipe
 //TODO: update void miner tutorial book icon & entry
+//TODO: fluid separator recipe and tutorial book entry

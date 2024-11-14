@@ -12,6 +12,7 @@
     "ui/fluffyalien/energistics/block_breaker.json",
     "ui/fluffyalien/energistics/block_placer.json",
     "ui/fluffyalien/energistics/void_miner.json",
-    "ui/fluffyalien/energistics/fluid_separator.json"
+    "ui/fluffyalien/energistics/fluid_separator.json",
+    "ui/fluffyalien/energistics/ammonia_factory.json"
   ]
 }

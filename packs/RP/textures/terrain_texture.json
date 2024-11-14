@@ -113,6 +113,12 @@
     },
     "fluffyalien_energistics:fluid_separator_front_on_water": {
       "textures": "textures/fluffyalien/energistics/blocks/fluid_separator_front_on_water"
+    },
+    "fluffyalien_energistics:ammonia_factory_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/ammonia_factory_front_off"
+    },
+    "fluffyalien_energistics:ammonia_factory_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/ammonia_factory_front_on"
     }
   }
 }

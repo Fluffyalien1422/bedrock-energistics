@@ -62,7 +62,10 @@ export const oilExtractorComponent: BlockCustomComponent = {
     const storedEnergy = getMachineStorage(e.block, "energy");
     const storedOil = getMachineStorage(e.block, "oil");
 
-    if (storedEnergy < ENERGY_CONSUMPTION || storedOil >= MAX_MACHINE_STORAGE) {
+    if (
+      storedEnergy < ENERGY_CONSUMPTION ||
+      storedOil + OIL_GENERATION > MAX_MACHINE_STORAGE
+    ) {
       generate(e.block, "oil", 0);
       workingState.set(false);
       return;

@@ -1,7 +1,8 @@
 import { world } from "@minecraft/server";
 import {
   registerMachine,
-  registerStorageType,
+  StandardStorageType,
+  useStandardStorageType,
 } from "bedrock-energistics-core-api";
 import { solarPanelMachine } from "./machines/solar_panel";
 import { crusherMachine } from "./machines/crusher";
@@ -16,38 +17,15 @@ import { blockBreakerMachine } from "./machines/block_breaker";
 import { blockPlacerMachine } from "./machines/block_placer";
 import { voidMinerMachine } from "./machines/void_miner";
 import { fluidSeparatorMachine } from "./machines/fluid_separator";
+import { ammoniaFactoryMachine } from "./machines/ammonia_factory";
 
 world.afterEvents.worldInitialize.subscribe(() => {
-  registerStorageType({
-    id: "oil",
-    category: "fluid",
-    color: "black",
-    name: "oil",
-  });
-  registerStorageType({
-    id: "hydrogen",
-    category: "gas",
-    color: "pink",
-    name: "hydrogen",
-  });
-  registerStorageType({
-    id: "carbon",
-    category: "gas",
-    color: "red",
-    name: "carbon",
-  });
-  registerStorageType({
-    id: "nitrogen",
-    category: "gas",
-    color: "purple",
-    name: "nitrogen",
-  });
-  registerStorageType({
-    id: "water",
-    category: "fluid",
-    color: "black", // temporary
-    name: "water",
-  });
+  useStandardStorageType(StandardStorageType.Oil);
+  useStandardStorageType(StandardStorageType.Hydrogen);
+  useStandardStorageType(StandardStorageType.Carbon);
+  useStandardStorageType(StandardStorageType.Nitrogen);
+  useStandardStorageType(StandardStorageType.Water);
+  useStandardStorageType(StandardStorageType.Ammonia);
 
   registerMachine(solarPanelMachine);
   registerMachine(crusherMachine);
@@ -62,4 +40,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(blockPlacerMachine);
   registerMachine(voidMinerMachine);
   registerMachine(fluidSeparatorMachine);
+  registerMachine(ammoniaFactoryMachine);
 });

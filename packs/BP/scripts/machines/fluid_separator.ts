@@ -65,13 +65,15 @@ export const fluidSeparatorMachine: MachineDefinition = {
       const block = blockLocation.dimension.getBlock(blockLocation);
       if (!block) return {};
 
-      const working = block.permutation.getState(
-        "fluffyalien_energistics:working",
-      ) as boolean;
-
       const fluid = block.permutation.getState(
         "fluffyalien_energistics:fluid",
       ) as string;
+
+      if (fluid === "none") return {};
+
+      const working = block.permutation.getState(
+        "fluffyalien_energistics:working",
+      ) as boolean;
 
       const recipeResults = RECIPES[fluid];
 
@@ -82,7 +84,7 @@ export const fluidSeparatorMachine: MachineDefinition = {
         return {
           storageBars: {
             inputBar: {
-              type: fluid === "none" ? "_disabled" : fluid,
+              type: fluid,
             },
             outputBar1: {
               type: result1.type,

@@ -23,6 +23,7 @@ tile.fluffyalien_energistics:block_placer.name=Block Placer
 tile.fluffyalien_energistics:void_miner.name=Void Miner
 tile.fluffyalien_energistics:fluid_separator.name=Fluid Separator
 tile.fluffyalien_energistics:ammonia_factory.name=Ammonia Factory
+tile.fluffyalien_energistics:ammonia_generator.name=Ammonia Generator
 
 fluffyalien_energistics.ui.common.back=Back
 

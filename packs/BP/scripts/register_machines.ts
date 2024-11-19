@@ -18,6 +18,7 @@ import { blockPlacerMachine } from "./machines/block_placer";
 import { voidMinerMachine } from "./machines/void_miner";
 import { fluidSeparatorMachine } from "./machines/fluid_separator";
 import { ammoniaFactoryMachine } from "./machines/ammonia_factory";
+import { ammoniaGeneratorMachine } from "./machines/ammonia_generator";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   useStandardStorageType(StandardStorageType.Oil);
@@ -41,4 +42,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(voidMinerMachine);
   registerMachine(fluidSeparatorMachine);
   registerMachine(ammoniaFactoryMachine);
+  registerMachine(ammoniaGeneratorMachine);
 });

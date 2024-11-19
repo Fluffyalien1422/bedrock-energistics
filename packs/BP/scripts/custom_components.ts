@@ -19,6 +19,7 @@ import { blockPlacerComponent } from "./machines/block_placer";
 import { voidMinerComponent } from "./machines/void_miner";
 import { fluidSeparatorComponent } from "./machines/fluid_separator";
 import { ammoniaFactoryComponent } from "./machines/ammonia_factory";
+import { ammoniaGeneratorComponent } from "./machines/ammonia_generator";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -109,5 +110,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:ammonia_factory",
     ammoniaFactoryComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:ammonia_generator",
+    ammoniaGeneratorComponent,
   );
 });

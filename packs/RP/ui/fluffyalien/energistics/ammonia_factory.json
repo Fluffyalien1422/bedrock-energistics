@@ -71,24 +71,24 @@
       },
       {
         "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
-          "offset": [9, 12]
+          "offset": [8, 12]
         }
       },
       {
         "nitrogen_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
-          "offset": [41, 12],
+          "offset": [32, 12],
           "$start_index": 4
         }
       },
       {
         "hydrogen_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
-          "offset": [73, 12],
+          "offset": [56, 12],
           "$start_index": 8
         }
       },
       {
         "ammonia_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
-          "offset": ["100%-25px", 12],
+          "offset": ["100%-24px", 12],
           "$start_index": 12
         }
       }

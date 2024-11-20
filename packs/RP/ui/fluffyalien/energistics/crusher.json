@@ -70,8 +70,8 @@
         }
       },
       {
-        "power_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
-          "offset": [9, 12]
+        "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
+          "offset": [8, 12]
         }
       },
       {

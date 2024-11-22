@@ -32,6 +32,16 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/generic_icon",
   },
   {
+    id: "ammoniaFactory",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/ammonia_factory_icon",
+  },
+  {
+    id: "ammoniaGenerator",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/ammonia_generator_icon",
+  },
+  {
     id: "atmosphericCondenser",
     bullets: 2,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/atmospheric_condenser_icon",
@@ -62,6 +72,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/crusher_icon",
   },
   {
+    id: "fluidSeparator",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/fluid_separator_icon",
+  },
+  {
     id: "oilExtractor",
     bullets: 2,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/oil_extractor_icon",
@@ -85,6 +100,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     id: "poweredFurnace",
     bullets: 3,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/powered_furnace_icon",
+  },
+  {
+    id: "voidMiner",
+    bullets: 3,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/void_miner_icon",
   },
 ];
 

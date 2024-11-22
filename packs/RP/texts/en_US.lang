@@ -49,6 +49,14 @@ fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet1=All consumers ca
 fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet2=Hover over the storage (or tap on mobile) to see how much the consumer is using per game tick.
 fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet3=A device can be both a generator and a consumer at the same time (eg. consumes energy but generates a fluid).
 
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.title=Ammonia Factory
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet0=Generates ammonia while active.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet1=Consumes energy while active.
+
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.title=Ammonia Generator
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.bullet0=Generates energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.bullet1=Consumes ammonia while active.
+
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.title=Atmospheric Condenser
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet0=Generates nitrogen in the overworld, carbon in the nether, or hydrogen in the end when active.
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet1=Consumes energy while active.
@@ -77,6 +85,10 @@ fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet0=Crushes stone into
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet1=Consumes energy while active.
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet2=Hoppers can insert and extract items.
 
+fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.title=Fluid Separator
+fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet0=Separates fluids into their gaseous components.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet1=Consumes energy while active.
+
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.title=Oil Extractor
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Generates oil while active.
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet1=Consumes energy while active.
@@ -101,6 +113,6 @@ fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet1=Consumes en
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet2=Hoppers can insert and extract items.
 
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.title=Void Miner
-fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources depending on the dimension.
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources.
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet1=Consumes energy while active.
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet2=Hoppers can extract items.

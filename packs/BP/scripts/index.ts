@@ -6,9 +6,8 @@ import "./tutorial_book";
 
 becInit("fluffyalien_energistics");
 
-//TODO: void miner recipe
 //TODO: update void miner tutorial book icon & entry
-//TODO: fluid separator recipe and tutorial book entry
-//TODO: ammonia factory recipe and tutorial book entry
-//TOOD: ammonia generator recipe and tutorial book entry
+//TODO: fluid separator tutorial book entry
+//TODO: ammonia factory tutorial book entry
+//TOOD: ammonia generator tutorial book entry
 //TODO: machine balancing (oil generator is way too OP)

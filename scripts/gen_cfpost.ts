@@ -11,7 +11,7 @@ Expands Bedrock with energistics! Adds many machines to Minecraft, with custom U
 Beware! This add-on is in a beta stage. Minor updates may contain breaking changes!
 </h2>
 <h2>
-Requires Bedrock Energistics Core v0.4.x
+Requires Bedrock Energistics Core v0.5.x
 </h2>
 <ul>
   <li><a href="https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core">Download Bedrock Energistics Core from CurseForge</a></li>

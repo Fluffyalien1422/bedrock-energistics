@@ -24,7 +24,7 @@ Requires Minecraft 1.21.4x
 
 const CONTENT_END = `
 <p><a href="https://x.com/Fluffyalien1422">Follow me on X</a></p>
-<div style="display: inline-flex; align-items: center;">
+<div style="display: flex; align-items: center;">
   <img width="76.8px" height="48.6px" src="https://vatonage.com/wp-content/uploads/jet-engine-forms/1/2024/06/firebird_pixel_no_shield.png" />
   <span>Sponsored by <a href="https://vatonage.com">Vatonage</a></span>
 </div>

@@ -1,0 +1,18 @@
+{
+  "namespace": "fluffyalien_energistics",
+  "briefDescription": "Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.",
+  "notes": [
+    "Beware! This add-on is in a beta stage. Minor updates may contain breaking changes!"
+  ],
+  "dependencies": [
+    {
+      "name": "Bedrock Energistics Core v0.5.x",
+      "mcpedlUrl": "https://mcpedl.com/bedrock-energistics-core",
+      "cfUrl": "https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core"
+    }
+  ],
+  "issueTrackerUrl": "https://legacy.curseforge.com/minecraft-bedrock/addons/bedrock-energistics/issues",
+  "theme": {
+    "secondaryColor": "#d2c421"
+  }
+}

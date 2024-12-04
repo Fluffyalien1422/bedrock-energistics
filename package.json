@@ -6,7 +6,7 @@
     "check": "tsc && tsc -p scripts && eslint .",
     "fmt-check": "npm run fmt && npm run check",
     "tsx": "tsx",
-    "gen-cfpost": "tsx scripts/gen_cfpost",
+    "docgen": "tsx scripts/docgen",
     "gen-powered-furnace-recipes": "tsx scripts/gen_powered_furnace_recipes"
   },
   "devDependencies": {

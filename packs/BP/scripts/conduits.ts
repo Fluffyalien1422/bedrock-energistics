@@ -13,8 +13,12 @@ import { MachineNetwork } from "bedrock-energistics-core-api";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
-      other.hasTag("fluffyalien_energisticscore:io.energy"),
+    updateBlockConnectStates(
+      block,
+      STR_DIRECTIONS,
+      (other) =>
+        other.hasTag("fluffyalien_energisticscore:io.energy") ||
+        other.hasTag("fluffyalien_energisticscore:io._any"),
     );
   },
   onPlayerInteract(e) {
@@ -51,8 +55,12 @@ export const energyConduitComponent: BlockCustomComponent = {
 
 export const fluidConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
-      other.hasTag("fluffyalien_energisticscore:io.fluid"),
+    updateBlockConnectStates(
+      block,
+      STR_DIRECTIONS,
+      (other) =>
+        other.hasTag("fluffyalien_energisticscore:io.fluid") ||
+        other.hasTag("fluffyalien_energisticscore:io._any"),
     );
   },
   onPlayerInteract(e) {
@@ -89,8 +97,12 @@ export const fluidConduitComponent: BlockCustomComponent = {
 
 export const gasConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
-      other.hasTag("fluffyalien_energisticscore:io.gas"),
+    updateBlockConnectStates(
+      block,
+      STR_DIRECTIONS,
+      (other) =>
+        other.hasTag("fluffyalien_energisticscore:io.gas") ||
+        other.hasTag("fluffyalien_energisticscore:io._any"),
     );
   },
   onPlayerInteract(e) {
@@ -131,6 +143,9 @@ export const multiConduitComponent: BlockCustomComponent = {
     const hasFluidIo = block.hasTag("fluffyalien_energisticscore:io.fluid");
     const hasGasIo = block.hasTag("fluffyalien_energisticscore:io.gas");
     updateBlockConnectStates(block, STR_DIRECTIONS, (other) => {
+      const otherHasAnyIo = other.hasTag("fluffyalien_energisticscore:io._any");
+      if (otherHasAnyIo) return "border";
+
       const otherHasEnergyIo = other.hasTag(
         "fluffyalien_energisticscore:io.energy",
       );

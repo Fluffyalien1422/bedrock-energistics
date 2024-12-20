@@ -14,6 +14,7 @@
     "ui/fluffyalien/energistics/void_miner.json",
     "ui/fluffyalien/energistics/fluid_separator.json",
     "ui/fluffyalien/energistics/ammonia_factory.json",
-    "ui/fluffyalien/energistics/ammonia_generator.json"
+    "ui/fluffyalien/energistics/ammonia_generator.json",
+    "ui/fluffyalien/energistics/disposal_unit.json"
   ]
 }

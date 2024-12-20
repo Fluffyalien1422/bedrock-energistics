@@ -125,6 +125,12 @@
     },
     "fluffyalien_energistics:ammonia_generator_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/ammonia_generator_front_on"
+    },
+    "fluffyalien_energistics:disposal_unit_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/disposal_unit_front_off"
+    },
+    "fluffyalien_energistics:disposal_unit_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/disposal_unit_front_on"
     }
   }
 }

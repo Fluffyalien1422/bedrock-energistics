@@ -94,5 +94,10 @@
     "atlas_tile": "fluffyalien_energistics:ammonia_generator_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/ammonia_generator_front_on",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:disposal_unit_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/disposal_unit_front_on",
+    "ticks_per_frame": 5
   }
 ]

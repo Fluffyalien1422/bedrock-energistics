@@ -1,0 +1,96 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.fluffyalien_energistics.fluid_tank",
+        "texture_width": 128,
+        "texture_height": 128,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 2.5,
+        "visible_bounds_offset": [0, 0.75, 0]
+      },
+      "bones": [
+        {
+          "name": "base",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 16, 16],
+              "uv": {
+                "north": { "uv": [0, 0], "uv_size": [16, 16] },
+                "east": { "uv": [0, 0], "uv_size": [16, 16] },
+                "south": { "uv": [0, 0], "uv_size": [16, 16] },
+                "west": { "uv": [0, 0], "uv_size": [16, 16] },
+                "up": { "uv": [17, 0], "uv_size": [16, 16] },
+                "down": { "uv": [17, 0], "uv_size": [16, 16] }
+              }
+            }
+          ]
+        },
+        {
+          "name": "fluid",
+          "pivot": [0, 0, 0]
+        },
+        {
+          "name": "1",
+          "parent": "fluid",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-7, 1, -7],
+              "size": [14, 5, 14],
+              "uv": {
+                "north": { "uv": [34, 23], "uv_size": [14, 5] },
+                "east": { "uv": [34, 23], "uv_size": [14, 5] },
+                "south": { "uv": [34, 23], "uv_size": [14, 5] },
+                "west": { "uv": [34, 23], "uv_size": [14, 5] },
+                "up": { "uv": [34, 0], "uv_size": [14, 14] },
+                "down": { "uv": [34, 42], "uv_size": [14, -14] }
+              }
+            }
+          ]
+        },
+        {
+          "name": "2",
+          "parent": "fluid",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-7, 6, -7],
+              "size": [14, 4, 14],
+              "uv": {
+                "north": { "uv": [34, 19], "uv_size": [14, 4] },
+                "east": { "uv": [34, 19], "uv_size": [14, 4] },
+                "south": { "uv": [34, 19], "uv_size": [14, 4] },
+                "west": { "uv": [34, 19], "uv_size": [14, 4] },
+                "up": { "uv": [34, 0], "uv_size": [14, 14] },
+                "down": { "uv": [34, 42], "uv_size": [14, -14] }
+              }
+            }
+          ]
+        },
+        {
+          "name": "3",
+          "parent": "fluid",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-7, 10, -7],
+              "size": [14, 5, 14],
+              "uv": {
+                "north": { "uv": [34, 14], "uv_size": [14, 5] },
+                "east": { "uv": [34, 14], "uv_size": [14, 5] },
+                "south": { "uv": [34, 14], "uv_size": [14, 5] },
+                "west": { "uv": [34, 14], "uv_size": [14, 5] },
+                "up": { "uv": [34, 0], "uv_size": [14, 14] },
+                "down": { "uv": [34, 42], "uv_size": [14, -14] }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

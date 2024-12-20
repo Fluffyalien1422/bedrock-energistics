@@ -131,6 +131,24 @@
     },
     "fluffyalien_energistics:disposal_unit_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/disposal_unit_front_on"
+    },
+    "fluffyalien_energistics:gas_canister": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_canister"
+    },
+    "fluffyalien_energistics:gas_canister_ammonia": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_canister_ammonia"
+    },
+    "fluffyalien_energistics:gas_canister_carbon": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_canister_carbon"
+    },
+    "fluffyalien_energistics:gas_canister_hydrogen": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_canister_hydrogen"
+    },
+    "fluffyalien_energistics:gas_canister_nitrogen": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_canister_nitrogen"
+    },
+    "fluffyalien_energistics:gas_canister_oxygen": {
+      "textures": "textures/fluffyalien/energistics/blocks/gas_canister_oxygen"
     }
   }
 }

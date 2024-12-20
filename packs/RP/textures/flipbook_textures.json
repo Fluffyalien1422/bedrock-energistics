@@ -99,5 +99,30 @@
     "atlas_tile": "fluffyalien_energistics:disposal_unit_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/disposal_unit_front_on",
     "ticks_per_frame": 5
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:gas_canister_ammonia",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/gas_canister_ammonia",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:gas_canister_carbon",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/gas_canister_carbon",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:gas_canister_hydrogen",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/gas_canister_hydrogen",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:gas_canister_nitrogen",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/gas_canister_nitrogen",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:gas_canister_oxygen",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/gas_canister_oxygen",
+    "ticks_per_frame": 10
   }
 ]

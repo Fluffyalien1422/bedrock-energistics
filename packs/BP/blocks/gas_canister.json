@@ -1,0 +1,117 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fluffyalien_energistics:gas_canister",
+      "menu_category": {
+        "category": "items"
+      },
+      "states": {
+        "fluffyalien_energistics:stage": [0, 1, 2, 3],
+        "fluffyalien_energistics:type": [
+          "none",
+          "ammonia",
+          "carbon",
+          "hydrogen",
+          "nitrogen",
+          "oxygen"
+        ]
+      }
+    },
+    "components": {
+      "minecraft:custom_components": [
+        "fluffyalien_energisticscore:machine",
+        "fluffyalien_energistics:gas_canister"
+      ],
+      "tag:fluffyalien_energisticscore:machine": {},
+      "tag:fluffyalien_energisticscore:io.gas": {},
+      "tag:fluffyalien_energisticscore:consumer._any": {},
+      "tag:fluffyalien_energisticscore:low_priority_consumer": {},
+
+      "minecraft:geometry": {
+        "identifier": "geometry.fluffyalien_energistics.gas_canister",
+        "bone_visibility": {
+          "1": "q.block_state('fluffyalien_energistics:stage') == 1",
+          "2": "q.block_state('fluffyalien_energistics:stage') == 2",
+          "3": "q.block_state('fluffyalien_energistics:stage') == 3"
+        }
+      },
+
+      "minecraft:destructible_by_explosion": false,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1
+      },
+      "minecraft:tick": {
+        "interval_range": [10, 10]
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('fluffyalien_energistics:type') == 'none'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:gas_canister",
+              "render_method": "alpha_test"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:type') == 'ammonia'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:gas_canister_ammonia",
+              "render_method": "alpha_test"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:type') == 'carbon'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:gas_canister_carbon",
+              "render_method": "alpha_test"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:type') == 'hydrogen'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:gas_canister_hydrogen",
+              "render_method": "alpha_test"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:type') == 'nitrogen'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:gas_canister_nitrogen",
+              "render_method": "alpha_test"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:type') == 'oxygen'",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "fluffyalien_energistics:gas_canister_oxygen",
+              "render_method": "alpha_test"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

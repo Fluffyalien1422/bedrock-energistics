@@ -21,6 +21,7 @@ import { fluidSeparatorComponent } from "./machines/fluid_separator";
 import { ammoniaFactoryComponent } from "./machines/ammonia_factory";
 import { ammoniaGeneratorComponent } from "./machines/ammonia_generator";
 import { disposalUnitComponent } from "./machines/disposal_unit";
+import { gasCanisterComponent } from "./machines/gas_canister";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -121,5 +122,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:disposal_unit",
     disposalUnitComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:gas_canister",
+    gasCanisterComponent,
   );
 });

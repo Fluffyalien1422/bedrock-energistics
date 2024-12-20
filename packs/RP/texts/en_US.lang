@@ -25,6 +25,7 @@ tile.fluffyalien_energistics:fluid_separator.name=Fluid Separator
 tile.fluffyalien_energistics:ammonia_factory.name=Ammonia Factory
 tile.fluffyalien_energistics:ammonia_generator.name=Ammonia Generator
 tile.fluffyalien_energistics:disposal_unit.name=Disposal Unit
+tile.fluffyalien_energistics:gas_canister.name=Gas Canister
 
 fluffyalien_energistics.ui.common.back=Back
 

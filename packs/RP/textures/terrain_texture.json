@@ -173,6 +173,15 @@
     },
     "fluffyalien_energistics:fluid_tank_oil": {
       "textures": "textures/fluffyalien/energistics/blocks/fluid_tank_oil"
+    },
+    "fluffyalien_energistics:pump_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/pump_front_off"
+    },
+    "fluffyalien_energistics:pump_front_on_water": {
+      "textures": "textures/fluffyalien/energistics/blocks/pump_front_on_water"
+    },
+    "fluffyalien_energistics:pump_front_on_lava": {
+      "textures": "textures/fluffyalien/energistics/blocks/pump_front_on_lava"
     }
   }
 }

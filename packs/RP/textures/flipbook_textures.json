@@ -126,26 +126,6 @@
     "ticks_per_frame": 10
   },
   {
-    "atlas_tile": "fluffyalien_energistics:battery_front_0",
-    "flipbook_texture": "textures/fluffyalien/energistics/blocks/battery_front_0",
-    "ticks_per_frame": 10
-  },
-  {
-    "atlas_tile": "fluffyalien_energistics:battery_front_1",
-    "flipbook_texture": "textures/fluffyalien/energistics/blocks/battery_front_1",
-    "ticks_per_frame": 10
-  },
-  {
-    "atlas_tile": "fluffyalien_energistics:battery_front_2",
-    "flipbook_texture": "textures/fluffyalien/energistics/blocks/battery_front_2",
-    "ticks_per_frame": 10
-  },
-  {
-    "atlas_tile": "fluffyalien_energistics:battery_front_3",
-    "flipbook_texture": "textures/fluffyalien/energistics/blocks/battery_front_3",
-    "ticks_per_frame": 10
-  },
-  {
     "atlas_tile": "fluffyalien_energistics:fluid_tank_water",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/fluid_tank_water",
     "ticks_per_frame": 10
@@ -158,6 +138,16 @@
   {
     "atlas_tile": "fluffyalien_energistics:fluid_tank_oil",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/fluid_tank_oil",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:pump_front_on_water",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/pump_front_on_water",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:pump_front_on_lava",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/pump_front_on_lava",
     "ticks_per_frame": 10
   }
 ]

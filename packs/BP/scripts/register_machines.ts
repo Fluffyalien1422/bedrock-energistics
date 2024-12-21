@@ -23,6 +23,7 @@ import { disposalUnitMachine } from "./machines/disposal_unit";
 import { gasCanisterMachine } from "./machines/gas_canister";
 import { batteryMachine } from "./machines/battery";
 import { fluidTankMachine } from "./machines/fluid_tank";
+import { pumpMachine } from "./machines/pump";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   useStandardStorageType(StandardStorageType.Oil);
@@ -31,6 +32,7 @@ world.afterEvents.worldInitialize.subscribe(() => {
   useStandardStorageType(StandardStorageType.Nitrogen);
   useStandardStorageType(StandardStorageType.Water);
   useStandardStorageType(StandardStorageType.Ammonia);
+  useStandardStorageType(StandardStorageType.Lava);
 
   registerMachine(solarPanelMachine);
   registerMachine(crusherMachine);
@@ -51,4 +53,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(gasCanisterMachine);
   registerMachine(batteryMachine);
   registerMachine(fluidTankMachine);
+  registerMachine(pumpMachine);
 });

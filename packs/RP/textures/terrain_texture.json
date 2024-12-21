@@ -149,6 +149,30 @@
     },
     "fluffyalien_energistics:gas_canister_oxygen": {
       "textures": "textures/fluffyalien/energistics/blocks/gas_canister_oxygen"
+    },
+    "fluffyalien_energistics:battery_front_0": {
+      "textures": "textures/fluffyalien/energistics/blocks/battery_front_0"
+    },
+    "fluffyalien_energistics:battery_front_1": {
+      "textures": "textures/fluffyalien/energistics/blocks/battery_front_1"
+    },
+    "fluffyalien_energistics:battery_front_2": {
+      "textures": "textures/fluffyalien/energistics/blocks/battery_front_2"
+    },
+    "fluffyalien_energistics:battery_front_3": {
+      "textures": "textures/fluffyalien/energistics/blocks/battery_front_3"
+    },
+    "fluffyalien_energistics:fluid_tank": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_tank"
+    },
+    "fluffyalien_energistics:fluid_tank_water": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_tank_water"
+    },
+    "fluffyalien_energistics:fluid_tank_lava": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_tank_lava"
+    },
+    "fluffyalien_energistics:fluid_tank_oil": {
+      "textures": "textures/fluffyalien/energistics/blocks/fluid_tank_oil"
     }
   }
 }

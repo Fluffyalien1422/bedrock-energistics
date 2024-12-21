@@ -90,6 +90,16 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:gas_canister')",
             "$screen_content": "fluffyalien_energistics:gas_canister.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:battery')",
+            "$screen_content": "fluffyalien_energistics:battery.root",
+            "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:fluid_tank')",
+            "$screen_content": "fluffyalien_energistics:fluid_tank.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

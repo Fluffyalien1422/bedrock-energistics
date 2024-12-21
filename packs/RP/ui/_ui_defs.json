@@ -16,6 +16,8 @@
     "ui/fluffyalien/energistics/ammonia_factory.json",
     "ui/fluffyalien/energistics/ammonia_generator.json",
     "ui/fluffyalien/energistics/disposal_unit.json",
-    "ui/fluffyalien/energistics/gas_canister.json"
+    "ui/fluffyalien/energistics/gas_canister.json",
+    "ui/fluffyalien/energistics/battery.json",
+    "ui/fluffyalien/energistics/fluid_tank.json"
   ]
 }

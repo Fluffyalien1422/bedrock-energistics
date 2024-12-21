@@ -1,5 +1,5 @@
 {
-  "namespace": "fluffyalien_energistics:gas_canister",
+  "namespace": "fluffyalien_energistics:battery",
   "root": {
     "type": "panel",
     "controls": [
@@ -32,7 +32,7 @@
                 "offset": [0, -0.5],
                 "controls": [
                   {
-                    "small_chest_panel_top_half@fluffyalien_energistics:gas_canister.top_half": {}
+                    "small_chest_panel_top_half@fluffyalien_energistics:battery.top_half": {}
                   },
                   {
                     "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
@@ -66,11 +66,11 @@
     "controls": [
       {
         "title@fluffyalien_energisticscore:common.container_title": {
-          "text": "Gas Canister"
+          "text": "Battery"
         }
       },
       {
-        "storage_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
+        "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
           "offset": [8, 12]
         }
       }

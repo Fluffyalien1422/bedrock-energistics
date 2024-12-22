@@ -1,0 +1,46 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:disposal_unit"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        "LBL",
+        "C#D",
+        "SMS"
+      ],
+    "key": {
+      "B": {
+        "item": "fluffyalien_energistics:fluid_conduit"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "D": {
+        "item": "fluffyalien_energistics:gas_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "S": {
+        "item": "redstone"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      },
+      "L": {
+        "item": "lava_bucket"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:disposal_unit"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

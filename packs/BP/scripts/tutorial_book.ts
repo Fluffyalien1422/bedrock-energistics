@@ -47,6 +47,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/atmospheric_condenser_icon",
   },
   {
+    id: "battery",
+    bullets: 1,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/battery_icon",
+  },
+  {
     id: "blockBreaker",
     bullets: 2,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/block_breaker_icon",
@@ -72,9 +77,24 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/crusher_icon",
   },
   {
+    id: "disposalUnit",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/disposal_unit_icon",
+  },
+  {
     id: "fluidSeparator",
     bullets: 2,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/fluid_separator_icon",
+  },
+  {
+    id: "fluidTank",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/fluid_tank_icon",
+  },
+  {
+    id: "gasCanister",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/gas_canister_icon",
   },
   {
     id: "oilExtractor",
@@ -100,6 +120,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     id: "poweredFurnace",
     bullets: 3,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/powered_furnace_icon",
+  },
+  {
+    id: "pump",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/pump_icon",
   },
   {
     id: "voidMiner",

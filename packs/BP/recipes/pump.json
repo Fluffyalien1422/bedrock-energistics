@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:pump"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+          " B ",
+          "C#G",
+          "DMD"
+        ],
+    "key": {
+      "B": {
+        "item": "bucket"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "G": {
+        "item": "fluffyalien_energistics:fluid_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "D": {
+        "item": "gold_ingot"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:pump"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

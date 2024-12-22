@@ -70,6 +70,9 @@ fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.title=Atmosph
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet0=Generates nitrogen in the overworld, carbon in the nether, or hydrogen in the end when active.
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet1=Consumes energy while active.
 
+fluffyalien_energistics.ui.tutorialBook.entry.battery.title=Battery
+fluffyalien_energistics.ui.tutorialBook.entry.battery.bullet0=Stores up to 7,500 energy.
+
 fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.title=Block Breaker
 fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet0=Breaks the block in front of it while active.
 fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet1=Consumes energy while active.
@@ -94,9 +97,21 @@ fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet0=Crushes stone into
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet1=Consumes energy while active.
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet2=Hoppers can insert and extract items.
 
+fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.title=Disposal Unit
+fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet0=Destroys fluids and gases.
+fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet1=Consumes energy while active.
+
 fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.title=Fluid Separator
 fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet0=Separates fluids into their gaseous components.
 fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet1=Consumes energy while active.
+
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.title=Fluid Tank
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet0=Stores up to 7,500 of some fluid types.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet1=Only accepts one type of fluid a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
+
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.title=Gas Canister
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 7,500 of some gas types.
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Only accepts one type of gas a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
 
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.title=Oil Extractor
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Generates oil while active.
@@ -120,6 +135,10 @@ fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.title=Powered Furna
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet0=Smelts items (only works on vanilla items).
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet1=Consumes energy while active.
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet2=Hoppers can insert and extract items.
+
+fluffyalien_energistics.ui.tutorialBook.entry.pump.title=Pump
+fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet0=Generates either water or lava depending on the fluid it is placed on top of.
+fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet1=Consumes energy while active.
 
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.title=Void Miner
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources.

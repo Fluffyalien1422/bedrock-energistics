@@ -33,6 +33,7 @@ world.afterEvents.worldInitialize.subscribe(() => {
   useStandardStorageType(StandardStorageType.Water);
   useStandardStorageType(StandardStorageType.Ammonia);
   useStandardStorageType(StandardStorageType.Lava);
+  useStandardStorageType(StandardStorageType.Oxygen);
 
   registerMachine(solarPanelMachine);
   registerMachine(crusherMachine);

@@ -3,6 +3,7 @@ import {
   getMachineStorage,
   MachineDefinition,
   setMachineStorage,
+  StandardStorageType,
   UpdateUiHandlerResponse,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
@@ -12,23 +13,33 @@ import { BlockStateAccessor } from "../utils/block";
 const ENERGY_CONSUMPTION = 50;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
-const FLUID_CONSUMPTION = 5;
+const FLUID_CONSUMPTION = 6;
 const FLUID_CONSUMPTION_PER_TICK = FLUID_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
 interface FluidRecipeResult {
-  type: string;
+  type: StandardStorageType;
   amount: number;
 }
 
 const RECIPES: Record<string, [FluidRecipeResult, FluidRecipeResult]> = {
   oil: [
     {
-      type: "hydrogen",
-      amount: 7,
+      type: StandardStorageType.Hydrogen,
+      amount: 4,
     },
     {
-      type: "carbon",
-      amount: 3,
+      type: StandardStorageType.Carbon,
+      amount: 2,
+    },
+  ],
+  water: [
+    {
+      type: StandardStorageType.Hydrogen,
+      amount: 4,
+    },
+    {
+      type: StandardStorageType.Oxygen,
+      amount: 2,
     },
   ],
 };

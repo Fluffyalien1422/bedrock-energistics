@@ -1,5 +1,8 @@
 {
   "texture_data": {
+    "fluffyalien_energistics:ui_options_button": {
+      "textures": "textures/fluffyalien/energistics/ui/machine_ui/options_button"
+    },
     "fluffyalien_energistics:basic_machine_part": {
       "textures": "textures/fluffyalien/energistics/items/basic_machine_part"
     }

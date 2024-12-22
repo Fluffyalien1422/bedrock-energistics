@@ -73,6 +73,12 @@
         "storage_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
           "offset": [8, 12]
         }
+      },
+      {
+        "options_button@fluffyalien_energisticscore:common.container_item_slot_nobg": {
+          "offset": ["100%-24px", 12],
+          "$index": 4
+        }
       }
     ]
   }

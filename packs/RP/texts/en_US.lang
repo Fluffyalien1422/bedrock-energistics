@@ -1,6 +1,8 @@
 pack.name=Bedrock Energistics
 pack.description=Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.
 
+item.fluffyalien_energistics:ui_options_button=Options
+
 item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Tutorial Book
 item.fluffyalien_energistics:basic_machine_part=Basic Machine Part
 
@@ -31,6 +33,8 @@ tile.fluffyalien_energistics:battery.name=Battery
 tile.fluffyalien_energistics:pump.name=Pump
 
 fluffyalien_energistics.ui.common.back=Back
+
+fluffyalien_energistics.ui.genericStorageTypeContainer.options.type=Type
 
 fluffyalien_energistics.ui.tutorialBook.entry.networks.title=Networks
 fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet0=A network is a group of devices that share energy, gas, or fluid.

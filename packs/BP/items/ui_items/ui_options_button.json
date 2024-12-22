@@ -1,0 +1,17 @@
+{
+  "format_version": "1.21.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "fluffyalien_energistics:ui_options_button",
+      "menu_category": {
+        "category": "none"
+      }
+    },
+    "components": {
+      "minecraft:tags": {
+        "tags": ["fluffyalien_energisticscore:ui_item"]
+      },
+      "minecraft:icon": "fluffyalien_energistics:ui_options_button"
+    }
+  }
+}

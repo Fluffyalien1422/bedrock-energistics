@@ -28,7 +28,7 @@
         "fluffyalien_energistics:centrifuge"
       ],
       "tag:fluffyalien_energisticscore:machine": {},
-      "tag:fluffyalien_energisticscore:io.energy": {},
+      "tag:fluffyalien_energisticscore:io.category.energy": {},
       "tag:fluffyalien_energisticscore:consumer.energy": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",

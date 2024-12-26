@@ -21,7 +21,7 @@
         "fluffyalien_energistics:energy_conduit"
       ],
       "tag:fluffyalien_energisticscore:conduit": {},
-      "tag:fluffyalien_energisticscore:io.energy": {},
+      "tag:fluffyalien_energisticscore:io.category.energy": {},
 
       "minecraft:geometry": {
         "identifier": "geometry.fluffyalien_energistics.conduit",

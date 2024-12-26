@@ -8,7 +8,7 @@ import { BlockCustomComponent } from "@minecraft/server";
 import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
-type GasStateValue = "hydrogen" | "carbon" | "nitrogen" | "none";
+type GasStateValue = "hydrogen" | "carbon" | "nitrogen";
 
 const ENERGY_CONSUMPTION = 50;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
@@ -64,10 +64,17 @@ export const atmosphericCondenserMachine: MachineDefinition = {
 };
 
 export const atmosphericCondenserComponent: BlockCustomComponent = {
-  onTick(e) {
-    const gasState = new BlockStateAccessor<GasStateValue>(
-      e.block,
+  beforeOnPlayerPlace(e) {
+    e.permutationToPlace = e.permutationToPlace.withState(
       "fluffyalien_energistics:gas",
+      GAS_TYPES[e.dimension.id],
+    );
+  },
+
+  onTick(e) {
+    const workingState = new BlockStateAccessor<boolean>(
+      e.block,
+      "fluffyalien_energistics:working",
     );
 
     const gasType = GAS_TYPES[e.dimension.id];
@@ -80,13 +87,12 @@ export const atmosphericCondenserComponent: BlockCustomComponent = {
       storedGas + GAS_GENERATION > MAX_MACHINE_STORAGE
     ) {
       generate(e.block, gasType, 0);
-      gasState.set("none");
+      workingState.set(false);
       return;
     }
 
     setMachineStorage(e.block, "energy", storedEnergy - ENERGY_CONSUMPTION);
     generate(e.block, gasType, GAS_GENERATION);
-
-    gasState.set(gasType);
+    workingState.set(true);
   },
 };

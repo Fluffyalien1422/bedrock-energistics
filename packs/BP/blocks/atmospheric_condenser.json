@@ -13,12 +13,8 @@
         }
       },
       "states": {
-        "fluffyalien_energistics:gas": [
-          "none",
-          "hydrogen",
-          "carbon",
-          "nitrogen"
-        ]
+        "fluffyalien_energistics:working": [false, true],
+        "fluffyalien_energistics:gas": ["hydrogen", "carbon", "nitrogen"]
       }
     },
     "components": {
@@ -27,8 +23,7 @@
         "fluffyalien_energistics:atmospheric_condenser"
       ],
       "tag:fluffyalien_energisticscore:machine": {},
-      "tag:fluffyalien_energisticscore:io.energy": {},
-      "tag:fluffyalien_energisticscore:io.gas": {},
+      "tag:fluffyalien_energisticscore:io.category.energy": {},
       "tag:fluffyalien_energisticscore:consumer.energy": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
@@ -43,7 +38,25 @@
     },
     "permutations": [
       {
-        "condition": "q.block_state('fluffyalien_energistics:gas') == 'none'",
+        "condition": "q.block_state('fluffyalien_energistics:gas') == 'hydrogen'",
+        "components": {
+          "tag:fluffyalien_energisticscore:io.type.hydrogen": {}
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:gas') == 'carbon'",
+        "components": {
+          "tag:fluffyalien_energisticscore:io.type.carbon": {}
+        }
+      },
+      {
+        "condition": "q.block_state('fluffyalien_energistics:gas') == 'nitrogen'",
+        "components": {
+          "tag:fluffyalien_energisticscore:io.type.nitrogen": {}
+        }
+      },
+      {
+        "condition": "!q.block_state('fluffyalien_energistics:working')",
         "components": {
           "minecraft:material_instances": {
             "*": {
@@ -62,7 +75,7 @@
         }
       },
       {
-        "condition": "q.block_state('fluffyalien_energistics:gas') == 'hydrogen'",
+        "condition": "q.block_state('fluffyalien_energistics:working') && q.block_state('fluffyalien_energistics:gas') == 'hydrogen'",
         "components": {
           "minecraft:material_instances": {
             "*": {
@@ -81,7 +94,7 @@
         }
       },
       {
-        "condition": "q.block_state('fluffyalien_energistics:gas') == 'carbon'",
+        "condition": "q.block_state('fluffyalien_energistics:working') && q.block_state('fluffyalien_energistics:gas') == 'carbon'",
         "components": {
           "minecraft:material_instances": {
             "*": {
@@ -100,7 +113,7 @@
         }
       },
       {
-        "condition": "q.block_state('fluffyalien_energistics:gas') == 'nitrogen'",
+        "condition": "q.block_state('fluffyalien_energistics:working') && q.block_state('fluffyalien_energistics:gas') == 'nitrogen'",
         "components": {
           "minecraft:material_instances": {
             "*": {

@@ -2,6 +2,7 @@ import {
   generate,
   getMachineStorage,
   MachineDefinition,
+  MachineNetwork,
   setMachineStorage,
   StandardStorageType,
   UpdateUiHandlerResponse,
@@ -147,12 +148,15 @@ export const fluidSeparatorComponent: BlockCustomComponent = {
     if (fluid === "none") {
       if (getMachineStorage(block, "oil")) {
         fluidState.set("oil");
+        void MachineNetwork.updateWithBlock(block);
       } else if (getMachineStorage(block, "water")) {
         fluidState.set("water");
+        void MachineNetwork.updateWithBlock(block);
       } else {
         workingState.set(false);
-        return;
       }
+
+      return;
     }
 
     const results = RECIPES[fluid];

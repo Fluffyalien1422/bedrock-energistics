@@ -9,16 +9,13 @@ import { updateBlockConnectStates } from "./utils/block";
 import { STR_DIRECTIONS } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
 import { getEntityComponent } from "./polyfills/component_type_map";
-import { MachineNetwork } from "bedrock-energistics-core-api";
+import { MachineIo, MachineNetwork } from "bedrock-energistics-core-api";
+import { arraySomeAsync } from "./utils/async";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    updateBlockConnectStates(
-      block,
-      STR_DIRECTIONS,
-      (other) =>
-        other.hasTag("fluffyalien_energisticscore:io.energy") ||
-        other.hasTag("fluffyalien_energisticscore:io._any"),
+    void updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
+      MachineIo.fromMachine(other).acceptsAnyTypeOfCategory("energy"),
     );
   },
   onPlayerInteract(e) {
@@ -55,12 +52,8 @@ export const energyConduitComponent: BlockCustomComponent = {
 
 export const fluidConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    updateBlockConnectStates(
-      block,
-      STR_DIRECTIONS,
-      (other) =>
-        other.hasTag("fluffyalien_energisticscore:io.fluid") ||
-        other.hasTag("fluffyalien_energisticscore:io._any"),
+    void updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
+      MachineIo.fromMachine(other).acceptsAnyTypeOfCategory("fluid"),
     );
   },
   onPlayerInteract(e) {
@@ -97,12 +90,8 @@ export const fluidConduitComponent: BlockCustomComponent = {
 
 export const gasConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    updateBlockConnectStates(
-      block,
-      STR_DIRECTIONS,
-      (other) =>
-        other.hasTag("fluffyalien_energisticscore:io.gas") ||
-        other.hasTag("fluffyalien_energisticscore:io._any"),
+    void updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
+      MachineIo.fromMachine(other).acceptsAnyTypeOfCategory("gas"),
     );
   },
   onPlayerInteract(e) {
@@ -139,40 +128,28 @@ export const gasConduitComponent: BlockCustomComponent = {
 
 export const multiConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    const hasEnergyIo = block.hasTag("fluffyalien_energisticscore:io.energy");
-    const hasFluidIo = block.hasTag("fluffyalien_energisticscore:io.fluid");
-    const hasGasIo = block.hasTag("fluffyalien_energisticscore:io.gas");
-    updateBlockConnectStates(block, STR_DIRECTIONS, (other) => {
-      const otherHasAnyIo = other.hasTag("fluffyalien_energisticscore:io._any");
-      if (otherHasAnyIo) return "border";
-
-      const otherHasEnergyIo = other.hasTag(
-        "fluffyalien_energisticscore:io.energy",
-      );
-      const otherHasFluidIo = other.hasTag(
-        "fluffyalien_energisticscore:io.fluid",
-      );
-      const otherHasGasIo = other.hasTag("fluffyalien_energisticscore:io.gas");
-
-      const matchAny =
-        (hasEnergyIo && otherHasEnergyIo) ||
-        (hasFluidIo && otherHasFluidIo) ||
-        (hasGasIo && otherHasGasIo);
-
-      if (!matchAny) {
-        return "none";
-      }
+    const io = MachineIo.fromMachine(block);
+    void updateBlockConnectStates(block, STR_DIRECTIONS, async (other) => {
+      const otherIo = MachineIo.fromMachine(other);
 
       if (other.typeId === "fluffyalien_energistics:multi_conduit") {
         const matchExact =
-          hasEnergyIo === otherHasEnergyIo &&
-          hasFluidIo === otherHasFluidIo &&
-          hasGasIo === otherHasGasIo;
+          (io.acceptsCategory("energy") && otherIo.acceptsCategory("energy")) ||
+          (io.acceptsCategory("fluid") && otherIo.acceptsCategory("fluid")) ||
+          (io.acceptsCategory("gas") && otherIo.acceptsCategory("gas"));
 
         return matchExact ? "connect" : "border";
       }
 
-      return "border";
+      if (
+        await arraySomeAsync(io.categories as string[], (category) =>
+          otherIo.acceptsAnyTypeOfCategory(category),
+        )
+      ) {
+        return "border";
+      }
+
+      return "none";
     });
   },
   onPlayerInteract(e) {
@@ -193,7 +170,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:energy", true),
         );
-        void MachineNetwork.updateConnectable(e.block);
+        void MachineNetwork.updateAdjacent(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:fluid_conduit":
@@ -204,7 +181,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:fluid", true),
         );
-        void MachineNetwork.updateConnectable(e.block);
+        void MachineNetwork.updateAdjacent(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:gas_conduit":
@@ -215,7 +192,7 @@ export const multiConduitComponent: BlockCustomComponent = {
         e.block.setPermutation(
           e.block.permutation.withState("fluffyalien_energistics:gas", true),
         );
-        void MachineNetwork.updateConnectable(e.block);
+        void MachineNetwork.updateAdjacent(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
     }

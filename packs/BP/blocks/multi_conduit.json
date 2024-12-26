@@ -83,19 +83,19 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:energy')",
         "components": {
-          "tag:fluffyalien_energisticscore:io.energy": {}
+          "tag:fluffyalien_energisticscore:io.category.energy": {}
         }
       },
       {
         "condition": "q.block_state('fluffyalien_energistics:fluid')",
         "components": {
-          "tag:fluffyalien_energisticscore:io.fluid": {}
+          "tag:fluffyalien_energisticscore:io.category.fluid": {}
         }
       },
       {
         "condition": "q.block_state('fluffyalien_energistics:gas')",
         "components": {
-          "tag:fluffyalien_energisticscore:io.gas": {}
+          "tag:fluffyalien_energisticscore:io.category.gas": {}
         }
       }
     ]

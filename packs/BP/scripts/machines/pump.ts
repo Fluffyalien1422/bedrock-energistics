@@ -2,6 +2,7 @@ import {
   generate,
   getMachineStorage,
   MachineDefinition,
+  MachineNetwork,
   setMachineStorage,
   StandardStorageType,
 } from "bedrock-energistics-core-api";
@@ -80,15 +81,26 @@ export const pumpComponent: BlockCustomComponent = {
     switch (blockBelow?.typeId) {
       case "minecraft:water":
       case "minecraft:flowing_water":
-        typeState.set("water");
+        if (typeState.get() !== "water") {
+          typeState.set("water");
+          void MachineNetwork.updateWithBlock(e.block);
+          return;
+        }
         break;
       case "minecraft:lava":
       case "minecraft:flowing_lava":
-        typeState.set("lava");
+        if (typeState.get() !== "lava") {
+          typeState.set("lava");
+          void MachineNetwork.updateWithBlock(e.block);
+          return;
+        }
         break;
       default:
-        typeState.set("none");
         workingState.set(false);
+        if (typeState.get() !== "none") {
+          typeState.set("none");
+          void MachineNetwork.updateWithBlock(e.block);
+        }
         return;
     }
 

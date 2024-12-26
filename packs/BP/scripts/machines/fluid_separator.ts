@@ -149,9 +149,11 @@ export const fluidSeparatorComponent: BlockCustomComponent = {
       if (getMachineStorage(block, "oil")) {
         fluidState.set("oil");
         void MachineNetwork.updateWithBlock(block);
+        void MachineNetwork.updateAdjacent(block);
       } else if (getMachineStorage(block, "water")) {
         fluidState.set("water");
         void MachineNetwork.updateWithBlock(block);
+        void MachineNetwork.updateAdjacent(block);
       } else {
         workingState.set(false);
       }

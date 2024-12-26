@@ -8,8 +8,8 @@ import {
   MachineDefinitionDescription,
   MachineDefinitionEvents,
   MachineDefinitionHandlers,
+  MachineNetwork,
   MachineOnButtonPressedEventArg,
-  MachineRecieveHandlerArg,
   STANDARD_STORAGE_TYPE_DEFINITIONS,
   StandardStorageType,
   UpdateUiHandlerResponse,
@@ -51,7 +51,6 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
   get handlers(): MachineDefinitionHandlers {
     return {
       updateUi: this.updateUi.bind(this),
-      receive: this.receive.bind(this),
     };
   }
 
@@ -80,27 +79,6 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
     };
   }
 
-  receive(e: MachineRecieveHandlerArg): number | undefined {
-    if (!(this.acceptedTypes as string[]).includes(e.receiveType)) return 0;
-
-    const block = e.blockLocation.dimension.getBlock(e.blockLocation);
-    if (!block) return 0;
-
-    const typeState = new BlockStateAccessor<string>(
-      block,
-      "fluffyalien_energistics:type",
-    );
-
-    const type = typeState.get();
-
-    if (type === "none") {
-      typeState.set(e.receiveType);
-      return;
-    }
-
-    if (type !== e.receiveType) return 0;
-  }
-
   async onButtonPressed(e: MachineOnButtonPressedEventArg): Promise<void> {
     const block = e.blockLocation.dimension.getBlock(e.blockLocation);
     if (!block) return;
@@ -109,12 +87,9 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
 
     await system.waitTicks(4);
 
-    const typeState = new BlockStateAccessor<StandardStorageType | "none">(
-      block,
-      "fluffyalien_energistics:type",
-    );
-
-    const type = typeState.get();
+    const type = block.permutation.getState("fluffyalien_energistics:type") as
+      | StandardStorageType
+      | "none";
 
     const currentIndex = type === "none" ? 0 : this.acceptedTypes.indexOf(type);
 
@@ -141,7 +116,15 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
 
     const selectedIndex = response.formValues[0] as number;
 
-    typeState.set(this.acceptedTypes[selectedIndex]);
+    const newValue = this.acceptedTypes[selectedIndex];
+    if (type === newValue) return;
+
+    block.setPermutation(
+      block.permutation.withState("fluffyalien_energistics:type", newValue),
+    );
+
+    void MachineNetwork.updateWithBlock(block);
+    void MachineNetwork.updateAdjacent(block);
   }
 }
 

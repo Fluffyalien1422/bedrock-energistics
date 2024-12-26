@@ -24,8 +24,6 @@
         "fluffyalien_energistics:generic_storage_type_container"
       ],
       "tag:fluffyalien_energisticscore:machine": {},
-      "tag:fluffyalien_energisticscore:io.gas": {},
-      "tag:fluffyalien_energisticscore:consumer._any": {},
       "tag:fluffyalien_energisticscore:low_priority_consumer": {},
 
       "minecraft:geometry": {
@@ -60,6 +58,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'ammonia'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.ammonia": {},
+          "tag:fluffyalien_energisticscore:consumer.ammonia": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:gas_canister_ammonia",
@@ -71,6 +72,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'carbon'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.carbon": {},
+          "tag:fluffyalien_energisticscore:consumer.carbon": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:gas_canister_carbon",
@@ -82,6 +86,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'hydrogen'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.hydrogen": {},
+          "tag:fluffyalien_energisticscore:consumer.hydrogen": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:gas_canister_hydrogen",
@@ -93,6 +100,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'nitrogen'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.nitrogen": {},
+          "tag:fluffyalien_energisticscore:consumer.nitrogen": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:gas_canister_nitrogen",
@@ -104,6 +114,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'oxygen'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.oxygen": {},
+          "tag:fluffyalien_energisticscore:consumer.oxygen": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:gas_canister_oxygen",

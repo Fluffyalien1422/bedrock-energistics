@@ -17,8 +17,6 @@
         "fluffyalien_energistics:generic_storage_type_container"
       ],
       "tag:fluffyalien_energisticscore:machine": {},
-      "tag:fluffyalien_energisticscore:io.fluid": {},
-      "tag:fluffyalien_energisticscore:consumer._any": {},
       "tag:fluffyalien_energisticscore:low_priority_consumer": {},
 
       "minecraft:geometry": {
@@ -53,6 +51,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'lava'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.lava": {},
+          "tag:fluffyalien_energisticscore:consumer.lava": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:fluid_tank_lava",
@@ -64,6 +65,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'oil'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.oil": {},
+          "tag:fluffyalien_energisticscore:consumer.oil": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:fluid_tank_oil",
@@ -75,6 +79,9 @@
       {
         "condition": "q.block_state('fluffyalien_energistics:type') == 'water'",
         "components": {
+          "tag:fluffyalien_energisticscore:io.type.water": {},
+          "tag:fluffyalien_energisticscore:consumer.water": {},
+
           "minecraft:material_instances": {
             "*": {
               "texture": "fluffyalien_energistics:fluid_tank_water",

@@ -84,6 +84,7 @@ export const pumpComponent: BlockCustomComponent = {
         if (typeState.get() !== "water") {
           typeState.set("water");
           void MachineNetwork.updateWithBlock(e.block);
+          void MachineNetwork.updateAdjacent(e.block);
           return;
         }
         break;
@@ -92,6 +93,7 @@ export const pumpComponent: BlockCustomComponent = {
         if (typeState.get() !== "lava") {
           typeState.set("lava");
           void MachineNetwork.updateWithBlock(e.block);
+          void MachineNetwork.updateAdjacent(e.block);
           return;
         }
         break;
@@ -100,6 +102,7 @@ export const pumpComponent: BlockCustomComponent = {
         if (typeState.get() !== "none") {
           typeState.set("none");
           void MachineNetwork.updateWithBlock(e.block);
+          void MachineNetwork.updateAdjacent(e.block);
         }
         return;
     }

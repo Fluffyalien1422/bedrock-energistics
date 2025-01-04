@@ -24,6 +24,7 @@ import { disposalUnitComponent } from "./machines/disposal_unit";
 import { genericStorageTypeContainerComponent } from "./machines/shared/generic_storage_type_container";
 import { batteryComponent } from "./machines/battery";
 import { pumpComponent } from "./machines/pump";
+import { tesseractComponent } from "./machines/tesseract";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -139,5 +140,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:pump",
     pumpComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:tesseract",
+    tesseractComponent,
   );
 });

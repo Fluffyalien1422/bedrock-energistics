@@ -105,6 +105,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:pump')",
             "$screen_content": "fluffyalien_energistics:pump.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:tesseract')",
+            "$screen_content": "fluffyalien_energistics:tesseract.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

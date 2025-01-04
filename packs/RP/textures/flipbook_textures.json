@@ -149,5 +149,10 @@
     "atlas_tile": "fluffyalien_energistics:pump_front_on_lava",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/pump_front_on_lava",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:tesseract",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/tesseract",
+    "ticks_per_frame": 10
   }
 ]

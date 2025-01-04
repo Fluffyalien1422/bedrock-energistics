@@ -182,6 +182,9 @@
     },
     "fluffyalien_energistics:pump_front_on_lava": {
       "textures": "textures/fluffyalien/energistics/blocks/pump_front_on_lava"
+    },
+    "fluffyalien_energistics:tesseract": {
+      "textures": "textures/fluffyalien/energistics/blocks/tesseract"
     }
   }
 }

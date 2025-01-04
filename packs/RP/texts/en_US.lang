@@ -31,10 +31,12 @@ tile.fluffyalien_energistics:gas_canister.name=Gas Canister
 tile.fluffyalien_energistics:fluid_tank.name=Fluid Tank
 tile.fluffyalien_energistics:battery.name=Battery
 tile.fluffyalien_energistics:pump.name=Pump
+tile.fluffyalien_energistics:tesseract.name=Tesseract
 
 fluffyalien_energistics.ui.common.back=Back
 
 fluffyalien_energistics.ui.genericStorageTypeContainer.options.type=Type
+fluffyalien_energistics.ui.tesseract.options.name=Name
 
 fluffyalien_energistics.ui.tutorialBook.entry.networks.title=Networks
 fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet0=A network is a group of devices that share energy, gas, or fluid.

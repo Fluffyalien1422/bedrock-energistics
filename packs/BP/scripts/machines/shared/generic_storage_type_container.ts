@@ -123,6 +123,8 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
       block.permutation.withState("fluffyalien_energistics:type", newValue),
     );
 
+    await system.waitTicks(1);
+
     void MachineNetwork.updateWithBlock(block);
     void MachineNetwork.updateAdjacent(block);
   }

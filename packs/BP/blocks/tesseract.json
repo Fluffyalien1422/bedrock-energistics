@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fluffyalien_energistics:tesseract",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:custom_components": [
+        "fluffyalien_energisticscore:machine",
+        "fluffyalien_energisticscore:network_link",
+        "fluffyalien_energistics:tesseract"
+      ],
+      "tag:fluffyalien_energisticscore:machine": {},
+      "tag:fluffyalien_energisticscore:network_link": {},
+      "tag:fluffyalien_energisticscore:io.any": {},
+
+      "minecraft:geometry": "geometry.fluffyalien_energistics.tesseract",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "fluffyalien_energistics:tesseract",
+          "render_method": "alpha_test"
+        }
+      },
+
+      "minecraft:destructible_by_explosion": false,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1
+      },
+      "minecraft:tick": {
+        "interval_range": [10, 10]
+      }
+    }
+  }
+}

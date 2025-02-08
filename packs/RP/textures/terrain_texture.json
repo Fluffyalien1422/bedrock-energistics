@@ -185,6 +185,12 @@
     },
     "fluffyalien_energistics:tesseract": {
       "textures": "textures/fluffyalien/energistics/blocks/tesseract"
+    },
+    "fluffyalien_energistics:item_charger_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/item_charger_front_off"
+    },
+    "fluffyalien_energistics:item_charger_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/item_charger_front_on"
     }
   }
 }

@@ -25,6 +25,7 @@ import { genericStorageTypeContainerComponent } from "./machines/shared/generic_
 import { batteryComponent } from "./machines/battery";
 import { pumpComponent } from "./machines/pump";
 import { tesseractComponent } from "./machines/tesseract";
+import { itemChargerComponent } from "./machines/item_charger";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -145,5 +146,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:tesseract",
     tesseractComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:item_charger",
+    itemChargerComponent,
   );
 });

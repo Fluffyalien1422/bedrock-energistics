@@ -78,7 +78,7 @@ export const tesseractComponent: BlockCustomComponent = {
           type: entity.typeId,
         })) {
           if (target.getDynamicProperty("tesseract_name") === name) {
-            newConnections.push(target.location);
+            newConnections.push(Vector3Utils.floor(target.location));
           }
         }
       }

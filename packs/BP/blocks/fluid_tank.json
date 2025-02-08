@@ -52,7 +52,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'lava'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.lava": {},
-          "tag:fluffyalien_energisticscore:consumer.lava": {},
+          "tag:fluffyalien_energisticscore:consumer.type.lava": {},
 
           "minecraft:material_instances": {
             "*": {
@@ -66,7 +66,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'oil'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.oil": {},
-          "tag:fluffyalien_energisticscore:consumer.oil": {},
+          "tag:fluffyalien_energisticscore:consumer.type.oil": {},
 
           "minecraft:material_instances": {
             "*": {
@@ -80,7 +80,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'water'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.water": {},
-          "tag:fluffyalien_energisticscore:consumer.water": {},
+          "tag:fluffyalien_energisticscore:consumer.type.water": {},
 
           "minecraft:material_instances": {
             "*": {

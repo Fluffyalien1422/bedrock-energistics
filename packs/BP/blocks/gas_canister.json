@@ -59,7 +59,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'ammonia'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.ammonia": {},
-          "tag:fluffyalien_energisticscore:consumer.ammonia": {},
+          "tag:fluffyalien_energisticscore:consumer.type.ammonia": {},
 
           "minecraft:material_instances": {
             "*": {
@@ -73,7 +73,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'carbon'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.carbon": {},
-          "tag:fluffyalien_energisticscore:consumer.carbon": {},
+          "tag:fluffyalien_energisticscore:consumer.type.carbon": {},
 
           "minecraft:material_instances": {
             "*": {
@@ -87,7 +87,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'hydrogen'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.hydrogen": {},
-          "tag:fluffyalien_energisticscore:consumer.hydrogen": {},
+          "tag:fluffyalien_energisticscore:consumer.type.hydrogen": {},
 
           "minecraft:material_instances": {
             "*": {
@@ -101,7 +101,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'nitrogen'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.nitrogen": {},
-          "tag:fluffyalien_energisticscore:consumer.nitrogen": {},
+          "tag:fluffyalien_energisticscore:consumer.type.nitrogen": {},
 
           "minecraft:material_instances": {
             "*": {
@@ -115,7 +115,7 @@
         "condition": "q.block_state('fluffyalien_energistics:type') == 'oxygen'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.oxygen": {},
-          "tag:fluffyalien_energisticscore:consumer.oxygen": {},
+          "tag:fluffyalien_energisticscore:consumer.type.oxygen": {},
 
           "minecraft:material_instances": {
             "*": {

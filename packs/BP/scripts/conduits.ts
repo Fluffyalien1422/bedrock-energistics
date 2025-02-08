@@ -6,16 +6,23 @@ import {
   ItemStack,
 } from "@minecraft/server";
 import { updateBlockConnectStates } from "./utils/block";
-import { STR_DIRECTIONS } from "./utils/direction";
+import {
+  reverseDirection,
+  STR_DIRECTIONS,
+  strDirectionToDirection,
+} from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
 import { getEntityComponent } from "./polyfills/component_type_map";
-import { MachineIo, MachineNetwork } from "bedrock-energistics-core-api";
+import { IoCapabilities, MachineNetwork } from "bedrock-energistics-core-api";
 import { arraySomeAsync } from "./utils/async";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    void updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
-      MachineIo.fromMachine(other).acceptsAnyTypeOfCategory("energy"),
+    void updateBlockConnectStates(block, STR_DIRECTIONS, (other, direction) =>
+      IoCapabilities.fromMachine(
+        other,
+        reverseDirection(strDirectionToDirection(direction)),
+      ).acceptsAnyTypeOfCategory("energy"),
     );
   },
   onPlayerInteract(e) {
@@ -52,8 +59,11 @@ export const energyConduitComponent: BlockCustomComponent = {
 
 export const fluidConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    void updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
-      MachineIo.fromMachine(other).acceptsAnyTypeOfCategory("fluid"),
+    void updateBlockConnectStates(block, STR_DIRECTIONS, (other, direction) =>
+      IoCapabilities.fromMachine(
+        other,
+        reverseDirection(strDirectionToDirection(direction)),
+      ).acceptsAnyTypeOfCategory("fluid"),
     );
   },
   onPlayerInteract(e) {
@@ -90,8 +100,11 @@ export const fluidConduitComponent: BlockCustomComponent = {
 
 export const gasConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    void updateBlockConnectStates(block, STR_DIRECTIONS, (other) =>
-      MachineIo.fromMachine(other).acceptsAnyTypeOfCategory("gas"),
+    void updateBlockConnectStates(block, STR_DIRECTIONS, (other, direction) =>
+      IoCapabilities.fromMachine(
+        other,
+        reverseDirection(strDirectionToDirection(direction)),
+      ).acceptsAnyTypeOfCategory("gas"),
     );
   },
   onPlayerInteract(e) {
@@ -128,29 +141,37 @@ export const gasConduitComponent: BlockCustomComponent = {
 
 export const multiConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
-    const io = MachineIo.fromMachine(block);
-    void updateBlockConnectStates(block, STR_DIRECTIONS, async (other) => {
-      const otherIo = MachineIo.fromMachine(other);
+    void updateBlockConnectStates(
+      block,
+      STR_DIRECTIONS,
+      async (other, strDirection) => {
+        const direction = strDirectionToDirection(strDirection);
+        const reversedDirection = reverseDirection(direction);
 
-      if (other.typeId === "fluffyalien_energistics:multi_conduit") {
-        const matchExact =
-          (io.acceptsCategory("energy") && otherIo.acceptsCategory("energy")) ||
-          (io.acceptsCategory("fluid") && otherIo.acceptsCategory("fluid")) ||
-          (io.acceptsCategory("gas") && otherIo.acceptsCategory("gas"));
+        const io = IoCapabilities.fromMachine(block, direction);
+        const otherIo = IoCapabilities.fromMachine(other, reversedDirection);
 
-        return matchExact ? "connect" : "border";
-      }
+        if (other.typeId === "fluffyalien_energistics:multi_conduit") {
+          const matchExact =
+            (io.acceptsCategory("energy") &&
+              otherIo.acceptsCategory("energy")) ||
+            (io.acceptsCategory("fluid") && otherIo.acceptsCategory("fluid")) ||
+            (io.acceptsCategory("gas") && otherIo.acceptsCategory("gas"));
 
-      if (
-        await arraySomeAsync(io.categories as string[], (category) =>
-          otherIo.acceptsAnyTypeOfCategory(category),
-        )
-      ) {
-        return "border";
-      }
+          return matchExact ? "connect" : "border";
+        }
 
-      return "none";
-    });
+        if (
+          await arraySomeAsync(io.categories, (category) =>
+            otherIo.acceptsAnyTypeOfCategory(category),
+          )
+        ) {
+          return "border";
+        }
+
+        return "none";
+      },
+    );
   },
   onPlayerInteract(e) {
     const player = e.player!;

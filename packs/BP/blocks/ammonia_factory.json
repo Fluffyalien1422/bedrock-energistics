@@ -26,9 +26,9 @@
       "tag:fluffyalien_energisticscore:io.type.nitrogen": {},
       "tag:fluffyalien_energisticscore:io.type.hydrogen": {},
       "tag:fluffyalien_energisticscore:io.type.ammonia": {},
-      "tag:fluffyalien_energisticscore:consumer.energy": {},
-      "tag:fluffyalien_energisticscore:consumer.nitrogen": {},
-      "tag:fluffyalien_energisticscore:consumer.hydrogen": {},
+      "tag:fluffyalien_energisticscore:consumer.category.energy": {},
+      "tag:fluffyalien_energisticscore:consumer.type.nitrogen": {},
+      "tag:fluffyalien_energisticscore:consumer.type.hydrogen": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
 

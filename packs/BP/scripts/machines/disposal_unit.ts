@@ -24,7 +24,7 @@ export const disposalUnitMachine: MachineDefinition = {
   },
   handlers: {
     receive(e) {
-      if (e.receiveType === StandardStorageType.Energy) return undefined;
+      if (e.receiveType === StandardStorageType.Energy) return {};
 
       const storedEnergy = getMachineStorage(
         e.blockLocation,
@@ -32,10 +32,18 @@ export const disposalUnitMachine: MachineDefinition = {
       );
       const energyConsumption = Math.floor(e.receiveAmount / 2);
 
-      if (storedEnergy < energyConsumption) return 0;
+      if (storedEnergy < energyConsumption) {
+        return {
+          amount: 0,
+        };
+      }
 
       const block = e.blockLocation.dimension.getBlock(e.blockLocation);
-      if (!block) return 0;
+      if (!block) {
+        return {
+          amount: 0,
+        };
+      }
 
       setMachineStorage(
         block,
@@ -46,6 +54,8 @@ export const disposalUnitMachine: MachineDefinition = {
       system.run(() => {
         setMachineStorage(block, e.receiveType, 0);
       });
+
+      return {};
     },
   },
 };

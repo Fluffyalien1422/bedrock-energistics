@@ -23,7 +23,7 @@
       ],
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.any": {},
-      "tag:fluffyalien_energisticscore:consumer._any": {},
+      "tag:fluffyalien_energisticscore:consumer.any": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
 

@@ -46,3 +46,59 @@ export function getBlockInDirection(
       return block.below();
   }
 }
+
+export function reverseDirection(dir: Direction): Direction;
+export function reverseDirection(
+  dir: StrCardinalDirection,
+): StrCardinalDirection;
+export function reverseDirection(
+  dir: StrVerticalDirection,
+): StrVerticalDirection;
+export function reverseDirection(dir: StrDirection): StrDirection;
+export function reverseDirection(
+  dir: Direction | StrDirection,
+): Direction | StrDirection {
+  switch (dir) {
+    case Direction.North:
+      return Direction.South;
+    case Direction.East:
+      return Direction.West;
+    case Direction.South:
+      return Direction.North;
+    case Direction.West:
+      return Direction.West;
+    case Direction.Up:
+      return Direction.Down;
+    case Direction.Down:
+      return Direction.Up;
+    case "north":
+      return "south";
+    case "east":
+      return "west";
+    case "south":
+      return "north";
+    case "west":
+      return "east";
+    case "up":
+      return "down";
+    case "down":
+      return "up";
+  }
+}
+
+export function strDirectionToDirection(strDir: StrDirection): Direction {
+  switch (strDir) {
+    case "north":
+      return Direction.North;
+    case "east":
+      return Direction.East;
+    case "south":
+      return Direction.South;
+    case "west":
+      return Direction.West;
+    case "up":
+      return Direction.Up;
+    case "down":
+      return Direction.Down;
+  }
+}

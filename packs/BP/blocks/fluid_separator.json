@@ -24,7 +24,7 @@
       ],
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.category.energy": {},
-      "tag:fluffyalien_energisticscore:consumer.energy": {},
+      "tag:fluffyalien_energisticscore:consumer.category.energy": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
 
@@ -42,15 +42,15 @@
         "components": {
           "tag:fluffyalien_energisticscore:io.type.oil": {},
           "tag:fluffyalien_energisticscore:io.type.water": {},
-          "tag:fluffyalien_energisticscore:consumer.oil": {},
-          "tag:fluffyalien_energisticscore:consumer.water": {}
+          "tag:fluffyalien_energisticscore:consumer.type.oil": {},
+          "tag:fluffyalien_energisticscore:consumer.type.water": {}
         }
       },
       {
         "condition": "q.block_state('fluffyalien_energistics:fluid') == 'oil'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.oil": {},
-          "tag:fluffyalien_energisticscore:consumer.oil": {},
+          "tag:fluffyalien_energisticscore:consumer.type.oil": {},
 
           "tag:fluffyalien_energisticscore:io.type.hydrogen": {},
           "tag:fluffyalien_energisticscore:io.type.carbon": {}
@@ -60,7 +60,7 @@
         "condition": "q.block_state('fluffyalien_energistics:fluid') == 'water'",
         "components": {
           "tag:fluffyalien_energisticscore:io.type.water": {},
-          "tag:fluffyalien_energisticscore:consumer.water": {},
+          "tag:fluffyalien_energisticscore:consumer.type.water": {},
 
           "tag:fluffyalien_energisticscore:io.type.hydrogen": {},
           "tag:fluffyalien_energisticscore:io.type.oxygen": {}

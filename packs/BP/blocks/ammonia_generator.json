@@ -24,7 +24,7 @@
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.category.energy": {},
       "tag:fluffyalien_energisticscore:io.type.ammonia": {},
-      "tag:fluffyalien_energisticscore:consumer.ammonia": {},
+      "tag:fluffyalien_energisticscore:consumer.type.ammonia": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
 

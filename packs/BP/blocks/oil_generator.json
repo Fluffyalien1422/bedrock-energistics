@@ -24,7 +24,7 @@
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.category.energy": {},
       "tag:fluffyalien_energisticscore:io.type.oil": {},
-      "tag:fluffyalien_energisticscore:consumer.oil": {},
+      "tag:fluffyalien_energisticscore:consumer.type.oil": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
 

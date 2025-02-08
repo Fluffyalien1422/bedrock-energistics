@@ -20,8 +20,7 @@
       "minecraft:geometry": "geometry.fluffyalien_energistics.tesseract",
       "minecraft:material_instances": {
         "*": {
-          "texture": "fluffyalien_energistics:tesseract",
-          "render_method": "alpha_test"
+          "texture": "fluffyalien_energistics:tesseract"
         }
       },
 

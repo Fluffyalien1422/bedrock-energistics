@@ -116,6 +116,10 @@ fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.title=Gas Canister
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 7,500 of some gas types.
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Only accepts one type of gas a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
 
+fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.title=Item Charger
+fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet0=Charges items.
+fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet1=Consumes energy while active.
+
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.title=Oil Extractor
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Generates oil while active.
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet1=Consumes energy while active.
@@ -142,6 +146,9 @@ fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet2=Hoppers can
 fluffyalien_energistics.ui.tutorialBook.entry.pump.title=Pump
 fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet0=Generates either water or lava depending on the fluid it is placed on top of.
 fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet1=Consumes energy while active.
+
+fluffyalien_energistics.ui.tutorialBook.entry.tesseract.title=Tesseract
+fluffyalien_energistics.ui.tutorialBook.entry.tesseract.bullet0=Transfers energy, gas, and fluid wirelessly to other tesseracts with the same name.
 
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.title=Void Miner
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources.

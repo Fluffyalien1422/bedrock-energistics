@@ -97,6 +97,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/gas_canister_icon",
   },
   {
+    id: "itemCharger",
+    bullets: 2,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/item_charger_icon",
+  },
+  {
     id: "oilExtractor",
     bullets: 2,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/oil_extractor_icon",
@@ -125,6 +130,11 @@ const TUTORIAL_ENTRIES: TutorialEntry[] = [
     id: "pump",
     bullets: 2,
     icon: "textures/fluffyalien/energistics/ui/tutorial_book/pump_icon",
+  },
+  {
+    id: "tesseract",
+    bullets: 1,
+    icon: "textures/fluffyalien/energistics/ui/tutorial_book/tesseract_icon",
   },
   {
     id: "voidMiner",

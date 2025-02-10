@@ -1,0 +1,46 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:tesseract"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        "ECE",
+        "0#1",
+        "GMG"
+      ],
+    "key": {
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "0": {
+        "item": "fluffyalien_energistics:gas_conduit"
+      },
+      "1": {
+        "item": "fluffyalien_energistics:fluid_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "G": {
+        "item": "copper_ingot"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      },
+      "E": {
+        "item": "ender_eye"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:tesseract"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

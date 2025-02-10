@@ -6,8 +6,6 @@ import "./tutorial_book";
 
 becInit("fluffyalien_energistics");
 
-//TODO: tesseract recipe and tutorial book entry
-//TODO: item charger recipe and tutorial book entry
 //TODO: fix storage type container storage bar flashing
 
 //TODO: machine balancing (oil generator is way too OP)

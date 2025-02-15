@@ -22,7 +22,7 @@ export const energyConduitComponent: BlockCustomComponent = {
       IoCapabilities.fromMachine(
         other,
         reverseDirection(strDirectionToDirection(direction)),
-      ).acceptsAnyTypeOfCategory("energy"),
+      ).acceptsAnyTypeOfCategory("energy", true),
     );
   },
   onPlayerInteract(e) {
@@ -63,7 +63,7 @@ export const fluidConduitComponent: BlockCustomComponent = {
       IoCapabilities.fromMachine(
         other,
         reverseDirection(strDirectionToDirection(direction)),
-      ).acceptsAnyTypeOfCategory("fluid"),
+      ).acceptsAnyTypeOfCategory("fluid", true),
     );
   },
   onPlayerInteract(e) {
@@ -104,7 +104,7 @@ export const gasConduitComponent: BlockCustomComponent = {
       IoCapabilities.fromMachine(
         other,
         reverseDirection(strDirectionToDirection(direction)),
-      ).acceptsAnyTypeOfCategory("gas"),
+      ).acceptsAnyTypeOfCategory("gas", true),
     );
   },
   onPlayerInteract(e) {
@@ -154,16 +154,17 @@ export const multiConduitComponent: BlockCustomComponent = {
         if (other.typeId === "fluffyalien_energistics:multi_conduit") {
           const matchExact =
             (io.acceptsCategory("energy") &&
-              otherIo.acceptsCategory("energy")) ||
-            (io.acceptsCategory("fluid") && otherIo.acceptsCategory("fluid")) ||
-            (io.acceptsCategory("gas") && otherIo.acceptsCategory("gas"));
+              otherIo.acceptsCategory("energy", true)) ||
+            (io.acceptsCategory("fluid") &&
+              otherIo.acceptsCategory("fluid", true)) ||
+            (io.acceptsCategory("gas") && otherIo.acceptsCategory("gas", true));
 
           return matchExact ? "connect" : "border";
         }
 
         if (
           await arraySomeAsync(io.categories, (category) =>
-            otherIo.acceptsAnyTypeOfCategory(category),
+            otherIo.acceptsAnyTypeOfCategory(category, true),
           )
         ) {
           return "border";

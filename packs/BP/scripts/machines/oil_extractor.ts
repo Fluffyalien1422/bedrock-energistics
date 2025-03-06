@@ -71,7 +71,11 @@ export const oilExtractorComponent: BlockCustomComponent = {
       return;
     }
 
-    setMachineStorage(e.block, "energy", storedEnergy - ENERGY_CONSUMPTION);
+    void setMachineStorage(
+      e.block,
+      "energy",
+      storedEnergy - ENERGY_CONSUMPTION,
+    );
     generate(e.block, "oil", OIL_GENERATION);
 
     workingState.set(true);

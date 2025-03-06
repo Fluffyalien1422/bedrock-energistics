@@ -119,17 +119,17 @@ export const ammoniaFactoryComponent: BlockCustomComponent = {
       return;
     }
 
-    setMachineStorage(
+    void setMachineStorage(
       block,
       StandardStorageType.Energy,
       storedEnergy - ENERGY_CONSUMPTION,
     );
-    setMachineStorage(
+    void setMachineStorage(
       block,
       StandardStorageType.Nitrogen,
       storedNitrogen - NITROGEN_CONSUMPTION,
     );
-    setMachineStorage(
+    void setMachineStorage(
       block,
       StandardStorageType.Hydrogen,
       storedHydrogen - HYDROGEN_CONSUMPTION,

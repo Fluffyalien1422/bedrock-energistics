@@ -45,14 +45,14 @@ export const disposalUnitMachine: MachineDefinition = {
         };
       }
 
-      setMachineStorage(
+      void setMachineStorage(
         block,
         StandardStorageType.Energy,
         storedEnergy - energyConsumption,
       );
 
       system.run(() => {
-        setMachineStorage(block, e.receiveType, 0);
+        void setMachineStorage(block, e.receiveType, 0);
       });
 
       return {};

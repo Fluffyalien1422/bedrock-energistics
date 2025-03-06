@@ -121,7 +121,7 @@ export const pumpComponent: BlockCustomComponent = {
       return;
     }
 
-    setMachineStorage(
+    void setMachineStorage(
       e.block,
       StandardStorageType.Energy,
       storedEnergy - ENERGY_CONSUMPTION,

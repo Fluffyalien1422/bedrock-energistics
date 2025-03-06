@@ -91,7 +91,11 @@ export const atmosphericCondenserComponent: BlockCustomComponent = {
       return;
     }
 
-    setMachineStorage(e.block, "energy", storedEnergy - ENERGY_CONSUMPTION);
+    void setMachineStorage(
+      e.block,
+      "energy",
+      storedEnergy - ENERGY_CONSUMPTION,
+    );
     generate(e.block, gasType, GAS_GENERATION);
     workingState.set(true);
   },

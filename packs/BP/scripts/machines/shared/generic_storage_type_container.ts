@@ -10,9 +10,9 @@ import {
   MachineDefinitionHandlers,
   MachineNetwork,
   MachineOnButtonPressedEventArg,
+  MachineUpdateUiHandlerResponse,
   STANDARD_STORAGE_TYPE_DEFINITIONS,
   StandardStorageType,
-  UpdateUiHandlerResponse,
 } from "bedrock-energistics-core-api";
 import { ModalFormData } from "@minecraft/server-ui";
 
@@ -62,7 +62,7 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
     };
   }
 
-  updateUi(e: MachineCallbackArg): UpdateUiHandlerResponse {
+  updateUi(e: MachineCallbackArg): MachineUpdateUiHandlerResponse {
     const block = e.blockLocation.dimension.getBlock(e.blockLocation);
     const type = block?.permutation.getState("fluffyalien_energistics:type") as
       | string

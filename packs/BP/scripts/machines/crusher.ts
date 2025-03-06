@@ -183,7 +183,7 @@ export const crusherComponent: BlockCustomComponent = {
     }
 
     progressMap.set(uid, progress + 1);
-    setMachineStorage(
+    void setMachineStorage(
       e.block,
       "energy",
       storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,

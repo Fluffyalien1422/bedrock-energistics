@@ -101,7 +101,7 @@ export const blockPlacerComponent: BlockCustomComponent = {
     }
 
     decrementSlot(inputSlot);
-    setMachineStorage(
+    void setMachineStorage(
       e.block,
       "energy",
       storedEnergy - ENERGY_CONSUMPTION_PER_BLOCK,

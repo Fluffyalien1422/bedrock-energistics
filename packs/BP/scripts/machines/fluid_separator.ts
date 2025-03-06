@@ -3,9 +3,9 @@ import {
   getMachineStorage,
   MachineDefinition,
   MachineNetwork,
+  MachineUpdateUiHandlerResponse,
   setMachineStorage,
   StandardStorageType,
-  UpdateUiHandlerResponse,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
 import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
@@ -73,7 +73,7 @@ export const fluidSeparatorMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi({ blockLocation }): UpdateUiHandlerResponse {
+    updateUi({ blockLocation }): MachineUpdateUiHandlerResponse {
       const block = blockLocation.dimension.getBlock(blockLocation);
       if (!block) return {};
 
@@ -182,8 +182,8 @@ export const fluidSeparatorComponent: BlockCustomComponent = {
       return;
     }
 
-    setMachineStorage(block, "energy", storedEnergy - ENERGY_CONSUMPTION);
-    setMachineStorage(block, fluid, storedFluid - FLUID_CONSUMPTION);
+    void setMachineStorage(block, "energy", storedEnergy - ENERGY_CONSUMPTION);
+    void setMachineStorage(block, fluid, storedFluid - FLUID_CONSUMPTION);
 
     generate(block, result1.type, result1.amount);
     generate(block, result2.type, result2.amount);

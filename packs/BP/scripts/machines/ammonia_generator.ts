@@ -79,7 +79,7 @@ export const ammoniaGeneratorComponent: BlockCustomComponent = {
       return;
     }
 
-    setMachineStorage(
+    void setMachineStorage(
       block,
       StandardStorageType.Ammonia,
       storedAmmonia - AMMONIA_CONSUMPTION,

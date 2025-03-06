@@ -99,7 +99,7 @@ export const itemChargerComponent: BlockCustomComponent = {
         if (amountToAdd <= 0) return;
 
         itemMachine.setStorage("energy", itemStoredEnergy + amountToAdd);
-        setMachineStorage(e.block, "energy", storedEnergy - amountToAdd);
+        void setMachineStorage(e.block, "energy", storedEnergy - amountToAdd);
 
         workingState.set(true);
       },

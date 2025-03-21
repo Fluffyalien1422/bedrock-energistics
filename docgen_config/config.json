@@ -2,7 +2,7 @@
   "namespace": "fluffyalien_energistics",
   "briefDescription": "Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.",
   "notes": [
-    "Beware! This add-on is in a beta stage. Minor updates may contain breaking changes!",
+    "This add-on is in a beta stage and SHOULD NOT BE CONSIDERED STABLE.",
     "This add-on is powered by Bedrock Energistics Core. Make sure to install it first! See <strong>Dependencies</strong> below."
   ],
   "dependencies": [

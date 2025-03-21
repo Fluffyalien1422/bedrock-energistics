@@ -5,7 +5,11 @@ import {
   setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
-import { BlockCustomComponent, ItemStack } from "@minecraft/server";
+import {
+  BlockComponentTickEvent,
+  BlockCustomComponent,
+  ItemStack,
+} from "@minecraft/server";
 import { blockLocationToUid } from "../utils/location";
 import { MACHINE_TICK_INTERVAL } from "../constants";
 import {
@@ -56,10 +60,8 @@ const INPUT_ITEM_TYPES = [
   "minecraft:soul_sand",
 ];
 
-const INPUT_STATE_VALUES = ["dirt", "gravel", "sand", "soul_sand"];
-
-const LOOT: Record<string, number>[] = [
-  {
+const LOOT: Record<string, Record<string, number>> = {
+  "minecraft:dirt": {
     "minecraft:beetroot_seeds": 1,
     "minecraft:melon_seeds": 1,
     "minecraft:pumpkin_seeds": 1,
@@ -73,7 +75,7 @@ const LOOT: Record<string, number>[] = [
     "minecraft:jungle_sapling": 1,
     "minecraft:spruce_sapling": 1,
   },
-  {
+  "minecraft:gravel": {
     "minecraft:diamond": 1,
     "minecraft:emerald": 1,
     "minecraft:amethyst_shard": 2,
@@ -82,7 +84,7 @@ const LOOT: Record<string, number>[] = [
     "minecraft:coal": 5,
     "minecraft:flint": 6,
   },
-  {
+  "minecraft:sand": {
     "minecraft:diamond": 1,
     "minecraft:emerald": 1,
     "minecraft:heart_of_the_sea": 1,
@@ -94,13 +96,13 @@ const LOOT: Record<string, number>[] = [
     "minecraft:clay_ball": 6,
     "minecraft:turtle_scute": 6,
   },
-  {
+  "minecraft:soul_sand": {
     "minecraft:blaze_powder": 1,
     "minecraft:nether_wart": 1,
     "minecraft:ghast_tear": 2,
     "minecraft:quartz": 3,
   },
-];
+};
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
 const ENERGY_CONSUMPTION_PER_TICK =
@@ -176,135 +178,132 @@ export const centrifugeMachine: MachineDefinition = {
   },
 };
 
-export const centrifugeComponent: BlockCustomComponent = {
-  onTick(e) {
-    const uid = blockLocationToUid(e.block);
+async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
+  const uid = blockLocationToUid(e.block);
 
-    const inputState = new BlockStateAccessor<string>(
-      e.block,
-      "fluffyalien_energistics:input",
-    );
+  const inputState = new BlockStateAccessor<string>(
+    e.block,
+    "fluffyalien_energistics:input",
+  );
 
-    const hasHopperBelow = getHopperBelow(e.block);
+  const hasHopperBelow = getHopperBelow(e.block);
 
-    let returnAfterHopperInput = false;
+  let returnAfterHopperInput = false;
 
-    for (let i = 0; i < 4; i++) {
-      const slotId = i + 1;
-      const outputItem = getMachineSlotItem(e.block, slotId);
-      if (!outputItem) continue;
+  for (let i = 0; i < 4; i++) {
+    const slotId = i + 1;
+    const outputItem = await getMachineSlotItem(e.block, slotId);
+    if (!outputItem) continue;
 
-      if (!hasHopperBelow) {
-        progressMap.delete(uid);
-        inputState.set("none");
-        returnAfterHopperInput = true;
-        break;
-      }
-
-      const itemStack = new ItemStack(OUTPUT_ITEM_TYPES[outputItem.typeIndex]);
-
-      if (!depositItemToHopper(e.block, itemStack)) {
-        progressMap.delete(uid);
-        inputState.set("none");
-        returnAfterHopperInput = true;
-        break;
-      }
-
-      outputItem.count--;
-      if (outputItem.count > 0) {
-        setMachineSlotItem(e.block, slotId, outputItem);
-        progressMap.delete(uid);
-        inputState.set("none");
-        returnAfterHopperInput = true;
-        break;
-      } else {
-        setMachineSlotItem(e.block, slotId);
-      }
-
+    if (!hasHopperBelow) {
+      progressMap.delete(uid);
+      inputState.set("none");
       returnAfterHopperInput = true;
       break;
     }
 
-    let inputItem = getMachineSlotItem(e.block, 0);
+    const itemStack = new ItemStack(outputItem.typeId);
 
-    if (inputItem) {
-      const inputItemTypeId = INPUT_ITEM_TYPES[inputItem.typeIndex];
-      if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
-        const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-          inputItemTypeId,
-        ]);
+    if (!depositItemToHopper(e.block, itemStack)) {
+      progressMap.delete(uid);
+      inputState.set("none");
+      returnAfterHopperInput = true;
+      break;
+    }
 
-        if (hopperSlot) {
-          inputItem.count++;
-          setMachineSlotItem(e.block, 0, inputItem);
-          decrementSlot(hopperSlot);
-        }
-      }
+    outputItem.count--;
+    if (outputItem.count > 0) {
+      setMachineSlotItem(e.block, slotId, outputItem);
+      progressMap.delete(uid);
+      inputState.set("none");
+      returnAfterHopperInput = true;
+      break;
     } else {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
-        e.block,
-        INPUT_ITEM_TYPES,
-      );
+      setMachineSlotItem(e.block, slotId);
+    }
+
+    returnAfterHopperInput = true;
+    break;
+  }
+
+  let inputItem = await getMachineSlotItem(e.block, 0);
+
+  if (inputItem) {
+    const inputItemTypeId = inputItem.typeId;
+    if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
+        inputItemTypeId,
+      ]);
 
       if (hopperSlot) {
-        inputItem = {
-          typeIndex: INPUT_ITEM_TYPES.indexOf(hopperSlot.typeId),
-          count: 1,
-        };
+        inputItem.count++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
     }
-
-    if (!inputItem || returnAfterHopperInput) {
-      progressMap.delete(uid);
-      inputState.set("none");
-      return;
-    }
-
-    const progress = progressMap.get(uid) ?? 0;
-    const storedEnergy = getMachineStorage(e.block, "energy");
-
-    if (
-      storedEnergy <
-      ENERGY_CONSUMPTION_PER_PROGRESS * (MAX_PROGRESS - progress)
-    ) {
-      progressMap.delete(uid);
-      inputState.set("none");
-      return;
-    }
-
-    if (progress >= MAX_PROGRESS) {
-      inputItem.count--;
-      setMachineSlotItem(
-        e.block,
-        0,
-        inputItem.count > 0 ? inputItem : undefined,
-      );
-
-      for (let i = 0; i < 4; i++) {
-        const itemId = weightedRandom(LOOT[inputItem.typeIndex]);
-        const itemIndex = OUTPUT_ITEM_TYPES.indexOf(itemId);
-
-        const slotId = i + 1;
-
-        setMachineSlotItem(e.block, slotId, {
-          typeIndex: itemIndex,
-          count: 1,
-        });
-      }
-
-      progressMap.delete(uid);
-      return;
-    }
-
-    progressMap.set(uid, progress + 1);
-    void setMachineStorage(
+  } else {
+    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
       e.block,
-      "energy",
-      storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,
+      INPUT_ITEM_TYPES,
     );
 
-    inputState.set(INPUT_STATE_VALUES[inputItem.typeIndex]);
+    if (hopperSlot) {
+      inputItem = {
+        typeId: hopperSlot.typeId,
+        count: 1,
+      };
+      setMachineSlotItem(e.block, 0, inputItem);
+      decrementSlot(hopperSlot);
+    }
+  }
+
+  if (!inputItem || returnAfterHopperInput) {
+    progressMap.delete(uid);
+    inputState.set("none");
+    return;
+  }
+
+  const progress = progressMap.get(uid) ?? 0;
+  const storedEnergy = getMachineStorage(e.block, "energy");
+
+  if (
+    storedEnergy <
+    ENERGY_CONSUMPTION_PER_PROGRESS * (MAX_PROGRESS - progress)
+  ) {
+    progressMap.delete(uid);
+    inputState.set("none");
+    return;
+  }
+
+  if (progress >= MAX_PROGRESS) {
+    inputItem.count--;
+    setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
+
+    for (let i = 0; i < 4; i++) {
+      const itemId = weightedRandom(LOOT[inputItem.typeId]);
+      const slotId = i + 1;
+      setMachineSlotItem(e.block, slotId, {
+        typeId: itemId,
+        count: 1,
+      });
+    }
+
+    progressMap.delete(uid);
+    return;
+  }
+
+  progressMap.set(uid, progress + 1);
+  void setMachineStorage(
+    e.block,
+    "energy",
+    storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,
+  );
+
+  inputState.set(inputItem.typeId.slice("minecraft:".length));
+}
+
+export const centrifugeComponent: BlockCustomComponent = {
+  onTick(e) {
+    void onTickAsync(e);
   },
 };

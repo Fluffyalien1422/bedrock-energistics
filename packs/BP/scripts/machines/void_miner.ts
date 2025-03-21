@@ -7,7 +7,11 @@ import {
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
 import { MACHINE_TICK_INTERVAL } from "../constants";
-import { BlockCustomComponent, ItemStack } from "@minecraft/server";
+import {
+  BlockComponentTickEvent,
+  BlockCustomComponent,
+  ItemStack,
+} from "@minecraft/server";
 import {
   BlockStateAccessor,
   depositItemToHopper,
@@ -32,13 +36,13 @@ const OUTPUT_ITEM_TYPES = [
   "minecraft:coal",
 ];
 
-const LOOT_WEIGHTS: Record<number, number> = {
-  0: 1,
-  1: 1,
-  2: 2,
-  3: 4,
-  4: 4,
-  5: 6,
+const LOOT_WEIGHTS: Record<string, number> = {
+  "minecraft:diamond": 1,
+  "minecraft:emerald": 1,
+  "minecraft:amethyst_shard": 2,
+  "minecraft:raw_iron": 4,
+  "minecraft:raw_gold": 4,
+  "minecraft:coal": 6,
 };
 
 export const voidMinerMachine: MachineDefinition = {
@@ -83,73 +87,77 @@ export const voidMinerMachine: MachineDefinition = {
   },
 };
 
-export const voidMinerComponent: BlockCustomComponent = {
-  onTick(e) {
-    const uid = blockLocationToUid(e.block);
+async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
+  const uid = blockLocationToUid(e.block);
 
-    const workingState = new BlockStateAccessor<boolean>(
-      e.block,
-      "fluffyalien_energistics:working",
-    );
+  const workingState = new BlockStateAccessor<boolean>(
+    e.block,
+    "fluffyalien_energistics:working",
+  );
 
-    const outputItem = getMachineSlotItem(e.block, 0);
+  const outputItem = await getMachineSlotItem(e.block, 0);
 
-    if (outputItem) {
-      if (!getHopperBelow(e.block)) {
-        progressMap.delete(uid);
-        workingState.set(false);
-        return;
-      }
-
-      const itemStack = new ItemStack(OUTPUT_ITEM_TYPES[outputItem.typeIndex]);
-      if (!depositItemToHopper(e.block, itemStack)) {
-        progressMap.delete(uid);
-        workingState.set(false);
-        return;
-      }
-
-      outputItem.count--;
-
-      if (outputItem.count > 0) {
-        setMachineSlotItem(e.block, 0, outputItem);
-        progressMap.delete(uid);
-        workingState.set(false);
-        return;
-      }
-
-      setMachineSlotItem(e.block, 0);
-    }
-
-    const progress = progressMap.get(uid) ?? 0;
-    const storedEnergy = getMachineStorage(e.block, "energy");
-
-    if (
-      storedEnergy <
-      ENERGY_CONSUMPTION_PER_PROGRESS * (MAX_PROGRESS - progress)
-    ) {
+  if (outputItem) {
+    if (!getHopperBelow(e.block)) {
       progressMap.delete(uid);
       workingState.set(false);
       return;
     }
 
-    if (progress >= MAX_PROGRESS) {
-      const resultItemIndex = weightedRandom(LOOT_WEIGHTS);
-      setMachineSlotItem(e.block, 0, {
-        typeIndex: Number(resultItemIndex),
-        count: 1,
-      });
-
+    const itemStack = new ItemStack(outputItem.typeId);
+    if (!depositItemToHopper(e.block, itemStack)) {
       progressMap.delete(uid);
+      workingState.set(false);
       return;
     }
 
-    progressMap.set(uid, progress + 1);
-    void setMachineStorage(
-      e.block,
-      "energy",
-      storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,
-    );
+    outputItem.count--;
 
-    workingState.set(true);
+    if (outputItem.count > 0) {
+      setMachineSlotItem(e.block, 0, outputItem);
+      progressMap.delete(uid);
+      workingState.set(false);
+      return;
+    }
+
+    setMachineSlotItem(e.block, 0);
+  }
+
+  const progress = progressMap.get(uid) ?? 0;
+  const storedEnergy = getMachineStorage(e.block, "energy");
+
+  if (
+    storedEnergy <
+    ENERGY_CONSUMPTION_PER_PROGRESS * (MAX_PROGRESS - progress)
+  ) {
+    progressMap.delete(uid);
+    workingState.set(false);
+    return;
+  }
+
+  if (progress >= MAX_PROGRESS) {
+    const resultItemType = weightedRandom(LOOT_WEIGHTS);
+    setMachineSlotItem(e.block, 0, {
+      typeId: resultItemType,
+      count: 1,
+    });
+
+    progressMap.delete(uid);
+    return;
+  }
+
+  progressMap.set(uid, progress + 1);
+  void setMachineStorage(
+    e.block,
+    "energy",
+    storedEnergy - ENERGY_CONSUMPTION_PER_PROGRESS,
+  );
+
+  workingState.set(true);
+}
+
+export const voidMinerComponent: BlockCustomComponent = {
+  onTick(e) {
+    void onTickAsync(e);
   },
 };

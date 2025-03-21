@@ -5,7 +5,11 @@ import {
   MachineDefinition,
   setMachineSlotItem,
 } from "bedrock-energistics-core-api";
-import { BlockCustomComponent, ItemStack } from "@minecraft/server";
+import {
+  BlockComponentTickEvent,
+  BlockCustomComponent,
+  ItemStack,
+} from "@minecraft/server";
 import {
   BlockStateAccessor,
   getFirstSlotWithItemInConnectedHoppers,
@@ -69,70 +73,74 @@ export const coalGeneratorMachine: MachineDefinition = {
   },
 };
 
-export const coalGeneratorComponent: BlockCustomComponent = {
-  onTick(e) {
-    let inputItem = getMachineSlotItem(e.block, 0);
+async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
+  let inputItem = await getMachineSlotItem(e.block, 0);
 
-    if (inputItem) {
-      const inputItemTypeId = INPUT_ITEMS[inputItem.typeIndex];
-      if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
-        const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-          inputItemTypeId,
-        ]);
-
-        if (hopperSlot) {
-          inputItem.count++;
-          setMachineSlotItem(e.block, 0, inputItem);
-          decrementSlot(hopperSlot);
-        }
-      }
-    } else {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
-        e.block,
-        INPUT_ITEMS,
-      );
+  if (inputItem) {
+    const inputItemTypeId = inputItem.typeId;
+    if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
+        inputItemTypeId,
+      ]);
 
       if (hopperSlot) {
-        inputItem = {
-          typeIndex: INPUT_ITEMS.indexOf(hopperSlot.typeId),
-          count: 1,
-        };
+        inputItem.count++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
     }
-
-    const uid = blockLocationToUid(e.block);
-
-    const workingState = new BlockStateAccessor(
+  } else {
+    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
       e.block,
-      "fluffyalien_energistics:working",
+      INPUT_ITEMS,
     );
 
-    const progress = progressMap.get(uid) ?? 0;
-
-    if (progress > 0) {
-      generate(e.block, "energy", ENERGY_GENERATION_PER_PROGRESS);
-      progressMap.set(uid, progress - 1);
-      workingState.set(true);
-      return;
+    if (hopperSlot) {
+      inputItem = {
+        typeId: hopperSlot.typeId,
+        count: 1,
+      };
+      setMachineSlotItem(e.block, 0, inputItem);
+      decrementSlot(hopperSlot);
     }
+  }
 
-    const storedEnergy = getMachineStorage(e.block, "energy");
+  const uid = blockLocationToUid(e.block);
 
-    if (
-      !inputItem ||
-      storedEnergy + ENERGY_GENERATION_PER_FUEL > MAX_MACHINE_STORAGE
-    ) {
-      progressMap.delete(uid);
-      workingState.set(false);
-      generate(e.block, "energy", 0);
-      return;
-    }
+  const workingState = new BlockStateAccessor(
+    e.block,
+    "fluffyalien_energistics:working",
+  );
 
-    progressMap.set(uid, MAX_PROGRESS);
+  const progress = progressMap.get(uid) ?? 0;
 
-    inputItem.count--;
-    setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
+  if (progress > 0) {
+    generate(e.block, "energy", ENERGY_GENERATION_PER_PROGRESS);
+    progressMap.set(uid, progress - 1);
+    workingState.set(true);
+    return;
+  }
+
+  const storedEnergy = getMachineStorage(e.block, "energy");
+
+  if (
+    !inputItem ||
+    storedEnergy + ENERGY_GENERATION_PER_FUEL > MAX_MACHINE_STORAGE
+  ) {
+    progressMap.delete(uid);
+    workingState.set(false);
+    generate(e.block, "energy", 0);
+    return;
+  }
+
+  progressMap.set(uid, MAX_PROGRESS);
+
+  inputItem.count--;
+  setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
+}
+
+export const coalGeneratorComponent: BlockCustomComponent = {
+  onTick(e) {
+    void onTickAsync(e);
   },
 };

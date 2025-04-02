@@ -8,7 +8,6 @@ import {
 import { getEntityAtBlockLocation } from "../utils/location";
 import { BlockCustomComponent } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
-import { getEntityComponent } from "../polyfills/component_type_map";
 
 const ENERGY_CONSUMPTION = 20;
 
@@ -47,7 +46,7 @@ export const itemChargerComponent: BlockCustomComponent = {
       return;
     }
 
-    const inventory = getEntityComponent(entity, "inventory")!;
+    const inventory = entity.getComponent("inventory")!;
 
     const itemTypeId = inventory.container?.getItem(4)?.typeId;
     if (!itemTypeId) {

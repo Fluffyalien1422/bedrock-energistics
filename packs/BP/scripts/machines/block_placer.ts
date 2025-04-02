@@ -1,24 +1,28 @@
-import { BlockCustomComponent, BlockTypes } from "@minecraft/server";
 import {
+  BlockComponentTickEvent,
+  BlockCustomComponent,
+  BlockTypes,
+  ItemStack,
+} from "@minecraft/server";
+import {
+  getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
-import { getEntityAtBlockLocation } from "../utils/location";
 import {
   BlockStateAccessor,
   getFirstSlotWithItemInConnectedHoppers,
 } from "../utils/block";
 import { getBlockInDirection, StrDirection } from "../utils/direction";
-import { decrementSlot } from "../utils/item";
-import { getEntityComponent } from "../polyfills/component_type_map";
+import { decrementMachineSlot, decrementSlot } from "../utils/item";
 
 const ENERGY_CONSUMPTION_PER_BLOCK = 5;
 
 export const blockPlacerMachine: MachineDefinition = {
   description: {
     id: "fluffyalien_energistics:block_placer",
-    persistentEntity: true,
     ui: {
       elements: {
         energyBar: {
@@ -28,85 +32,90 @@ export const blockPlacerMachine: MachineDefinition = {
             type: "energy",
           },
         },
+        inputSlot: {
+          type: "itemSlot",
+          slotId: 0,
+          index: 4,
+        },
       },
     },
   },
 };
 
-export const blockPlacerComponent: BlockCustomComponent = {
-  onTick(e) {
-    const entity = getEntityAtBlockLocation(
-      e.block,
-      "fluffyalien_energistics:block_placer",
-    );
-    if (!entity) return;
+async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
+  const workingState = new BlockStateAccessor<boolean>(
+    e.block,
+    "fluffyalien_energistics:working",
+  );
 
-    const workingState = new BlockStateAccessor<boolean>(
-      e.block,
-      "fluffyalien_energistics:working",
-    );
+  let inputItem = await getMachineSlotItem(e.block, 0);
 
-    const container = getEntityComponent(entity, "inventory")!.container!;
-    const inputSlot = container.getSlot(4);
-
-    if (inputSlot.hasItem()) {
-      const itemStack = inputSlot.getItem()!;
-      if (itemStack.amount < itemStack.maxAmount) {
-        const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-          itemStack.typeId,
-        ]);
-
-        if (hopperSlot) {
-          inputSlot.amount++;
-          decrementSlot(hopperSlot);
-        }
-      }
-    } else {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block);
+  if (inputItem) {
+    const itemStack = new ItemStack(inputItem.typeId, inputItem.count);
+    if (itemStack.amount < itemStack.maxAmount) {
+      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
+        itemStack.typeId,
+      ]);
 
       if (hopperSlot) {
-        const itemStack = hopperSlot.getItem()!;
-        itemStack.amount = 1;
-        inputSlot.setItem(itemStack);
+        inputItem.count++;
+        setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
-      } else {
-        workingState.set(false);
-        return;
       }
     }
+  } else {
+    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block);
 
-    const blockTypeToPlace = BlockTypes.get(inputSlot.typeId);
-
-    if (!blockTypeToPlace) {
+    if (hopperSlot) {
+      inputItem = {
+        typeId: hopperSlot.typeId,
+        count: 1,
+      };
+      setMachineSlotItem(e.block, 0, inputItem);
+      decrementSlot(hopperSlot);
+    } else {
       workingState.set(false);
       return;
     }
+  }
 
-    const storedEnergy = getMachineStorage(e.block, "energy");
+  const blockTypeToPlace = BlockTypes.get(inputItem.typeId);
 
-    if (storedEnergy < ENERGY_CONSUMPTION_PER_BLOCK) {
-      workingState.set(false);
-      return;
-    }
+  if (!blockTypeToPlace) {
+    workingState.set(false);
+    return;
+  }
 
-    workingState.set(true);
+  const storedEnergy = getMachineStorage(e.block, "energy");
 
-    const facingDirection = e.block.permutation.getState(
-      "minecraft:facing_direction",
-    ) as StrDirection;
+  if (storedEnergy < ENERGY_CONSUMPTION_PER_BLOCK) {
+    workingState.set(false);
+    return;
+  }
 
-    const targetBlock = getBlockInDirection(e.block, facingDirection);
-    if (!targetBlock?.isAir) {
-      return;
-    }
+  workingState.set(true);
 
-    decrementSlot(inputSlot);
-    void setMachineStorage(
-      e.block,
-      "energy",
-      storedEnergy - ENERGY_CONSUMPTION_PER_BLOCK,
-    );
+  const facingDirection = e.block.permutation.getState(
+    "minecraft:facing_direction",
+  ) as StrDirection;
 
-    targetBlock.setType(blockTypeToPlace);
+  const targetBlock = getBlockInDirection(e.block, facingDirection);
+  if (!targetBlock?.isAir) {
+    return;
+  }
+
+  decrementMachineSlot(e.block, 0, inputItem);
+  void setMachineStorage(
+    e.block,
+    "energy",
+    storedEnergy - ENERGY_CONSUMPTION_PER_BLOCK,
+  );
+
+  targetBlock.setType(blockTypeToPlace);
+}
+
+export const blockPlacerComponent: BlockCustomComponent = {
+  onTick(e) {
+    void onTickAsync(e);
   },
 };

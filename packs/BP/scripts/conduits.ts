@@ -12,7 +12,6 @@ import {
   strDirectionToDirection,
 } from "./utils/direction";
 import { decrementSlotSurvival } from "./utils/item";
-import { getEntityComponent } from "./polyfills/component_type_map";
 import { IoCapabilities, MachineNetwork } from "bedrock-energistics-core-api";
 import { arraySomeAsync } from "./utils/async";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
@@ -29,9 +28,9 @@ export const energyConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
-      EquipmentSlot.Mainhand,
-    );
+    const heldSlot = player
+      .getComponent("equippable")!
+      .getEquipmentSlot(EquipmentSlot.Mainhand);
 
     if (!heldSlot.hasItem()) return;
 
@@ -70,9 +69,9 @@ export const fluidConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
-      EquipmentSlot.Mainhand,
-    );
+    const heldSlot = player
+      .getComponent("equippable")!
+      .getEquipmentSlot(EquipmentSlot.Mainhand);
 
     if (!heldSlot.hasItem()) return;
 
@@ -111,9 +110,9 @@ export const gasConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
-      EquipmentSlot.Mainhand,
-    );
+    const heldSlot = player
+      .getComponent("equippable")!
+      .getEquipmentSlot(EquipmentSlot.Mainhand);
 
     if (!heldSlot.hasItem()) return;
 
@@ -178,9 +177,9 @@ export const multiConduitComponent: BlockCustomComponent = {
   onPlayerInteract(e) {
     const player = e.player!;
 
-    const heldSlot = getEntityComponent(player, "equippable")!.getEquipmentSlot(
-      EquipmentSlot.Mainhand,
-    );
+    const heldSlot = player
+      .getComponent("equippable")!
+      .getEquipmentSlot(EquipmentSlot.Mainhand);
 
     if (!heldSlot.hasItem()) return;
 

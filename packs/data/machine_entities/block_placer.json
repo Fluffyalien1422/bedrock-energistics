@@ -1,5 +1,4 @@
 {
   "id": "fluffyalien_energistics:block_placer",
-  "inventorySize": 5,
-  "persistent": true
+  "inventorySize": 5
 }

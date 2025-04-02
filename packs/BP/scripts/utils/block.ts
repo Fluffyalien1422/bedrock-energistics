@@ -1,6 +1,5 @@
 import { Block, Container, ContainerSlot, ItemStack } from "@minecraft/server";
 import { getBlockInDirection, StrDirection } from "./direction";
-import { getBlockComponent } from "../polyfills/component_type_map";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 /**
@@ -60,7 +59,7 @@ export function depositItemToHopper(
     return false;
   }
 
-  const container = getBlockComponent(hopper, "inventory")!.container!;
+  const container = hopper.getComponent("inventory")!.container!;
 
   const itemAdded = !container.addItem(itemStack);
 
@@ -151,7 +150,7 @@ export function getFirstSlotWithItemInConnectedHoppers(
 
   for (const hopper of hoppers) {
     const slot = getFirstSlotWithItem(
-      getBlockComponent(hopper, "inventory")!.container!,
+      hopper.getComponent("inventory")!.container!,
       allowedItems,
     );
     if (slot) return slot;

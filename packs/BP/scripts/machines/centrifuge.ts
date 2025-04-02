@@ -11,7 +11,6 @@ import {
   ItemStack,
 } from "@minecraft/server";
 import { blockLocationToUid } from "../utils/location";
-import { MACHINE_TICK_INTERVAL } from "../constants";
 import {
   BlockStateAccessor,
   depositItemToHopper,
@@ -105,8 +104,6 @@ const LOOT: Record<string, Record<string, number>> = {
 };
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
-const ENERGY_CONSUMPTION_PER_TICK =
-  ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
 const MAX_PROGRESS = 32;
 
@@ -120,6 +117,9 @@ export const centrifugeMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "energy",
+          },
         },
         inputSlot: {
           type: "itemSlot",
@@ -164,12 +164,6 @@ export const centrifugeMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
-        },
         progressIndicators: {
           arrowIndicator: Math.floor((progressMap.get(uid) ?? 0) / 2),
         },

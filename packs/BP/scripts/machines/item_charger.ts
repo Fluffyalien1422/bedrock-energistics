@@ -9,11 +9,8 @@ import { getEntityAtBlockLocation } from "../utils/location";
 import { BlockCustomComponent } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
 import { getEntityComponent } from "../polyfills/component_type_map";
-import { MACHINE_TICK_INTERVAL } from "../constants";
-import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 const ENERGY_CONSUMPTION = 20;
-const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
 export const itemChargerMachine: MachineDefinition = {
   description: {
@@ -24,26 +21,9 @@ export const itemChargerMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: { type: "energy" },
         },
       },
-    },
-  },
-  handlers: {
-    updateUi({ blockLocation }) {
-      const block = blockLocation.dimension.getBlock(blockLocation);
-
-      const working = block?.permutation.getState(
-        "fluffyalien_energistics:working" as keyof BlockStateSuperset,
-      ) as boolean;
-
-      return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: working ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
-        },
-      };
     },
   },
 };

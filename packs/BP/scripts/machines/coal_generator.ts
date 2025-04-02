@@ -15,7 +15,7 @@ import {
   getFirstSlotWithItemInConnectedHoppers,
 } from "../utils/block";
 import { decrementSlot } from "../utils/item";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { blockLocationToUid } from "../utils/location";
 
 const INPUT_ITEMS = ["minecraft:coal"];
@@ -23,8 +23,6 @@ const INPUT_ITEMS = ["minecraft:coal"];
 const MAX_PROGRESS = 52;
 
 const ENERGY_GENERATION_PER_PROGRESS = 14;
-const ENERGY_GENERATION_PER_TICK =
-  ENERGY_GENERATION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 const ENERGY_GENERATION_PER_FUEL =
   ENERGY_GENERATION_PER_PROGRESS * MAX_PROGRESS;
 
@@ -38,6 +36,7 @@ export const coalGeneratorMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: { type: "energy" },
         },
         fuelSlot: {
           type: "itemSlot",
@@ -59,12 +58,6 @@ export const coalGeneratorMachine: MachineDefinition = {
       const progress = progressMap.get(uid) ?? 0;
 
       return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: progress ? ENERGY_GENERATION_PER_TICK : 0,
-          },
-        },
         progressIndicators: {
           flameIndicator: Math.floor(progress / 4),
         },

@@ -6,7 +6,6 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
-import { MACHINE_TICK_INTERVAL } from "../constants";
 import {
   BlockComponentTickEvent,
   BlockCustomComponent,
@@ -37,8 +36,6 @@ const RECIPES: Record<string, string> = {
 };
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
-const ENERGY_CONSUMPTION_PER_TICK =
-  ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
 const MAX_PROGRESS = 16;
 
@@ -52,6 +49,9 @@ export const crusherMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "energy",
+          },
         },
         inputSlot: {
           type: "itemSlot",
@@ -78,12 +78,6 @@ export const crusherMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
-        },
         progressIndicators: {
           progressIndicator: progressMap.get(uid) ?? 0,
         },

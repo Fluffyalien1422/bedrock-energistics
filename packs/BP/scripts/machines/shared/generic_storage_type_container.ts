@@ -15,6 +15,7 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { ModalFormData } from "@minecraft/server-ui";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 const AMOUNT_PER_STAGE = 2500;
 const MAX_STORAGE = AMOUNT_PER_STAGE * 3;
@@ -64,9 +65,9 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
 
   updateUi(e: MachineCallbackArg): MachineUpdateUiHandlerResponse {
     const block = e.blockLocation.dimension.getBlock(e.blockLocation);
-    const type = block?.permutation.getState("fluffyalien_energistics:type") as
-      | string
-      | undefined;
+    const type = block?.permutation.getState(
+      "fluffyalien_energistics:type" as keyof BlockStateSuperset,
+    ) as string | undefined;
 
     if (!type || type === "none") return {};
 
@@ -87,9 +88,9 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
 
     await system.waitTicks(4);
 
-    const type = block.permutation.getState("fluffyalien_energistics:type") as
-      | StandardStorageType
-      | "none";
+    const type = block.permutation.getState(
+      "fluffyalien_energistics:type" as keyof BlockStateSuperset,
+    ) as StandardStorageType | "none";
 
     const currentIndex = type === "none" ? 0 : this.acceptedTypes.indexOf(type);
 
@@ -120,7 +121,10 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
     if (type === newValue) return;
 
     block.setPermutation(
-      block.permutation.withState("fluffyalien_energistics:type", newValue),
+      block.permutation.withState(
+        "fluffyalien_energistics:type" as keyof BlockStateSuperset,
+        newValue,
+      ),
     );
 
     await system.waitTicks(1);
@@ -133,7 +137,7 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
 export const genericStorageTypeContainerComponent: BlockCustomComponent = {
   onTick(e) {
     const type = e.block.permutation.getState(
-      "fluffyalien_energistics:type",
+      "fluffyalien_energistics:type" as keyof BlockStateSuperset,
     ) as string;
 
     if (type === "none") return;

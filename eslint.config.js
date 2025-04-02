@@ -25,6 +25,7 @@ export default tseslint.config(
     rules: {
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-unsafe-enum-comparison": "off",
+      "@typescript-eslint/no-deprecated": "off",
       "@typescript-eslint/explicit-function-return-type": "error",
       "@typescript-eslint/prefer-readonly": "error",
       "@typescript-eslint/switch-exhaustiveness-check": "error",

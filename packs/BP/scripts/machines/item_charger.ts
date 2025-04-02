@@ -10,6 +10,7 @@ import { BlockCustomComponent } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
 import { getEntityComponent } from "../polyfills/component_type_map";
 import { MACHINE_TICK_INTERVAL } from "../constants";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 const ENERGY_CONSUMPTION = 20;
 const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
@@ -32,7 +33,7 @@ export const itemChargerMachine: MachineDefinition = {
       const block = blockLocation.dimension.getBlock(blockLocation);
 
       const working = block?.permutation.getState(
-        "fluffyalien_energistics:working",
+        "fluffyalien_energistics:working" as keyof BlockStateSuperset,
       ) as boolean;
 
       return {

@@ -7,13 +7,12 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 const FLUID_GENERATION = 10;
-const FLUID_GENERATION_PER_TICK = FLUID_GENERATION / MACHINE_TICK_INTERVAL;
 const ENERGY_CONSUMPTION = 10;
-const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
 export const pumpMachine: MachineDefinition = {
   description: {
@@ -38,25 +37,17 @@ export const pumpMachine: MachineDefinition = {
     updateUi(e) {
       const block = e.blockLocation.dimension.getBlock(e.blockLocation);
       const type = block?.permutation.getState(
-        "fluffyalien_energistics:type",
+        "fluffyalien_energistics:type" as keyof BlockStateSuperset,
       ) as string | undefined;
 
       if (!type || type === "none") {
         return {};
       }
 
-      const working = block?.permutation.getState(
-        "fluffyalien_energistics:working",
-      ) as boolean;
-
       return {
         storageBars: {
-          energyBar: {
-            change: working ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
           outBar: {
             type,
-            change: working ? FLUID_GENERATION_PER_TICK : 0,
           },
         },
       };
@@ -97,6 +88,7 @@ export const pumpComponent: BlockCustomComponent = {
           return;
         }
         break;
+      case undefined: // to make eslint happy
       default:
         workingState.set(false);
         if (typeState.get() !== "none") {

@@ -15,6 +15,7 @@ import { decrementSlotSurvival } from "./utils/item";
 import { getEntityComponent } from "./polyfills/component_type_map";
 import { IoCapabilities, MachineNetwork } from "bedrock-energistics-core-api";
 import { arraySomeAsync } from "./utils/async";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
@@ -185,34 +186,55 @@ export const multiConduitComponent: BlockCustomComponent = {
 
     switch (heldSlot.typeId) {
       case "fluffyalien_energistics:energy_conduit":
-        if (e.block.permutation.getState("fluffyalien_energistics:energy")) {
+        if (
+          e.block.permutation.getState(
+            "fluffyalien_energistics:energy" as keyof BlockStateSuperset,
+          )
+        ) {
           break;
         }
 
         e.block.setPermutation(
-          e.block.permutation.withState("fluffyalien_energistics:energy", true),
+          e.block.permutation.withState(
+            "fluffyalien_energistics:energy" as keyof BlockStateSuperset,
+            true,
+          ),
         );
         void MachineNetwork.updateAdjacent(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:fluid_conduit":
-        if (e.block.permutation.getState("fluffyalien_energistics:fluid")) {
+        if (
+          e.block.permutation.getState(
+            "fluffyalien_energistics:fluid" as keyof BlockStateSuperset,
+          )
+        ) {
           break;
         }
 
         e.block.setPermutation(
-          e.block.permutation.withState("fluffyalien_energistics:fluid", true),
+          e.block.permutation.withState(
+            "fluffyalien_energistics:fluid" as keyof BlockStateSuperset,
+            true,
+          ),
         );
         void MachineNetwork.updateAdjacent(e.block);
         decrementSlotSurvival(player, heldSlot);
         break;
       case "fluffyalien_energistics:gas_conduit":
-        if (e.block.permutation.getState("fluffyalien_energistics:gas")) {
+        if (
+          e.block.permutation.getState(
+            "fluffyalien_energistics:gas" as keyof BlockStateSuperset,
+          )
+        ) {
           break;
         }
 
         e.block.setPermutation(
-          e.block.permutation.withState("fluffyalien_energistics:gas", true),
+          e.block.permutation.withState(
+            "fluffyalien_energistics:gas" as keyof BlockStateSuperset,
+            true,
+          ),
         );
         void MachineNetwork.updateAdjacent(e.block);
         decrementSlotSurvival(player, heldSlot);
@@ -227,7 +249,9 @@ export const multiConduitComponent: BlockCustomComponent = {
     const center = e.block.center();
 
     if (
-      e.destroyedBlockPermutation.getState("fluffyalien_energistics:energy")
+      e.destroyedBlockPermutation.getState(
+        "fluffyalien_energistics:energy" as keyof BlockStateSuperset,
+      )
     ) {
       e.dimension.spawnItem(
         new ItemStack("fluffyalien_energistics:energy_conduit"),
@@ -235,14 +259,22 @@ export const multiConduitComponent: BlockCustomComponent = {
       );
     }
 
-    if (e.destroyedBlockPermutation.getState("fluffyalien_energistics:fluid")) {
+    if (
+      e.destroyedBlockPermutation.getState(
+        "fluffyalien_energistics:fluid" as keyof BlockStateSuperset,
+      )
+    ) {
       e.dimension.spawnItem(
         new ItemStack("fluffyalien_energistics:fluid_conduit"),
         center,
       );
     }
 
-    if (e.destroyedBlockPermutation.getState("fluffyalien_energistics:gas")) {
+    if (
+      e.destroyedBlockPermutation.getState(
+        "fluffyalien_energistics:gas" as keyof BlockStateSuperset,
+      )
+    ) {
       e.dimension.spawnItem(
         new ItemStack("fluffyalien_energistics:gas_conduit"),
         center,

@@ -5,13 +5,11 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
 const OIL_CONSUMPTION = 2;
-const OIL_CONSUMPTION_PER_TICK = OIL_CONSUMPTION / MACHINE_TICK_INTERVAL;
 const ENERGY_GENERATION = 30;
-const ENERGY_GENERATION_PER_TICK = ENERGY_GENERATION / MACHINE_TICK_INTERVAL;
 
 export const oilGeneratorMachine: MachineDefinition = {
   description: {
@@ -21,33 +19,18 @@ export const oilGeneratorMachine: MachineDefinition = {
         oilBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "oil",
+          },
         },
         energyBar: {
           type: "storageBar",
           startIndex: 4,
+          defaults: {
+            type: "energy",
+          },
         },
       },
-    },
-  },
-  handlers: {
-    updateUi({ blockLocation: location }) {
-      const block = location.dimension.getBlock(location);
-      const working = block?.permutation.getState(
-        "fluffyalien_energistics:working",
-      );
-
-      return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: working ? ENERGY_GENERATION_PER_TICK : 0,
-          },
-          oilBar: {
-            type: "oil",
-            change: working ? -OIL_CONSUMPTION_PER_TICK : 0,
-          },
-        },
-      };
     },
   },
 };

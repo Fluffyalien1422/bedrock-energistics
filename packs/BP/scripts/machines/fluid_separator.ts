@@ -8,14 +8,12 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 const ENERGY_CONSUMPTION = 50;
-const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
-
 const FLUID_CONSUMPTION = 6;
-const FLUID_CONSUMPTION_PER_TICK = FLUID_CONSUMPTION / MACHINE_TICK_INTERVAL;
 
 interface FluidRecipeResult {
   type: StandardStorageType;
@@ -78,13 +76,13 @@ export const fluidSeparatorMachine: MachineDefinition = {
       if (!block) return {};
 
       const fluid = block.permutation.getState(
-        "fluffyalien_energistics:fluid",
+        "fluffyalien_energistics:fluid" as keyof BlockStateSuperset,
       ) as string;
 
       if (fluid === "none") return {};
 
       const working = block.permutation.getState(
-        "fluffyalien_energistics:working",
+        "fluffyalien_energistics:working" as keyof BlockStateSuperset,
       ) as boolean;
 
       const recipeResults = RECIPES[fluid];
@@ -110,20 +108,14 @@ export const fluidSeparatorMachine: MachineDefinition = {
 
       return {
         storageBars: {
-          energyBar: {
-            change: -ENERGY_CONSUMPTION_PER_TICK,
-          },
           inputBar: {
             type: fluid,
-            change: -FLUID_CONSUMPTION_PER_TICK,
           },
           outputBar1: {
             type: result1.type,
-            change: result1.amount / MACHINE_TICK_INTERVAL,
           },
           outputBar2: {
             type: result2.type,
-            change: result2.amount / MACHINE_TICK_INTERVAL,
           },
         },
       };

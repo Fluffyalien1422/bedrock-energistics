@@ -6,14 +6,11 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
 const AMMONIA_CONSUMPTION = 1;
-const AMMONIA_CONSUMPTION_PER_TICK =
-  AMMONIA_CONSUMPTION / MACHINE_TICK_INTERVAL;
 const ENERGY_GENERATION = 65;
-const ENERGY_GENERATION_PER_TICK = ENERGY_GENERATION / MACHINE_TICK_INTERVAL;
 
 export const ammoniaGeneratorMachine: MachineDefinition = {
   description: {
@@ -35,27 +32,6 @@ export const ammoniaGeneratorMachine: MachineDefinition = {
           },
         },
       },
-    },
-  },
-  handlers: {
-    updateUi({ blockLocation }) {
-      const block = blockLocation.dimension.getBlock(blockLocation);
-      const working = block?.permutation.getState(
-        "fluffyalien_energistics:working",
-      );
-
-      if (!working) return {};
-
-      return {
-        storageBars: {
-          ammoniaBar: {
-            change: -AMMONIA_CONSUMPTION_PER_TICK,
-          },
-          energyBar: {
-            change: ENERGY_GENERATION_PER_TICK,
-          },
-        },
-      };
     },
   },
 };

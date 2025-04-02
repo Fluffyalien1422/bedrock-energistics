@@ -6,22 +6,13 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 
 const NITROGEN_CONSUMPTION = 1;
-const NITROGEN_CONSUMPTION_PER_TICK =
-  NITROGEN_CONSUMPTION / MACHINE_TICK_INTERVAL;
-
 const HYDROGEN_CONSUMPTION = 3;
-const HYDROGEN_CONSUMPTION_PER_TICK =
-  HYDROGEN_CONSUMPTION / MACHINE_TICK_INTERVAL;
-
 const ENERGY_CONSUMPTION = 10;
-const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
-
 const AMMONIA_GENERATION = 2;
-const AMMONIA_GENERATION_PER_TICK = AMMONIA_GENERATION / MACHINE_TICK_INTERVAL;
 
 export const ammoniaFactoryMachine: MachineDefinition = {
   description: {
@@ -57,35 +48,6 @@ export const ammoniaFactoryMachine: MachineDefinition = {
           },
         },
       },
-    },
-  },
-  handlers: {
-    updateUi({ blockLocation }) {
-      const block = blockLocation.dimension.getBlock(blockLocation);
-      const working = block?.permutation.getState(
-        "fluffyalien_energistics:working",
-      );
-
-      if (!working) {
-        return {};
-      }
-
-      return {
-        storageBars: {
-          energyBar: {
-            change: -ENERGY_CONSUMPTION_PER_TICK,
-          },
-          nitrogenBar: {
-            change: -NITROGEN_CONSUMPTION_PER_TICK,
-          },
-          hydrogenBar: {
-            change: -HYDROGEN_CONSUMPTION_PER_TICK,
-          },
-          ammoniaBar: {
-            change: AMMONIA_GENERATION_PER_TICK,
-          },
-        },
-      };
     },
   },
 };

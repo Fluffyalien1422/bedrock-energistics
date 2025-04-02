@@ -1,6 +1,7 @@
 import { Block, Container, ContainerSlot, ItemStack } from "@minecraft/server";
 import { getBlockInDirection, StrDirection } from "./direction";
 import { getBlockComponent } from "../polyfills/component_type_map";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 /**
  * sets the connect states of a block (eg. `fluffyalien_energistics:north`) to a value returned by a callback function
@@ -22,7 +23,8 @@ export async function updateBlockConnectStates<TDirection extends StrDirection>(
       continue;
     }
 
-    const stateName = `fluffyalien_energistics:${direction}`;
+    const stateName =
+      `fluffyalien_energistics:${direction}` as keyof BlockStateSuperset;
     const newValue = await callback(blockInDirection, direction);
 
     if (permutation.getState(stateName) !== newValue) {
@@ -167,7 +169,7 @@ export class BlockStateAccessor<TValue extends string | number | boolean> {
   get(): TValue {
     if (this.cachedValue === undefined) {
       this.cachedValue = this.block.permutation.getState(
-        this.stateId,
+        this.stateId as keyof BlockStateSuperset,
       ) as TValue;
     }
 
@@ -179,7 +181,10 @@ export class BlockStateAccessor<TValue extends string | number | boolean> {
 
     this.cachedValue = newVal;
     this.block.setPermutation(
-      this.block.permutation.withState(this.stateId, newVal),
+      this.block.permutation.withState(
+        this.stateId as keyof BlockStateSuperset,
+        newVal,
+      ),
     );
   }
 }

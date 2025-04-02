@@ -5,16 +5,14 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
+import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 type GasStateValue = "hydrogen" | "carbon" | "nitrogen";
 
 const ENERGY_CONSUMPTION = 50;
-const ENERGY_CONSUMPTION_PER_TICK = ENERGY_CONSUMPTION / MACHINE_TICK_INTERVAL;
-
 const GAS_GENERATION = 2;
-const GAS_GENERATION_PER_TICK = GAS_GENERATION / MACHINE_TICK_INTERVAL;
 
 const GAS_TYPES: Record<string, GasStateValue> = {
   "minecraft:overworld": "nitrogen",
@@ -30,6 +28,9 @@ export const atmosphericCondenserMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "energy",
+          },
         },
         outputGasBar: {
           type: "storageBar",
@@ -40,22 +41,10 @@ export const atmosphericCondenserMachine: MachineDefinition = {
   },
   handlers: {
     updateUi({ blockLocation: location }) {
-      const gasStateValue =
-        location.dimension
-          .getBlock(location)
-          ?.permutation.getState("fluffyalien_energistics:gas") ?? "none";
-
-      const isActive = gasStateValue !== "none";
-
       return {
         storageBars: {
-          energyBar: {
-            type: "energy",
-            change: isActive ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
           outputGasBar: {
             type: GAS_TYPES[location.dimension.id],
-            change: isActive ? GAS_GENERATION_PER_TICK : 0,
           },
         },
       };
@@ -66,7 +55,7 @@ export const atmosphericCondenserMachine: MachineDefinition = {
 export const atmosphericCondenserComponent: BlockCustomComponent = {
   beforeOnPlayerPlace(e) {
     e.permutationToPlace = e.permutationToPlace.withState(
-      "fluffyalien_energistics:gas",
+      "fluffyalien_energistics:gas" as keyof BlockStateSuperset,
       GAS_TYPES[e.dimension.id],
     );
   },

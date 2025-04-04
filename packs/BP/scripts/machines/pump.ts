@@ -88,7 +88,6 @@ export const pumpComponent: BlockCustomComponent = {
           return;
         }
         break;
-      case undefined: // to make eslint happy
       default:
         workingState.set(false);
         if (typeState.get() !== "none") {

@@ -14,7 +14,7 @@
     "components": {
       "minecraft:custom_components": [
         "fluffyalien_energisticscore:machine",
-        "fluffyalien_energistics:generic_storage_type_container"
+        "fluffyalien_energistics:fluid_tank"
       ],
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:low_priority_consumer": {},

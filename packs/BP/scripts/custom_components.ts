@@ -26,6 +26,7 @@ import { batteryComponent } from "./machines/battery";
 import { pumpComponent } from "./machines/pump";
 import { tesseractComponent } from "./machines/tesseract";
 import { itemChargerComponent } from "./machines/item_charger";
+import { fluidTankComponent } from "./machines/fluid_tank";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -151,5 +152,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:item_charger",
     itemChargerComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:fluid_tank",
+    fluidTankComponent,
   );
 });

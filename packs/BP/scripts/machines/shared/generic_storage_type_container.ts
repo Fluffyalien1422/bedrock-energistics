@@ -18,7 +18,7 @@ import { ModalFormData } from "@minecraft/server-ui";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
 const AMOUNT_PER_STAGE = 2500;
-const MAX_STORAGE = AMOUNT_PER_STAGE * 3;
+export const ST_CONTAINER_MAX_STORAGE = AMOUNT_PER_STAGE * 3;
 const STAGE_AMOUNT_PADDING = 200;
 
 export class GenericStorageTypeContainerMachine implements MachineDefinition {
@@ -30,7 +30,7 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
   get description(): MachineDefinitionDescription {
     return {
       id: this.id,
-      maxStorage: MAX_STORAGE,
+      maxStorage: ST_CONTAINER_MAX_STORAGE,
       ui: {
         elements: {
           storageBar: {
@@ -57,9 +57,7 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
 
   get events(): MachineDefinitionEvents {
     return {
-      onButtonPressed: (e): void => {
-        void this.onButtonPressed(e);
-      },
+      onButtonPressed: this.onButtonPressed.bind(this),
     };
   }
 

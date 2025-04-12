@@ -65,6 +65,7 @@ function bucketInteraction(player: Player, block: Block): void {
 
     void setMachineStorage(block, "water", stored + BUCKET_ML);
     decrementSlotSurvival(player, mainHand);
+    player.dimension.spawnItem(new ItemStack("bucket"), player.location);
 
     if (fluidType === "none") {
       fluidTypeState.set("water");
@@ -77,6 +78,7 @@ function bucketInteraction(player: Player, block: Block): void {
 
     void setMachineStorage(block, "lava", stored + BUCKET_ML);
     decrementSlotSurvival(player, mainHand);
+    player.dimension.spawnItem(new ItemStack("bucket"), player.location);
 
     if (fluidType === "none") {
       fluidTypeState.set("lava");

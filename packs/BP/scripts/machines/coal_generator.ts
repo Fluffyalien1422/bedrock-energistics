@@ -3,6 +3,7 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  MachineItemStack,
   setMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import {
@@ -71,13 +72,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (inputItem) {
     const inputItemTypeId = inputItem.typeId;
-    if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+    if (inputItem.amount < new ItemStack(inputItemTypeId).maxAmount) {
       const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
         inputItemTypeId,
       ]);
 
       if (hopperSlot) {
-        inputItem.count++;
+        inputItem.amount++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
@@ -89,10 +90,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     );
 
     if (hopperSlot) {
-      inputItem = {
-        typeId: hopperSlot.typeId,
-        count: 1,
-      };
+      inputItem = new MachineItemStack(hopperSlot.typeId);
       setMachineSlotItem(e.block, 0, inputItem);
       decrementSlot(hopperSlot);
     }
@@ -128,8 +126,8 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   progressMap.set(uid, MAX_PROGRESS);
 
-  inputItem.count--;
-  setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
+  inputItem.amount--;
+  setMachineSlotItem(e.block, 0, inputItem.amount > 0 ? inputItem : undefined);
 }
 
 export const coalGeneratorComponent: BlockCustomComponent = {

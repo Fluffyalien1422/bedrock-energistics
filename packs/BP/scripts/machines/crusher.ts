@@ -2,6 +2,7 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  MachineItemStack,
   setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
@@ -99,12 +100,12 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   if (outputItem && getHopperBelow(e.block)) {
     const itemStack = new ItemStack(outputItem.typeId);
     if (depositItemToHopper(e.block, itemStack)) {
-      outputItem.count--;
-      if (outputItem.count > 0) {
+      outputItem.amount--;
+      if (outputItem.amount > 0) {
         setMachineSlotItem(e.block, 1, outputItem);
       } else {
         setMachineSlotItem(e.block, 1);
-        outputItem = null;
+        outputItem = undefined;
       }
     }
   }
@@ -113,13 +114,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (inputItem) {
     const inputItemTypeId = inputItem.typeId;
-    if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+    if (inputItem.amount < new ItemStack(inputItemTypeId).maxAmount) {
       const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
         inputItemTypeId,
       ]);
 
       if (hopperSlot) {
-        inputItem.count++;
+        inputItem.amount++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
@@ -131,10 +132,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     );
 
     if (hopperSlot) {
-      inputItem = {
-        typeId: hopperSlot.typeId,
-        count: 1,
-      };
+      inputItem = new MachineItemStack(hopperSlot.typeId);
       setMachineSlotItem(e.block, 0, inputItem);
       decrementSlot(hopperSlot);
     } else {
@@ -149,7 +147,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   if (
     outputItem &&
     (outputItem.typeId !== result ||
-      outputItem.count >= new ItemStack(outputItem.typeId).maxAmount)
+      outputItem.amount >= new ItemStack(outputItem.typeId).maxAmount)
   ) {
     progressMap.delete(uid);
     workingState.set(false);
@@ -169,13 +167,18 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    inputItem.count--;
-    setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
+    inputItem.amount--;
+    setMachineSlotItem(
+      e.block,
+      0,
+      inputItem.amount > 0 ? inputItem : undefined,
+    );
 
-    setMachineSlotItem(e.block, 1, {
-      typeId: result,
-      count: (outputItem?.count ?? 0) + 1,
-    });
+    setMachineSlotItem(
+      e.block,
+      1,
+      new MachineItemStack(result, (outputItem?.amount ?? 0) + 1),
+    );
 
     progressMap.delete(uid);
     return;

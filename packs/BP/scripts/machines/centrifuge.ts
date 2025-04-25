@@ -2,6 +2,7 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  MachineItemStack,
   setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
@@ -205,8 +206,8 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
       break;
     }
 
-    outputItem.count--;
-    if (outputItem.count > 0) {
+    outputItem.amount--;
+    if (outputItem.amount > 0) {
       setMachineSlotItem(e.block, slotId, outputItem);
       progressMap.delete(uid);
       inputState.set("none");
@@ -224,13 +225,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (inputItem) {
     const inputItemTypeId = inputItem.typeId;
-    if (inputItem.count < new ItemStack(inputItemTypeId).maxAmount) {
+    if (inputItem.amount < new ItemStack(inputItemTypeId).maxAmount) {
       const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
         inputItemTypeId,
       ]);
 
       if (hopperSlot) {
-        inputItem.count++;
+        inputItem.amount++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
@@ -242,10 +243,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     );
 
     if (hopperSlot) {
-      inputItem = {
-        typeId: hopperSlot.typeId,
-        count: 1,
-      };
+      inputItem = new MachineItemStack(hopperSlot.typeId);
       setMachineSlotItem(e.block, 0, inputItem);
       decrementSlot(hopperSlot);
     }
@@ -270,16 +268,17 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    inputItem.count--;
-    setMachineSlotItem(e.block, 0, inputItem.count > 0 ? inputItem : undefined);
+    inputItem.amount--;
+    setMachineSlotItem(
+      e.block,
+      0,
+      inputItem.amount > 0 ? inputItem : undefined,
+    );
 
     for (let i = 0; i < 4; i++) {
       const itemId = weightedRandom(LOOT[inputItem.typeId]);
       const slotId = i + 1;
-      setMachineSlotItem(e.block, slotId, {
-        typeId: itemId,
-        count: 1,
-      });
+      setMachineSlotItem(e.block, slotId, new MachineItemStack(itemId));
     }
 
     progressMap.delete(uid);

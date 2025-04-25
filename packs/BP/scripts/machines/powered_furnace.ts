@@ -2,6 +2,7 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  MachineItemStack,
   setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
@@ -86,7 +87,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   const outputItem = await getMachineSlotItem(e.block, 1);
 
   if (outputItem && getHopperBelow(e.block)) {
-    const itemStack = new ItemStack(outputItem.typeId, outputItem.count);
+    const itemStack = new ItemStack(outputItem.typeId, outputItem.amount);
     if (depositItemToHopper(e.block, itemStack)) {
       decrementMachineSlot(e.block, 1, outputItem);
     }
@@ -95,14 +96,14 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   let inputItem = await getMachineSlotItem(e.block, 0);
 
   if (inputItem) {
-    const itemStack = new ItemStack(inputItem.typeId, inputItem.count);
+    const itemStack = new ItemStack(inputItem.typeId, inputItem.amount);
     if (itemStack.amount < itemStack.maxAmount) {
       const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
         itemStack.typeId,
       ]);
 
       if (hopperSlot) {
-        inputItem.count++;
+        inputItem.amount++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
@@ -111,10 +112,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block);
 
     if (hopperSlot) {
-      inputItem = {
-        typeId: hopperSlot.typeId,
-        count: 1,
-      };
+      inputItem = new MachineItemStack(hopperSlot.typeId);
       setMachineSlotItem(e.block, 0, inputItem);
       decrementSlot(hopperSlot);
     } else {
@@ -134,11 +132,11 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   const resultItemStack = new ItemStack(result.item, result.count);
 
   if (outputItem) {
-    const outputItemStack = new ItemStack(outputItem.typeId, outputItem.count);
+    const outputItemStack = new ItemStack(outputItem.typeId, outputItem.amount);
 
     if (
       !outputItemStack.isStackableWith(resultItemStack) ||
-      outputItem.count + result.count >= outputItemStack.maxAmount
+      outputItem.amount + result.count >= outputItemStack.maxAmount
     ) {
       progressMap.delete(uid);
       workingState.set(false);
@@ -162,13 +160,14 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     decrementMachineSlot(e.block, 0, inputItem);
 
     if (outputItem) {
-      outputItem.count += result.count;
+      outputItem.amount += result.count;
       setMachineSlotItem(e.block, 1, outputItem);
     } else {
-      setMachineSlotItem(e.block, 1, {
-        typeId: result.item,
-        count: result.count,
-      });
+      setMachineSlotItem(
+        e.block,
+        1,
+        new MachineItemStack(result.item, result.count),
+      );
     }
 
     progressMap.delete(uid);

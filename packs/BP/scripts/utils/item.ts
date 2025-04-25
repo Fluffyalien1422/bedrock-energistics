@@ -38,13 +38,13 @@ export function decrementMachineSlot(
   item: MachineItemStack,
   decrement = 1,
 ): void {
-  const newAmount = item.count - decrement;
+  const newAmount = item.amount - decrement;
 
   if (newAmount <= 0) {
     setMachineSlotItem(machine, slotId);
     return;
   }
 
-  item.count = newAmount;
+  item.amount = newAmount;
   setMachineSlotItem(machine, slotId, item);
 }

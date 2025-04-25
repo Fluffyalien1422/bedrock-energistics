@@ -2,6 +2,7 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  MachineItemStack,
   setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
@@ -111,9 +112,9 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
       return;
     }
 
-    outputItem.count--;
+    outputItem.amount--;
 
-    if (outputItem.count > 0) {
+    if (outputItem.amount > 0) {
       setMachineSlotItem(e.block, 0, outputItem);
       progressMap.delete(uid);
       workingState.set(false);
@@ -137,10 +138,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= MAX_PROGRESS) {
     const resultItemType = weightedRandom(LOOT_WEIGHTS);
-    setMachineSlotItem(e.block, 0, {
-      typeId: resultItemType,
-      count: 1,
-    });
+    setMachineSlotItem(e.block, 0, new MachineItemStack(resultItemType));
 
     progressMap.delete(uid);
     return;

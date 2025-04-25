@@ -8,6 +8,7 @@ import {
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
+  MachineItemStack,
   setMachineSlotItem,
   setMachineStorage,
 } from "bedrock-energistics-core-api";
@@ -51,14 +52,14 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   let inputItem = await getMachineSlotItem(e.block, 0);
 
   if (inputItem) {
-    const itemStack = new ItemStack(inputItem.typeId, inputItem.count);
+    const itemStack = new ItemStack(inputItem.typeId, inputItem.amount);
     if (itemStack.amount < itemStack.maxAmount) {
       const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
         itemStack.typeId,
       ]);
 
       if (hopperSlot) {
-        inputItem.count++;
+        inputItem.amount++;
         setMachineSlotItem(e.block, 0, inputItem);
         decrementSlot(hopperSlot);
       }
@@ -67,10 +68,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block);
 
     if (hopperSlot) {
-      inputItem = {
-        typeId: hopperSlot.typeId,
-        count: 1,
-      };
+      inputItem = new MachineItemStack(hopperSlot.typeId);
       setMachineSlotItem(e.block, 0, inputItem);
       decrementSlot(hopperSlot);
     } else {

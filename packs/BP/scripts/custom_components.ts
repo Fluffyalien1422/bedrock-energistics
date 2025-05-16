@@ -27,6 +27,7 @@ import { pumpComponent } from "./machines/pump";
 import { tesseractComponent } from "./machines/tesseract";
 import { itemChargerComponent } from "./machines/item_charger";
 import { fluidTankComponent } from "./machines/fluid_tank";
+import { networkMonitorComponent } from "./machines/network_monitor";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -157,5 +158,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:fluid_tank",
     fluidTankComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:network_monitor",
+    networkMonitorComponent,
   );
 });

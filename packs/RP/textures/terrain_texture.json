@@ -191,6 +191,9 @@
     },
     "fluffyalien_energistics:item_charger_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/item_charger_front_on"
+    },
+    "fluffyalien_energistics:network_monitor_front": {
+      "textures": "textures/fluffyalien/energistics/blocks/network_monitor_front"
     }
   }
 }

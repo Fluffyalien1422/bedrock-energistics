@@ -44,10 +44,6 @@ export const networkMonitorComponent: BlockCustomComponent = {
     networkDataMap.delete(uid);
   },
   onTick(e) {
-    const uid = blockLocationToUid(e.block);
-    const networkData = networkDataMap.get(uid);
-    if (!networkData) return;
-
     const players = e.dimension
       .getPlayers({
         location: e.block.location,
@@ -61,28 +57,34 @@ export const networkMonitorComponent: BlockCustomComponent = {
       );
     if (!players.length) return;
 
+    const uid = blockLocationToUid(e.block);
+    const networkData = networkDataMap.get(uid);
     const actionbarLines: string[] = [];
 
-    for (const [storageType, dataPoints] of networkData) {
-      let beforeSum = 0;
-      let afterSum = 0;
-      for (const dataPoint of dataPoints) {
-        beforeSum += dataPoint.before;
-        afterSum += dataPoint.after;
+    if (networkData) {
+      for (const [storageType, dataPoints] of networkData) {
+        let beforeSum = 0;
+        let afterSum = 0;
+        for (const dataPoint of dataPoints) {
+          beforeSum += dataPoint.before;
+          afterSum += dataPoint.after;
+        }
+
+        const lastDataPoint = dataPoints.at(-1)!;
+
+        const avgBefore = Math.round(beforeSum / dataPoints.length);
+        const avgAfter = Math.round(afterSum / dataPoints.length);
+
+        actionbarLines.push(
+          `§f§l${storageType}§r§7 (avg of last ${dataPoints.length.toString()} allocations): §u${avgBefore.toString()}§r§s -> §u${avgAfter.toString()}`,
+          `§f§l${storageType}§r§7 (last allocation): §u${lastDataPoint.before.toString()}§r§s -> §u${lastDataPoint.after.toString()}`,
+        );
       }
-
-      const lastDataPoint = dataPoints.at(-1)!;
-
-      const avgBefore = Math.round(beforeSum / dataPoints.length);
-      const avgAfter = Math.round(afterSum / dataPoints.length);
-
-      actionbarLines.push(
-        `§f§l${storageType}§r§7 (avg of last ${dataPoints.length.toString()} allocations): §u${avgBefore.toString()}§r§s -> §u${avgAfter.toString()}`,
-        `§f§l${storageType}§r§7 (last allocation): §u${lastDataPoint.before.toString()}§r§s -> §u${lastDataPoint.after.toString()}`,
-      );
     }
 
-    const actionbarStr = actionbarLines.join("\n");
+    const actionbarStr = actionbarLines.length
+      ? actionbarLines.join("\n")
+      : "No data.";
 
     for (const player of players) {
       player.onScreenDisplay.setActionBar(actionbarStr);

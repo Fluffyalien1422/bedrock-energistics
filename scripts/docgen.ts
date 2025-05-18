@@ -45,6 +45,7 @@ interface Config {
      */
     secondaryColor: string;
   };
+  contributors?: string[];
 }
 
 const CONTENT_START_FILE_PATH = "docgen_config/content_start.html";
@@ -233,6 +234,13 @@ if (config.dependencies) {
 }
 
 let generatedContentEnd = "";
+
+if (config.contributors?.length) {
+  generatedContentEnd +=
+    "<h2>Contributors</h2><ul><li>" +
+    config.contributors.join("</li><li>") +
+    "</li></ul>";
+}
 
 if (config.includeFollowX ?? true) {
   generatedContentEnd += makeThemeButton(

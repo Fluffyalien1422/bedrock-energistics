@@ -5,6 +5,7 @@ item.fluffyalien_energistics:ui_options_button=Options
 
 item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Tutorial Book
 item.fluffyalien_energistics:basic_machine_part=Basic Machine Part
+item.fluffyalien_energistics:plastic=Plastic
 
 tile.fluffyalien_energistics:machine_casing.name=Machine Casing
 tile.fluffyalien_energistics:energy_conduit.name=Energy Conduit
@@ -33,11 +34,14 @@ tile.fluffyalien_energistics:battery.name=Battery
 tile.fluffyalien_energistics:pump.name=Pump
 tile.fluffyalien_energistics:tesseract.name=Tesseract
 tile.fluffyalien_energistics:item_charger.name=Item Charger
+tile.fluffyalien_energistics:network_monitor.name=Network Monitor
+tile.fluffyalien_energistics:basic_refinery.name=Basic Refinery
 
 fluffyalien_energistics.ui.common.back=Back
 
 fluffyalien_energistics.ui.genericStorageTypeContainer.options.type=Type
 fluffyalien_energistics.ui.tesseract.options.name=Name
+fluffyalien_energistics.ui.basicRefinery.options.recipe=Recipe
 
 fluffyalien_energistics.ui.tutorialBook.entry.networks.title=Networks
 fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet0=A network is a group of devices that share energy, gas, or fluid.

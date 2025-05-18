@@ -1,2 +1,1 @@
-export const MACHINE_TICK_INTERVAL = 10;
 export const MAX_MACHINE_STORAGE = 6400;

@@ -21,6 +21,7 @@
     "ui/fluffyalien/energistics/fluid_tank.json",
     "ui/fluffyalien/energistics/pump.json",
     "ui/fluffyalien/energistics/tesseract.json",
-    "ui/fluffyalien/energistics/item_charger.json"
+    "ui/fluffyalien/energistics/item_charger.json",
+    "ui/fluffyalien/energistics/basic_refinery.json"
   ]
 }

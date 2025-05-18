@@ -7,7 +7,6 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
-import { MACHINE_TICK_INTERVAL } from "../constants";
 import {
   BlockComponentTickEvent,
   BlockCustomComponent,
@@ -21,8 +20,6 @@ import {
 import { weightedRandom } from "../utils/math";
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 4;
-const ENERGY_CONSUMPTION_PER_TICK =
-  ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
 const MAX_PROGRESS = 24;
 
@@ -54,6 +51,9 @@ export const voidMinerMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "energy",
+          },
         },
         progressIndicator: {
           type: "progressIndicator",
@@ -74,12 +74,6 @@ export const voidMinerMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
-        },
         progressIndicators: {
           progressIndicator: Math.floor((progressMap.get(uid) ?? 0) / 1.5),
         },

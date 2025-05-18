@@ -194,6 +194,12 @@
     },
     "fluffyalien_energistics:network_monitor_front": {
       "textures": "textures/fluffyalien/energistics/blocks/network_monitor_front"
+    },
+    "fluffyalien_energistics:basic_refinery_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/basic_refinery_front_off"
+    },
+    "fluffyalien_energistics:basic_refinery_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/basic_refinery_front_on"
     }
   }
 }

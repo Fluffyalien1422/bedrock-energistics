@@ -154,5 +154,15 @@
     "atlas_tile": "fluffyalien_energistics:tesseract",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/tesseract",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:network_monitor_front",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/network_monitor_front",
+    "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:basic_refinery_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/basic_refinery_front_on",
+    "ticks_per_frame": 10
   }
 ]

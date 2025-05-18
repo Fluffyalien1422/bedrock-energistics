@@ -7,7 +7,6 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
-import { MACHINE_TICK_INTERVAL } from "../constants";
 import {
   BlockComponentTickEvent,
   BlockCustomComponent,
@@ -23,8 +22,6 @@ import { decrementMachineSlot, decrementSlot } from "../utils/item";
 import { POWERED_FURNACE_RECIPES } from "../generated/powered_furnace_recipes";
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 5;
-const ENERGY_CONSUMPTION_PER_TICK =
-  ENERGY_CONSUMPTION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
 const MAX_PROGRESS = 16;
 
@@ -38,6 +35,9 @@ export const poweredFurnaceMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "energy",
+          },
         },
         progressIndicator: {
           type: "progressIndicator",
@@ -62,12 +62,6 @@ export const poweredFurnaceMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: progressMap.has(uid) ? -ENERGY_CONSUMPTION_PER_TICK : 0,
-          },
-        },
         progressIndicators: {
           progressIndicator: progressMap.get(uid) ?? 0,
         },

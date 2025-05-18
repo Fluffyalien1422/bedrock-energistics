@@ -115,6 +115,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:item_charger')",
             "$screen_content": "fluffyalien_energistics:item_charger.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:basic_refinery')",
+            "$screen_content": "fluffyalien_energistics:basic_refinery.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

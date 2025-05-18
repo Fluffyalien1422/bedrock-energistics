@@ -27,6 +27,7 @@ import { pumpMachine } from "./machines/pump";
 import { tesseractMachine } from "./machines/tesseract";
 import { itemChargerMachine } from "./machines/item_charger";
 import { networkMonitorMachine } from "./machines/network_monitor";
+import { basicRefineryMachine } from "./machines/basic_refinery";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   useStandardStorageType(StandardStorageType.Oil);
@@ -61,4 +62,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(tesseractMachine);
   registerMachine(itemChargerMachine);
   registerMachine(networkMonitorMachine);
+  registerMachine(basicRefineryMachine);
 });

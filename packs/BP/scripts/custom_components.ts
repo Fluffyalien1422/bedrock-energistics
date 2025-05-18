@@ -28,6 +28,7 @@ import { tesseractComponent } from "./machines/tesseract";
 import { itemChargerComponent } from "./machines/item_charger";
 import { fluidTankComponent } from "./machines/fluid_tank";
 import { networkMonitorComponent } from "./machines/network_monitor";
+import { basicRefineryComponent } from "./machines/basic_refinery";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -163,5 +164,10 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:network_monitor",
     networkMonitorComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:basic_refinery",
+    basicRefineryComponent,
   );
 });

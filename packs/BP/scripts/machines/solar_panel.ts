@@ -5,7 +5,6 @@ import {
   DimensionLocation,
   world,
 } from "@minecraft/server";
-import { MACHINE_TICK_INTERVAL } from "../constants";
 
 function getGeneration(location: DimensionLocation): number {
   if (
@@ -34,20 +33,11 @@ export const solarPanelMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
-        },
-      },
-    },
-  },
-  handlers: {
-    updateUi({ blockLocation: location }) {
-      return {
-        storageBars: {
-          energyBar: {
+          defaults: {
             type: "energy",
-            change: getGeneration(location) / MACHINE_TICK_INTERVAL,
           },
         },
-      };
+      },
     },
   },
 };

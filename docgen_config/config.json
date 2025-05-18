@@ -15,5 +15,6 @@
   "issueTrackerUrl": "https://legacy.curseforge.com/minecraft-bedrock/addons/bedrock-energistics/issues",
   "theme": {
     "secondaryColor": "#d2c421"
-  }
+  },
+  "contributors": ["Fluffyalien", "TheBombBard"]
 }

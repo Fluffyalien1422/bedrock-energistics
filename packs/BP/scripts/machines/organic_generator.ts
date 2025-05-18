@@ -16,7 +16,7 @@ import {
   getFirstSlotWithItemInConnectedHoppers,
 } from "../utils/block";
 import { decrementSlot } from "../utils/item";
-import { MACHINE_TICK_INTERVAL, MAX_MACHINE_STORAGE } from "../constants";
+import { MAX_MACHINE_STORAGE } from "../constants";
 import { blockLocationToUid } from "../utils/location";
 
 const INPUT_ITEMS = [
@@ -50,8 +50,6 @@ const MAX_PROGRESS: Record<string, number> = {
 };
 
 const ENERGY_GENERATION_PER_PROGRESS = 10;
-const ENERGY_GENERATION_PER_TICK =
-  ENERGY_GENERATION_PER_PROGRESS / MACHINE_TICK_INTERVAL;
 
 const progressMap = new Map<string, [number, number]>();
 
@@ -63,6 +61,9 @@ export const organicGeneratorMachine: MachineDefinition = {
         energyBar: {
           type: "storageBar",
           startIndex: 0,
+          defaults: {
+            type: "energy",
+          },
         },
         fuelSlot: {
           type: "itemSlot",
@@ -84,12 +85,6 @@ export const organicGeneratorMachine: MachineDefinition = {
       const progress = progressMap.get(uid) ?? 0;
 
       return {
-        storageBars: {
-          energyBar: {
-            type: "energy",
-            change: progress ? ENERGY_GENERATION_PER_TICK : 0,
-          },
-        },
         progressIndicators: {
           flameIndicator: progress
             ? Math.floor((progress[0] / progress[1]) * 13)

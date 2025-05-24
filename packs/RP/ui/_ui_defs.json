@@ -22,6 +22,8 @@
     "ui/fluffyalien/energistics/pump.json",
     "ui/fluffyalien/energistics/tesseract.json",
     "ui/fluffyalien/energistics/item_charger.json",
-    "ui/fluffyalien/energistics/basic_refinery.json"
+    "ui/fluffyalien/energistics/basic_refinery.json",
+    "ui/fluffyalien/energistics/lava_generator.json",
+    "ui/fluffyalien/energistics/water_generator.json"
   ]
 }

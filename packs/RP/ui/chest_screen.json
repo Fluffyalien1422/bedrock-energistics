@@ -120,6 +120,16 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:basic_refinery')",
             "$screen_content": "fluffyalien_energistics:basic_refinery.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:lava_generator')",
+            "$screen_content": "fluffyalien_energistics:lava_generator.root",
+            "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:water_generator')",
+            "$screen_content": "fluffyalien_energistics:water_generator.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

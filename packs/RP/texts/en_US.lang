@@ -36,6 +36,8 @@ tile.fluffyalien_energistics:tesseract.name=Tesseract
 tile.fluffyalien_energistics:item_charger.name=Item Charger
 tile.fluffyalien_energistics:network_monitor.name=Network Monitor
 tile.fluffyalien_energistics:basic_refinery.name=Basic Refinery
+tile.fluffyalien_energistics:lava_generator.name=Lava Generator
+tile.fluffyalien_energistics:water_generator.name=Water Generator
 
 fluffyalien_energistics.ui.common.back=Back
 

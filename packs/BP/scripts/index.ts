@@ -13,3 +13,5 @@ becInit("fluffyalien_energistics");
 //TODO: recipes and tutorial book entries for new items
 // - network monitor
 // - basic refinery
+// - lava generator
+// - water generator

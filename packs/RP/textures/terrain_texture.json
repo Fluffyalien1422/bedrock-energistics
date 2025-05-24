@@ -200,6 +200,18 @@
     },
     "fluffyalien_energistics:basic_refinery_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/basic_refinery_front_on"
+    },
+    "fluffyalien_energistics:lava_generator_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/lava_generator_front_off"
+    },
+    "fluffyalien_energistics:lava_generator_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/lava_generator_front_on"
+    },
+    "fluffyalien_energistics:water_generator_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/water_generator_front_off"
+    },
+    "fluffyalien_energistics:water_generator_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/water_generator_front_on"
     }
   }
 }

@@ -29,6 +29,8 @@ import { itemChargerComponent } from "./machines/item_charger";
 import { fluidTankComponent } from "./machines/fluid_tank";
 import { networkMonitorComponent } from "./machines/network_monitor";
 import { basicRefineryComponent } from "./machines/basic_refinery";
+import { lavaGeneratorComponent } from "./machines/lava_generator";
+import { waterGeneratorComponent } from "./machines/water_generator";
 
 world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
@@ -169,5 +171,15 @@ world.beforeEvents.worldInitialize.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:basic_refinery",
     basicRefineryComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:lava_generator",
+    lavaGeneratorComponent,
+  );
+
+  e.blockComponentRegistry.registerCustomComponent(
+    "fluffyalien_energistics:water_generator",
+    waterGeneratorComponent,
   );
 });

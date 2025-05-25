@@ -80,6 +80,10 @@ fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.title=Atmosph
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet0=Generates nitrogen in the overworld, carbon in the nether, or hydrogen in the end when active.
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet1=Consumes energy while active.
 
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.title=Basic Refinery
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet0=Creates items from fluids and/or items.
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet1=Consumes energy while active.
+
 fluffyalien_energistics.ui.tutorialBook.entry.battery.title=Battery
 fluffyalien_energistics.ui.tutorialBook.entry.battery.bullet0=Stores up to 7,500 energy.
 

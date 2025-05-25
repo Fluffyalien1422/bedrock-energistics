@@ -1,4 +1,5 @@
 /**
+ * - v1.0.0
  * - Generates documentation (for CurseForge) based on the files in `docgen_config/`
  * - See the `Config` interface for the schema for `docgen_config/config.json`
  * - `docgen_config/content_start.html` and `docgen_config/content_end.html`

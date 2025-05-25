@@ -25,6 +25,10 @@
       "machine_entities": {
         "runWith": "shell",
         "command": "npm run tsx scripts/filters/machine_entities"
+      },
+      "tutorial_book_entries": {
+        "runWith": "shell",
+        "command": "npm run tsx scripts/filters/tutorial_book_entries"
       }
     },
     "profiles": {
@@ -33,6 +37,9 @@
           "target": "development"
         },
         "filters": [
+          {
+            "filter": "tutorial_book_entries"
+          },
           {
             "filter": "build_scripts"
           },

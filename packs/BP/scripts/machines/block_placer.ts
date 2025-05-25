@@ -35,7 +35,6 @@ export const blockPlacerMachine: MachineDefinition = {
         },
         inputSlot: {
           type: "itemSlot",
-          slotId: 0,
           index: 4,
         },
       },
@@ -49,7 +48,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  let inputItem = await getMachineSlotItem(e.block, 0);
+  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
 
   if (inputItem) {
     const itemStack = new ItemStack(inputItem.typeId, inputItem.amount);
@@ -60,7 +59,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -69,7 +68,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, 0, inputItem);
+      setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     } else {
       workingState.set(false);
@@ -102,7 +101,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     return;
   }
 
-  decrementMachineSlot(e.block, 0, inputItem);
+  decrementMachineSlot(e.block, "inputSlot", inputItem);
   void setMachineStorage(
     e.block,
     "energy",

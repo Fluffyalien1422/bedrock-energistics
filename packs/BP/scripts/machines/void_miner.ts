@@ -62,7 +62,6 @@ export const voidMinerMachine: MachineDefinition = {
         },
         outputSlot: {
           type: "itemSlot",
-          slotId: 0,
           index: 5,
           allowedItems: OUTPUT_ITEM_TYPES,
         },
@@ -90,7 +89,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  const outputItem = await getMachineSlotItem(e.block, 0);
+  const outputItem = await getMachineSlotItem(e.block, "outputSlot");
 
   if (outputItem) {
     if (!getHopperBelow(e.block)) {
@@ -109,13 +108,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     outputItem.amount--;
 
     if (outputItem.amount > 0) {
-      setMachineSlotItem(e.block, 0, outputItem);
+      setMachineSlotItem(e.block, "outputSlot", outputItem);
       progressMap.delete(uid);
       workingState.set(false);
       return;
     }
 
-    setMachineSlotItem(e.block, 0);
+    setMachineSlotItem(e.block, "outputSlot");
   }
 
   const progress = progressMap.get(uid) ?? 0;
@@ -132,7 +131,11 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= MAX_PROGRESS) {
     const resultItemType = weightedRandom(LOOT_WEIGHTS);
-    setMachineSlotItem(e.block, 0, new MachineItemStack(resultItemType));
+    setMachineSlotItem(
+      e.block,
+      "outputSlot",
+      new MachineItemStack(resultItemType),
+    );
 
     progressMap.delete(uid);
     return;

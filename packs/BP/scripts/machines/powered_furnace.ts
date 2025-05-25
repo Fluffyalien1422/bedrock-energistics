@@ -46,12 +46,10 @@ export const poweredFurnaceMachine: MachineDefinition = {
         },
         inputSlot: {
           type: "itemSlot",
-          slotId: 0,
           index: 4,
         },
         outputSlot: {
           type: "itemSlot",
-          slotId: 1,
           index: 5,
         },
       },
@@ -78,16 +76,16 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  const outputItem = await getMachineSlotItem(e.block, 1);
+  const outputItem = await getMachineSlotItem(e.block, "outputSlot");
 
   if (outputItem && getHopperBelow(e.block)) {
     const itemStack = new ItemStack(outputItem.typeId, outputItem.amount);
     if (depositItemToHopper(e.block, itemStack)) {
-      decrementMachineSlot(e.block, 1, outputItem);
+      decrementMachineSlot(e.block, "outputSlot", outputItem);
     }
   }
 
-  let inputItem = await getMachineSlotItem(e.block, 0);
+  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
 
   if (inputItem) {
     const itemStack = new ItemStack(inputItem.typeId, inputItem.amount);
@@ -98,7 +96,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -107,7 +105,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, 0, inputItem);
+      setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     } else {
       progressMap.delete(uid);
@@ -151,15 +149,15 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    decrementMachineSlot(e.block, 0, inputItem);
+    decrementMachineSlot(e.block, "inputSlot", inputItem);
 
     if (outputItem) {
       outputItem.amount += result.count;
-      setMachineSlotItem(e.block, 1, outputItem);
+      setMachineSlotItem(e.block, "outputSlot", outputItem);
     } else {
       setMachineSlotItem(
         e.block,
-        1,
+        "outputSlot",
         new MachineItemStack(result.item, result.count),
       );
     }

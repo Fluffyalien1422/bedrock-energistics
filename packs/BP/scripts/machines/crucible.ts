@@ -44,7 +44,6 @@ export const crucibleMachine: MachineDefinition = {
         },
         inputSlot: {
           type: "itemSlot",
-          slotId: 0,
           index: 8,
           allowedItems: INPUT_ALLOWED_ITEMS,
         },
@@ -77,7 +76,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   );
   const inputItem = await getInputItemWithHopperSupport(
     e.block,
-    0,
+    "inputSlot",
     INPUT_ALLOWED_ITEMS,
   );
   if (!inputItem) {
@@ -101,7 +100,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    decrementMachineSlot(e.block, 0, inputItem);
+    decrementMachineSlot(e.block, "inputSlot", inputItem);
     generate(e.block, "lava", LAVA_GENERATION);
     progressMap.delete(uid);
     return;

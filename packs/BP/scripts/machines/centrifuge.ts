@@ -125,7 +125,6 @@ export const centrifugeMachine: MachineDefinition = {
         inputSlot: {
           type: "itemSlot",
           index: 4,
-          slotId: 0,
           allowedItems: INPUT_ITEM_TYPES,
         },
         arrowIndicator: {
@@ -136,25 +135,21 @@ export const centrifugeMachine: MachineDefinition = {
         outputSlot0: {
           type: "itemSlot",
           index: 5,
-          slotId: 1,
           allowedItems: OUTPUT_ITEM_TYPES,
         },
         outputSlot1: {
           type: "itemSlot",
           index: 6,
-          slotId: 2,
           allowedItems: OUTPUT_ITEM_TYPES,
         },
         outputSlot2: {
           type: "itemSlot",
           index: 7,
-          slotId: 3,
           allowedItems: OUTPUT_ITEM_TYPES,
         },
         outputSlot3: {
           type: "itemSlot",
           index: 8,
-          slotId: 4,
           allowedItems: OUTPUT_ITEM_TYPES,
         },
       },
@@ -186,7 +181,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   let returnAfterHopperInput = false;
 
   for (let i = 0; i < 4; i++) {
-    const slotId = i + 1;
+    const slotId = `outputSlot${i.toString()}`;
     const outputItem = await getMachineSlotItem(e.block, slotId);
     if (!outputItem) continue;
 
@@ -221,7 +216,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     break;
   }
 
-  let inputItem = await getMachineSlotItem(e.block, 0);
+  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
 
   if (inputItem) {
     const inputItemTypeId = inputItem.typeId;
@@ -232,7 +227,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -244,7 +239,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, 0, inputItem);
+      setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     }
   }
@@ -271,13 +266,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     inputItem.amount--;
     setMachineSlotItem(
       e.block,
-      0,
+      "inputSlot",
       inputItem.amount > 0 ? inputItem : undefined,
     );
 
     for (let i = 0; i < 4; i++) {
       const itemId = weightedRandom(LOOT[inputItem.typeId]);
-      const slotId = i + 1;
+      const slotId = `outputSlot${i.toString()}`;
       setMachineSlotItem(e.block, slotId, new MachineItemStack(itemId));
     }
 

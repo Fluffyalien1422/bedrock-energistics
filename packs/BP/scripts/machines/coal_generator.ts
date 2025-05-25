@@ -42,7 +42,6 @@ export const coalGeneratorMachine: MachineDefinition = {
         fuelSlot: {
           type: "itemSlot",
           index: 4,
-          slotId: 0,
           allowedItems: INPUT_ITEMS,
         },
         flameIndicator: {
@@ -68,7 +67,7 @@ export const coalGeneratorMachine: MachineDefinition = {
 };
 
 async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
-  let inputItem = await getMachineSlotItem(e.block, 0);
+  let inputItem = await getMachineSlotItem(e.block, "fuelSlot");
 
   if (inputItem) {
     const inputItemTypeId = inputItem.typeId;
@@ -79,7 +78,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, "fuelSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -91,7 +90,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, 0, inputItem);
+      setMachineSlotItem(e.block, "fuelSlot", inputItem);
       decrementSlot(hopperSlot);
     }
   }
@@ -127,7 +126,11 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   progressMap.set(uid, MAX_PROGRESS);
 
   inputItem.amount--;
-  setMachineSlotItem(e.block, 0, inputItem.amount > 0 ? inputItem : undefined);
+  setMachineSlotItem(
+    e.block,
+    "fuelSlot",
+    inputItem.amount > 0 ? inputItem : undefined,
+  );
 }
 
 export const coalGeneratorComponent: BlockCustomComponent = {

@@ -57,13 +57,11 @@ export const crusherMachine: MachineDefinition = {
         inputSlot: {
           type: "itemSlot",
           index: 4,
-          slotId: 0,
           allowedItems: INPUT_ITEMS,
         },
         outputSlot: {
           type: "itemSlot",
           index: 5,
-          slotId: 1,
           allowedItems: OUTPUT_ITEMS,
         },
         progressIndicator: {
@@ -95,22 +93,22 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  let outputItem = await getMachineSlotItem(e.block, 1);
+  let outputItem = await getMachineSlotItem(e.block, "outputSlot");
 
   if (outputItem && getHopperBelow(e.block)) {
     const itemStack = new ItemStack(outputItem.typeId);
     if (depositItemToHopper(e.block, itemStack)) {
       outputItem.amount--;
       if (outputItem.amount > 0) {
-        setMachineSlotItem(e.block, 1, outputItem);
+        setMachineSlotItem(e.block, "outputSlot", outputItem);
       } else {
-        setMachineSlotItem(e.block, 1);
+        setMachineSlotItem(e.block, "outputSlot");
         outputItem = undefined;
       }
     }
   }
 
-  let inputItem = await getMachineSlotItem(e.block, 0);
+  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
 
   if (inputItem) {
     const inputItemTypeId = inputItem.typeId;
@@ -121,7 +119,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, 0, inputItem);
+        setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -133,7 +131,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, 0, inputItem);
+      setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     } else {
       progressMap.delete(uid);
@@ -170,13 +168,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     inputItem.amount--;
     setMachineSlotItem(
       e.block,
-      0,
+      "inputSlot",
       inputItem.amount > 0 ? inputItem : undefined,
     );
 
     setMachineSlotItem(
       e.block,
-      1,
+      "outputSlot",
       new MachineItemStack(result, (outputItem?.amount ?? 0) + 1),
     );
 

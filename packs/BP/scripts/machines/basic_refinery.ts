@@ -107,12 +107,10 @@ export const basicRefineryMachine: MachineDefinition = {
         },
         inputSlot: {
           type: "itemSlot",
-          slotId: 0,
           index: 9,
         },
         outputSlot: {
           type: "itemSlot",
-          slotId: 1,
           index: 10,
         },
       },
@@ -245,8 +243,11 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  const outputItem = await getOutputItemWithHopperSupport(e.block, 1);
-  const inputItem = await getInputItemWithHopperSupport(e.block, 0);
+  const outputItem = await getOutputItemWithHopperSupport(
+    e.block,
+    "outputSlot",
+  );
+  const inputItem = await getInputItemWithHopperSupport(e.block, "inputSlot");
 
   const recipeId = e.block.permutation.getState(
     "fluffyalien_energistics:recipe" as keyof BlockStateSuperset,
@@ -305,7 +306,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= recipe.maxProgress) {
     if (inputItem) {
-      decrementMachineSlot(e.block, 0, inputItem);
+      decrementMachineSlot(e.block, "inputSlot", inputItem);
     }
 
     if (recipe.fluidInput) {
@@ -319,11 +320,11 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (outputItem) {
       outputItem.amount += recipe.itemOutput.amount;
-      setMachineSlotItem(e.block, 1, outputItem);
+      setMachineSlotItem(e.block, "outputSlot", outputItem);
     } else {
       setMachineSlotItem(
         e.block,
-        1,
+        "outputSlot",
         new MachineItemStack(recipe.itemOutput.type, recipe.itemOutput.amount),
       );
     }

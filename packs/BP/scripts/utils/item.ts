@@ -41,7 +41,7 @@ export function decrementSlotSurvival(
 
 export function decrementMachineSlot(
   machine: DimensionLocation,
-  slotId: number,
+  slotId: string,
   item: MachineItemStack,
   decrement = 1,
 ): void {
@@ -58,7 +58,7 @@ export function decrementMachineSlot(
 
 export async function getOutputItemWithHopperSupport(
   block: Block,
-  slotId: number,
+  slotId: string,
 ): Promise<MachineItemStack | undefined> {
   const outputItem = await getMachineSlotItem(block, slotId);
   if (outputItem && getHopperBelow(block)) {
@@ -72,7 +72,7 @@ export async function getOutputItemWithHopperSupport(
 
 export async function getInputItemWithHopperSupport(
   block: Block,
-  slotId: number,
+  slotId: string,
   allowedItems?: string[],
 ): Promise<MachineItemStack | undefined> {
   let inputItem = await getMachineSlotItem(block, slotId);

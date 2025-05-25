@@ -73,6 +73,7 @@ export async function getOutputItemWithHopperSupport(
 export async function getInputItemWithHopperSupport(
   block: Block,
   slotId: number,
+  allowedItems?: string[],
 ): Promise<MachineItemStack | undefined> {
   let inputItem = await getMachineSlotItem(block, slotId);
 
@@ -90,7 +91,10 @@ export async function getInputItemWithHopperSupport(
       }
     }
   } else {
-    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(block);
+    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
+      block,
+      allowedItems,
+    );
 
     if (hopperSlot) {
       inputItem = MachineItemStack.fromItemStack(hopperSlot.getItem()!);

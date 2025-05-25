@@ -174,5 +174,10 @@
     "atlas_tile": "fluffyalien_energistics:water_generator_front_on",
     "flipbook_texture": "textures/fluffyalien/energistics/blocks/water_generator_front_on",
     "ticks_per_frame": 10
+  },
+  {
+    "atlas_tile": "fluffyalien_energistics:crucible_front_on",
+    "flipbook_texture": "textures/fluffyalien/energistics/blocks/crucible_front_on",
+    "ticks_per_frame": 10
   }
 ]

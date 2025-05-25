@@ -212,6 +212,12 @@
     },
     "fluffyalien_energistics:water_generator_front_on": {
       "textures": "textures/fluffyalien/energistics/blocks/water_generator_front_on"
+    },
+    "fluffyalien_energistics:crucible_front_off": {
+      "textures": "textures/fluffyalien/energistics/blocks/crucible_front_off"
+    },
+    "fluffyalien_energistics:crucible_front_on": {
+      "textures": "textures/fluffyalien/energistics/blocks/crucible_front_on"
     }
   }
 }

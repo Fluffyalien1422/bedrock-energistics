@@ -30,6 +30,7 @@ import { networkMonitorMachine } from "./machines/network_monitor";
 import { basicRefineryMachine } from "./machines/basic_refinery";
 import { lavaGeneratorMachine } from "./machines/lava_generator";
 import { waterGeneratorMachine } from "./machines/water_generator";
+import { crucibleMachine } from "./machines/crucible";
 
 world.afterEvents.worldInitialize.subscribe(() => {
   useStandardStorageType(StandardStorageType.Oil);
@@ -67,4 +68,5 @@ world.afterEvents.worldInitialize.subscribe(() => {
   registerMachine(basicRefineryMachine);
   registerMachine(lavaGeneratorMachine);
   registerMachine(waterGeneratorMachine);
+  registerMachine(crucibleMachine);
 });

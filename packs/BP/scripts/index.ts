@@ -15,3 +15,4 @@ becInit("fluffyalien_energistics");
 // - basic refinery
 // - lava generator
 // - water generator
+// - crucible

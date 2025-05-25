@@ -130,6 +130,11 @@
             "requires": "($new_container_title = 'fluffyalien_energistics:water_generator')",
             "$screen_content": "fluffyalien_energistics:water_generator.root",
             "$screen_bg_content": "common.screen_background"
+          },
+          {
+            "requires": "($new_container_title = 'fluffyalien_energistics:crucible')",
+            "$screen_content": "fluffyalien_energistics:crucible.root",
+            "$screen_bg_content": "common.screen_background"
           }
         ]
       }

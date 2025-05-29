@@ -1,0 +1,46 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:basic_refinery"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        "EPE",
+        "C#G",
+        "DMD"
+      ],
+    "key": {
+      "E": {
+        "item": "emerald"
+      },
+      "P": {
+        "item": "fluffyalien_energistics:fluid_conduit"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "G": {
+        "item": "fluffyalien_energistics:gas_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "D": {
+        "item": "diamond"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:basic_refinery"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

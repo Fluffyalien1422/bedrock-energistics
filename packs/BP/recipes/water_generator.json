@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:water_generator"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+          " F ",
+          "C#G",
+          "DMD"
+        ],
+    "key": {
+      "F": {
+        "item": "water_bucket"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "G": {
+        "item": "fluffyalien_energistics:fluid_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "D": {
+        "item": "diamond"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:water_generator"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

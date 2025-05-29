@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "fluffyalien_energistics:crucible"
+    },
+    "tags": ["crafting_table"],
+    // prettier-ignore
+    "pattern": [
+        " P ",
+        "C#F",
+        "IMI"
+      ],
+    "key": {
+      "P": {
+        "item": "blast_furnace"
+      },
+      "C": {
+        "item": "fluffyalien_energistics:energy_conduit"
+      },
+      "F": {
+        "item": "fluffyalien_energistics:fluid_conduit"
+      },
+      "#": {
+        "item": "fluffyalien_energistics:machine_casing"
+      },
+      "I": {
+        "item": "iron_ingot"
+      },
+      "M": {
+        "item": "fluffyalien_energistics:basic_machine_part"
+      }
+    },
+    "result": {
+      "item": "fluffyalien_energistics:crucible"
+    },
+    "unlock": [
+      {
+        "item": "redstone"
+      }
+    ]
+  }
+}

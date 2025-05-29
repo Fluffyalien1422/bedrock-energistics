@@ -9,10 +9,3 @@ becInit("fluffyalien_energistics");
 //TODO: fix storage type container storage bar flashing
 
 //TODO: machine balancing (oil generator is way too OP)
-
-//TODO: recipes and tutorial book entries for new items
-// - network monitor
-// - basic refinery
-// - lava generator
-// - water generator
-// - crucible

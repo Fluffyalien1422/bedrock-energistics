@@ -3,7 +3,6 @@ pack.description=Expands Bedrock with energistics! Adds many machines to Minecra
 
 item.fluffyalien_energistics:ui_options_button=Options
 
-item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Tutorial Book
 item.fluffyalien_energistics:basic_machine_part=Basic Machine Part
 item.fluffyalien_energistics:plastic=Plastic
 
@@ -39,6 +38,10 @@ tile.fluffyalien_energistics:basic_refinery.name=Basic Refinery
 tile.fluffyalien_energistics:lava_generator.name=Lava Generator
 tile.fluffyalien_energistics:water_generator.name=Water Generator
 tile.fluffyalien_energistics:crucible.name=Crucible
+
+fluffyalien_energistics.tutorialBook.item.name=Bedrock Energistics Guide Book
+fluffyalien_energistics.tutorialBook.item.description.line1=Interact to open the guide book.
+fluffyalien_energistics.tutorialBook.item.description.line2=Interact with a block to open the guide book entry for that block.
 
 fluffyalien_energistics.ui.common.back=Back
 
@@ -106,6 +109,11 @@ fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet0=Generates en
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet1=Coal burns for 26s.
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet2=Hoppers can insert coal.
 
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.title=Crucible
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet0=Melts cobblestone into lava.
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet2=Hoppers can insert items.
+
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.title=Crusher
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet0=Crushes stone into cobblestone, cobblestone into gravel, and gravel into sand.
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet1=Consumes energy while active.
@@ -130,6 +138,12 @@ fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Only accepts o
 fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.title=Item Charger
 fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet0=Charges items.
 fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet1=Consumes energy while active.
+
+fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.title=Lava Generator
+fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.bullet0=Generates energy from lava.
+
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.title=Network Monitor
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet0=Displays information about the connected network.
 
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.title=Oil Extractor
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Generates oil while active.
@@ -165,3 +179,6 @@ fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.title=Void Miner
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources.
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet1=Consumes energy while active.
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet2=Hoppers can extract items.
+
+fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.title=Water Generator
+fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.bullet0=Generates energy from water.

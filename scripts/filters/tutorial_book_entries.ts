@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { TMP_DIR } from "./common";
+import { TutorialEntry } from "../../packs/BP/scripts/tutorial_book_entries";
 
 const ENTRY_PREFIX = "fluffyalien_energistics.ui.tutorialBook.entry.";
 
@@ -10,16 +11,7 @@ const texts = fs.readFileSync(
 );
 const textsLines = texts.split("\n");
 
-interface Entry {
-  bullets: number;
-}
-
-interface TutorialEntry {
-  id: string;
-  bullets: number;
-}
-
-const entries: Record<string, Entry> = {};
+const entries: Record<string, TutorialEntry> = {};
 
 for (const line of textsLines) {
   const key = line.split(/=(.*)/)[0];
@@ -45,14 +37,7 @@ for (const line of textsLines) {
   };
 }
 
-const tutorialEntries: TutorialEntry[] = Object.entries(entries).map(
-  ([id, entry]) => ({
-    id,
-    bullets: entry.bullets,
-  }),
-);
-
 fs.writeFileSync(
   path.join(TMP_DIR, "BP/scripts/tutorial_book_entries.js"),
-  "export const TUTORIAL_ENTRIES=" + JSON.stringify(tutorialEntries),
+  "export const TUTORIAL_ENTRIES=" + JSON.stringify(entries),
 );

@@ -1,5 +1,5 @@
 {
-  "version": [0, 11, 0],
+  "version": [0, 12, 0],
   "minEngineVersion": [1, 21, 70],
   "scriptModules": [
     {

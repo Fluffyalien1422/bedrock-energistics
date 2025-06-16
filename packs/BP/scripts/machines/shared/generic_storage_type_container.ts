@@ -158,6 +158,6 @@ export const genericStorageTypeContainerComponent: BlockCustomComponent = {
       );
     }
 
-    generate(e.block, type, 0);
+    generate(e.block, type, 0, 0);
   },
 };

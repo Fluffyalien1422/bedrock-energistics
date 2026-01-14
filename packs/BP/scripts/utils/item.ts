@@ -32,7 +32,7 @@ export function decrementSlotSurvival(
   slot: ContainerSlot,
   decrement = 1,
 ): void {
-  if (player.getGameMode() === GameMode.creative) {
+  if (player.getGameMode() === GameMode.Creative) {
     return;
   }
 

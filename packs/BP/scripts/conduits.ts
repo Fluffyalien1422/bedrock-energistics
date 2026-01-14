@@ -240,15 +240,15 @@ export const multiConduitComponent: BlockCustomComponent = {
         break;
     }
   },
-  onPlayerDestroy(e) {
-    if (e.player!.getGameMode() === GameMode.creative) {
+  onPlayerBreak(e) {
+    if (e.player!.getGameMode() === GameMode.Creative) {
       return;
     }
 
     const center = e.block.center();
 
     if (
-      e.destroyedBlockPermutation.getState(
+      e.brokenBlockPermutation.getState(
         "fluffyalien_energistics:energy" as keyof BlockStateSuperset,
       )
     ) {
@@ -259,7 +259,7 @@ export const multiConduitComponent: BlockCustomComponent = {
     }
 
     if (
-      e.destroyedBlockPermutation.getState(
+      e.brokenBlockPermutation.getState(
         "fluffyalien_energistics:fluid" as keyof BlockStateSuperset,
       )
     ) {
@@ -270,7 +270,7 @@ export const multiConduitComponent: BlockCustomComponent = {
     }
 
     if (
-      e.destroyedBlockPermutation.getState(
+      e.brokenBlockPermutation.getState(
         "fluffyalien_energistics:gas" as keyof BlockStateSuperset,
       )
     ) {

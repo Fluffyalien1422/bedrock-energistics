@@ -48,7 +48,7 @@ export const itemChargerComponent: BlockCustomComponent = {
 
     const inventory = entity.getComponent("inventory")!;
 
-    const itemTypeId = inventory.container?.getItem(4)?.typeId;
+    const itemTypeId = inventory.container.getItem(4)?.typeId;
     if (!itemTypeId) {
       workingState.set(false);
       return;

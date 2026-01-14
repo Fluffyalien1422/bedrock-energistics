@@ -105,7 +105,9 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
           (acceptedType) =>
             STANDARD_STORAGE_TYPE_DEFINITIONS[acceptedType].name,
         ),
-        currentIndex,
+        {
+          defaultValueIndex: currentIndex,
+        },
       );
 
     const player = world.getEntity(e.playerId) as Player;
@@ -158,6 +160,6 @@ export const genericStorageTypeContainerComponent: BlockCustomComponent = {
       );
     }
 
-    generate(e.block, type, 0, 0);
+    generate(e.block, type, 0);
   },
 };

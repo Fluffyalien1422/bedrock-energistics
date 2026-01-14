@@ -45,7 +45,9 @@ export const tesseractMachine: MachineDefinition = {
             translate: "fluffyalien_energistics.ui.tesseract.options.name",
           },
           "",
-          currentName,
+          {
+            defaultValue: currentName,
+          },
         );
 
       const player = world.getEntity(e.playerId) as Player;

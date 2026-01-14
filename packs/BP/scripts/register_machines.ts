@@ -1,5 +1,6 @@
 import { world } from "@minecraft/server";
 import {
+  init as becInit,
   registerMachine,
   StandardStorageType,
   useStandardStorageType,
@@ -32,7 +33,9 @@ import { lavaGeneratorMachine } from "./machines/lava_generator";
 import { waterGeneratorMachine } from "./machines/water_generator";
 import { crucibleMachine } from "./machines/crucible";
 
-world.afterEvents.worldInitialize.subscribe(() => {
+world.afterEvents.worldLoad.subscribe(() => {
+  becInit("fluffyalien_energistics");
+
   useStandardStorageType(StandardStorageType.Oil);
   useStandardStorageType(StandardStorageType.Hydrogen);
   useStandardStorageType(StandardStorageType.Carbon);

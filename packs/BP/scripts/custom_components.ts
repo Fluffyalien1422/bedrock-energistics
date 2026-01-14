@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { system } from "@minecraft/server";
 import {
   energyConduitComponent,
   fluidConduitComponent,
@@ -33,7 +33,7 @@ import { lavaGeneratorComponent } from "./machines/lava_generator";
 import { waterGeneratorComponent } from "./machines/water_generator";
 import { crucibleComponent } from "./machines/crucible";
 
-world.beforeEvents.worldInitialize.subscribe((e) => {
+system.beforeEvents.startup.subscribe((e) => {
   e.blockComponentRegistry.registerCustomComponent(
     "fluffyalien_energistics:energy_conduit",
     energyConduitComponent,

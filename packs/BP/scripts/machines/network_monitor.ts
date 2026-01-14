@@ -39,7 +39,7 @@ export const networkMonitorMachine: MachineDefinition = {
 };
 
 export const networkMonitorComponent: BlockCustomComponent = {
-  onPlayerDestroy(e) {
+  onPlayerBreak(e) {
     const uid = blockLocationToUid(e.block);
     networkDataMap.delete(uid);
   },

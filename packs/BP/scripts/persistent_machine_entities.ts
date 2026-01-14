@@ -10,7 +10,7 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
       e.hitEntity.location,
     );
 
-    const container = e.hitEntity.getComponent("inventory")!.container!;
+    const container = e.hitEntity.getComponent("inventory")!.container;
 
     const inputItem = container.getItem(4);
     if (inputItem) {

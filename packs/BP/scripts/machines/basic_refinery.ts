@@ -207,7 +207,9 @@ export const basicRefineryMachine: MachineDefinition = {
             ],
           },
           recipeNames,
-          currentIndex,
+          {
+            defaultValueIndex: currentIndex,
+          },
         );
 
       const player = world.getEntity(e.playerId) as Player;

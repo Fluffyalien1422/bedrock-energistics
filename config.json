@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Bedrock-OSS/regolith-schemas/main/config/v1.2.json",
+  "$schema": "https://raw.githubusercontent.com/Bedrock-OSS/regolith-schemas/main/config/v1.4.json",
   "author": "Fluffyalien",
   "name": "bedrock_energistics",
   "packs": {
@@ -7,12 +7,12 @@
     "resourcePack": "./packs/RP"
   },
   "regolith": {
-    "formatVersion": "1.2.0",
+    "formatVersion": "1.4.0",
     "dataPath": "./packs/data",
     "filterDefinitions": {
       "build_scripts": {
         "runWith": "shell",
-        "command": "npx esbuild BP/scripts/index.ts --outfile=BP/scripts/__bundle.js --bundle --format=esm --log-level=warning --external:@minecraft/common --external:@minecraft/debug-utilities --external:@minecraft/server --external:@minecraft/server-*"
+        "command": "npx esbuild BP/scripts/index.ts --outfile=BP/scripts/__bundle.js --bundle --format=esm --log-level=warning --external:@minecraft/common --external:@minecraft/debug-utilities --external:@minecraft/server --external:@minecraft/server-* --preserve-symlinks"
       },
       "prod_finish_up_build_scripts": {
         "runWith": "shell",
@@ -34,7 +34,8 @@
     "profiles": {
       "default": {
         "export": {
-          "target": "development"
+          "target": "development",
+          "build": "standard"
         },
         "filters": [
           {
@@ -48,16 +49,6 @@
           },
           {
             "filter": "machine_entities"
-          }
-        ]
-      },
-      "preview": {
-        "export": {
-          "target": "preview"
-        },
-        "filters": [
-          {
-            "profile": "default"
           }
         ]
       },

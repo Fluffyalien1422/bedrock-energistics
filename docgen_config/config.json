@@ -7,7 +7,7 @@
   ],
   "dependencies": [
     {
-      "name": "Bedrock Energistics Core v0.8.x",
+      "name": "Bedrock Energistics Core v0.10.x",
       "mcpedlUrl": "https://mcpedl.com/bedrock-energistics-core",
       "cfUrl": "https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core"
     }

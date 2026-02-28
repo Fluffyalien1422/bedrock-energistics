@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.80",
+  "format_version": "1.26.0",
   "minecraft:block": {
     "description": {
       "identifier": "fluffyalien_energistics:gas_conduit",
@@ -16,10 +16,8 @@
       }
     },
     "components": {
-      "minecraft:custom_components": [
-        "fluffyalien_energisticscore:conduit",
-        "fluffyalien_energistics:gas_conduit"
-      ],
+      "fluffyalien_energisticscore:conduit": {},
+      "fluffyalien_energistics:gas_conduit": {},
       "tag:fluffyalien_energisticscore:conduit": {},
       "tag:fluffyalien_energisticscore:io.category.gas": {},
 
@@ -51,6 +49,9 @@
       "minecraft:destructible_by_explosion": false,
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 0.5
+      },
+      "minecraft:movable": {
+        "movement_type": "immovable"
       },
       "minecraft:tick": {
         "interval_range": [5, 5]

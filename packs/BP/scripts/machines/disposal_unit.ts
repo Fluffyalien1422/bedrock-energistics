@@ -1,4 +1,4 @@
-import { BlockCustomComponent, system } from "@minecraft/server";
+import { BlockCustomComponent } from "@minecraft/server";
 import {
   getMachineStorage,
   MachineDefinition,
@@ -51,11 +51,9 @@ export const disposalUnitMachine: MachineDefinition = {
         storedEnergy - energyConsumption,
       );
 
-      system.run(() => {
-        void setMachineStorage(block, e.receiveType, 0);
-      });
-
-      return {};
+      return {
+        handleStorage: false,
+      };
     },
   },
 };

@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.80",
+  "format_version": "1.26.0",
   "minecraft:block": {
     "description": {
       "identifier": "fluffyalien_energistics:disposal_unit",
@@ -17,19 +17,34 @@
       }
     },
     "components": {
-      "minecraft:custom_components": [
-        "fluffyalien_energisticscore:machine",
-        "fluffyalien_energistics:disposal_unit"
-      ],
+      "fluffyalien_energisticscore:machine": {},
+      "fluffyalien_energistics:disposal_unit": {},
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.any": {},
       "tag:fluffyalien_energisticscore:consumer.any": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "fluffyalien_energistics:machine_casing_side"
+        },
+        "north": {
+          "texture": "fluffyalien_energistics:disposal_unit_front_off"
+        },
+        "up": {
+          "texture": "fluffyalien_energistics:machine_casing_top"
+        },
+        "down": {
+          "texture": "fluffyalien_energistics:machine_casing_top"
+        }
+      },
 
       "minecraft:destructible_by_explosion": false,
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 1
+      },
+      "minecraft:movable": {
+        "movement_type": "immovable"
       },
       "minecraft:tick": {
         "interval_range": [20, 20]

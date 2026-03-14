@@ -21,38 +21,6 @@ import {
 import { decrementSlot } from "../utils/item";
 import { weightedRandom } from "../utils/math";
 
-const OUTPUT_ITEM_TYPES = [
-  "minecraft:beetroot_seeds",
-  "minecraft:melon_seeds",
-  "minecraft:pumpkin_seeds",
-  "minecraft:torchflower_seeds",
-  "minecraft:wheat_seeds",
-  "minecraft:oak_sapling",
-  "minecraft:acacia_sapling",
-  "minecraft:birch_sapling",
-  "minecraft:cherry_sapling",
-  "minecraft:dark_oak_sapling",
-  "minecraft:jungle_sapling",
-  "minecraft:spruce_sapling",
-  "minecraft:diamond",
-  "minecraft:emerald",
-  "minecraft:prismarine_shard",
-  "minecraft:prismarine_crystals",
-  "minecraft:heart_of_the_sea",
-  "minecraft:iron_nugget",
-  "minecraft:gold_nugget",
-  "minecraft:nautilus_shell",
-  "minecraft:clay_ball",
-  "minecraft:turtle_scute",
-  "minecraft:amethyst_shard",
-  "minecraft:coal",
-  "minecraft:flint",
-  "minecraft:blaze_powder",
-  "minecraft:nether_wart",
-  "minecraft:ghast_tear",
-  "minecraft:quartz",
-];
-
 const INPUT_ITEM_TYPES = [
   "minecraft:dirt",
   "minecraft:gravel",
@@ -135,22 +103,18 @@ export const centrifugeMachine: MachineDefinition = {
         outputSlot0: {
           type: "itemSlot",
           index: 5,
-          allowedItems: OUTPUT_ITEM_TYPES,
         },
         outputSlot1: {
           type: "itemSlot",
           index: 6,
-          allowedItems: OUTPUT_ITEM_TYPES,
         },
         outputSlot2: {
           type: "itemSlot",
           index: 7,
-          allowedItems: OUTPUT_ITEM_TYPES,
         },
         outputSlot3: {
           type: "itemSlot",
           index: 8,
-          allowedItems: OUTPUT_ITEM_TYPES,
         },
       },
     },

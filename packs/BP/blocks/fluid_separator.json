@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.80",
+  "format_version": "1.26.0",
   "minecraft:block": {
     "description": {
       "identifier": "fluffyalien_energistics:fluid_separator",
@@ -18,19 +18,34 @@
       }
     },
     "components": {
-      "minecraft:custom_components": [
-        "fluffyalien_energisticscore:machine",
-        "fluffyalien_energistics:fluid_separator"
-      ],
+      "fluffyalien_energisticscore:machine": {},
+      "fluffyalien_energistics:fluid_separator": {},
       "tag:fluffyalien_energisticscore:machine": {},
       "tag:fluffyalien_energisticscore:io.category.energy": {},
       "tag:fluffyalien_energisticscore:consumer.category.energy": {},
 
       "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "fluffyalien_energistics:machine_casing_side"
+        },
+        "north": {
+          "texture": "fluffyalien_energistics:fluid_separator_front_off"
+        },
+        "up": {
+          "texture": "fluffyalien_energistics:machine_casing_top"
+        },
+        "down": {
+          "texture": "fluffyalien_energistics:machine_casing_top"
+        }
+      },
 
       "minecraft:destructible_by_explosion": false,
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 1
+      },
+      "minecraft:movable": {
+        "movement_type": "immovable"
       },
       "minecraft:tick": {
         "interval_range": [10, 10]

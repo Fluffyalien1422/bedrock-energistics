@@ -59,7 +59,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, "inputSlot", inputItem);
+        void setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -68,7 +68,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, "inputSlot", inputItem);
+      void setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     } else {
       workingState.set(false);

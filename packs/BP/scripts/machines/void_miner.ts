@@ -108,13 +108,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     outputItem.amount--;
 
     if (outputItem.amount > 0) {
-      setMachineSlotItem(e.block, "outputSlot", outputItem);
+      void setMachineSlotItem(e.block, "outputSlot", outputItem);
       progressMap.delete(uid);
       workingState.set(false);
       return;
     }
 
-    setMachineSlotItem(e.block, "outputSlot");
+    void setMachineSlotItem(e.block, "outputSlot");
   }
 
   const progress = progressMap.get(uid) ?? 0;
@@ -131,7 +131,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= MAX_PROGRESS) {
     const resultItemType = weightedRandom(LOOT_WEIGHTS);
-    setMachineSlotItem(
+    void setMachineSlotItem(
       e.block,
       "outputSlot",
       new MachineItemStack(resultItemType),

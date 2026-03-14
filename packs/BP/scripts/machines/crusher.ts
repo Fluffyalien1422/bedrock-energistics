@@ -100,9 +100,9 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     if (depositItemToHopper(e.block, itemStack)) {
       outputItem.amount--;
       if (outputItem.amount > 0) {
-        setMachineSlotItem(e.block, "outputSlot", outputItem);
+        void setMachineSlotItem(e.block, "outputSlot", outputItem);
       } else {
-        setMachineSlotItem(e.block, "outputSlot");
+        void setMachineSlotItem(e.block, "outputSlot");
         outputItem = undefined;
       }
     }
@@ -119,7 +119,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, "inputSlot", inputItem);
+        void setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -131,7 +131,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, "inputSlot", inputItem);
+      void setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     } else {
       progressMap.delete(uid);
@@ -166,13 +166,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= MAX_PROGRESS) {
     inputItem.amount--;
-    setMachineSlotItem(
+    void setMachineSlotItem(
       e.block,
       "inputSlot",
       inputItem.amount > 0 ? inputItem : undefined,
     );
 
-    setMachineSlotItem(
+    void setMachineSlotItem(
       e.block,
       "outputSlot",
       new MachineItemStack(result, (outputItem?.amount ?? 0) + 1),

@@ -203,13 +203,13 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     outputItem.amount--;
     if (outputItem.amount > 0) {
-      setMachineSlotItem(e.block, slotId, outputItem);
+      void setMachineSlotItem(e.block, slotId, outputItem);
       progressMap.delete(uid);
       inputState.set("none");
       returnAfterHopperInput = true;
       break;
     } else {
-      setMachineSlotItem(e.block, slotId);
+      void setMachineSlotItem(e.block, slotId);
     }
 
     returnAfterHopperInput = true;
@@ -227,7 +227,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, "inputSlot", inputItem);
+        void setMachineSlotItem(e.block, "inputSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -239,7 +239,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, "inputSlot", inputItem);
+      void setMachineSlotItem(e.block, "inputSlot", inputItem);
       decrementSlot(hopperSlot);
     }
   }
@@ -264,7 +264,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= MAX_PROGRESS) {
     inputItem.amount--;
-    setMachineSlotItem(
+    void setMachineSlotItem(
       e.block,
       "inputSlot",
       inputItem.amount > 0 ? inputItem : undefined,
@@ -273,7 +273,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     for (let i = 0; i < 4; i++) {
       const itemId = weightedRandom(LOOT[inputItem.typeId]);
       const slotId = `outputSlot${i.toString()}`;
-      setMachineSlotItem(e.block, slotId, new MachineItemStack(itemId));
+      void setMachineSlotItem(e.block, slotId, new MachineItemStack(itemId));
     }
 
     progressMap.delete(uid);

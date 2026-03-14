@@ -48,12 +48,12 @@ export function decrementMachineSlot(
   const newAmount = item.amount - decrement;
 
   if (newAmount <= 0) {
-    setMachineSlotItem(machine, slotId);
+    void setMachineSlotItem(machine, slotId);
     return;
   }
 
   item.amount = newAmount;
-  setMachineSlotItem(machine, slotId, item);
+  void setMachineSlotItem(machine, slotId, item);
 }
 
 export async function getOutputItemWithHopperSupport(
@@ -86,7 +86,7 @@ export async function getInputItemWithHopperSupport(
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(block, slotId, inputItem);
+        void setMachineSlotItem(block, slotId, inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -98,7 +98,7 @@ export async function getInputItemWithHopperSupport(
 
     if (hopperSlot) {
       inputItem = MachineItemStack.fromItemStack(hopperSlot.getItem()!);
-      setMachineSlotItem(block, slotId, inputItem);
+      void setMachineSlotItem(block, slotId, inputItem);
       decrementSlot(hopperSlot);
     }
   }

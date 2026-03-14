@@ -108,7 +108,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
       if (hopperSlot) {
         inputItem.amount++;
-        setMachineSlotItem(e.block, "fuelSlot", inputItem);
+        void setMachineSlotItem(e.block, "fuelSlot", inputItem);
         decrementSlot(hopperSlot);
       }
     }
@@ -120,7 +120,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (hopperSlot) {
       inputItem = new MachineItemStack(hopperSlot.typeId);
-      setMachineSlotItem(e.block, "fuelSlot", inputItem);
+      void setMachineSlotItem(e.block, "fuelSlot", inputItem);
       decrementSlot(hopperSlot);
     }
   }
@@ -157,7 +157,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   progressMap.set(uid, [maxProgress, maxProgress]);
 
   inputItem.amount--;
-  setMachineSlotItem(
+  void setMachineSlotItem(
     e.block,
     "fuelSlot",
     inputItem.amount > 0 ? inputItem : undefined,

@@ -322,9 +322,9 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
     if (outputItem) {
       outputItem.amount += recipe.itemOutput.amount;
-      setMachineSlotItem(e.block, "outputSlot", outputItem);
+      void setMachineSlotItem(e.block, "outputSlot", outputItem);
     } else {
-      setMachineSlotItem(
+      void setMachineSlotItem(
         e.block,
         "outputSlot",
         new MachineItemStack(recipe.itemOutput.type, recipe.itemOutput.amount),

@@ -45,6 +45,7 @@ fs.writeFileSync(
   path.join(TMP_DIR, "RP/manifest.json"),
   JSON.stringify({
     format_version: 2,
+    capabilities: ["pbr"],
     header: {
       name: "pack.name",
       description: "pack.description",

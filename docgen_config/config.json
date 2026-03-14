@@ -7,12 +7,13 @@
   ],
   "dependencies": [
     {
-      "name": "Bedrock Energistics Core v0.10.x",
+      "name": "Bedrock Energistics Core v0.11.x",
       "mcpedlUrl": "https://mcpedl.com/bedrock-energistics-core",
       "cfUrl": "https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core"
     }
   ],
-  "issueTrackerUrl": "https://legacy.curseforge.com/minecraft-bedrock/addons/bedrock-energistics/issues",
+  "issueTrackerUrl": "https://github.com/Fluffyalien1422/bedrock-energistics/issues",
+  "issueTrackerAllowsFeatureRequests": true,
   "theme": {
     "secondaryColor": "#d2c421"
   },

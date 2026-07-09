@@ -22,17 +22,15 @@ export const networkMonitorMachine: MachineDefinition = {
         networkDataMap.set(uid, networkData);
       }
 
-      for (const [key, value] of Object.entries(e.networkData)) {
-        const existing = networkData.get(key);
-        if (existing) {
-          existing.push(value);
-          if (existing.length > MAX_DATA_POINTS) {
-            existing.shift();
-          }
-          continue;
+      const value = e.allocationData;
+      const existing = networkData.get(e.network.ioType.id);
+      if (existing) {
+        existing.push(value);
+        if (existing.length > MAX_DATA_POINTS) {
+          existing.shift();
         }
-
-        networkData.set(key, [value]);
+      } else {
+        networkData.set(e.network.ioType.id, [value]);
       }
     },
   },

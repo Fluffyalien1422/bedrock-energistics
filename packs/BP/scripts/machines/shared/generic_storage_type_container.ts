@@ -10,7 +10,7 @@ import {
   MachineDefinitionHandlers,
   MachineNetwork,
   MachineOnButtonPressedEventArg,
-  MachineUpdateUiHandlerResponse,
+  MachineUpdateUiHandlerRes,
   STANDARD_STORAGE_TYPE_DEFINITIONS,
   StandardStorageType,
 } from "bedrock-energistics-core-api";
@@ -61,7 +61,7 @@ export class GenericStorageTypeContainerMachine implements MachineDefinition {
     };
   }
 
-  updateUi(e: MachineCallbackArg): MachineUpdateUiHandlerResponse {
+  updateUi(e: MachineCallbackArg): MachineUpdateUiHandlerRes {
     const block = e.blockLocation.dimension.getBlock(e.blockLocation);
     const type = block?.permutation.getState(
       "fluffyalien_energistics:type" as keyof BlockStateSuperset,

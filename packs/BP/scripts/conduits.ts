@@ -19,7 +19,7 @@ import { BlockStateSuperset } from "@minecraft/vanilla-data";
 export const energyConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
     void updateBlockConnectStates(block, STR_DIRECTIONS, (other, direction) =>
-      IoCapabilities.fromMachine(
+      IoCapabilities.fromBlock(
         other,
         reverseDirection(strDirectionToDirection(direction)),
       ).acceptsAnyTypeOfCategory("energy", true),
@@ -60,7 +60,7 @@ export const energyConduitComponent: BlockCustomComponent = {
 export const fluidConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
     void updateBlockConnectStates(block, STR_DIRECTIONS, (other, direction) =>
-      IoCapabilities.fromMachine(
+      IoCapabilities.fromBlock(
         other,
         reverseDirection(strDirectionToDirection(direction)),
       ).acceptsAnyTypeOfCategory("fluid", true),
@@ -101,7 +101,7 @@ export const fluidConduitComponent: BlockCustomComponent = {
 export const gasConduitComponent: BlockCustomComponent = {
   onTick({ block }) {
     void updateBlockConnectStates(block, STR_DIRECTIONS, (other, direction) =>
-      IoCapabilities.fromMachine(
+      IoCapabilities.fromBlock(
         other,
         reverseDirection(strDirectionToDirection(direction)),
       ).acceptsAnyTypeOfCategory("gas", true),
@@ -148,8 +148,8 @@ export const multiConduitComponent: BlockCustomComponent = {
         const direction = strDirectionToDirection(strDirection);
         const reversedDirection = reverseDirection(direction);
 
-        const io = IoCapabilities.fromMachine(block, direction);
-        const otherIo = IoCapabilities.fromMachine(other, reversedDirection);
+        const io = IoCapabilities.fromBlock(block, direction);
+        const otherIo = IoCapabilities.fromBlock(other, reversedDirection);
 
         if (other.typeId === "fluffyalien_energistics:multi_conduit") {
           const matchExact =

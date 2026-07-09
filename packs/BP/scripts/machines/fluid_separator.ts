@@ -3,7 +3,6 @@ import {
   getMachineStorage,
   MachineDefinition,
   MachineNetwork,
-  MachineUpdateUiHandlerResponse,
   setMachineStorage,
   StandardStorageType,
 } from "bedrock-energistics-core-api";
@@ -71,7 +70,7 @@ export const fluidSeparatorMachine: MachineDefinition = {
     },
   },
   handlers: {
-    updateUi({ blockLocation }): MachineUpdateUiHandlerResponse {
+    updateUi({ blockLocation }) {
       const block = blockLocation.dimension.getBlock(blockLocation);
       if (!block) return {};
 

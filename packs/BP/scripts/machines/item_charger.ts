@@ -63,7 +63,7 @@ export const itemChargerComponent: BlockCustomComponent = {
 
         const itemMachine = new ItemMachine(inventory, 4);
         const itemMachineIo = await itemMachine.getIo();
-        const acceptsEnergy = await itemMachineIo.acceptsTypeWithId("energy");
+        const acceptsEnergy = await itemMachineIo.acceptsTypeId("energy");
         if (!acceptsEnergy) {
           workingState.set(false);
           return;

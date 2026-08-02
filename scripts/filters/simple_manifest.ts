@@ -1,36 +1,51 @@
 import * as fs from "fs";
-import * as path from "path";
-import * as simpleManifest from "@/packs/data/simple_manifest.json";
-import { TMP_DIR } from "./common";
+
+const BP_HEADER_UUID = "34dbc9d1-1e2b-421e-a816-d0418896b665";
+const BP_DATA_UUID = "5243f317-00c6-4405-8d41-dbf6c42ec2d4";
+const BP_SCRIPT_UUID = "9ff133e0-1754-4ac9-8976-8c212f90577d";
+
+const RP_HEADER_UUID = "92ebebbb-78b7-4e3a-90ce-9fdb394b3a48";
+const RP_RESOURCES_UUID = "e258f0e1-7767-4d49-bb2c-f24791b16500";
+
+type VersionTuple = [number, number, number];
+interface SimpleManifest {
+  version: VersionTuple;
+  minEngineVersion: VersionTuple;
+  scriptModules: { name: string; version: string }[];
+}
+
+const simpleManifest = JSON.parse(
+  fs.readFileSync("data/simple_manifest.json", "utf8"),
+) as SimpleManifest;
 
 fs.writeFileSync(
-  path.join(TMP_DIR, "BP/manifest.json"),
+  "BP/manifest.json",
   JSON.stringify({
     format_version: 2,
     header: {
       name: "pack.name",
       description: "pack.description",
       min_engine_version: simpleManifest.minEngineVersion,
-      uuid: simpleManifest.uuids.bp.header,
+      uuid: BP_HEADER_UUID,
       version: simpleManifest.version,
     },
     modules: [
       {
         type: "data",
-        uuid: simpleManifest.uuids.bp.data,
+        uuid: BP_DATA_UUID,
         version: [1, 0, 0],
       },
       {
         type: "script",
         language: "javascript",
-        uuid: simpleManifest.uuids.bp.script,
+        uuid: BP_SCRIPT_UUID,
         entry: "scripts/__bundle.js",
         version: [1, 0, 0],
       },
     ],
     dependencies: [
       {
-        uuid: simpleManifest.uuids.rp.header,
+        uuid: RP_HEADER_UUID,
         version: simpleManifest.version,
       },
       ...simpleManifest.scriptModules.map((scriptMod) => ({
@@ -42,30 +57,30 @@ fs.writeFileSync(
 );
 
 fs.writeFileSync(
-  path.join(TMP_DIR, "RP/manifest.json"),
+  "RP/manifest.json",
   JSON.stringify({
     format_version: 2,
-    capabilities: ["pbr"],
     header: {
       name: "pack.name",
       description: "pack.description",
       pack_scope: "world",
       min_engine_version: simpleManifest.minEngineVersion,
-      uuid: simpleManifest.uuids.rp.header,
+      uuid: RP_HEADER_UUID,
       version: simpleManifest.version,
     },
     modules: [
       {
         type: "resources",
-        uuid: simpleManifest.uuids.rp.resources,
+        uuid: RP_RESOURCES_UUID,
         version: [1, 0, 0],
       },
     ],
     dependencies: [
       {
-        uuid: simpleManifest.uuids.bp.header,
+        uuid: BP_HEADER_UUID,
         version: simpleManifest.version,
       },
     ],
+    capabilities: ["pbr"],
   }),
 );

@@ -1,11 +1,16 @@
 // @ts-check
 
 import eslint from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
+  globalIgnores([
+    "build/**/*",
+    "site/**/*",
+    "packs/BP/scripts/generated/**/*.js",
+  ]),
   {
-    ignores: ["build/**/*", "becore_api/**/*"],
     extends: [eslint.configs.recommended],
     rules: {
       eqeqeq: "error",
@@ -13,8 +18,10 @@ export default tseslint.config(
   },
   {
     files: ["**/*.ts"],
-    ignores: ["becore_api/**/*"],
-    extends: tseslint.configs.strictTypeChecked,
+    extends: [
+      ...tseslint.configs.strictTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+    ],
     languageOptions: {
       parserOptions: {
         project: true,
@@ -24,14 +31,13 @@ export default tseslint.config(
     },
     rules: {
       "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-confusing-non-null-assertion": "off",
+      "@typescript-eslint/no-dynamic-delete": "off",
       "@typescript-eslint/no-unsafe-enum-comparison": "off",
-      "@typescript-eslint/no-deprecated": "off",
+
       "@typescript-eslint/explicit-function-return-type": "error",
       "@typescript-eslint/prefer-readonly": "error",
-      "@typescript-eslint/switch-exhaustiveness-check": [
-        "error",
-        { considerDefaultExhaustiveForUnions: true },
-      ],
+      "@typescript-eslint/switch-exhaustiveness-check": "error",
     },
   },
 );

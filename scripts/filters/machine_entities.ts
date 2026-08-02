@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as path from "path";
-import { TMP_DIR } from "./common";
 
 interface Machine {
   id: string;
@@ -8,12 +7,12 @@ interface Machine {
   persistent: boolean;
 }
 
-const bpDir = path.join(TMP_DIR, "BP");
+const bpDir = "BP";
 
 const entitiesDir = path.join(bpDir, "entities");
 fs.mkdirSync(entitiesDir);
 
-const machineEntitiesDir = path.join(TMP_DIR, "data/machine_entities");
+const machineEntitiesDir = "data/machine_entities";
 
 for (const fileName of fs.readdirSync(machineEntitiesDir, {
   recursive: true,

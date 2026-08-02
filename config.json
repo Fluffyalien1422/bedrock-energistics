@@ -19,16 +19,16 @@
         "command": "npx terser BP/scripts/__bundle.js --module -cmo BP/scripts/__bundle.js; Remove-Item BP/scripts/* -Recurse -Exclude __bundle.js"
       },
       "simple_manifest": {
-        "runWith": "shell",
-        "command": "npm run tsx scripts/filters/simple_manifest"
+        "runWith": "nodejs",
+        "script": "scripts/filters/simple_manifest.ts"
       },
       "machine_entities": {
-        "runWith": "shell",
-        "command": "npm run tsx scripts/filters/machine_entities"
+        "runWith": "nodejs",
+        "script": "scripts/filters/machine_entities.ts"
       },
       "tutorial_book_entries": {
-        "runWith": "shell",
-        "command": "npm run tsx scripts/filters/tutorial_book_entries"
+        "runWith": "nodejs",
+        "script": "scripts/filters/tutorial_book_entries.ts"
       }
     },
     "profiles": {

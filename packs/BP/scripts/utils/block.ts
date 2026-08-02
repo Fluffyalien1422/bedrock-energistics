@@ -166,11 +166,9 @@ export class BlockStateAccessor<TValue extends string | number | boolean> {
   ) {}
 
   get(): TValue {
-    if (this.cachedValue === undefined) {
-      this.cachedValue = this.block.permutation.getState(
-        this.stateId as keyof BlockStateSuperset,
-      ) as TValue;
-    }
+    this.cachedValue ??= this.block.permutation.getState(
+      this.stateId as keyof BlockStateSuperset,
+    ) as TValue;
 
     return this.cachedValue;
   }

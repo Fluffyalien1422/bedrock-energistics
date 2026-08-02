@@ -88,6 +88,7 @@ export const pumpComponent: BlockCustomComponent = {
           return;
         }
         break;
+      case undefined:
       default:
         workingState.set(false);
         if (typeState.get() !== "none") {

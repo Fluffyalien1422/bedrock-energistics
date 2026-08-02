@@ -1,11 +1,12 @@
 import {
+  addMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
   MachineItemStack,
   MachineNetwork,
   RegisteredStorageType,
-  setMachineSlotItem,
   setMachineStorage,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
 import {
@@ -19,7 +20,6 @@ import {
 } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
 import {
-  decrementMachineSlot,
   getInputItemWithHopperSupport,
   getItemTranslationKey,
   getOutputItemWithHopperSupport,
@@ -280,7 +280,12 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   // verify inputs
-  if (recipe.itemInput?.type !== inputItem?.typeId) {
+  if (
+    recipe.itemInput
+      ? inputItem?.typeId !== recipe.itemInput.type ||
+        inputItem.amount < recipe.itemInput.amount
+      : !!inputItem
+  ) {
     progressMap.delete(uid);
     workingState.set(false);
     return;
@@ -307,8 +312,41 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= recipe.maxProgress) {
-    if (inputItem) {
-      decrementMachineSlot(e.block, "inputSlot", inputItem);
+    progressMap.delete(uid);
+
+    // only produce the result if the item input was really consumed, all of it
+    // or none of it — a half-consumed recipe would craft out of thin air
+    let consumed: MachineItemStack | undefined;
+    if (recipe.itemInput) {
+      consumed = await takeMachineSlotItem(
+        e.block,
+        "inputSlot",
+        recipe.itemInput.amount,
+        {
+          expectType: recipe.itemInput.type,
+          expectMinAmount: recipe.itemInput.amount,
+        },
+      );
+      if (!consumed) return;
+    }
+
+    const added = await addMachineSlotItem(
+      e.block,
+      "outputSlot",
+      new MachineItemStack(recipe.itemOutput.type, recipe.itemOutput.amount),
+      {
+        // all or nothing: a partial add would drop the rest of the result
+        expectMaxAmount: resultItemStack.maxAmount - recipe.itemOutput.amount,
+      },
+    );
+
+    if (!added) {
+      // the output slot filled up while we waited; give the input back and
+      // leave the fluid alone
+      if (consumed) {
+        await addMachineSlotItem(e.block, "inputSlot", consumed);
+      }
+      return;
     }
 
     if (recipe.fluidInput) {
@@ -320,18 +358,6 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
       );
     }
 
-    if (outputItem) {
-      outputItem.amount += recipe.itemOutput.amount;
-      void setMachineSlotItem(e.block, "outputSlot", outputItem);
-    } else {
-      void setMachineSlotItem(
-        e.block,
-        "outputSlot",
-        new MachineItemStack(recipe.itemOutput.type, recipe.itemOutput.amount),
-      );
-    }
-
-    progressMap.delete(uid);
     return;
   }
 

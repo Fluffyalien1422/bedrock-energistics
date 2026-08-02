@@ -1,16 +1,16 @@
 import {
+  addMachineSlotItem,
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
   MachineItemStack,
-  setMachineSlotItem,
   setMachineStorage,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
 import {
   BlockComponentTickEvent,
   BlockCustomComponent,
-  ItemStack,
 } from "@minecraft/server";
 import {
   BlockStateAccessor,
@@ -98,23 +98,30 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
       return;
     }
 
-    const itemStack = new ItemStack(outputItem.typeId);
-    if (!depositItemToHopper(e.block, itemStack)) {
+    // take the item out before handing it to the hopper, so we can't give the
+    // hopper a copy of an item the take turns out not to have removed.
+    const taken = await takeMachineSlotItem(e.block, "outputSlot", 1, {
+      expectType: outputItem.typeId,
+    });
+
+    if (!taken) {
       progressMap.delete(uid);
       workingState.set(false);
       return;
     }
 
-    outputItem.amount--;
-
-    if (outputItem.amount > 0) {
-      void setMachineSlotItem(e.block, "outputSlot", outputItem);
+    if (!depositItemToHopper(e.block, taken.toItemStack())) {
+      await addMachineSlotItem(e.block, "outputSlot", taken);
       progressMap.delete(uid);
       workingState.set(false);
       return;
     }
 
-    void setMachineSlotItem(e.block, "outputSlot");
+    if (outputItem.amount > 1) {
+      progressMap.delete(uid);
+      workingState.set(false);
+      return;
+    }
   }
 
   const progress = progressMap.get(uid) ?? 0;
@@ -131,13 +138,18 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   if (progress >= MAX_PROGRESS) {
     const resultItemType = weightedRandom(LOOT_WEIGHTS);
-    void setMachineSlotItem(
+    const added = await addMachineSlotItem(
       e.block,
       "outputSlot",
       new MachineItemStack(resultItemType),
     );
 
-    progressMap.delete(uid);
+    // if the slot was filled while we mined, hold the progress and retry next
+    // tick rather than throwing the result away
+    if (added) {
+      progressMap.delete(uid);
+    }
+
     return;
   }
 

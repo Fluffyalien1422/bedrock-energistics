@@ -1,10 +1,10 @@
 import {
-  getMachineSlotItem,
+  addMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
   MachineItemStack,
-  setMachineSlotItem,
   setMachineStorage,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
 import {
@@ -12,13 +12,11 @@ import {
   BlockCustomComponent,
   ItemStack,
 } from "@minecraft/server";
+import { BlockStateAccessor } from "../utils/block";
 import {
-  BlockStateAccessor,
-  depositItemToHopper,
-  getFirstSlotWithItemInConnectedHoppers,
-  getHopperBelow,
-} from "../utils/block";
-import { decrementSlot } from "../utils/item";
+  getInputItemWithHopperSupport,
+  getOutputItemWithHopperSupport,
+} from "../utils/item";
 
 const INPUT_ITEMS = [
   "minecraft:stone",
@@ -93,51 +91,21 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  let outputItem = await getMachineSlotItem(e.block, "outputSlot");
+  const outputItem = await getOutputItemWithHopperSupport(
+    e.block,
+    "outputSlot",
+  );
 
-  if (outputItem && getHopperBelow(e.block)) {
-    const itemStack = new ItemStack(outputItem.typeId);
-    if (depositItemToHopper(e.block, itemStack)) {
-      outputItem.amount--;
-      if (outputItem.amount > 0) {
-        void setMachineSlotItem(e.block, "outputSlot", outputItem);
-      } else {
-        void setMachineSlotItem(e.block, "outputSlot");
-        outputItem = undefined;
-      }
-    }
-  }
+  const inputItem = await getInputItemWithHopperSupport(
+    e.block,
+    "inputSlot",
+    INPUT_ITEMS,
+  );
 
-  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
-
-  if (inputItem) {
-    const inputItemTypeId = inputItem.typeId;
-    if (inputItem.amount < new ItemStack(inputItemTypeId).maxAmount) {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-        inputItemTypeId,
-      ]);
-
-      if (hopperSlot) {
-        inputItem.amount++;
-        void setMachineSlotItem(e.block, "inputSlot", inputItem);
-        decrementSlot(hopperSlot);
-      }
-    }
-  } else {
-    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
-      e.block,
-      INPUT_ITEMS,
-    );
-
-    if (hopperSlot) {
-      inputItem = new MachineItemStack(hopperSlot.typeId);
-      void setMachineSlotItem(e.block, "inputSlot", inputItem);
-      decrementSlot(hopperSlot);
-    } else {
-      progressMap.delete(uid);
-      workingState.set(false);
-      return;
-    }
+  if (!inputItem) {
+    progressMap.delete(uid);
+    workingState.set(false);
+    return;
   }
 
   const result = RECIPES[inputItem.typeId];
@@ -165,20 +133,24 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    inputItem.amount--;
-    void setMachineSlotItem(
-      e.block,
-      "inputSlot",
-      inputItem.amount > 0 ? inputItem : undefined,
-    );
+    progressMap.delete(uid);
 
-    void setMachineSlotItem(
+    // only produce the result if the input was really consumed
+    const consumed = await takeMachineSlotItem(e.block, "inputSlot", 1, {
+      expectType: inputItem.typeId,
+    });
+    if (!consumed) return;
+
+    const added = await addMachineSlotItem(
       e.block,
       "outputSlot",
-      new MachineItemStack(result, (outputItem?.amount ?? 0) + 1),
+      new MachineItemStack(result),
     );
+    if (!added) {
+      // the output slot filled up while we waited; give the input back
+      await addMachineSlotItem(e.block, "inputSlot", consumed);
+    }
 
-    progressMap.delete(uid);
     return;
   }
 

@@ -2,22 +2,17 @@ import {
   BlockComponentTickEvent,
   BlockCustomComponent,
   BlockTypes,
-  ItemStack,
 } from "@minecraft/server";
 import {
-  getMachineSlotItem,
+  addMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
-  MachineItemStack,
-  setMachineSlotItem,
   setMachineStorage,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
-import {
-  BlockStateAccessor,
-  getFirstSlotWithItemInConnectedHoppers,
-} from "../utils/block";
+import { BlockStateAccessor } from "../utils/block";
 import { getBlockInDirection, StrDirection } from "../utils/direction";
-import { decrementMachineSlot, decrementSlot } from "../utils/item";
+import { getInputItemWithHopperSupport } from "../utils/item";
 
 const ENERGY_CONSUMPTION_PER_BLOCK = 5;
 
@@ -48,32 +43,11 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "fluffyalien_energistics:working",
   );
 
-  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
+  const inputItem = await getInputItemWithHopperSupport(e.block, "inputSlot");
 
-  if (inputItem) {
-    const itemStack = new ItemStack(inputItem.typeId, inputItem.amount);
-    if (itemStack.amount < itemStack.maxAmount) {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-        itemStack.typeId,
-      ]);
-
-      if (hopperSlot) {
-        inputItem.amount++;
-        void setMachineSlotItem(e.block, "inputSlot", inputItem);
-        decrementSlot(hopperSlot);
-      }
-    }
-  } else {
-    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block);
-
-    if (hopperSlot) {
-      inputItem = new MachineItemStack(hopperSlot.typeId);
-      void setMachineSlotItem(e.block, "inputSlot", inputItem);
-      decrementSlot(hopperSlot);
-    } else {
-      workingState.set(false);
-      return;
-    }
+  if (!inputItem) {
+    workingState.set(false);
+    return;
   }
 
   const blockTypeToPlace = BlockTypes.get(inputItem.typeId);
@@ -96,12 +70,24 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     "minecraft:facing_direction",
   ) as StrDirection;
 
-  const targetBlock = getBlockInDirection(e.block, facingDirection);
-  if (!targetBlock?.isAir) {
+  if (!getBlockInDirection(e.block, facingDirection)?.isAir) {
     return;
   }
 
-  decrementMachineSlot(e.block, "inputSlot", inputItem);
+  // only place the block if the item was really consumed
+  const consumed = await takeMachineSlotItem(e.block, "inputSlot", 1, {
+    expectType: inputItem.typeId,
+  });
+  if (!consumed) return;
+
+  // re-read the target: the await gave the world time to change
+  const targetBlock = getBlockInDirection(e.block, facingDirection);
+  if (!targetBlock?.isAir) {
+    // the target was filled while we waited; give the item back
+    await addMachineSlotItem(e.block, "inputSlot", consumed);
+    return;
+  }
+
   void setMachineStorage(
     e.block,
     "energy",

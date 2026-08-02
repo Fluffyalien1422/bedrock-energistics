@@ -3,6 +3,7 @@ import {
   getMachineStorage,
   MachineDefinition,
   setMachineStorage,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import { blockLocationToUid } from "../utils/location";
 import {
@@ -10,10 +11,7 @@ import {
   BlockCustomComponent,
 } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
-import {
-  decrementMachineSlot,
-  getInputItemWithHopperSupport,
-} from "../utils/item";
+import { getInputItemWithHopperSupport } from "../utils/item";
 import { MAX_MACHINE_STORAGE } from "../constants";
 
 const ENERGY_CONSUMPTION = 1; // per progress
@@ -100,9 +98,14 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    decrementMachineSlot(e.block, "inputSlot", inputItem);
-    generate(e.block, "lava", LAVA_GENERATION);
     progressMap.delete(uid);
+
+    // only generate lava if the input was really consumed
+    const consumed = await takeMachineSlotItem(e.block, "inputSlot", 1, {
+      expectType: inputItem.typeId,
+    });
+
+    generate(e.block, "lava", consumed ? LAVA_GENERATION : 0);
     return;
   }
 

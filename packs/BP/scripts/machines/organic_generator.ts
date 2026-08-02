@@ -1,21 +1,15 @@
 import {
   generate,
-  getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
-  MachineItemStack,
-  setMachineSlotItem,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import {
   BlockComponentTickEvent,
   BlockCustomComponent,
-  ItemStack,
 } from "@minecraft/server";
-import {
-  BlockStateAccessor,
-  getFirstSlotWithItemInConnectedHoppers,
-} from "../utils/block";
-import { decrementSlot } from "../utils/item";
+import { BlockStateAccessor } from "../utils/block";
+import { getInputItemWithHopperSupport } from "../utils/item";
 import { MAX_MACHINE_STORAGE } from "../constants";
 import { blockLocationToUid } from "../utils/location";
 
@@ -97,33 +91,11 @@ export const organicGeneratorMachine: MachineDefinition = {
 async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   const uid = blockLocationToUid(e.block);
 
-  let inputItem = await getMachineSlotItem(e.block, "fuelSlot");
-
-  if (inputItem) {
-    const inputItemTypeId = inputItem.typeId;
-    if (inputItem.amount < new ItemStack(inputItemTypeId).maxAmount) {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-        inputItemTypeId,
-      ]);
-
-      if (hopperSlot) {
-        inputItem.amount++;
-        void setMachineSlotItem(e.block, "fuelSlot", inputItem);
-        decrementSlot(hopperSlot);
-      }
-    }
-  } else {
-    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
-      e.block,
-      INPUT_ITEMS,
-    );
-
-    if (hopperSlot) {
-      inputItem = new MachineItemStack(hopperSlot.typeId);
-      void setMachineSlotItem(e.block, "fuelSlot", inputItem);
-      decrementSlot(hopperSlot);
-    }
-  }
+  const inputItem = await getInputItemWithHopperSupport(
+    e.block,
+    "fuelSlot",
+    INPUT_ITEMS,
+  );
 
   const workingState = new BlockStateAccessor(
     e.block,
@@ -153,15 +125,20 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
     return;
   }
 
-  const maxProgress = MAX_PROGRESS[inputItem.typeId];
-  progressMap.set(uid, [maxProgress, maxProgress]);
+  // only start burning if the fuel was really consumed
+  const consumed = await takeMachineSlotItem(e.block, "fuelSlot", 1, {
+    expectType: inputItem.typeId,
+  });
 
-  inputItem.amount--;
-  void setMachineSlotItem(
-    e.block,
-    "fuelSlot",
-    inputItem.amount > 0 ? inputItem : undefined,
-  );
+  if (!consumed) {
+    progressMap.delete(uid);
+    workingState.set(false);
+    generate(e.block, "energy", 0);
+    return;
+  }
+
+  const maxProgress = MAX_PROGRESS[consumed.typeId];
+  progressMap.set(uid, [maxProgress, maxProgress]);
 }
 
 export const organicGeneratorComponent: BlockCustomComponent = {

@@ -1,14 +1,9 @@
+import { Block, ContainerSlot, GameMode, Player } from "@minecraft/server";
 import {
-  Block,
-  ContainerSlot,
-  DimensionLocation,
-  GameMode,
-  Player,
-} from "@minecraft/server";
-import {
+  addMachineSlotItem,
   getMachineSlotItem,
   MachineItemStack,
-  setMachineSlotItem,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import {
   depositItemToHopper,
@@ -17,6 +12,12 @@ import {
 } from "./block";
 
 export function decrementSlot(slot: ContainerSlot, decrement = 1): void {
+  // machine slot operations are async, so a hopper slot we looked at before
+  // awaiting one may have been emptied or unloaded by the time we get here.
+  if (!slot.isValid || !slot.hasItem()) {
+    return;
+  }
+
   const newAmount = slot.amount - decrement;
 
   if (newAmount <= 0) {
@@ -39,71 +40,77 @@ export function decrementSlotSurvival(
   decrementSlot(slot, decrement);
 }
 
-export function decrementMachineSlot(
-  machine: DimensionLocation,
-  slotId: string,
-  item: MachineItemStack,
-  decrement = 1,
-): void {
-  const newAmount = item.amount - decrement;
-
-  if (newAmount <= 0) {
-    void setMachineSlotItem(machine, slotId);
-    return;
-  }
-
-  item.amount = newAmount;
-  void setMachineSlotItem(machine, slotId, item);
-}
-
+/**
+ * moves one item from a machine slot into the hopper below `block`, if there is
+ * one.
+ * @returns the contents of the slot, as far as we know them.
+ */
 export async function getOutputItemWithHopperSupport(
   block: Block,
   slotId: string,
 ): Promise<MachineItemStack | undefined> {
   const outputItem = await getMachineSlotItem(block, slotId);
-  if (outputItem && getHopperBelow(block)) {
-    const itemStack = outputItem.toItemStack();
-    if (depositItemToHopper(block, itemStack)) {
-      decrementMachineSlot(block, slotId, outputItem);
-    }
+  if (!outputItem || !getHopperBelow(block)) {
+    return outputItem;
   }
-  return outputItem;
+
+  // take the item out before handing it to the hopper. depositing first and
+  // removing after would give the hopper a copy of an item that the take may
+  // then turn out not to have removed.
+  const taken = await takeMachineSlotItem(block, slotId, 1, {
+    expectType: outputItem.typeId,
+  });
+  if (!taken) {
+    return outputItem;
+  }
+
+  if (!depositItemToHopper(block, taken.toItemStack())) {
+    await addMachineSlotItem(block, slotId, taken);
+    return outputItem;
+  }
+
+  return outputItem.amount > 1
+    ? outputItem.withAmount(outputItem.amount - 1)
+    : undefined;
 }
 
+/**
+ * moves one item from the connected hoppers into a machine slot.
+ * @param allowedItems which items may be pulled in when the slot is empty. once
+ * it holds something, only more of that item is pulled in.
+ * @returns the contents of the slot, as far as we know them.
+ */
 export async function getInputItemWithHopperSupport(
   block: Block,
   slotId: string,
   allowedItems?: string[],
 ): Promise<MachineItemStack | undefined> {
-  let inputItem = await getMachineSlotItem(block, slotId);
+  const inputItem = await getMachineSlotItem(block, slotId);
 
-  if (inputItem) {
-    const itemStack = inputItem.toItemStack();
-    if (itemStack.amount < itemStack.maxAmount) {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(block, [
-        itemStack.typeId,
-      ]);
-
-      if (hopperSlot) {
-        inputItem.amount++;
-        void setMachineSlotItem(block, slotId, inputItem);
-        decrementSlot(hopperSlot);
-      }
-    }
-  } else {
-    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
-      block,
-      allowedItems,
-    );
-
-    if (hopperSlot) {
-      inputItem = MachineItemStack.fromItemStack(hopperSlot.getItem()!);
-      void setMachineSlotItem(block, slotId, inputItem);
-      decrementSlot(hopperSlot);
-    }
+  const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
+    block,
+    inputItem ? [inputItem.typeId] : allowedItems,
+  );
+  if (!hopperSlot) {
+    return inputItem;
   }
 
-  return inputItem;
+  // move the hopper's own item rather than a copy of whatever is already in the
+  // slot: the two share a type but can differ in damage, name or enchantments.
+  const itemToAdd = MachineItemStack.fromItemStack(
+    hopperSlot.getItem()!,
+  ).withAmount(1);
+
+  // a full slot, or one that changed under us, just accepts nothing. only take
+  // from the hopper what the slot really took.
+  const added = await addMachineSlotItem(block, slotId, itemToAdd);
+  if (!added) {
+    return inputItem;
+  }
+
+  decrementSlot(hopperSlot, added);
+
+  return inputItem ? inputItem.withAmount(inputItem.amount + added) : itemToAdd;
 }
 
 export function getItemTranslationKey(itemId: string): string {

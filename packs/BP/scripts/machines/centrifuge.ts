@@ -1,24 +1,23 @@
 import {
+  addMachineSlotItem,
   getMachineSlotItem,
   getMachineStorage,
   MachineDefinition,
   MachineItemStack,
-  setMachineSlotItem,
   setMachineStorage,
+  takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
 import {
   BlockComponentTickEvent,
   BlockCustomComponent,
-  ItemStack,
 } from "@minecraft/server";
 import { blockLocationToUid } from "../utils/location";
 import {
   BlockStateAccessor,
   depositItemToHopper,
-  getFirstSlotWithItemInConnectedHoppers,
   getHopperBelow,
 } from "../utils/block";
-import { decrementSlot } from "../utils/item";
+import { getInputItemWithHopperSupport } from "../utils/item";
 import { weightedRandom } from "../utils/math";
 
 const INPUT_ITEM_TYPES = [
@@ -71,6 +70,13 @@ const LOOT: Record<string, Record<string, number>> = {
     "minecraft:quartz": 3,
   },
 };
+
+const OUTPUT_SLOT_IDS = [
+  "outputSlot0",
+  "outputSlot1",
+  "outputSlot2",
+  "outputSlot3",
+];
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
 
@@ -144,8 +150,7 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
 
   let returnAfterHopperInput = false;
 
-  for (let i = 0; i < 4; i++) {
-    const slotId = `outputSlot${i.toString()}`;
+  for (const slotId of OUTPUT_SLOT_IDS) {
     const outputItem = await getMachineSlotItem(e.block, slotId);
     if (!outputItem) continue;
 
@@ -156,57 +161,39 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
       break;
     }
 
-    const itemStack = new ItemStack(outputItem.typeId);
+    // take the item out before handing it to the hopper, so we can't give the
+    // hopper a copy of an item the take turns out not to have removed.
+    const taken = await takeMachineSlotItem(e.block, slotId, 1, {
+      expectType: outputItem.typeId,
+    });
 
-    if (!depositItemToHopper(e.block, itemStack)) {
+    if (!taken) {
+      returnAfterHopperInput = true;
+      break;
+    }
+
+    if (!depositItemToHopper(e.block, taken.toItemStack())) {
+      await addMachineSlotItem(e.block, slotId, taken);
       progressMap.delete(uid);
       inputState.set("none");
       returnAfterHopperInput = true;
       break;
     }
 
-    outputItem.amount--;
-    if (outputItem.amount > 0) {
-      void setMachineSlotItem(e.block, slotId, outputItem);
+    if (outputItem.amount > 1) {
       progressMap.delete(uid);
       inputState.set("none");
-      returnAfterHopperInput = true;
-      break;
-    } else {
-      void setMachineSlotItem(e.block, slotId);
     }
 
     returnAfterHopperInput = true;
     break;
   }
 
-  let inputItem = await getMachineSlotItem(e.block, "inputSlot");
-
-  if (inputItem) {
-    const inputItemTypeId = inputItem.typeId;
-    if (inputItem.amount < new ItemStack(inputItemTypeId).maxAmount) {
-      const hopperSlot = getFirstSlotWithItemInConnectedHoppers(e.block, [
-        inputItemTypeId,
-      ]);
-
-      if (hopperSlot) {
-        inputItem.amount++;
-        void setMachineSlotItem(e.block, "inputSlot", inputItem);
-        decrementSlot(hopperSlot);
-      }
-    }
-  } else {
-    const hopperSlot = getFirstSlotWithItemInConnectedHoppers(
-      e.block,
-      INPUT_ITEM_TYPES,
-    );
-
-    if (hopperSlot) {
-      inputItem = new MachineItemStack(hopperSlot.typeId);
-      void setMachineSlotItem(e.block, "inputSlot", inputItem);
-      decrementSlot(hopperSlot);
-    }
-  }
+  const inputItem = await getInputItemWithHopperSupport(
+    e.block,
+    "inputSlot",
+    INPUT_ITEM_TYPES,
+  );
 
   if (!inputItem || returnAfterHopperInput) {
     progressMap.delete(uid);
@@ -227,20 +214,30 @@ async function onTickAsync(e: BlockComponentTickEvent): Promise<void> {
   }
 
   if (progress >= MAX_PROGRESS) {
-    inputItem.amount--;
-    void setMachineSlotItem(
-      e.block,
-      "inputSlot",
-      inputItem.amount > 0 ? inputItem : undefined,
+    progressMap.delete(uid);
+
+    // only produce loot if the input was really consumed
+    const consumed = await takeMachineSlotItem(e.block, "inputSlot", 1, {
+      expectType: inputItem.typeId,
+    });
+    if (!consumed) return;
+
+    const loot = LOOT[consumed.typeId];
+    const addedCounts = await Promise.all(
+      OUTPUT_SLOT_IDS.map((slotId) =>
+        addMachineSlotItem(
+          e.block,
+          slotId,
+          new MachineItemStack(weightedRandom(loot)),
+        ),
+      ),
     );
 
-    for (let i = 0; i < 4; i++) {
-      const itemId = weightedRandom(LOOT[inputItem.typeId]);
-      const slotId = `outputSlot${i.toString()}`;
-      void setMachineSlotItem(e.block, slotId, new MachineItemStack(itemId));
+    if (!addedCounts.some((added) => added > 0)) {
+      // every output slot was taken while we waited; give the input back
+      await addMachineSlotItem(e.block, "inputSlot", consumed);
     }
 
-    progressMap.delete(uid);
     return;
   }
 

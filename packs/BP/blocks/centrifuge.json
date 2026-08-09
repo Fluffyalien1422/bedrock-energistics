@@ -8,8 +8,7 @@
       },
       "traits": {
         "minecraft:placement_direction": {
-          "enabled_states": ["minecraft:cardinal_direction"],
-          "y_rotation_offset": 180
+          "enabled_states": ["minecraft:cardinal_direction"]
         }
       },
       "states": {
@@ -41,7 +40,7 @@
         "*": {
           "texture": "fluffyalien_energistics:machine_casing_side"
         },
-        "north": {
+        "south": {
           "texture": "fluffyalien_energistics:centrifuge_front_off"
         },
         "up": {
@@ -71,7 +70,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:centrifuge_front_off"
             },
             "up": {
@@ -90,7 +89,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:centrifuge_front_on_dirt"
             },
             "up": {
@@ -109,7 +108,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:centrifuge_front_on_gravel"
             },
             "up": {
@@ -128,7 +127,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:centrifuge_front_on_sand"
             },
             "up": {
@@ -147,7 +146,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:centrifuge_front_on_soul_sand"
             },
             "up": {

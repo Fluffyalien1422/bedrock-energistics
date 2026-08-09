@@ -1,5 +1,5 @@
 {
-  "format_version": "1.26.0",
+  "format_version": "1.26.40",
   "minecraft:block": {
     "description": {
       "identifier": "fluffyalien_energistics:ammonia_factory",
@@ -8,8 +8,7 @@
       },
       "traits": {
         "minecraft:placement_direction": {
-          "enabled_states": ["minecraft:cardinal_direction"],
-          "y_rotation_offset": 180
+          "enabled_states": ["minecraft:cardinal_direction"]
         }
       },
       "states": {
@@ -19,21 +18,23 @@
     "components": {
       "fluffyalien_energisticscore:machine": {},
       "fluffyalien_energistics:ammonia_factory": {},
-      "tag:fluffyalien_energisticscore:machine": {},
-      "tag:fluffyalien_energisticscore:io.category.energy": {},
-      "tag:fluffyalien_energisticscore:io.type.nitrogen": {},
-      "tag:fluffyalien_energisticscore:io.type.hydrogen": {},
-      "tag:fluffyalien_energisticscore:io.type.ammonia": {},
-      "tag:fluffyalien_energisticscore:consumer.category.energy": {},
-      "tag:fluffyalien_energisticscore:consumer.type.nitrogen": {},
-      "tag:fluffyalien_energisticscore:consumer.type.hydrogen": {},
+      "minecraft:tags": [
+        "fluffyalien_energisticscore:machine",
+        "fluffyalien_energisticscore:io.type.energy",
+        "fluffyalien_energisticscore:io.type.nitrogen",
+        "fluffyalien_energisticscore:io.type.hydrogen",
+        "fluffyalien_energisticscore:io.type.ammonia",
+        "fluffyalien_energisticscore:consumer.type.energy",
+        "fluffyalien_energisticscore:consumer.type.nitrogen",
+        "fluffyalien_energisticscore:consumer.type.hydrogen"
+      ],
 
       "minecraft:geometry": "minecraft:geometry.full_block",
       "minecraft:material_instances": {
         "*": {
           "texture": "fluffyalien_energistics:machine_casing_side"
         },
-        "north": {
+        "south": {
           "texture": "fluffyalien_energistics:ammonia_factory_front_off"
         },
         "up": {
@@ -63,7 +64,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:ammonia_factory_front_on"
             },
             "up": {
@@ -82,7 +83,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:ammonia_factory_front_off"
             },
             "up": {

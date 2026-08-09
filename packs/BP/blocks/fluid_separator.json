@@ -8,8 +8,7 @@
       },
       "traits": {
         "minecraft:placement_direction": {
-          "enabled_states": ["minecraft:cardinal_direction"],
-          "y_rotation_offset": 180
+          "enabled_states": ["minecraft:cardinal_direction"]
         }
       },
       "states": {
@@ -29,7 +28,7 @@
         "*": {
           "texture": "fluffyalien_energistics:machine_casing_side"
         },
-        "north": {
+        "south": {
           "texture": "fluffyalien_energistics:fluid_separator_front_off"
         },
         "up": {
@@ -88,7 +87,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:fluid_separator_front_off"
             },
             "up": {
@@ -107,7 +106,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:fluid_separator_front_on_oil"
             },
             "up": {
@@ -126,7 +125,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:fluid_separator_front_on_water"
             },
             "up": {

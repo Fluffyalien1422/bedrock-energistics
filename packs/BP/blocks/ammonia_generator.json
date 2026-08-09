@@ -8,8 +8,7 @@
       },
       "traits": {
         "minecraft:placement_direction": {
-          "enabled_states": ["minecraft:cardinal_direction"],
-          "y_rotation_offset": 180
+          "enabled_states": ["minecraft:cardinal_direction"]
         }
       },
       "states": {
@@ -29,7 +28,7 @@
         "*": {
           "texture": "fluffyalien_energistics:machine_casing_side"
         },
-        "north": {
+        "south": {
           "texture": "fluffyalien_energistics:ammonia_generator_front_off"
         },
         "up": {
@@ -59,7 +58,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:ammonia_generator_front_on"
             },
             "up": {
@@ -78,7 +77,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:ammonia_generator_front_off"
             },
             "up": {

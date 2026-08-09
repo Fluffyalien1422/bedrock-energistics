@@ -11,8 +11,7 @@
           "enabled_states": [
             "minecraft:facing_direction",
             "minecraft:cardinal_direction"
-          ],
-          "y_rotation_offset": 180
+          ]
         }
       },
       "states": {
@@ -34,7 +33,7 @@
         "*": {
           "texture": "fluffyalien_energistics:machine_casing_side"
         },
-        "north": {
+        "south": {
           "texture": "fluffyalien_energistics:block_placer_front_off"
         },
         "up": {
@@ -65,7 +64,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:block_placer_front_on"
             },
             "up": {
@@ -84,7 +83,7 @@
             "*": {
               "texture": "fluffyalien_energistics:machine_casing_side"
             },
-            "north": {
+            "south": {
               "texture": "fluffyalien_energistics:block_placer_front_off"
             },
             "up": {

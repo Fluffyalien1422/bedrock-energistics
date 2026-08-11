@@ -29,6 +29,10 @@
       "tutorial_book_entries": {
         "runWith": "nodejs",
         "script": "scripts/filters/tutorial_book_entries.ts"
+      },
+      "ui_composite": {
+        "runWith": "nodejs",
+        "script": "scripts/filters/ui_composite.ts"
       }
     },
     "profiles": {
@@ -49,6 +53,9 @@
           },
           {
             "filter": "machine_entities"
+          },
+          {
+            "filter": "ui_composite"
           }
         ]
       },

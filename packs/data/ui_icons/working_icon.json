@@ -1,0 +1,7 @@
+{
+  "id": "fluffyalien_energistics:ui_working_icon",
+  "states": {
+    "off": "textures/fluffyalien/energistics/ui/working_icon_off",
+    "on": "textures/fluffyalien/energistics/ui/working_icon_on"
+  }
+}

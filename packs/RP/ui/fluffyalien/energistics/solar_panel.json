@@ -1,77 +1,106 @@
 {
   "namespace": "fluffyalien_energistics:solar_panel",
-  "root": {
-    "type": "panel",
-    "controls": [
-      {
-        "container_gamepad_helpers@common.container_gamepad_helpers": {}
-      },
-      {
-        "flying_item_renderer@common.flying_item_renderer": {
-          "layer": 14
-        }
-      },
-      {
-        "selected_item_details_factory@common.selected_item_details_factory": {}
-      },
-      {
-        "item_lock_notification_factory@common.item_lock_notification_factory": {}
-      },
-      {
-        "root_panel@common.root_panel": {
-          "layer": 1,
-          "size": [180, 180],
-          "controls": [
-            {
-              "common_panel@common.common_panel": {}
-            },
-            {
-              "chest_panel": {
-                "type": "panel",
-                "layer": 5,
-                "offset": [0, -0.5],
-                "controls": [
-                  {
-                    "small_chest_panel_top_half@fluffyalien_energistics:solar_panel.top_half": {}
-                  },
-                  {
-                    "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
-                  },
-                  {
-                    "hotbar_grid@common.hotbar_grid_template": {}
-                  },
-                  {
-                    "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {}
-                  }
-                ]
-              }
-            },
-            {
-              "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
-            },
-            {
-              "gamepad_cursor@common.gamepad_cursor_button": {}
-            }
-          ]
-        }
-      }
-    ]
+  "root@fluffyalien_energisticscore:common_v2.screen_template": {
+    "$content_ref": "fluffyalien_energistics:solar_panel.content"
   },
-  "top_half": {
-    "type": "panel",
-    "size": ["100%", "50% - 12px"],
-    "offset": [0, 7],
-    "anchor_to": "top_left",
-    "anchor_from": "top_left",
+  "content@fluffyalien_energisticscore:common_v2.content_template": {
     "controls": [
       {
-        "title@fluffyalien_energisticscore:common.container_title": {
-          "text": "Solar Panel"
+        "title@fluffyalien_energisticscore:common_v2.container_title": {
+          "text": "tile.fluffyalien_energistics:solar_panel.name"
         }
       },
       {
-        "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
-          "offset": ["100%-24px", 12]
+        "time_icon_tile_0_0@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [8, 12],
+          "$index": 0
+        }
+      },
+      {
+        "time_icon_tile_1_0@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [24, 12],
+          "$index": 1
+        }
+      },
+      {
+        "time_icon_tile_2_0@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [40, 12],
+          "$index": 2
+        }
+      },
+      {
+        "time_icon_tile_0_1@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [8, 28],
+          "$index": 3
+        }
+      },
+      {
+        "time_icon_tile_1_1@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [24, 28],
+          "$index": 4
+        }
+      },
+      {
+        "time_icon_tile_2_1@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [40, 28],
+          "$index": 5
+        }
+      },
+      {
+        "time_icon_tile_0_2@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [8, 44],
+          "$index": 6
+        }
+      },
+      {
+        "time_icon_tile_1_2@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [24, 44],
+          "$index": 7
+        }
+      },
+      {
+        "time_icon_tile_2_2@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [40, 44],
+          "$index": 8
+        }
+      },
+      {
+        "time_icon_tile_0_3@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [8, 60],
+          "$index": 9
+        }
+      },
+      {
+        "time_icon_tile_1_3@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [24, 60],
+          "$index": 10
+        }
+      },
+      {
+        "time_icon_tile_2_3@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [40, 60],
+          "$index": 11
+        }
+      },
+      {
+        // slots 12-13
+        "arrow_icon@fluffyalien_energistics:common.double_arrow_icon": {
+          "offset": ["50%-11px", "50%-8px"],
+          "$start_index": 12
+        }
+      },
+      {
+        // slot 14
+        "energy_icon@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": ["50%-9px", "50%+8px"],
+          "$index": 14
+        }
+      },
+      {
+        // slots 15-18
+        "energy_bar@fluffyalien_energisticscore:common_v2.machine_storage_bar": {
+          "offset": ["100%-24px", 12],
+          "$start_index": 15
         }
       }
     ]

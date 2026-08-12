@@ -1,0 +1,21 @@
+{
+  "namespace": "fluffyalien_energistics:common",
+
+  "double_arrow_icon": {
+    "type": "panel",
+    "$start_index|default": 0,
+    "controls": [
+      {
+        "part_0@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "$index": "$start_index"
+        }
+      },
+      {
+        "part_1@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+          "offset": [16, 0],
+          "$index": "($start_index+1)"
+        }
+      }
+    ]
+  }
+}

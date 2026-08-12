@@ -5,16 +5,13 @@
 import * as imgManip from "imagescript";
 import * as fs from "fs";
 import * as path from "path";
+import { addItemTextureData, type ItemTextureData } from "./common.ts";
 
 const TILE_SIZE = 16;
 
 const specialIconsDir = "data/ui_composite/special_icons";
 
-const itemTexturePath = "RP/textures/item_texture.json";
-
-const itemTexture = JSON.parse(fs.readFileSync(itemTexturePath, "utf8")) as {
-  texture_data: Record<string, { textures: string }>;
-};
+const textureData: ItemTextureData = {};
 
 function readImg(imgPath: string): Promise<imgManip.Image> {
   return imgManip.decode(fs.readFileSync(imgPath)) as Promise<imgManip.Image>;
@@ -90,7 +87,7 @@ for (const fileName of fs.readdirSync(specialIconsDir)) {
       fs.writeFileSync(`BP/items/${shortId}.json`, createUiItem(itemId));
 
       const texturePath = `textures/fluffyalien/energistics/${shortId}`;
-      itemTexture.texture_data[itemId] = { textures: texturePath };
+      textureData[itemId] = { textures: texturePath };
 
       fs.writeFileSync(
         `RP/${texturePath}.png`,
@@ -100,4 +97,4 @@ for (const fileName of fs.readdirSync(specialIconsDir)) {
   }
 }
 
-fs.writeFileSync(itemTexturePath, JSON.stringify(itemTexture));
+addItemTextureData(textureData);

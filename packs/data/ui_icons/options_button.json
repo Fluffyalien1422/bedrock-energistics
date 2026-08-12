@@ -1,0 +1,6 @@
+{
+  "id": "fluffyalien_energistics:ui_options_button",
+  "states": {
+    "_default": "textures/fluffyalien/energistics/ui/options_button"
+  }
+}

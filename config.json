@@ -33,6 +33,10 @@
       "ui_composite": {
         "runWith": "nodejs",
         "script": "scripts/filters/ui_composite.ts"
+      },
+      "ui_icons": {
+        "runWith": "nodejs",
+        "script": "scripts/filters/ui_icons.ts"
       }
     },
     "profiles": {
@@ -56,6 +60,9 @@
           },
           {
             "filter": "ui_composite"
+          },
+          {
+            "filter": "ui_icons"
           }
         ]
       },

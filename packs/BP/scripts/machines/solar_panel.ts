@@ -6,12 +6,13 @@ import {
   world,
 } from "@minecraft/server";
 import {
-  animateSpecialIcon,
   createSpecialIconElements,
+  createTransferIndicator,
+  createTransferIndicatorElements,
   SpecialIconOptions,
   updateSpecialIcon,
+  updateTransferIndicator,
 } from "../utils/ui";
-import { WORKING_ICON_DESCRIPTION, WorkingIconState } from "../icons";
 
 const MIN_TIME = 12000;
 
@@ -29,17 +30,7 @@ const TIME_ICON: SpecialIconOptions = {
   icons: ["sun_icon", "moon_icon"],
 };
 
-const ARROW_ICON: SpecialIconOptions = {
-  name: "arrowIcon",
-  startIndex: 12,
-  tilesX: 2,
-  tilesY: 1,
-  icons: [
-    "double_arrow_right_0",
-    "double_arrow_right_1",
-    "double_arrow_right_2",
-  ],
-};
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 12);
 
 function isDay(): boolean {
   return world.getTimeOfDay() < MIN_TIME;
@@ -71,14 +62,8 @@ export const solarPanelMachine: MachineDefinition = {
       elements: {
         // slots 0-11
         ...createSpecialIconElements(TIME_ICON),
-        // slots 12-13
-        ...createSpecialIconElements(ARROW_ICON),
-        // slot 14
-        energyIcon: {
-          type: "progressIndicator",
-          index: 14,
-          indicator: WORKING_ICON_DESCRIPTION,
-        },
+        // slots 12-14
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
         // slots 15-18
         energyBar: {
           type: "storageBar",
@@ -100,8 +85,7 @@ export const solarPanelMachine: MachineDefinition = {
             TIME_ICON,
             isDay() ? TimeIconState.Sun : TimeIconState.Moon,
           ),
-          ...animateSpecialIcon(ARROW_ICON, working),
-          energyIcon: working ? WorkingIconState.On : WorkingIconState.Off,
+          ...updateTransferIndicator(TRANSFER_INDICATOR, working),
         },
       };
     },

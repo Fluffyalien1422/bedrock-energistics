@@ -1,5 +1,6 @@
 import { UiProgressIndicatorElementDefinition } from "bedrock-energistics-core-api";
 import { system } from "@minecraft/server";
+import { WORKING_ICON_DESCRIPTION, WorkingIconState } from "../icons";
 
 /**
  * The amount of ticks each state of an animated special icon is shown for.
@@ -7,6 +8,15 @@ import { system } from "@minecraft/server";
  * Machine UIs are updated every 4 ticks, so this should be a multiple of 4.
  */
 const ANIMATION_TICKS_PER_STATE = 8;
+
+/**
+ * The frames of the animated double arrow, in frame order.
+ */
+const DOUBLE_ARROW_RIGHT_ICONS = [
+  "double_arrow_right_0",
+  "double_arrow_right_1",
+  "double_arrow_right_2",
+];
 
 export interface SpecialIconOptions {
   /**
@@ -105,4 +115,75 @@ export function animateSpecialIcon(
       ? Math.floor(system.currentTick / ticksPerState) % options.icons.length
       : 0,
   );
+}
+
+/**
+ * A double arrow with a working icon below it, which indicates a transfer with no
+ * specific progress value.
+ * @see {@link createTransferIndicator}
+ */
+export interface TransferIndicator {
+  arrow: SpecialIconOptions;
+  workingIconElementId: string;
+}
+
+/**
+ * Describes a transfer indicator, which occupies 3 slots: `startIndex` and
+ * `startIndex + 1` are the double arrow, `startIndex + 2` is the working icon.
+ * @remarks
+ * The JSON UI counterpart is `fluffyalien_energistics:common.transfer_indicator`.
+ * Use this for machines that convert one storage type into another every tick. If
+ * the machine has an actual progress value, use the `arrow` progress indicator
+ * preset instead.
+ */
+export function createTransferIndicator(
+  name: string,
+  startIndex: number,
+): TransferIndicator {
+  return {
+    arrow: {
+      name: `${name}Arrow`,
+      startIndex,
+      tilesX: 2,
+      tilesY: 1,
+      icons: DOUBLE_ARROW_RIGHT_ICONS,
+    },
+    workingIconElementId: `${name}WorkingIcon`,
+  };
+}
+
+/**
+ * Generates the UI elements for each slot of a transfer indicator.
+ * @see {@link createTransferIndicator}
+ */
+export function createTransferIndicatorElements({
+  arrow,
+  workingIconElementId,
+}: TransferIndicator): Record<string, UiProgressIndicatorElementDefinition> {
+  return {
+    ...createSpecialIconElements(arrow),
+    [workingIconElementId]: {
+      type: "progressIndicator",
+      index: arrow.startIndex + arrow.tilesX * arrow.tilesY,
+      indicator: WORKING_ICON_DESCRIPTION,
+    },
+  };
+}
+
+/**
+ * Creates the `progressIndicators` update for a transfer indicator, animating the
+ * arrow and turning the working icon on if `working` is true, otherwise showing
+ * both in their inactive state.
+ * @see {@link createTransferIndicator}
+ */
+export function updateTransferIndicator(
+  { arrow, workingIconElementId }: TransferIndicator,
+  working: boolean,
+): Record<string, number> {
+  return {
+    ...animateSpecialIcon(arrow, working),
+    [workingIconElementId]: working
+      ? WorkingIconState.On
+      : WorkingIconState.Off,
+  };
 }

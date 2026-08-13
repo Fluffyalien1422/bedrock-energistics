@@ -83,17 +83,10 @@
         }
       },
       {
-        // slots 12-13
-        "arrow_icon@fluffyalien_energistics:common.double_arrow_icon": {
+        // slots 12-14
+        "transfer_indicator@fluffyalien_energistics:common.transfer_indicator": {
           "offset": ["50%-11px", "50%-8px"],
           "$start_index": 12
-        }
-      },
-      {
-        // slot 14
-        "energy_icon@fluffyalien_energisticscore:common_v2.container_slot_nobg_nohover": {
-          "offset": ["50%-9px", "50%+8px"],
-          "$index": 14
         }
       },
       {

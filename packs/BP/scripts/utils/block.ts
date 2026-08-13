@@ -1,4 +1,10 @@
-import { Block, Container, ContainerSlot, ItemStack } from "@minecraft/server";
+import {
+  Block,
+  Container,
+  ContainerSlot,
+  DimensionLocation,
+  ItemStack,
+} from "@minecraft/server";
 import { getBlockInDirection, StrDirection } from "./direction";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 
@@ -125,6 +131,22 @@ export function getConnectedHoppers(block: Block): Block[] {
   }
 
   return hoppers;
+}
+
+/**
+ * whether the machine at `loc` is working, according to its
+ * `fluffyalien_energistics:working` block state
+ * @remarks
+ * intended for `updateUi` handlers, which receive a location rather than a block
+ */
+export function isMachineWorking(loc: DimensionLocation): boolean {
+  return (
+    loc.dimension
+      .getBlock(loc)
+      ?.permutation.getState(
+        "fluffyalien_energistics:working" as keyof BlockStateSuperset,
+      ) === true
+  );
 }
 
 export function getFirstSlotWithItem(

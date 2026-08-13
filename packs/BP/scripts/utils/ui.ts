@@ -6,7 +6,7 @@ import { system } from "@minecraft/server";
  * @remarks
  * Machine UIs are updated every 4 ticks, so this should be a multiple of 4.
  */
-const ANIMATION_TICKS_PER_STATE = 4;
+const ANIMATION_TICKS_PER_STATE = 8;
 
 export interface SpecialIconOptions {
   /**

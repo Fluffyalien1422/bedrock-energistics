@@ -6,12 +6,12 @@
     "$start_index|default": 0,
     "controls": [
       {
-        "part_0@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+        "part_0@fluffyalien_energisticscore:common_v2.container_slot_nobg_nohover": {
           "$index": "$start_index"
         }
       },
       {
-        "part_1@fluffyalien_energisticscore:common_v2.container_slot_nobg_noclick": {
+        "part_1@fluffyalien_energisticscore:common_v2.container_slot_nobg_nohover": {
           "offset": [16, 0],
           "$index": "($start_index+1)"
         }

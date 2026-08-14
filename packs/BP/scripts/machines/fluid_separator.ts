@@ -10,9 +10,16 @@ import { BlockCustomComponent } from "@minecraft/server";
 import { MAX_MACHINE_STORAGE } from "../constants";
 import { BlockStateAccessor } from "../utils/block";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
+import {
+  createTransferIndicator,
+  createTransferIndicatorElements,
+  updateTransferIndicator,
+} from "../utils/ui";
 
 const ENERGY_CONSUMPTION = 50;
 const FLUID_CONSUMPTION = 6;
+
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 16);
 
 interface FluidRecipeResult {
   type: StandardStorageType;
@@ -66,6 +73,8 @@ export const fluidSeparatorMachine: MachineDefinition = {
           type: "storageBar",
           startIndex: 12,
         },
+        // slots 16-18
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
       },
     },
   },
@@ -74,36 +83,25 @@ export const fluidSeparatorMachine: MachineDefinition = {
       const block = blockLocation.dimension.getBlock(blockLocation);
       if (!block) return {};
 
+      const working = block.permutation.getState(
+        "fluffyalien_energistics:working" as keyof BlockStateSuperset,
+      ) as boolean;
+
+      const progressIndicators = updateTransferIndicator(
+        TRANSFER_INDICATOR,
+        working,
+      );
+
       const fluid = block.permutation.getState(
         "fluffyalien_energistics:fluid" as keyof BlockStateSuperset,
       ) as string;
 
-      if (fluid === "none") return {};
-
-      const working = block.permutation.getState(
-        "fluffyalien_energistics:working" as keyof BlockStateSuperset,
-      ) as boolean;
+      if (fluid === "none") return { progressIndicators };
 
       const recipeResults = RECIPES[fluid];
 
       const result1 = recipeResults[0];
       const result2 = recipeResults[1];
-
-      if (!working) {
-        return {
-          storageBars: {
-            inputBar: {
-              type: fluid,
-            },
-            outputBar1: {
-              type: result1.type,
-            },
-            outputBar2: {
-              type: result2.type,
-            },
-          },
-        };
-      }
 
       return {
         storageBars: {
@@ -117,6 +115,7 @@ export const fluidSeparatorMachine: MachineDefinition = {
             type: result2.type,
           },
         },
+        progressIndicators,
       };
     },
   },

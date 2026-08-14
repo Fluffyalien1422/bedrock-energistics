@@ -7,10 +7,17 @@ import {
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
 import { MAX_MACHINE_STORAGE } from "../constants";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
+import {
+  createTransferIndicator,
+  createTransferIndicatorElements,
+  updateTransferIndicator,
+} from "../utils/ui";
 
 const AMMONIA_CONSUMPTION = 1;
 const ENERGY_GENERATION = 65;
+
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 
 export const ammoniaGeneratorMachine: MachineDefinition = {
   description: {
@@ -31,7 +38,19 @@ export const ammoniaGeneratorMachine: MachineDefinition = {
             type: "energy",
           },
         },
+        // slots 8-10
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
       },
+    },
+  },
+  handlers: {
+    updateUi({ blockLocation }) {
+      return {
+        progressIndicators: updateTransferIndicator(
+          TRANSFER_INDICATOR,
+          isMachineWorking(blockLocation),
+        ),
+      };
     },
   },
 };

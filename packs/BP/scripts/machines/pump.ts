@@ -8,11 +8,18 @@ import {
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
 import { MAX_MACHINE_STORAGE } from "../constants";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
+import {
+  createTransferIndicator,
+  createTransferIndicatorElements,
+  updateTransferIndicator,
+} from "../utils/ui";
 
 const FLUID_GENERATION = 10;
 const ENERGY_CONSUMPTION = 10;
+
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 
 export const pumpMachine: MachineDefinition = {
   description: {
@@ -30,6 +37,8 @@ export const pumpMachine: MachineDefinition = {
           type: "storageBar",
           startIndex: 4,
         },
+        // slots 8-10
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
       },
     },
   },
@@ -40,8 +49,13 @@ export const pumpMachine: MachineDefinition = {
         "fluffyalien_energistics:type" as keyof BlockStateSuperset,
       ) as string | undefined;
 
+      const progressIndicators = updateTransferIndicator(
+        TRANSFER_INDICATOR,
+        isMachineWorking(e.blockLocation),
+      );
+
       if (!type || type === "none") {
-        return {};
+        return { progressIndicators };
       }
 
       return {
@@ -50,6 +64,7 @@ export const pumpMachine: MachineDefinition = {
             type,
           },
         },
+        progressIndicators,
       };
     },
   },

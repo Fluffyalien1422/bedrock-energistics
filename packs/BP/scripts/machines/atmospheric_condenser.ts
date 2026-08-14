@@ -6,8 +6,13 @@ import {
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
 import { MAX_MACHINE_STORAGE } from "../constants";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
+import {
+  createTransferIndicator,
+  createTransferIndicatorElements,
+  updateTransferIndicator,
+} from "../utils/ui";
 
 type GasStateValue = "hydrogen" | "carbon" | "nitrogen";
 
@@ -19,6 +24,8 @@ const GAS_TYPES: Record<string, GasStateValue> = {
   "minecraft:nether": "carbon",
   "minecraft:the_end": "hydrogen",
 };
+
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 
 export const atmosphericCondenserMachine: MachineDefinition = {
   description: {
@@ -36,6 +43,8 @@ export const atmosphericCondenserMachine: MachineDefinition = {
           type: "storageBar",
           startIndex: 4,
         },
+        // slots 8-10
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
       },
     },
   },
@@ -47,6 +56,10 @@ export const atmosphericCondenserMachine: MachineDefinition = {
             type: GAS_TYPES[location.dimension.id],
           },
         },
+        progressIndicators: updateTransferIndicator(
+          TRANSFER_INDICATOR,
+          isMachineWorking(location),
+        ),
       };
     },
   },

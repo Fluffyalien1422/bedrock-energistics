@@ -6,10 +6,17 @@ import {
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
 import { MAX_MACHINE_STORAGE } from "../constants";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
+import {
+  createTransferIndicator,
+  createTransferIndicatorElements,
+  updateTransferIndicator,
+} from "../utils/ui";
 
 const OIL_GENERATION = 10;
 const ENERGY_CONSUMPTION = 10;
+
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 
 export const oilExtractorMachine: MachineDefinition = {
   description: {
@@ -30,7 +37,19 @@ export const oilExtractorMachine: MachineDefinition = {
             type: "oil",
           },
         },
+        // slots 8-10
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
       },
+    },
+  },
+  handlers: {
+    updateUi({ blockLocation }) {
+      return {
+        progressIndicators: updateTransferIndicator(
+          TRANSFER_INDICATOR,
+          isMachineWorking(blockLocation),
+        ),
+      };
     },
   },
 };

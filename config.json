@@ -50,6 +50,9 @@
             "filter": "tutorial_book_entries"
           },
           {
+            "filter": "ui_composite"
+          },
+          {
             "filter": "build_scripts"
           },
           {
@@ -57,9 +60,6 @@
           },
           {
             "filter": "machine_entities"
-          },
-          {
-            "filter": "ui_composite"
           },
           {
             "filter": "ui_icons"

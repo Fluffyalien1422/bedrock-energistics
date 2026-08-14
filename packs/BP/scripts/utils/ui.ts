@@ -1,6 +1,16 @@
 import { UiProgressIndicatorElementDefinition } from "bedrock-energistics-core-api";
 import { system } from "@minecraft/server";
 import { WORKING_ICON_DESCRIPTION, WorkingIconState } from "../icons";
+import {
+  ICON_TILE_REDIRECTS,
+  TRANSPARENT_ICON_TILES,
+} from "../ui_composite_icons";
+
+/**
+ * Stands in for a fully transparent special icon tile, which the `ui_composite` build
+ * filter doesn't generate an item for because it renders as nothing.
+ */
+const EMPTY_ICON_TILE_ITEM = "fluffyalien_energisticscore:ui_empty_slot";
 
 /**
  * The amount of ticks each state of an animated special icon is shown for.
@@ -47,6 +57,23 @@ export interface SpecialIconOptions {
 }
 
 /**
+ * The item ID to draw for one tile of a special icon.
+ * @remarks
+ * The `ui_composite` build filter skips tiles that don't need an item of their own:
+ * a fully transparent tile is drawn with {@link EMPTY_ICON_TILE_ITEM}, and a tile that
+ * shares its texture with an earlier one is drawn with that tile's item.
+ */
+function iconTileItemId(icon: string, tileX: number, tileY: number): string {
+  const shortId = `ui_${icon}_${tileX.toString()}_${tileY.toString()}`;
+
+  if (TRANSPARENT_ICON_TILES.has(shortId)) {
+    return EMPTY_ICON_TILE_ITEM;
+  }
+
+  return `fluffyalien_energistics:${ICON_TILE_REDIRECTS[shortId] ?? shortId}`;
+}
+
+/**
  * Generates the UI elements for each tile of a special icon. Special icons are
  * split into a grid of tiles by the `ui_composite` build filter.
  */
@@ -67,10 +94,7 @@ export function createSpecialIconElements({
         type: "progressIndicator",
         index: startIndex + tileIndex,
         indicator: {
-          frames: icons.map(
-            (icon) =>
-              `fluffyalien_energistics:ui_${icon}_${tileX.toString()}_${tileY.toString()}`,
-          ),
+          frames: icons.map((icon) => iconTileItemId(icon, tileX, tileY)),
         },
       };
     }

@@ -19,6 +19,11 @@ import {
 } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
 import { weightedRandom } from "../utils/math";
+import {
+  createProgressArrow,
+  createSpecialIconElements,
+  updateProgressArrow,
+} from "../utils/ui";
 
 const INPUT_ITEM_TYPES = [
   "minecraft:dirt",
@@ -82,6 +87,8 @@ const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
 
 const MAX_PROGRESS = 32;
 
+const PROGRESS_ARROW = createProgressArrow("progress", 9);
+
 const progressMap = new Map<string, number>();
 
 export const centrifugeMachine: MachineDefinition = {
@@ -101,11 +108,6 @@ export const centrifugeMachine: MachineDefinition = {
           index: 4,
           allowedItems: INPUT_ITEM_TYPES,
         },
-        arrowIndicator: {
-          type: "progressIndicator",
-          index: 9,
-          indicator: "arrow",
-        },
         outputSlot0: {
           type: "itemSlot",
           index: 5,
@@ -122,6 +124,8 @@ export const centrifugeMachine: MachineDefinition = {
           type: "itemSlot",
           index: 8,
         },
+        // slots 9-10
+        ...createSpecialIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -130,9 +134,11 @@ export const centrifugeMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        progressIndicators: {
-          arrowIndicator: Math.floor((progressMap.get(uid) ?? 0) / 2),
-        },
+        progressIndicators: updateProgressArrow(
+          PROGRESS_ARROW,
+          progressMap.get(uid) ?? 0,
+          MAX_PROGRESS,
+        ),
       };
     },
   },

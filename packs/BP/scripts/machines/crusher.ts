@@ -17,6 +17,11 @@ import {
   getInputItemWithHopperSupport,
   getOutputItemWithHopperSupport,
 } from "../utils/item";
+import {
+  createProgressArrow,
+  createSpecialIconElements,
+  updateProgressArrow,
+} from "../utils/ui";
 
 const INPUT_ITEMS = [
   "minecraft:stone",
@@ -37,6 +42,8 @@ const RECIPES: Record<string, string> = {
 const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
 
 const MAX_PROGRESS = 16;
+
+const PROGRESS_ARROW = createProgressArrow("progress", 6);
 
 const progressMap = new Map<string, number>();
 
@@ -62,11 +69,8 @@ export const crusherMachine: MachineDefinition = {
           index: 5,
           allowedItems: OUTPUT_ITEMS,
         },
-        progressIndicator: {
-          type: "progressIndicator",
-          indicator: "arrow",
-          index: 6,
-        },
+        // slots 6-7
+        ...createSpecialIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -75,9 +79,11 @@ export const crusherMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        progressIndicators: {
-          progressIndicator: progressMap.get(uid) ?? 0,
-        },
+        progressIndicators: updateProgressArrow(
+          PROGRESS_ARROW,
+          progressMap.get(uid) ?? 0,
+          MAX_PROGRESS,
+        ),
       };
     },
   },

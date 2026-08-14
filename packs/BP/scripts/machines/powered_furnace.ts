@@ -18,10 +18,17 @@ import {
   getOutputItemWithHopperSupport,
 } from "../utils/item";
 import { POWERED_FURNACE_RECIPES } from "../generated/powered_furnace_recipes";
+import {
+  createProgressArrow,
+  createSpecialIconElements,
+  updateProgressArrow,
+} from "../utils/ui";
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 5;
 
 const MAX_PROGRESS = 16;
+
+const PROGRESS_ARROW = createProgressArrow("progress", 6);
 
 const progressMap = new Map<string, number>();
 
@@ -37,11 +44,6 @@ export const poweredFurnaceMachine: MachineDefinition = {
             type: "energy",
           },
         },
-        progressIndicator: {
-          type: "progressIndicator",
-          indicator: "arrow",
-          index: 6,
-        },
         inputSlot: {
           type: "itemSlot",
           index: 4,
@@ -50,6 +52,8 @@ export const poweredFurnaceMachine: MachineDefinition = {
           type: "itemSlot",
           index: 5,
         },
+        // slots 6-7
+        ...createSpecialIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -58,9 +62,11 @@ export const poweredFurnaceMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        progressIndicators: {
-          progressIndicator: progressMap.get(uid) ?? 0,
-        },
+        progressIndicators: updateProgressArrow(
+          PROGRESS_ARROW,
+          progressMap.get(uid) ?? 0,
+          MAX_PROGRESS,
+        ),
       };
     },
   },

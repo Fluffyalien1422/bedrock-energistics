@@ -18,10 +18,17 @@ import {
   getHopperBelow,
 } from "../utils/block";
 import { weightedRandom } from "../utils/math";
+import {
+  createProgressArrow,
+  createSpecialIconElements,
+  updateProgressArrow,
+} from "../utils/ui";
 
 const ENERGY_CONSUMPTION_PER_PROGRESS = 4;
 
 const MAX_PROGRESS = 24;
+
+const PROGRESS_ARROW = createProgressArrow("progress", 6);
 
 const progressMap = new Map<string, number>();
 
@@ -55,16 +62,13 @@ export const voidMinerMachine: MachineDefinition = {
             type: "energy",
           },
         },
-        progressIndicator: {
-          type: "progressIndicator",
-          indicator: "arrow",
-          index: 4,
-        },
         outputSlot: {
           type: "itemSlot",
           index: 5,
           allowedItems: OUTPUT_ITEM_TYPES,
         },
+        // slots 6-7, since the arrow's two tiles have to be next to each other
+        ...createSpecialIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -73,9 +77,11 @@ export const voidMinerMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        progressIndicators: {
-          progressIndicator: Math.floor((progressMap.get(uid) ?? 0) / 1.5),
-        },
+        progressIndicators: updateProgressArrow(
+          PROGRESS_ARROW,
+          progressMap.get(uid) ?? 0,
+          MAX_PROGRESS,
+        ),
       };
     },
   },

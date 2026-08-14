@@ -28,6 +28,20 @@ const DOUBLE_ARROW_RIGHT_ICONS = [
   "double_arrow_right_2",
 ];
 
+/**
+ * The highest frame index of the long arrow. The `ui_composite` build filter generates
+ * one frame per pixel column of the icon, so this is its width.
+ */
+const LONG_ARROW_RIGHT_MAX_FRAME = 22;
+
+/**
+ * The frames of the long arrow, in frame order.
+ */
+const LONG_ARROW_RIGHT_ICONS = Array.from(
+  { length: LONG_ARROW_RIGHT_MAX_FRAME + 1 },
+  (_, frame) => `long_arrow_right_${frame.toString()}`,
+);
+
 export interface SpecialIconOptions {
   /**
    * The base name of the generated elements.
@@ -210,4 +224,42 @@ export function updateTransferIndicator(
       ? WorkingIconState.On
       : WorkingIconState.Off,
   };
+}
+
+/**
+ * Describes a long arrow that fills up to show how far along a machine is, occupying 2
+ * slots: `startIndex` and `startIndex + 1`.
+ * @remarks
+ * The JSON UI counterpart is `fluffyalien_energistics:common.icon_2x1`. Use this for
+ * machines that have an actual progress value. For a machine that either runs or
+ * doesn't, use {@link createTransferIndicator} instead.
+ */
+export function createProgressArrow(
+  name: string,
+  startIndex: number,
+): SpecialIconOptions {
+  return {
+    name: `${name}Arrow`,
+    startIndex,
+    tilesX: 2,
+    tilesY: 1,
+    icons: LONG_ARROW_RIGHT_ICONS,
+  };
+}
+
+/**
+ * Creates the `progressIndicators` update for a progress arrow, filled to show
+ * `progress` out of `maxProgress`.
+ * @see {@link createProgressArrow}
+ */
+export function updateProgressArrow(
+  options: SpecialIconOptions,
+  progress: number,
+  maxProgress: number,
+): Record<string, number> {
+  const maxFrame = options.icons.length - 1;
+  const frame =
+    maxProgress > 0 ? Math.floor((progress / maxProgress) * maxFrame) : 0;
+
+  return updateSpecialIcon(options, Math.min(Math.max(frame, 0), maxFrame));
 }

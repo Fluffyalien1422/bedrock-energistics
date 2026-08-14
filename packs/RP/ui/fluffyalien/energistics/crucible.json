@@ -1,95 +1,43 @@
 {
   "namespace": "fluffyalien_energistics:crucible",
-  "root": {
-    "type": "panel",
-    "controls": [
-      {
-        "container_gamepad_helpers@common.container_gamepad_helpers": {}
-      },
-      {
-        "flying_item_renderer@common.flying_item_renderer": {
-          "layer": 14
-        }
-      },
-      {
-        "selected_item_details_factory@common.selected_item_details_factory": {}
-      },
-      {
-        "item_lock_notification_factory@common.item_lock_notification_factory": {}
-      },
-      {
-        "root_panel@common.root_panel": {
-          "layer": 1,
-          "size": [180, 180],
-          "controls": [
-            {
-              "common_panel@common.common_panel": {}
-            },
-            {
-              "chest_panel": {
-                "type": "panel",
-                "layer": 5,
-                "offset": [0, -0.5],
-                "controls": [
-                  {
-                    "small_chest_panel_top_half@fluffyalien_energistics:crucible.top_half": {}
-                  },
-                  {
-                    "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
-                  },
-                  {
-                    "hotbar_grid@common.hotbar_grid_template": {}
-                  },
-                  {
-                    "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {}
-                  }
-                ]
-              }
-            },
-            {
-              "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
-            },
-            {
-              "gamepad_cursor@common.gamepad_cursor_button": {}
-            }
-          ]
-        }
-      }
-    ]
+  "root@fluffyalien_energisticscore:common_v2.screen_template": {
+    "$content_ref": "fluffyalien_energistics:crucible.content"
   },
-  "top_half": {
-    "type": "panel",
-    "size": ["100%", "50% - 12px"],
-    "offset": [0, 7],
-    "anchor_to": "top_left",
-    "anchor_from": "top_left",
+  "content@fluffyalien_energisticscore:common_v2.content_template": {
     "controls": [
       {
-        "title@fluffyalien_energisticscore:common.container_title": {
-          "text": "Crucible"
+        "title@fluffyalien_energisticscore:common_v2.container_title": {
+          "text": "tile.fluffyalien_energistics:crucible.name"
         }
       },
       {
-        "energy_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
+        "energy_bar@fluffyalien_energisticscore:common_v2.machine_storage_bar": {
           "offset": [8, 12]
         }
       },
       {
-        "lava_bar@fluffyalien_energisticscore:common.machine_storage_bar": {
+        "input_plus@fluffyalien_energistics:common.blue_plus_icon": {
+          "offset": [28, 38]
+        }
+      },
+      {
+        "input_slot@fluffyalien_energisticscore:common_v2.container_slot_item": {
+          "offset": [44, 35],
+          "$index": 8,
+          "$background_images": "fluffyalien_energistics:common.blue_item_slot_image_panel"
+        }
+      },
+      {
+        // slots 9-10
+        "arrow_indicator@fluffyalien_energistics:common.icon_2x1": {
+          "offset": ["50%-11px", 38],
+          "$start_index": 9
+        }
+      },
+      {
+        "lava_bar@fluffyalien_energisticscore:common_v2.machine_storage_bar": {
           "offset": ["100%-24px", 12],
           "$start_index": 4
-        }
-      },
-      {
-        "input_slot@fluffyalien_energisticscore:common.container_item_slot": {
-          "$index": 8,
-          "offset": ["50%-35px", "50%-9px"]
-        }
-      },
-      {
-        "arrow_indicator@fluffyalien_energisticscore:common.container_slot_icon": {
-          "$index": 9,
-          "offset": ["50%", "50%"]
         }
       }
     ]

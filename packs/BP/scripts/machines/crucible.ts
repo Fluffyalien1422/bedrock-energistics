@@ -13,10 +13,17 @@ import {
 import { BlockStateAccessor } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
 import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  createProgressArrow,
+  createSpecialIconElements,
+  updateProgressArrow,
+} from "../utils/ui";
 
 const ENERGY_CONSUMPTION = 1; // per progress
 const LAVA_GENERATION = 32; // on completion
 const MAX_PROGRESS = 32;
+
+const PROGRESS_ARROW = createProgressArrow("progress", 9);
 const INPUT_ALLOWED_ITEMS = ["minecraft:cobblestone"];
 
 const progressMap = new Map<string, number>();
@@ -45,11 +52,8 @@ export const crucibleMachine: MachineDefinition = {
           index: 8,
           allowedItems: INPUT_ALLOWED_ITEMS,
         },
-        progressIndicator: {
-          type: "progressIndicator",
-          indicator: "arrow",
-          index: 9,
-        },
+        // slots 9-10
+        ...createSpecialIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -58,9 +62,11 @@ export const crucibleMachine: MachineDefinition = {
       const uid = blockLocationToUid(e.blockLocation);
 
       return {
-        progressIndicators: {
-          progressIndicator: Math.floor((progressMap.get(uid) ?? 0) / 2),
-        },
+        progressIndicators: updateProgressArrow(
+          PROGRESS_ARROW,
+          progressMap.get(uid) ?? 0,
+          MAX_PROGRESS,
+        ),
       };
     },
   },

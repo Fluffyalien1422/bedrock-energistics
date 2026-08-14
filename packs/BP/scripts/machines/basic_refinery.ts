@@ -26,8 +26,16 @@ import {
 } from "../utils/item";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 import { ModalFormData } from "@minecraft/server-ui";
+import {
+  createProgressArrow,
+  createSpecialIconElements,
+  updateProgressArrow,
+  updateSpecialIcon,
+} from "../utils/ui";
 
 const ENERGY_CONSUMPTION = 5;
+
+const PROGRESS_ARROW = createProgressArrow("progress", 11);
 
 interface RecipeItem {
   type: string;
@@ -100,11 +108,6 @@ export const basicRefineryMachine: MachineDefinition = {
           type: "storageBar",
           startIndex: 5,
         },
-        progressIndicator: {
-          type: "progressIndicator",
-          indicator: "arrow",
-          index: 11,
-        },
         inputSlot: {
           type: "itemSlot",
           index: 9,
@@ -113,6 +116,8 @@ export const basicRefineryMachine: MachineDefinition = {
           type: "itemSlot",
           index: 10,
         },
+        // slots 11-12
+        ...createSpecialIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -123,7 +128,12 @@ export const basicRefineryMachine: MachineDefinition = {
       const recipeId = block.permutation.getState(
         "fluffyalien_energistics:recipe" as keyof BlockStateSuperset,
       ) as RecipeStateValue;
-      if (recipeId === "none") return {};
+      if (recipeId === "none") {
+        // no recipe selected, so there is no progress to show
+        return {
+          progressIndicators: updateSpecialIcon(PROGRESS_ARROW, 0),
+        };
+      }
       const recipe = RECIPES[recipeId];
 
       return {
@@ -132,11 +142,11 @@ export const basicRefineryMachine: MachineDefinition = {
             type: recipe.fluidInput?.type,
           },
         },
-        progressIndicators: {
-          progressIndicator: Math.floor(
-            ((progressMap.get(uid) ?? 0) / recipe.maxProgress) * 16,
-          ),
-        },
+        progressIndicators: updateProgressArrow(
+          PROGRESS_ARROW,
+          progressMap.get(uid) ?? 0,
+          recipe.maxProgress,
+        ),
       };
     },
   },

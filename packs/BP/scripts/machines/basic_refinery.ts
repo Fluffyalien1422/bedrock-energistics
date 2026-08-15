@@ -28,9 +28,9 @@ import { BlockStateSuperset } from "@minecraft/vanilla-data";
 import { ModalFormData } from "@minecraft/server-ui";
 import {
   createProgressArrow,
-  createSpecialIconElements,
+  createTiledIconElements,
   updateProgressArrow,
-  updateSpecialIcon,
+  updateTiledIcon,
 } from "../utils/ui";
 
 const ENERGY_CONSUMPTION = 5;
@@ -117,7 +117,7 @@ export const basicRefineryMachine: MachineDefinition = {
           index: 10,
         },
         // slots 11-12
-        ...createSpecialIconElements(PROGRESS_ARROW),
+        ...createTiledIconElements(PROGRESS_ARROW),
       },
     },
   },
@@ -131,7 +131,7 @@ export const basicRefineryMachine: MachineDefinition = {
       if (recipeId === "none") {
         // no recipe selected, so there is no progress to show
         return {
-          progressIndicators: updateSpecialIcon(PROGRESS_ARROW, 0),
+          progressIndicators: updateTiledIcon(PROGRESS_ARROW, 0),
         };
       }
       const recipe = RECIPES[recipeId];

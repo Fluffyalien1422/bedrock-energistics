@@ -1,7 +1,7 @@
 {
   "namespace": "fluffyalien_energistics:common",
 
-  // A special icon that is 2 tiles wide and 1 tall, such as the double arrow or the
+  // A tiled icon that is 2 tiles wide and 1 tall, such as the double arrow or the
   // long arrow. Occupies 2 slots: '$start_index' and '$start_index+1'.
   "icon_2x1": {
     "type": "panel",

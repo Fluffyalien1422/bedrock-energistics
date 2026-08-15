@@ -20,7 +20,7 @@ import {
 import { POWERED_FURNACE_RECIPES } from "../generated/powered_furnace_recipes";
 import {
   createProgressArrow,
-  createSpecialIconElements,
+  createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
 
@@ -53,7 +53,7 @@ export const poweredFurnaceMachine: MachineDefinition = {
           index: 5,
         },
         // slots 6-7
-        ...createSpecialIconElements(PROGRESS_ARROW),
+        ...createTiledIconElements(PROGRESS_ARROW),
       },
     },
   },

@@ -21,7 +21,7 @@ import { getInputItemWithHopperSupport } from "../utils/item";
 import { weightedRandom } from "../utils/math";
 import {
   createProgressArrow,
-  createSpecialIconElements,
+  createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
 
@@ -125,7 +125,7 @@ export const centrifugeMachine: MachineDefinition = {
           index: 8,
         },
         // slots 9-10
-        ...createSpecialIconElements(PROGRESS_ARROW),
+        ...createTiledIconElements(PROGRESS_ARROW),
       },
     },
   },

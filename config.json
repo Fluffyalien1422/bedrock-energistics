@@ -30,9 +30,9 @@
         "runWith": "nodejs",
         "script": "scripts/filters/tutorial_book_entries.ts"
       },
-      "ui_composite": {
+      "tiled_icons": {
         "runWith": "nodejs",
-        "script": "scripts/filters/ui_composite.ts"
+        "script": "scripts/filters/tiled_icons.ts"
       },
       "ui_icons": {
         "runWith": "nodejs",
@@ -50,7 +50,7 @@
             "filter": "tutorial_book_entries"
           },
           {
-            "filter": "ui_composite"
+            "filter": "tiled_icons"
           },
           {
             "filter": "build_scripts"

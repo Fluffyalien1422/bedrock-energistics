@@ -19,7 +19,7 @@ import {
 } from "../utils/item";
 import {
   createProgressArrow,
-  createSpecialIconElements,
+  createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
 
@@ -70,7 +70,7 @@ export const crusherMachine: MachineDefinition = {
           allowedItems: OUTPUT_ITEMS,
         },
         // slots 6-7
-        ...createSpecialIconElements(PROGRESS_ARROW),
+        ...createTiledIconElements(PROGRESS_ARROW),
       },
     },
   },

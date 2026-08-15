@@ -15,7 +15,7 @@ import { getInputItemWithHopperSupport } from "../utils/item";
 import { MAX_MACHINE_STORAGE } from "../constants";
 import {
   createProgressArrow,
-  createSpecialIconElements,
+  createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
 
@@ -53,7 +53,7 @@ export const crucibleMachine: MachineDefinition = {
           allowedItems: INPUT_ALLOWED_ITEMS,
         },
         // slots 9-10
-        ...createSpecialIconElements(PROGRESS_ARROW),
+        ...createTiledIconElements(PROGRESS_ARROW),
       },
     },
   },

@@ -6,11 +6,11 @@ import {
   world,
 } from "@minecraft/server";
 import {
-  createSpecialIconElements,
+  createTiledIconElements,
   createTransferIndicator,
   createTransferIndicatorElements,
-  SpecialIconOptions,
-  updateSpecialIcon,
+  TiledIconOptions,
+  updateTiledIcon,
   updateTransferIndicator,
 } from "../utils/ui";
 
@@ -22,7 +22,7 @@ enum TimeIconState {
   Moon,
 }
 
-const TIME_ICON: SpecialIconOptions = {
+const TIME_ICON: TiledIconOptions = {
   name: "timeIcon",
   startIndex: 0,
   tilesX: 3,
@@ -61,7 +61,7 @@ export const solarPanelMachine: MachineDefinition = {
     ui: {
       elements: {
         // slots 0-11
-        ...createSpecialIconElements(TIME_ICON),
+        ...createTiledIconElements(TIME_ICON),
         // slots 12-14
         ...createTransferIndicatorElements(TRANSFER_INDICATOR),
         // slots 15-18
@@ -81,7 +81,7 @@ export const solarPanelMachine: MachineDefinition = {
 
       return {
         progressIndicators: {
-          ...updateSpecialIcon(
+          ...updateTiledIcon(
             TIME_ICON,
             isDay() ? TimeIconState.Sun : TimeIconState.Moon,
           ),

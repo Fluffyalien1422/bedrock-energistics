@@ -1,19 +1,16 @@
 import { UiProgressIndicatorElementDefinition } from "bedrock-energistics-core-api";
 import { system } from "@minecraft/server";
 import { WORKING_ICON_DESCRIPTION, WorkingIconState } from "../icons";
-import {
-  ICON_TILE_REDIRECTS,
-  TRANSPARENT_ICON_TILES,
-} from "../ui_composite_icons";
+import { ICON_TILE_REDIRECTS, TRANSPARENT_ICON_TILES } from "../tiled_icons";
 
 /**
- * Stands in for a fully transparent special icon tile, which the `ui_composite` build
+ * Stands in for a fully transparent icon tile, which the `tiled_icons` build
  * filter doesn't generate an item for because it renders as nothing.
  */
 const EMPTY_ICON_TILE_ITEM = "fluffyalien_energisticscore:ui_empty_slot";
 
 /**
- * The amount of ticks each state of an animated special icon is shown for.
+ * The amount of ticks each state of an animated tiled icon is shown for.
  * @remarks
  * Machine UIs are updated every 4 ticks, so this should be a multiple of 4.
  */
@@ -29,7 +26,7 @@ const DOUBLE_ARROW_RIGHT_ICONS = [
 ];
 
 /**
- * The highest frame index of the long arrow. The `ui_composite` build filter generates
+ * The highest frame index of the long arrow. The `tiled_icons` build filter generates
  * one frame per pixel column of the icon, so this is its width.
  */
 const LONG_ARROW_RIGHT_MAX_FRAME = 22;
@@ -42,7 +39,7 @@ const LONG_ARROW_RIGHT_ICONS = Array.from(
   (_, frame) => `long_arrow_right_${frame.toString()}`,
 );
 
-export interface SpecialIconOptions {
+export interface TiledIconOptions {
   /**
    * The base name of the generated elements.
    * @remarks
@@ -63,7 +60,7 @@ export interface SpecialIconOptions {
    */
   tilesY: number;
   /**
-   * The names of the special icons to use as the frames of each tile, in frame order.
+   * The names of the tiled icons to use as the frames of each tile, in frame order.
    * @remarks
    * Every icon must be the same size as `tilesX` by `tilesY`.
    */
@@ -71,9 +68,9 @@ export interface SpecialIconOptions {
 }
 
 /**
- * The item ID to draw for one tile of a special icon.
+ * The item ID to draw for one tile of a tiled icon.
  * @remarks
- * The `ui_composite` build filter skips tiles that don't need an item of their own:
+ * The `tiled_icons` build filter skips tiles that don't need an item of their own:
  * a fully transparent tile is drawn with {@link EMPTY_ICON_TILE_ITEM}, and a tile that
  * shares its texture with an earlier one is drawn with that tile's item.
  */
@@ -88,16 +85,16 @@ function iconTileItemId(icon: string, tileX: number, tileY: number): string {
 }
 
 /**
- * Generates the UI elements for each tile of a special icon. Special icons are
- * split into a grid of tiles by the `ui_composite` build filter.
+ * Generates the UI elements for each tile of a tiled icon. Tiled icons are
+ * split into a grid of tiles by the `tiled_icons` build filter.
  */
-export function createSpecialIconElements({
+export function createTiledIconElements({
   name,
   startIndex,
   tilesX,
   tilesY,
   icons,
-}: SpecialIconOptions): Record<string, UiProgressIndicatorElementDefinition> {
+}: TiledIconOptions): Record<string, UiProgressIndicatorElementDefinition> {
   const elements: Record<string, UiProgressIndicatorElementDefinition> = {};
 
   for (let tileY = 0; tileY < tilesY; tileY++) {
@@ -118,12 +115,12 @@ export function createSpecialIconElements({
 }
 
 /**
- * Creates the `progressIndicators` update for each tile of a special icon, showing
+ * Creates the `progressIndicators` update for each tile of a tiled icon, showing
  * the icon at the given frame index.
- * @see {@link createSpecialIconElements}
+ * @see {@link createTiledIconElements}
  */
-export function updateSpecialIcon(
-  { name, tilesX, tilesY }: SpecialIconOptions,
+export function updateTiledIcon(
+  { name, tilesX, tilesY }: TiledIconOptions,
   frame: number,
 ): Record<string, number> {
   const progressIndicators: Record<string, number> = {};
@@ -136,18 +133,18 @@ export function updateSpecialIcon(
 }
 
 /**
- * Creates the `progressIndicators` update for each tile of a special icon, cycling
+ * Creates the `progressIndicators` update for each tile of a tiled icon, cycling
  * through every state of the icon if `animate` is true, otherwise showing state 0.
  * @remarks
  * All animated icons share the same timing, so they stay in sync with each other.
- * @see {@link createSpecialIconElements}
+ * @see {@link createTiledIconElements}
  */
-export function animateSpecialIcon(
-  options: SpecialIconOptions,
+export function animateTiledIcon(
+  options: TiledIconOptions,
   animate: boolean,
   ticksPerState = ANIMATION_TICKS_PER_STATE,
 ): Record<string, number> {
-  return updateSpecialIcon(
+  return updateTiledIcon(
     options,
     animate
       ? Math.floor(system.currentTick / ticksPerState) % options.icons.length
@@ -161,7 +158,7 @@ export function animateSpecialIcon(
  * @see {@link createTransferIndicator}
  */
 export interface TransferIndicator {
-  arrow: SpecialIconOptions;
+  arrow: TiledIconOptions;
   workingIconElementId: string;
 }
 
@@ -199,7 +196,7 @@ export function createTransferIndicatorElements({
   workingIconElementId,
 }: TransferIndicator): Record<string, UiProgressIndicatorElementDefinition> {
   return {
-    ...createSpecialIconElements(arrow),
+    ...createTiledIconElements(arrow),
     [workingIconElementId]: {
       type: "progressIndicator",
       index: arrow.startIndex + arrow.tilesX * arrow.tilesY,
@@ -219,7 +216,7 @@ export function updateTransferIndicator(
   working: boolean,
 ): Record<string, number> {
   return {
-    ...animateSpecialIcon(arrow, working),
+    ...animateTiledIcon(arrow, working),
     [workingIconElementId]: working
       ? WorkingIconState.On
       : WorkingIconState.Off,
@@ -237,7 +234,7 @@ export function updateTransferIndicator(
 export function createProgressArrow(
   name: string,
   startIndex: number,
-): SpecialIconOptions {
+): TiledIconOptions {
   return {
     name: `${name}Arrow`,
     startIndex,
@@ -253,7 +250,7 @@ export function createProgressArrow(
  * @see {@link createProgressArrow}
  */
 export function updateProgressArrow(
-  options: SpecialIconOptions,
+  options: TiledIconOptions,
   progress: number,
   maxProgress: number,
 ): Record<string, number> {
@@ -261,5 +258,5 @@ export function updateProgressArrow(
   const frame =
     maxProgress > 0 ? Math.floor((progress / maxProgress) * maxFrame) : 0;
 
-  return updateSpecialIcon(options, Math.min(Math.max(frame, 0), maxFrame));
+  return updateTiledIcon(options, Math.min(Math.max(frame, 0), maxFrame));
 }

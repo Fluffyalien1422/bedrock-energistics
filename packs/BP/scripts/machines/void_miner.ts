@@ -20,7 +20,7 @@ import {
 import { weightedRandom } from "../utils/math";
 import {
   createProgressArrow,
-  createSpecialIconElements,
+  createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
 
@@ -68,7 +68,7 @@ export const voidMinerMachine: MachineDefinition = {
           allowedItems: OUTPUT_ITEM_TYPES,
         },
         // slots 6-7, since the arrow's two tiles have to be next to each other
-        ...createSpecialIconElements(PROGRESS_ARROW),
+        ...createTiledIconElements(PROGRESS_ARROW),
       },
     },
   },

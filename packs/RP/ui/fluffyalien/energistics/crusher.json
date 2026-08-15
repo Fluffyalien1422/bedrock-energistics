@@ -28,9 +28,9 @@
         }
       },
       {
-        // slots 6-7
+        // slots 6-7, centered in the gap between the input and the output
         "arrow_indicator@fluffyalien_energistics:common.icon_2x1": {
-          "offset": ["50%-11px", 38],
+          "offset": [97, 38],
           "$start_index": 6
         }
       },

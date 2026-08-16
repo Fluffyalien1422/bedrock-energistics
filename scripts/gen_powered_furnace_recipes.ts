@@ -15,7 +15,7 @@ const ID_OVERRIDES: Record<string, string | null> = {
   "minecraft:wood:4": "minecraft:acacia_wood",
   "minecraft:wood:5": "minecraft:dark_oak_wood",
   "minecraft:wood:8": "minecraft:stripped_oak_wood",
-  "minecraft:wood:9": "minecraft:stripped_spurce_wood",
+  "minecraft:wood:9": "minecraft:stripped_spruce_wood",
   "minecraft:wood:10": "minecraft:stripped_birch_wood",
   "minecraft:wood:11": "minecraft:stripped_jungle_wood",
   "minecraft:wood:12": "minecraft:stripped_acacia_wood",
@@ -72,7 +72,8 @@ const tmpDirPath = fs.mkdtempSync("tmp_gen_powered_furnace_recipes");
 
 console.log("downloading bedrock samples");
 
-execSync("git clone https://github.com/Mojang/bedrock-samples", {
+// only the current tree is read, so there's no reason to fetch the history
+execSync("git clone --depth 1 https://github.com/Mojang/bedrock-samples", {
   cwd: tmpDirPath,
 });
 
@@ -82,13 +83,44 @@ const bedrockRecipesPath = path.join(
 );
 
 interface FurnaceRecipe {
-  input: string;
+  input:
+    | string
+    | {
+        item: string;
+        data?: number;
+      }
+    | {
+        tag: string;
+      };
   output:
     | string
     | {
         item: string;
         count?: number;
       };
+}
+
+/**
+ * Reduces a recipe input to the single item ID used as a key, or null if it
+ * doesn't name one.
+ *
+ * Inputs come as a plain ID, a legacy `<id>:<data>` string, or an object. An
+ * object naming an item flattens to the same `<id>:<data>` form the strings use,
+ * so `ID_OVERRIDES` covers both. An object naming a tag stands for many items at
+ * once and so has no single key; every tag input so far repeats recipes that also
+ * exist per item, so skipping them loses nothing.
+ */
+function getInputId(input: FurnaceRecipe["input"]): string | null {
+  if (typeof input === "string") {
+    return input;
+  }
+
+  if (!("item" in input)) {
+    return null;
+  }
+
+  // data 0 is the base item, which is already the plain ID
+  return input.data ? `${input.item}:${input.data.toString()}` : input.item;
 }
 
 interface RecipeResult {
@@ -111,11 +143,12 @@ for (const fileName of fs.readdirSync(bedrockRecipesPath)) {
 
   const recipe = content["minecraft:recipe_furnace"] as FurnaceRecipe;
 
-  if (typeof recipe.input === "object") {
+  const inputId = getInputId(recipe.input);
+  if (inputId === null) {
     continue;
   }
 
-  const inputOverride = ID_OVERRIDES[recipe.input] as string | null | undefined;
+  const inputOverride = ID_OVERRIDES[inputId] as string | null | undefined;
   if (inputOverride === null) {
     continue;
   }
@@ -128,7 +161,7 @@ for (const fileName of fs.readdirSync(bedrockRecipesPath)) {
     continue;
   }
 
-  result[inputOverride ?? recipe.input] =
+  result[inputOverride ?? inputId] =
     typeof recipe.output === "string"
       ? {
           item: outputOverride ?? recipe.output,

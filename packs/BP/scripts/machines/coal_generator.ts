@@ -12,10 +12,18 @@ import { BlockStateAccessor } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
 import { MAX_MACHINE_STORAGE } from "../constants";
 import { blockLocationToUid } from "../utils/location";
+import { isMachineWorking } from "../utils/block";
+import {
+  animateTiledIcon,
+  createDoubleArrow,
+  createTiledIconElements,
+} from "../utils/ui";
 
 const INPUT_ITEMS = ["minecraft:coal"];
 
 const MAX_PROGRESS = 52;
+
+const TRANSFER_ARROW = createDoubleArrow("transfer", 5);
 
 const ENERGY_GENERATION_PER_PROGRESS = 14;
 const ENERGY_GENERATION_PER_FUEL =
@@ -38,9 +46,12 @@ export const coalGeneratorMachine: MachineDefinition = {
           index: 4,
           allowedItems: INPUT_ITEMS,
         },
+        // slots 5-6
+        ...createTiledIconElements(TRANSFER_ARROW),
+        // the flame sits below the arrow, where other machines show a working icon
         flameIndicator: {
           type: "progressIndicator",
-          index: 5,
+          index: 7,
           indicator: "flame",
         },
       },
@@ -53,6 +64,7 @@ export const coalGeneratorMachine: MachineDefinition = {
 
       return {
         progressIndicators: {
+          ...animateTiledIcon(TRANSFER_ARROW, isMachineWorking(blockLocation)),
           flameIndicator: Math.floor(progress / 4),
         },
       };

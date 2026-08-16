@@ -153,6 +153,28 @@ export function animateTiledIcon(
 }
 
 /**
+ * Describes the animated double arrow, which occupies 2 slots: `startIndex` and
+ * `startIndex + 1`.
+ * @remarks
+ * The JSON UI counterpart is `fluffyalien_energistics:common.icon_2x1`, or
+ * `common.transfer_indicator` to draw a status icon below it as well. Most machines
+ * want {@link createTransferIndicator} rather than this on its own; reach for this when
+ * the icon below the arrow isn't the working icon, as with a fuel burner's flame.
+ */
+export function createDoubleArrow(
+  name: string,
+  startIndex: number,
+): TiledIconOptions {
+  return {
+    name: `${name}Arrow`,
+    startIndex,
+    tilesX: 2,
+    tilesY: 1,
+    icons: DOUBLE_ARROW_RIGHT_ICONS,
+  };
+}
+
+/**
  * A double arrow with a working icon below it, which indicates a transfer with no
  * specific progress value.
  * @see {@link createTransferIndicator}
@@ -176,13 +198,7 @@ export function createTransferIndicator(
   startIndex: number,
 ): TransferIndicator {
   return {
-    arrow: {
-      name: `${name}Arrow`,
-      startIndex,
-      tilesX: 2,
-      tilesY: 1,
-      icons: DOUBLE_ARROW_RIGHT_ICONS,
-    },
+    arrow: createDoubleArrow(name, startIndex),
     workingIconElementId: `${name}WorkingIcon`,
   };
 }

@@ -12,6 +12,14 @@ import { BlockStateAccessor } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
 import { MAX_MACHINE_STORAGE } from "../constants";
 import { blockLocationToUid } from "../utils/location";
+import { isMachineWorking } from "../utils/block";
+import {
+  animateTiledIcon,
+  createDoubleArrow,
+  createTiledIconElements,
+} from "../utils/ui";
+
+const TRANSFER_ARROW = createDoubleArrow("transfer", 5);
 
 const INPUT_ITEMS = [
   "minecraft:beetroot_seeds",
@@ -64,9 +72,12 @@ export const organicGeneratorMachine: MachineDefinition = {
           index: 4,
           allowedItems: INPUT_ITEMS,
         },
+        // slots 5-6
+        ...createTiledIconElements(TRANSFER_ARROW),
+        // the flame sits below the arrow, where other machines show a working icon
         flameIndicator: {
           type: "progressIndicator",
-          index: 5,
+          index: 7,
           indicator: "flame",
         },
       },
@@ -79,6 +90,7 @@ export const organicGeneratorMachine: MachineDefinition = {
 
       return {
         progressIndicators: {
+          ...animateTiledIcon(TRANSFER_ARROW, isMachineWorking(blockLocation)),
           flameIndicator: progress
             ? Math.floor((progress[0] / progress[1]) * 13)
             : 0,

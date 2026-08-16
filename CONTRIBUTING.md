@@ -58,14 +58,53 @@ The behavior pack scripts are bundled from `packs/BP/scripts/index.ts`.
 A machine is spread across a few places:
 
 1. `packs/BP/scripts/machines/<machine>.ts` — its `MachineDefinition` and its `BlockCustomComponent`.
-2. `packs/BP/scripts/register_machines.ts` — register the definition.
-3. `packs/BP/scripts/custom_components.ts` — wire up the component.
-4. `packs/BP/blocks/<machine>.json` — the block, including its `fluffyalien_energisticscore:io.*` tags, which decide what it can send and receive.
-5. `packs/data/machine_entities/<machine>.json` — its entity, whose `inventorySize` must cover every UI slot.
-6. `packs/RP/ui/fluffyalien/energistics/<machine>.json` — its screen.
-7. `packs/RP/ui/chest_screen.json` — map the machine's ID to `<machine>.root`.
-8. `packs/RP/ui/_ui_defs.json` — list the new screen file.
-9. `packs/RP/texts/en_US.lang` — its name, and a tutorial book entry.
+2. `packs/BP/scripts/balance.ts` — its rates and timings. See [Balance](#balance).
+3. `packs/BP/scripts/register_machines.ts` — register the definition.
+4. `packs/BP/scripts/custom_components.ts` — wire up the component.
+5. `packs/BP/blocks/<machine>.json` — the block, including its `fluffyalien_energisticscore:io.*` tags, which decide what it can send and receive.
+6. `packs/data/machine_entities/<machine>.json` — its entity, whose `inventorySize` must cover every UI slot.
+7. `packs/BP/recipes/<machine>.json` — its recipe, priced for a [tier](#balance).
+8. `packs/RP/ui/fluffyalien/energistics/<machine>.json` — its screen.
+9. `packs/RP/ui/chest_screen.json` — map the machine's ID to `<machine>.root`.
+10. `packs/RP/ui/_ui_defs.json` — list the new screen file.
+11. `packs/RP/texts/en_US.lang` — its name, and a tutorial book entry.
+
+## Balance
+
+Every rate, timing, and cost belongs in `packs/BP/scripts/balance.ts`, never
+inline in a machine file. **Read that file's module doc comment before changing
+any of them.** It gives the unit the numbers are in, the base unit the rest are
+derived from, and the ledger deciding which producer and generator pairs may
+return more energy than they cost. Any machine that produces a storage type out
+of nothing has to be checked against that ledger, or it is an infinite energy
+loop.
+
+The one number kept elsewhere is the tick interval, in each block's
+`minecraft:tick.interval_range`. It is 10 for every machine, and the rates in
+`balance.ts` mean nothing for a machine that departs from it.
+
+A machine's place in the game is set by what its recipe costs. Each recipe's
+`unlock` is its tier's material, so the recipe book opens a tier up as the player
+reaches it:
+
+| Tier | Gate                           |
+| ---- | ------------------------------ |
+| 1    | copper / iron                  |
+| 2    | gold / redstone                |
+| 3    | diamond                        |
+| 4    | emerald / amethyst / ender eye |
+| 5    | plastic                        |
+
+The arc runs from machines fuelled by what a player already has, through the
+automation built on the basic machine part, out to fluids, gases, and the
+machines that mint resources from nothing, then to the refinery that turns oil
+into plastic, and finally to the endgame chain plastic gates. A machine's tier is
+whatever its recipe's `unlock` names, so that field is the authority and there is
+no roster here to keep in step with it.
+
+A tier 5 recipe takes two plastic where its tier 3 equivalent would take
+diamonds. The basic refinery must never take plastic itself, or the tier it
+unlocks cannot be reached.
 
 ## UI Design Language
 

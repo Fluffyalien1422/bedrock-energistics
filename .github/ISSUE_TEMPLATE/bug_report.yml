@@ -40,7 +40,7 @@ body:
         - A recipe or crafting
         - The guide book
         - The config file
-        - Not sure
+        - Other or unsure
     validations:
       required: true
 

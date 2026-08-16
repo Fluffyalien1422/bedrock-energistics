@@ -26,12 +26,25 @@
  * | Pump -> lava generator      | 6  | 5   | 0.83x | closed             |
  * | Crucible -> lava generator  | 2  | 5   | 2.5x  | open, by design    |
  * | Oil extractor -> oil gen    | 5  | 10  | 2.0x  | open, by design    |
- * | Ammonia chain -> ammonia gen| 50 | 90  | 1.8x  | open, by design    |
+ * | Ammonia chain -> ammonia gen| 50 | 125 | 2.5x  | open, by design    |
  *
  * The three open routes are deliberate. The crucible consumes an item
  * (cobblestone), so it is a renewable item to power route like the coal and
  * organic generators rather than a loop. Oil and ammonia are the payoffs for
  * reaching the diamond and plastic tiers.
+ *
+ * The ratio column decides closed against open, and nothing else. It does not
+ * order the open routes against each other: the crucible's ratio leaves out the
+ * cobblestone it eats, and what really limits it is throughput rather than
+ * efficiency. Order them by net energy per machine in a balanced system, which
+ * should climb with the tier:
+ *
+ * - crucible bank (4 crucibles, a lava generator, a block breaker): ~4/s
+ * - oil pair (an extractor and a generator): 20/s
+ * - ammonia chain (2 condensers, a factory, a generator): 75/s
+ *
+ * On top of that, ammonia must not return less per energy spent than oil does,
+ * since it is far harder to build. See the ammonia generator below.
  *
  * Anything added here that produces a storage type from nothing has to be checked
  * against this table.
@@ -73,9 +86,16 @@ export const LAVA_GENERATOR_ENERGY_GENERATION = 20;
 export const OIL_GENERATOR_OIL_CONSUMPTION = 4;
 export const OIL_GENERATOR_ENERGY_GENERATION = 40;
 
-/** 90 energy per ammonia, against the ammonia chain's 50 to make it. */
+/**
+ * 125 energy per ammonia, against the ammonia chain's 50 to make it.
+ *
+ * @remarks
+ * The chain is the hardest thing in the pack to set up, so it has to beat the
+ * oil pair on both measures in the ledger, not just one. Keep this above
+ * `2 * 50`, or oil returns more per energy spent than the endgame does.
+ */
 export const AMMONIA_GENERATOR_AMMONIA_CONSUMPTION = 2;
-export const AMMONIA_GENERATOR_ENERGY_GENERATION = 180;
+export const AMMONIA_GENERATOR_ENERGY_GENERATION = 250;
 
 // #endregion
 

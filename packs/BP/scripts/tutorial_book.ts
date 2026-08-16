@@ -9,6 +9,7 @@ import {
 } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
 import TUTORIAL_ENTRIES, { TutorialEntry } from "./generated/tutorial_entries";
+import { CONFIG } from "./config_manager";
 
 const NOT_FIRST_JOIN_DYNAMIC_PROPERTY_ID =
   "fluffyalien_energistics:not_first_join";
@@ -87,6 +88,7 @@ async function showTutorialBookEntryUi(
 
 world.afterEvents.playerSpawn.subscribe((e) => {
   if (
+    !CONFIG.giveTutorialBookOnSpawn ||
     !e.initialSpawn ||
     e.player.getDynamicProperty(NOT_FIRST_JOIN_DYNAMIC_PROPERTY_ID)
   ) {

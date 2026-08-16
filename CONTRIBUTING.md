@@ -25,13 +25,14 @@ This add-on is built on [Bedrock Energistics Core](https://github.com/Fluffyalie
 
 ## Project Layout
 
-| Path                        | What it is                                                                |
-| --------------------------- | ------------------------------------------------------------------------- |
-| `packs/BP`, `packs/RP`      | The add-on itself. `packs/BP/scripts` is its behavior pack script source. |
-| `packs/BP/scripts/machines` | One file per machine, holding its definition and its block tick logic.    |
-| `packs/RP/ui`               | The machine screens, one JSON UI file per machine.                        |
-| `packs/data`                | Input for build filters, not shipped as-is.                               |
-| `scripts`                   | Build tooling: the Regolith filters and `docgen.ts` (not shipped).        |
+| Path                           | What it is                                                                        |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| `packs/BP`, `packs/RP`         | The add-on itself. `packs/BP/scripts` is its behavior pack script source.         |
+| `packs/BP/scripts/machines`    | One file per machine, holding its definition and its block tick logic.            |
+| `packs/RP/ui`                  | The machine screens, one JSON UI file per machine.                                |
+| `packs/data`                   | Input for build filters, not shipped as-is.                                       |
+| `packs/BP/scripts/__config.js` | The player-editable config, kept out of the script bundle. See [Config](#config). |
+| `scripts`                      | Build tooling: the Regolith filters and `docgen.ts` (not shipped).                |
 
 ## Checking Your Code
 
@@ -51,7 +52,26 @@ To build your code, run `regolith run` if using Regolith or `rgl run` if using r
 | `regolith run dev_localexport` | Exports to the project's `build` directory instead of Minecraft. |
 | `regolith run prod`            | A production build, minified down to the script bundle.          |
 
-The behavior pack scripts are bundled from `packs/BP/scripts/index.ts`.
+The behavior pack scripts are bundled from `packs/BP/scripts/index.ts` by the
+`build_scripts` filter. Any script named `__*.js` is left out of the bundle and
+survives the production cleanup, so it reaches players as an editable file.
+
+## Config
+
+`packs/BP/scripts/__config.js` is the player-facing config, and it ships
+unbundled so it can be edited after installation. That is also why its contents
+are untrusted: every option is optional and may hold whatever a player typed.
+
+At build time the `copy_default_config` filter copies it to `default_config.js`,
+which _is_ bundled and supplies the trusted defaults. `config_manager.ts`
+validates the edited file against those defaults and exports `CONFIG`. A missing
+or wrong-typed option never throws — it falls back to its default and logs a
+warning to the content log. Read options from `CONFIG`; never import
+`__config.js` directly.
+
+Adding an option touches three files, and `config_manager.ts` lists the steps in
+its module doc comment. The default value lives only in `__config.js` — nothing
+else should repeat it.
 
 ## Adding a Machine
 

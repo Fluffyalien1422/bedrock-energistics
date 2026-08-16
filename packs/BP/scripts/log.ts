@@ -1,0 +1,21 @@
+import { VERSION_STR } from "./constants";
+
+function makeLogString(logLevel: string, message: string): string {
+  return `[Bedrock Energistics v${VERSION_STR}] ${logLevel} ${message}`;
+}
+
+export function logInfo(message: string): void {
+  console.info(makeLogString("INFO", message));
+}
+
+export function logWarn(message: string): void {
+  console.warn(makeLogString("WARN", message));
+}
+
+export function logError(message: string): void {
+  console.error(makeLogString("ERROR", message));
+}
+
+export function panic(message: string): never {
+  throw new Error(makeLogString("PANIC", message));
+}

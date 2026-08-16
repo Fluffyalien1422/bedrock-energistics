@@ -26,9 +26,9 @@
         "runWith": "nodejs",
         "script": "scripts/filters/machine_entities.ts"
       },
-      "tutorial_book_entries": {
+      "tutorial_entries": {
         "runWith": "nodejs",
-        "script": "scripts/filters/tutorial_book_entries.ts"
+        "script": "scripts/filters/tutorial_entries.ts"
       },
       "tiled_icons": {
         "runWith": "nodejs",
@@ -47,7 +47,7 @@
         },
         "filters": [
           {
-            "filter": "tutorial_book_entries"
+            "filter": "tutorial_entries"
           },
           {
             "filter": "tiled_icons"

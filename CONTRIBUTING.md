@@ -31,7 +31,7 @@ This add-on is built on [Bedrock Energistics Core](https://github.com/Fluffyalie
 | `packs/BP/scripts/machines` | One file per machine, holding its definition and its block tick logic.    |
 | `packs/RP/ui`               | The machine screens, one JSON UI file per machine.                        |
 | `packs/data`                | Input for build filters, not shipped as-is.                               |
-| `scripts`                   | Build tooling: the Regolith filters (not shipped).                        |
+| `scripts`                   | Build tooling: the Regolith filters and `docgen.ts` (not shipped).        |
 
 ## Checking Your Code
 
@@ -67,7 +67,8 @@ A machine is spread across a few places:
 8. `packs/RP/ui/fluffyalien/energistics/<machine>.json` — its screen.
 9. `packs/RP/ui/chest_screen.json` — map the machine's ID to `<machine>.root`.
 10. `packs/RP/ui/_ui_defs.json` — list the new screen file.
-11. `packs/RP/texts/en_US.lang` — its name, and a tutorial book entry.
+11. `packs/RP/texts/en_US.lang` — its name, and a guide book entry. See
+    [The Guide Book](#the-guide-book).
 
 ## Balance
 
@@ -105,6 +106,44 @@ no roster here to keep in step with it.
 A tier 5 recipe takes two plastic where its tier 3 equivalent would take
 diamonds. The basic refinery must never take plastic itself, or the tier it
 unlocks cannot be reached.
+
+## The Guide Book
+
+Every guide book entry is written in `packs/RP/texts/en_US.lang`, under
+`fluffyalien_energistics.ui.tutorialBook.entry.<id>.`, and nowhere else. Nothing
+about an entry is inferred from its ID, so an entry only appears in the book once
+it is written there. Entries are listed in the order their keys first appear.
+
+| Key             | What it is                                                       |
+| --------------- | ---------------------------------------------------------------- |
+| `.title`        | The entry's name, shown on its button and as its heading.        |
+| `.bullet<n>`    | One bullet of body text, numbered from `0`.                      |
+| `## ….icon=`    | Its icon's texture path. A `##` comment, so the game ignores it. |
+| `## ….targets=` | Comma-separated block/entity IDs this entry documents.           |
+
+Interacting with any of an entry's `targets` while holding the guide book opens
+that entry directly, so a new machine needs its own ID listed there. An entry
+that documents a concept rather than a block (`networks`, `generators`) simply
+has no `targets`.
+
+Related entries are not declared. An entry links to every other entry whose title
+its bullets mention by name, so the way to cross-link two entries is to name one
+in the other's text. Matching ignores case and a trailing plural "s", and a
+longer title wins over a shorter one nested inside it.
+
+`scripts/filters/tutorial_entries.ts` reads all of this at build time and writes
+`packs/BP/scripts/generated/tutorial_entries.js`, which `tutorial_book.ts` reads.
+The generated file is not checked in; the `.d.ts` beside it is its hand-written
+type and must be kept in step with the filter's output.
+
+### The Online Guide Book
+
+`npm run docgen` builds a static site into `site/` that recreates the in-game
+book, entry for entry, from the same lang file. It shares the lang parser with
+the build filter (`scripts/tutorial_book_lang_parser.ts`), so the two cannot
+drift. Titles, links, and colors come from `docgen.json`; `onlineEntries` there
+adds entries that appear on the site but not in-game. The "Deploy Site" workflow
+generates the site and publishes it to GitHub Pages.
 
 ## UI Design Language
 

@@ -1,5 +1,6 @@
 /build
 /.regolith
+/site
 node_modules
 /cfpost.html
 *.tgz

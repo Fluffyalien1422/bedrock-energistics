@@ -1,0 +1,23 @@
+{
+  "namespace": "fluffyalien_energistics",
+  "siteTitle": "Bedrock Energistics",
+  "bookTitle": "Guide Book",
+  "description": "Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.",
+  "themeColor": "#b8860b",
+  "accentColor": "#ffff55",
+  "repoUrl": "https://github.com/Fluffyalien1422/bedrock-energistics",
+  "issueTrackerUrl": "https://github.com/Fluffyalien1422/bedrock-energistics/issues",
+  "changelogsUrl": "https://github.com/Fluffyalien1422/bedrock-energistics/releases",
+  "downloadLinks": [
+    {
+      "name": "Download from CurseForge",
+      "url": "https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Bedrock Energistics Core v0.12.0",
+      "url": "https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics-core"
+    }
+  ]
+}

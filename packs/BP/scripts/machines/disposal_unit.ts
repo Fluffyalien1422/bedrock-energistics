@@ -5,7 +5,14 @@ import {
   setMachineStorage,
   StandardStorageType,
 } from "bedrock-energistics-core-api";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
+import {
+  createWorkingIcon,
+  createWorkingIconElements,
+  updateWorkingIcon,
+} from "../utils/ui";
+
+const WORKING_ICON = createWorkingIcon("working", 4);
 
 export const disposalUnitMachine: MachineDefinition = {
   description: {
@@ -19,10 +26,21 @@ export const disposalUnitMachine: MachineDefinition = {
             type: StandardStorageType.Energy,
           },
         },
+        // slot 4
+        ...createWorkingIconElements(WORKING_ICON),
       },
     },
   },
   handlers: {
+    updateUi({ blockLocation }) {
+      return {
+        progressIndicators: updateWorkingIcon(
+          WORKING_ICON,
+          isMachineWorking(blockLocation),
+        ),
+      };
+    },
+
     receive(e) {
       if (e.receiveType === StandardStorageType.Energy) return {};
 

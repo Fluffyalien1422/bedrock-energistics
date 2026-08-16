@@ -7,9 +7,16 @@ import {
 } from "bedrock-energistics-core-api";
 import { getEntityAtBlockLocation } from "../utils/location";
 import { BlockCustomComponent } from "@minecraft/server";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
+import {
+  createTransferIndicator,
+  createTransferIndicatorElements,
+  updateTransferIndicator,
+} from "../utils/ui";
 
 const ENERGY_CONSUMPTION = 20;
+
+const TRANSFER_INDICATOR = createTransferIndicator("transfer", 5);
 
 export const itemChargerMachine: MachineDefinition = {
   description: {
@@ -22,7 +29,19 @@ export const itemChargerMachine: MachineDefinition = {
           startIndex: 0,
           defaults: { type: "energy" },
         },
+        // slots 5-7, slot 4 is the charged item, held in the entity's own inventory
+        ...createTransferIndicatorElements(TRANSFER_INDICATOR),
       },
+    },
+  },
+  handlers: {
+    updateUi({ blockLocation }) {
+      return {
+        progressIndicators: updateTransferIndicator(
+          TRANSFER_INDICATOR,
+          isMachineWorking(blockLocation),
+        ),
+      };
     },
   },
 };

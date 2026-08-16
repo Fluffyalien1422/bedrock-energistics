@@ -10,9 +10,16 @@ import {
   setMachineStorage,
   takeMachineSlotItem,
 } from "bedrock-energistics-core-api";
-import { BlockStateAccessor } from "../utils/block";
+import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import { getBlockInDirection, StrDirection } from "../utils/direction";
 import { getInputItemWithHopperSupport } from "../utils/item";
+import {
+  createWorkingIcon,
+  createWorkingIconElements,
+  updateWorkingIcon,
+} from "../utils/ui";
+
+const WORKING_ICON = createWorkingIcon("working", 5);
 
 const ENERGY_CONSUMPTION_PER_BLOCK = 5;
 
@@ -32,7 +39,19 @@ export const blockPlacerMachine: MachineDefinition = {
           type: "itemSlot",
           index: 4,
         },
+        // slot 5
+        ...createWorkingIconElements(WORKING_ICON),
       },
+    },
+  },
+  handlers: {
+    updateUi({ blockLocation }) {
+      return {
+        progressIndicators: updateWorkingIcon(
+          WORKING_ICON,
+          isMachineWorking(blockLocation),
+        ),
+      };
     },
   },
 };

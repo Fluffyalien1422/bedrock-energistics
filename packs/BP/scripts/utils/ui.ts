@@ -175,13 +175,65 @@ export function createDoubleArrow(
 }
 
 /**
+ * An icon that indicates whether the machine is working, occupying 1 slot.
+ * @see {@link createWorkingIcon}
+ */
+export interface WorkingIcon {
+  elementId: string;
+  index: number;
+}
+
+/**
+ * Describes a working icon.
+ * @remarks
+ * The JSON UI counterpart is `fluffyalien_energistics:common.working_icon`, or
+ * `common.transfer_indicator` to draw it below a double arrow.
+ */
+export function createWorkingIcon(name: string, index: number): WorkingIcon {
+  return {
+    elementId: `${name}WorkingIcon`,
+    index,
+  };
+}
+
+/**
+ * Generates the UI element for a working icon.
+ * @see {@link createWorkingIcon}
+ */
+export function createWorkingIconElements({
+  elementId,
+  index,
+}: WorkingIcon): Record<string, UiProgressIndicatorElementDefinition> {
+  return {
+    [elementId]: {
+      type: "progressIndicator",
+      index,
+      indicator: WORKING_ICON_DESCRIPTION,
+    },
+  };
+}
+
+/**
+ * Creates the `progressIndicators` update for a working icon.
+ * @see {@link createWorkingIcon}
+ */
+export function updateWorkingIcon(
+  { elementId }: WorkingIcon,
+  working: boolean,
+): Record<string, number> {
+  return {
+    [elementId]: working ? WorkingIconState.On : WorkingIconState.Off,
+  };
+}
+
+/**
  * A double arrow with a working icon below it, which indicates a transfer with no
  * specific progress value.
  * @see {@link createTransferIndicator}
  */
 export interface TransferIndicator {
   arrow: TiledIconOptions;
-  workingIconElementId: string;
+  workingIcon: WorkingIcon;
 }
 
 /**
@@ -197,9 +249,14 @@ export function createTransferIndicator(
   name: string,
   startIndex: number,
 ): TransferIndicator {
+  const arrow = createDoubleArrow(name, startIndex);
+
   return {
-    arrow: createDoubleArrow(name, startIndex),
-    workingIconElementId: `${name}WorkingIcon`,
+    arrow,
+    workingIcon: createWorkingIcon(
+      name,
+      arrow.startIndex + arrow.tilesX * arrow.tilesY,
+    ),
   };
 }
 
@@ -209,15 +266,11 @@ export function createTransferIndicator(
  */
 export function createTransferIndicatorElements({
   arrow,
-  workingIconElementId,
+  workingIcon,
 }: TransferIndicator): Record<string, UiProgressIndicatorElementDefinition> {
   return {
     ...createTiledIconElements(arrow),
-    [workingIconElementId]: {
-      type: "progressIndicator",
-      index: arrow.startIndex + arrow.tilesX * arrow.tilesY,
-      indicator: WORKING_ICON_DESCRIPTION,
-    },
+    ...createWorkingIconElements(workingIcon),
   };
 }
 
@@ -228,14 +281,12 @@ export function createTransferIndicatorElements({
  * @see {@link createTransferIndicator}
  */
 export function updateTransferIndicator(
-  { arrow, workingIconElementId }: TransferIndicator,
+  { arrow, workingIcon }: TransferIndicator,
   working: boolean,
 ): Record<string, number> {
   return {
     ...animateTiledIcon(arrow, working),
-    [workingIconElementId]: working
-      ? WorkingIconState.On
-      : WorkingIconState.Off,
+    ...updateWorkingIcon(workingIcon, working),
   };
 }
 

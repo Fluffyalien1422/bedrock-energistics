@@ -19,14 +19,14 @@ import {
 } from "../utils/item";
 import { POWERED_FURNACE_RECIPES } from "../generated/powered_furnace_recipes";
 import {
+  POWERED_FURNACE_ENERGY_PER_PROGRESS as ENERGY_CONSUMPTION_PER_PROGRESS,
+  POWERED_FURNACE_MAX_PROGRESS as MAX_PROGRESS,
+} from "../balance";
+import {
   createProgressArrow,
   createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
-
-const ENERGY_CONSUMPTION_PER_PROGRESS = 5;
-
-const MAX_PROGRESS = 16;
 
 const PROGRESS_ARROW = createProgressArrow("progress", 6);
 

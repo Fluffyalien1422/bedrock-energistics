@@ -6,7 +6,6 @@ import {
 import {
   genericStorageTypeContainerComponent,
   GenericStorageTypeContainerMachine,
-  ST_CONTAINER_MAX_STORAGE,
 } from "./shared/generic_storage_type_container";
 import {
   Block,
@@ -18,8 +17,10 @@ import {
 } from "@minecraft/server";
 import { decrementSlotSurvival } from "../utils/item";
 import { BlockStateAccessor } from "../utils/block";
-
-const BUCKET_ML = 100;
+import {
+  FLUID_TANK_BUCKET_AMOUNT as BUCKET_ML,
+  ST_CONTAINER_MAX_STORAGE,
+} from "../balance";
 
 const ACCEPTED_TYPES: StandardStorageType[] = [
   StandardStorageType.Lava,

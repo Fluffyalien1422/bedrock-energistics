@@ -10,7 +10,12 @@ import {
 } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  MAX_MACHINE_STORAGE,
+  ORGANIC_GENERATOR_ENERGY_PER_PROGRESS as ENERGY_GENERATION_PER_PROGRESS,
+  ORGANIC_GENERATOR_SAPLING_MAX_PROGRESS as SAPLING_MAX_PROGRESS,
+  ORGANIC_GENERATOR_SEED_MAX_PROGRESS as SEED_MAX_PROGRESS,
+} from "../balance";
 import { blockLocationToUid } from "../utils/location";
 import { isMachineWorking } from "../utils/block";
 import {
@@ -37,21 +42,19 @@ const INPUT_ITEMS = [
 ];
 
 const MAX_PROGRESS: Record<string, number> = {
-  "minecraft:beetroot_seeds": 26,
-  "minecraft:melon_seeds": 26,
-  "minecraft:pumpkin_seeds": 26,
-  "minecraft:torchflower_seeds": 26,
-  "minecraft:wheat_seeds": 26,
-  "minecraft:oak_sapling": 38,
-  "minecraft:acacia_sapling": 38,
-  "minecraft:birch_sapling": 38,
-  "minecraft:cherry_sapling": 38,
-  "minecraft:dark_oak_sapling": 38,
-  "minecraft:jungle_sapling": 38,
-  "minecraft:spruce_sapling": 38,
+  "minecraft:beetroot_seeds": SEED_MAX_PROGRESS,
+  "minecraft:melon_seeds": SEED_MAX_PROGRESS,
+  "minecraft:pumpkin_seeds": SEED_MAX_PROGRESS,
+  "minecraft:torchflower_seeds": SEED_MAX_PROGRESS,
+  "minecraft:wheat_seeds": SEED_MAX_PROGRESS,
+  "minecraft:oak_sapling": SAPLING_MAX_PROGRESS,
+  "minecraft:acacia_sapling": SAPLING_MAX_PROGRESS,
+  "minecraft:birch_sapling": SAPLING_MAX_PROGRESS,
+  "minecraft:cherry_sapling": SAPLING_MAX_PROGRESS,
+  "minecraft:dark_oak_sapling": SAPLING_MAX_PROGRESS,
+  "minecraft:jungle_sapling": SAPLING_MAX_PROGRESS,
+  "minecraft:spruce_sapling": SAPLING_MAX_PROGRESS,
 };
-
-const ENERGY_GENERATION_PER_PROGRESS = 10;
 
 const progressMap = new Map<string, [number, number]>();
 

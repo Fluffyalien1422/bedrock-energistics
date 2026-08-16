@@ -8,13 +8,12 @@ import {
 import { getEntityAtBlockLocation } from "../utils/location";
 import { BlockCustomComponent } from "@minecraft/server";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
+import { ITEM_CHARGER_ENERGY_CONSUMPTION as ENERGY_CONSUMPTION } from "../balance";
 import {
   createTransferIndicator,
   createTransferIndicatorElements,
   updateTransferIndicator,
 } from "../utils/ui";
-
-const ENERGY_CONSUMPTION = 20;
 
 const TRANSFER_INDICATOR = createTransferIndicator("transfer", 5);
 

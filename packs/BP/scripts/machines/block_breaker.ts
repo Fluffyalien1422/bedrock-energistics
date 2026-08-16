@@ -6,13 +6,12 @@ import {
 } from "bedrock-energistics-core-api";
 import { getBlockInDirection, StrDirection } from "../utils/direction";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
+import { BLOCK_BREAKER_ENERGY_PER_BLOCK as ENERGY_CONSUMPTION_PER_BLOCK } from "../balance";
 import {
   createWorkingIcon,
   createWorkingIconElements,
   updateWorkingIcon,
 } from "../utils/ui";
-
-const ENERGY_CONSUMPTION_PER_BLOCK = 5;
 
 const WORKING_ICON = createWorkingIcon("working", 4);
 

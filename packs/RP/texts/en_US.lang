@@ -88,7 +88,7 @@ fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet0=Creates item
 fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet1=Consumes energy while active.
 
 fluffyalien_energistics.ui.tutorialBook.entry.battery.title=Battery
-fluffyalien_energistics.ui.tutorialBook.entry.battery.bullet0=Stores up to 7,500 energy.
+fluffyalien_energistics.ui.tutorialBook.entry.battery.bullet0=Stores up to 9,600 energy.
 
 fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.title=Block Breaker
 fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet0=Breaks the block in front of it while active.
@@ -106,7 +106,7 @@ fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet2=Hoppers can ins
 
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.title=Coal Generator
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet0=Generates energy while burning fuel.
-fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet1=Coal burns for 26s.
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet1=Coal burns for 25s.
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet2=Hoppers can insert coal.
 
 fluffyalien_energistics.ui.tutorialBook.entry.crucible.title=Crucible
@@ -128,11 +128,11 @@ fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet0=Separates f
 fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet1=Consumes energy while active.
 
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.title=Fluid Tank
-fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet0=Stores up to 7,500 of some fluid types.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet0=Stores up to 9,600 of some fluid types.
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet1=Only accepts one type of fluid a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
 
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.title=Gas Canister
-fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 7,500 of some gas types.
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 9,600 of some gas types.
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Only accepts one type of gas a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
 
 fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.title=Item Charger
@@ -159,9 +159,8 @@ fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet2=Hoppers c
 
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.title=Solar Panel
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet0=Generates energy during the day.
-fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet1=Generation is decreased when the weather is not clear.
-fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet2=Only works in the overworld.
-fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet3=No energy is generated if the sky is obstructed.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet1=Only works in the overworld.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet2=No energy is generated if the sky is obstructed.
 
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.title=Powered Furnace
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet0=Smelts items (only works on vanilla items).

@@ -10,7 +10,11 @@ import {
 } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  COAL_GENERATOR_ENERGY_PER_PROGRESS as ENERGY_GENERATION_PER_PROGRESS,
+  COAL_GENERATOR_MAX_PROGRESS as MAX_PROGRESS,
+  MAX_MACHINE_STORAGE,
+} from "../balance";
 import { blockLocationToUid } from "../utils/location";
 import { isMachineWorking } from "../utils/block";
 import {
@@ -21,11 +25,8 @@ import {
 
 const INPUT_ITEMS = ["minecraft:coal"];
 
-const MAX_PROGRESS = 52;
-
 const TRANSFER_ARROW = createDoubleArrow("transfer", 5);
 
-const ENERGY_GENERATION_PER_PROGRESS = 14;
 const ENERGY_GENERATION_PER_FUEL =
   ENERGY_GENERATION_PER_PROGRESS * MAX_PROGRESS;
 
@@ -65,7 +66,7 @@ export const coalGeneratorMachine: MachineDefinition = {
       return {
         progressIndicators: {
           ...animateTiledIcon(TRANSFER_ARROW, isMachineWorking(blockLocation)),
-          flameIndicator: Math.floor(progress / 4),
+          flameIndicator: Math.floor((progress / MAX_PROGRESS) * 13),
         },
       };
     },

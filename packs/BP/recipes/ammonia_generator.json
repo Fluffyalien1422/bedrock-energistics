@@ -25,7 +25,7 @@
         "item": "fluffyalien_energistics:machine_casing"
       },
       "D": {
-        "item": "diamond"
+        "item": "fluffyalien_energistics:plastic"
       },
       "M": {
         "item": "fluffyalien_energistics:basic_machine_part"
@@ -36,7 +36,7 @@
     },
     "unlock": [
       {
-        "item": "redstone"
+        "item": "fluffyalien_energistics:plastic"
       }
     ]
   }

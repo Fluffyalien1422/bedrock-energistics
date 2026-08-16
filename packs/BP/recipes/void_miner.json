@@ -9,7 +9,7 @@
     "pattern": [
         " B ",
         "C#C",
-        "SMS"
+        "DMD"
       ],
     "key": {
       "B": {
@@ -21,8 +21,8 @@
       "#": {
         "item": "fluffyalien_energistics:machine_casing"
       },
-      "S": {
-        "item": "redstone"
+      "D": {
+        "item": "diamond"
       },
       "M": {
         "item": "fluffyalien_energistics:basic_machine_part"
@@ -33,7 +33,7 @@
     },
     "unlock": [
       {
-        "item": "redstone"
+        "item": "diamond"
       }
     ]
   }

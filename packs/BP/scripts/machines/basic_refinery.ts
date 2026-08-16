@@ -27,13 +27,18 @@ import {
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 import { ModalFormData } from "@minecraft/server-ui";
 import {
+  BASIC_REFINERY_COAL_CARBON_CONSUMPTION,
+  BASIC_REFINERY_COAL_MAX_PROGRESS,
+  BASIC_REFINERY_ENERGY_PER_PROGRESS as ENERGY_CONSUMPTION,
+  BASIC_REFINERY_PLASTIC_MAX_PROGRESS,
+  BASIC_REFINERY_PLASTIC_OIL_CONSUMPTION,
+} from "../balance";
+import {
   createProgressArrow,
   createTiledIconElements,
   updateProgressArrow,
   updateTiledIcon,
 } from "../utils/ui";
-
-const ENERGY_CONSUMPTION = 5;
 
 const PROGRESS_ARROW = createProgressArrow("progress", 11);
 
@@ -56,10 +61,10 @@ type RecipeStateValue = RecipeId | "none";
 
 const RECIPES: Record<RecipeId, RecipeDefinition> = {
   coal: {
-    maxProgress: 16,
+    maxProgress: BASIC_REFINERY_COAL_MAX_PROGRESS,
     fluidInput: {
       type: "carbon",
-      amount: 1000,
+      amount: BASIC_REFINERY_COAL_CARBON_CONSUMPTION,
     },
     itemOutput: {
       type: "minecraft:coal",
@@ -67,10 +72,10 @@ const RECIPES: Record<RecipeId, RecipeDefinition> = {
     },
   },
   plastic: {
-    maxProgress: 32,
+    maxProgress: BASIC_REFINERY_PLASTIC_MAX_PROGRESS,
     fluidInput: {
       type: "oil",
-      amount: 1000,
+      amount: BASIC_REFINERY_PLASTIC_OIL_CONSUMPTION,
     },
     itemInput: {
       type: "minecraft:coal",

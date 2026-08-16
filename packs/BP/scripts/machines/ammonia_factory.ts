@@ -6,18 +6,19 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  AMMONIA_FACTORY_AMMONIA_GENERATION as AMMONIA_GENERATION,
+  AMMONIA_FACTORY_ENERGY_CONSUMPTION as ENERGY_CONSUMPTION,
+  AMMONIA_FACTORY_HYDROGEN_CONSUMPTION as HYDROGEN_CONSUMPTION,
+  AMMONIA_FACTORY_NITROGEN_CONSUMPTION as NITROGEN_CONSUMPTION,
+  MAX_MACHINE_STORAGE,
+} from "../balance";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import {
   createTransferIndicator,
   createTransferIndicatorElements,
   updateTransferIndicator,
 } from "../utils/ui";
-
-const NITROGEN_CONSUMPTION = 1;
-const HYDROGEN_CONSUMPTION = 3;
-const ENERGY_CONSUMPTION = 10;
-const AMMONIA_GENERATION = 2;
 
 const TRANSFER_INDICATOR = createTransferIndicator("transfer", 16);
 

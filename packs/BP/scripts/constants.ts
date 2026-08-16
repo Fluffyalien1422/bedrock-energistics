@@ -1,1 +1,0 @@
-export const MAX_MACHINE_STORAGE = 6400;

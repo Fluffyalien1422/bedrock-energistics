@@ -5,7 +5,11 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  ATMOSPHERIC_CONDENSER_ENERGY_CONSUMPTION as ENERGY_CONSUMPTION,
+  ATMOSPHERIC_CONDENSER_GAS_GENERATION as GAS_GENERATION,
+  MAX_MACHINE_STORAGE,
+} from "../balance";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 import {
@@ -15,9 +19,6 @@ import {
 } from "../utils/ui";
 
 type GasStateValue = "hydrogen" | "carbon" | "nitrogen";
-
-const ENERGY_CONSUMPTION = 50;
-const GAS_GENERATION = 2;
 
 const GAS_TYPES: Record<string, GasStateValue> = {
   "minecraft:overworld": "nitrogen",

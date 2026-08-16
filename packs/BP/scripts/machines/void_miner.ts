@@ -19,14 +19,14 @@ import {
 } from "../utils/block";
 import { weightedRandom } from "../utils/math";
 import {
+  VOID_MINER_ENERGY_PER_PROGRESS as ENERGY_CONSUMPTION_PER_PROGRESS,
+  VOID_MINER_MAX_PROGRESS as MAX_PROGRESS,
+} from "../balance";
+import {
   createProgressArrow,
   createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
-
-const ENERGY_CONSUMPTION_PER_PROGRESS = 4;
-
-const MAX_PROGRESS = 24;
 
 const PROGRESS_ARROW = createProgressArrow("progress", 6);
 

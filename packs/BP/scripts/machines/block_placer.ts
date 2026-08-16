@@ -13,6 +13,7 @@ import {
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import { getBlockInDirection, StrDirection } from "../utils/direction";
 import { getInputItemWithHopperSupport } from "../utils/item";
+import { BLOCK_PLACER_ENERGY_PER_BLOCK as ENERGY_CONSUMPTION_PER_BLOCK } from "../balance";
 import {
   createWorkingIcon,
   createWorkingIconElements,
@@ -20,8 +21,6 @@ import {
 } from "../utils/ui";
 
 const WORKING_ICON = createWorkingIcon("working", 5);
-
-const ENERGY_CONSUMPTION_PER_BLOCK = 5;
 
 export const blockPlacerMachine: MachineDefinition = {
   description: {

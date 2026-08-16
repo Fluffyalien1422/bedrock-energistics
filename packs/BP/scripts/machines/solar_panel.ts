@@ -5,6 +5,7 @@ import {
   DimensionLocation,
   world,
 } from "@minecraft/server";
+import { SOLAR_PANEL_ENERGY_GENERATION } from "../balance";
 import {
   createTiledIconElements,
   createTransferIndicator,
@@ -52,7 +53,7 @@ function getGeneration(location: DimensionLocation): number {
     return 0;
   }
 
-  return 5;
+  return SOLAR_PANEL_ENERGY_GENERATION;
 }
 
 export const solarPanelMachine: MachineDefinition = {

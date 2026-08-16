@@ -18,6 +18,10 @@ import {
   getOutputItemWithHopperSupport,
 } from "../utils/item";
 import {
+  CRUSHER_ENERGY_PER_PROGRESS as ENERGY_CONSUMPTION_PER_PROGRESS,
+  CRUSHER_MAX_PROGRESS as MAX_PROGRESS,
+} from "../balance";
+import {
   createProgressArrow,
   createTiledIconElements,
   updateProgressArrow,
@@ -38,10 +42,6 @@ const RECIPES: Record<string, string> = {
   "minecraft:cobblestone": "minecraft:gravel",
   "minecraft:gravel": "minecraft:sand",
 };
-
-const ENERGY_CONSUMPTION_PER_PROGRESS = 10;
-
-const MAX_PROGRESS = 16;
 
 const PROGRESS_ARROW = createProgressArrow("progress", 6);
 

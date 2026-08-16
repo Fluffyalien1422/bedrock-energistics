@@ -12,16 +12,17 @@ import {
 } from "@minecraft/server";
 import { BlockStateAccessor } from "../utils/block";
 import { getInputItemWithHopperSupport } from "../utils/item";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  CRUCIBLE_ENERGY_CONSUMPTION as ENERGY_CONSUMPTION,
+  CRUCIBLE_LAVA_GENERATION as LAVA_GENERATION,
+  CRUCIBLE_MAX_PROGRESS as MAX_PROGRESS,
+  MAX_MACHINE_STORAGE,
+} from "../balance";
 import {
   createProgressArrow,
   createTiledIconElements,
   updateProgressArrow,
 } from "../utils/ui";
-
-const ENERGY_CONSUMPTION = 1; // per progress
-const LAVA_GENERATION = 32; // on completion
-const MAX_PROGRESS = 32;
 
 const PROGRESS_ARROW = createProgressArrow("progress", 9);
 const INPUT_ALLOWED_ITEMS = ["minecraft:cobblestone"];

@@ -6,16 +6,17 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  AMMONIA_GENERATOR_AMMONIA_CONSUMPTION as AMMONIA_CONSUMPTION,
+  AMMONIA_GENERATOR_ENERGY_GENERATION as ENERGY_GENERATION,
+  MAX_MACHINE_STORAGE,
+} from "../balance";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import {
   createTransferIndicator,
   createTransferIndicatorElements,
   updateTransferIndicator,
 } from "../utils/ui";
-
-const AMMONIA_CONSUMPTION = 1;
-const ENERGY_GENERATION = 65;
 
 const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 

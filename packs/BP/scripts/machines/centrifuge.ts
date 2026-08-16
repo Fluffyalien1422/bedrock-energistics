@@ -20,6 +20,10 @@ import {
 import { getInputItemWithHopperSupport } from "../utils/item";
 import { weightedRandom } from "../utils/math";
 import {
+  CENTRIFUGE_ENERGY_PER_PROGRESS as ENERGY_CONSUMPTION_PER_PROGRESS,
+  CENTRIFUGE_MAX_PROGRESS as MAX_PROGRESS,
+} from "../balance";
+import {
   createProgressArrow,
   createTiledIconElements,
   updateProgressArrow,
@@ -82,10 +86,6 @@ const OUTPUT_SLOT_IDS = [
   "outputSlot2",
   "outputSlot3",
 ];
-
-const ENERGY_CONSUMPTION_PER_PROGRESS = 20;
-
-const MAX_PROGRESS = 32;
 
 const PROGRESS_ARROW = createProgressArrow("progress", 9);
 

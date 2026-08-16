@@ -5,16 +5,17 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  MAX_MACHINE_STORAGE,
+  OIL_EXTRACTOR_ENERGY_CONSUMPTION as ENERGY_CONSUMPTION,
+  OIL_EXTRACTOR_OIL_GENERATION as OIL_GENERATION,
+} from "../balance";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import {
   createTransferIndicator,
   createTransferIndicatorElements,
   updateTransferIndicator,
 } from "../utils/ui";
-
-const OIL_GENERATION = 10;
-const ENERGY_CONSUMPTION = 10;
 
 const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 

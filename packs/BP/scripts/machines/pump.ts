@@ -7,7 +7,11 @@ import {
   StandardStorageType,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  MAX_MACHINE_STORAGE,
+  PUMP_ENERGY_CONSUMPTION as ENERGY_CONSUMPTION,
+  PUMP_FLUID_GENERATION as FLUID_GENERATION,
+} from "../balance";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
 import {
@@ -15,9 +19,6 @@ import {
   createTransferIndicatorElements,
   updateTransferIndicator,
 } from "../utils/ui";
-
-const FLUID_GENERATION = 10;
-const ENERGY_CONSUMPTION = 10;
 
 const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 

@@ -16,10 +16,11 @@ import {
 } from "bedrock-energistics-core-api";
 import { ModalFormData } from "@minecraft/server-ui";
 import { BlockStateSuperset } from "@minecraft/vanilla-data";
-
-const AMOUNT_PER_STAGE = 2500;
-export const ST_CONTAINER_MAX_STORAGE = AMOUNT_PER_STAGE * 3;
-const STAGE_AMOUNT_PADDING = 200;
+import {
+  ST_CONTAINER_AMOUNT_PER_STAGE as AMOUNT_PER_STAGE,
+  ST_CONTAINER_MAX_STORAGE,
+  ST_CONTAINER_STAGE_AMOUNT_PADDING as STAGE_AMOUNT_PADDING,
+} from "../../balance";
 
 export class GenericStorageTypeContainerMachine implements MachineDefinition {
   constructor(

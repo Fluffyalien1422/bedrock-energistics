@@ -5,16 +5,17 @@ import {
   setMachineStorage,
 } from "bedrock-energistics-core-api";
 import { BlockCustomComponent } from "@minecraft/server";
-import { MAX_MACHINE_STORAGE } from "../constants";
+import {
+  LAVA_GENERATOR_ENERGY_GENERATION as ENERGY_GENERATION,
+  LAVA_GENERATOR_LAVA_CONSUMPTION as LAVA_CONSUMPTION,
+  MAX_MACHINE_STORAGE,
+} from "../balance";
 import { BlockStateAccessor, isMachineWorking } from "../utils/block";
 import {
   createTransferIndicator,
   createTransferIndicatorElements,
   updateTransferIndicator,
 } from "../utils/ui";
-
-const LAVA_CONSUMPTION = 2;
-const ENERGY_GENERATION = 30;
 
 const TRANSFER_INDICATOR = createTransferIndicator("transfer", 8);
 

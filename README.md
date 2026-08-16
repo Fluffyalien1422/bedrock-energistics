@@ -7,8 +7,7 @@ Expands Bedrock with energistics! Adds many machines to Minecraft, with custom U
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports and feature requests go on the
-[issue tracker](https://github.com/Fluffyalien1422/bedrock-energistics/issues).
+**This repository does not accept third-party pull requests.** [Issues](https://github.com/Fluffyalien1422/bedrock-energistics/issues) are welcome for bug reports, feature requests, and other feedback. Thanks for your understanding.
 
 ## License
 

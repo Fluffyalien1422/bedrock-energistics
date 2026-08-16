@@ -1,22 +1,22 @@
 # Contributing Code
 
-Note: This is a guide for contributing code, not issues. Report bugs and suggest
+**Note:** This is a guide for contributing code, not issues. Report bugs and suggest
 features on the [issue tracker](https://github.com/Fluffyalien1422/bedrock-energistics/issues).
 
-## Preparing Your Environment
+**This repository does not accept third-party pull requests.** [Issues](https://github.com/Fluffyalien1422/bedrock-energistics/issues) are welcome for bug reports, feature requests, and other feedback. Thanks for your understanding.
+
+## Environment
 
 This project is configured for Windows 10/11 machines. If you're using another OS, it may not work properly.
 
 ### Prerequisites
 
-Ensure you have the following programs installed and up to date:
+Build tooling:
 
-- [VSCode](https://code.visualstudio.com/)
-- [Node.js LTS and npm](https://nodejs.org/)
-- [Regolith](https://bedrock-oss.github.io/regolith/)
-- [Minecraft (Bedrock Edition Stable)](https://www.xbox.com/en-US/games/store/minecraft/9MVXMVT8ZKWC)
+- [Node.js and npm](https://nodejs.org/)
+- [Regolith](https://bedrock-oss.github.io/regolith/) or [rgl](https://github.com/ink0rr/rgl)
 
-This add-on is built on [Bedrock Energistics Core](https://github.com/Fluffyalien1422/bedrock-energistics-core), so its APIs are worth reading.
+This add-on is built on [Bedrock Energistics Core](https://github.com/Fluffyalien1422/bedrock-energistics-core).
 
 ### Setting Up
 
@@ -43,7 +43,7 @@ Test your changes in Minecraft before pushing.
 
 ## Building Your Code
 
-To build your code, run `regolith run`.
+To build your code, run `regolith run` if using Regolith or `rgl run` if using rgl.
 
 | Command                        | What it does                                                     |
 | ------------------------------ | ---------------------------------------------------------------- |
@@ -161,10 +161,3 @@ from the images in `packs/data/tiled_icons`, each named `<name>.<method>.png`:
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `static`                         | One icon.                                                                                                  |
 | `progress_start`, `progress_end` | A pair, sharing a name, that becomes one icon per frame as the end image is revealed over the start image. |
-
-## Before Submitting a PR
-
-- Your code is formatted (`npm run fmt`) and checked (`npm run check`).
-- You have tested your changes in Minecraft.
-- New machines are wired up everywhere listed in [Adding a Machine](#adding-a-machine).
-- New screens follow the [UI design language](#ui-design-language).

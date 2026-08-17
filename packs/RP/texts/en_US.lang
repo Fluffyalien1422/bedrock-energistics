@@ -3,6 +3,7 @@ pack.description=Expands Bedrock with energistics! Adds many machines to Minecra
 
 item.fluffyalien_energistics:ui_options_button=Options
 
+item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Guide Book
 item.fluffyalien_energistics:basic_machine_part=Basic Machine Part
 item.fluffyalien_energistics:plastic=Plastic
 
@@ -38,10 +39,6 @@ tile.fluffyalien_energistics:basic_refinery.name=Basic Refinery
 tile.fluffyalien_energistics:lava_generator.name=Lava Generator
 tile.fluffyalien_energistics:water_generator.name=Water Generator
 tile.fluffyalien_energistics:crucible.name=Crucible
-
-fluffyalien_energistics.tutorialBook.item.name=Bedrock Energistics Guide Book
-fluffyalien_energistics.tutorialBook.item.description.line1=Interact to open the guide book.
-fluffyalien_energistics.tutorialBook.item.description.line2=Interact with a block to open the guide book entry for that block.
 
 fluffyalien_energistics.ui.common.close=Close
 

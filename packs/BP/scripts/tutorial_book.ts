@@ -17,7 +17,7 @@ const NOT_FIRST_JOIN_DYNAMIC_PROPERTY_ID =
 export async function showTutorialBookUi(player: Player): Promise<void> {
   const form = new ActionFormData();
 
-  form.title({ translate: "fluffyalien_energistics.tutorialBook.item.name" });
+  form.title({ translate: "item.fluffyalien_energistics:tutorial_book" });
 
   for (const entry of TUTORIAL_ENTRIES) {
     form.button(
@@ -54,7 +54,7 @@ async function showTutorialBookEntryUi(
   }
 
   const form = new ActionFormData()
-    .title({ translate: "fluffyalien_energistics.tutorialBook.item.name" })
+    .title({ translate: "item.fluffyalien_energistics:tutorial_book" })
     .body({ rawtext });
 
   const relatedEntries: TutorialEntry[] = [];

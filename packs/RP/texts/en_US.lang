@@ -49,191 +49,208 @@ fluffyalien_energistics.ui.basicRefinery.options.recipe=Recipe
 ## fluffyalien_energistics.ui.tutorialBook.entry.networks.icon=textures/fluffyalien/energistics/ui/tutorial_book/networks_icon
 fluffyalien_energistics.ui.tutorialBook.entry.networks.title=Networks
 fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet0=A network is a group of devices that share energy, gas, or fluid.
-fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet1=Devices can be connected with conduits. They will also connect if they are next to each other.
-fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet2=A device can be part of multiple networks at the same time.
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet1=Devices join a network by touching each other, or by being linked with conduits.
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet2=A device can belong to several networks at the same time.
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet3=Generators fill a network and consumers draw from it. Most devices are both.
+fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet4=Place a network monitor to see what a network is actually moving.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.conduits.targets=fluffyalien_energistics:energy_conduit, fluffyalien_energistics:fluid_conduit, fluffyalien_energistics:gas_conduit, fluffyalien_energistics:multi_conduit
 ## fluffyalien_energistics.ui.tutorialBook.entry.conduits.icon=textures/fluffyalien/energistics/ui/tutorial_book/networks_icon
 fluffyalien_energistics.ui.tutorialBook.entry.conduits.title=Conduits
-fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet0=Conduits connect devices in a machine network.
-fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet1=Interact with a conduit while holding another conduit to merge them.
+fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet0=Conduits link devices into a network without placing them side by side.
+fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet1=Each conduit carries one thing: energy, fluid, or gas.
+fluffyalien_energistics.ui.tutorialBook.entry.conduits.bullet2=Interact with a placed conduit while holding another to merge them, so a single block carries both.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.generators.icon=textures/fluffyalien/energistics/ui/tutorial_book/generic_icon
 fluffyalien_energistics.ui.tutorialBook.entry.generators.title=Generators
 fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet0=A generator is a device that produces energy, gas, or fluid.
-fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet1=Generators will send whatever they generate to the consumers in the network with the lowest storage. This ensures that one device will not consume everything that is generated.
-fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet2=All generators have reserve storage (up to 6,400u). Reserve storage is the first to be used. A device that is operating at maximum efficiency would not have any reserves.
-fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet3=Hover over the reserve storage (or tap on mobile) to see how much the generator is producing per game tick.
-fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet4=A device can be both a generator and a consumer at the same time (eg. consumes energy but generates a fluid).
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet1=Whatever it makes goes to the consumers holding the least, so one device cannot drain everything.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet2=Every generator keeps a reserve of up to 6,400u, and spends the reserve first. One running at full efficiency has none left over.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet3=Hover over the reserve (or tap on mobile) to see how much it makes per game tick.
+fluffyalien_energistics.ui.tutorialBook.entry.generators.bullet4=A device can generate and consume at once. An oil extractor eats energy and makes oil.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.consumers.icon=textures/fluffyalien/energistics/ui/tutorial_book/generic_icon
 fluffyalien_energistics.ui.tutorialBook.entry.consumers.title=Consumers
 fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet0=A consumer is a device that uses energy, gas, or fluid.
-fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet1=All consumers can store up to 6,400u of the thing(s) that they consume.
-fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet2=Hover over the storage (or tap on mobile) to see how much the consumer is using per game tick.
-fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet3=A device can be both a generator and a consumer at the same time (eg. consumes energy but generates a fluid).
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet1=Every consumer holds up to 6,400u of each thing it uses.
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet2=Hover over the storage (or tap on mobile) to see how much it uses per game tick.
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet3=A device can consume and generate at once. A pump eats energy and makes water or lava.
+fluffyalien_energistics.ui.tutorialBook.entry.consumers.bullet4=A battery, fluid tank, or gas canister holds far more than the 6,400u a machine keeps on its own.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.targets=fluffyalien_energistics:ammonia_factory
 ## fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.icon=textures/fluffyalien/energistics/ui/tutorial_book/ammonia_factory_icon
 fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.title=Ammonia Factory
-fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet0=Generates ammonia while active.
-fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet0=Combines 1 nitrogen and 3 hydrogen into 2 ammonia.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet1=Consumes energy while active. Counting the gas, each ammonia costs about 50 energy.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaFactory.bullet2=The ammonia can be sent to an ammonia generator.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.targets=fluffyalien_energistics:ammonia_generator
 ## fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.icon=textures/fluffyalien/energistics/ui/tutorial_book/ammonia_generator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.title=Ammonia Generator
-fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.bullet0=Generates energy while active.
-fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.bullet1=Consumes ammonia while active.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.bullet0=Burns ammonia into energy, at 125 energy per unit. Nothing else in the add-on returns as much.
+fluffyalien_energistics.ui.tutorialBook.entry.ammoniaGenerator.bullet1=An ammonia factory can supply the ammonia.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.targets=fluffyalien_energistics:atmospheric_condenser
 ## fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.icon=textures/fluffyalien/energistics/ui/tutorial_book/atmospheric_condenser_icon
 fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.title=Atmospheric Condenser
-fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet0=Generates nitrogen in the overworld, carbon in the nether, or hydrogen in the end when active.
-fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet0=Pulls gas out of the air. Which gas depends on where it is: nitrogen in the overworld, carbon in the nether, hydrogen in the end.
+fluffyalien_energistics.ui.tutorialBook.entry.atmosphericCondenser.bullet1=Consumes energy while active, at 20 energy per unit of gas.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.targets=fluffyalien_energistics:basic_refinery
 ## fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.icon=textures/fluffyalien/energistics/ui/tutorial_book/basic_refinery_icon
 fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.title=Basic Refinery
-fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet0=Creates items from fluids and/or items.
-fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet0=Turns fluids and gases into items. Choose which with the options button.
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet1=Coal: 100 carbon, over 8s.
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet2=Plastic: 100 oil and 1 coal, over 16s. Plastic unlocks the last tier of recipes.
+fluffyalien_energistics.ui.tutorialBook.entry.basicRefinery.bullet3=Consumes energy while active.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.battery.targets=fluffyalien_energistics:battery
 ## fluffyalien_energistics.ui.tutorialBook.entry.battery.icon=textures/fluffyalien/energistics/ui/tutorial_book/battery_icon
 fluffyalien_energistics.ui.tutorialBook.entry.battery.title=Battery
 fluffyalien_energistics.ui.tutorialBook.entry.battery.bullet0=Stores up to 9,600 energy.
+fluffyalien_energistics.ui.tutorialBook.entry.battery.bullet1=Gives a network somewhere to put excess energy.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.targets=fluffyalien_energistics:block_breaker
 ## fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.icon=textures/fluffyalien/energistics/ui/tutorial_book/block_breaker_icon
 fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.title=Block Breaker
-fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet0=Breaks the block in front of it while active.
-fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet0=Breaks the block in front of it, which drops as an item.
+fluffyalien_energistics.ui.tutorialBook.entry.blockBreaker.bullet1=Costs 10 energy per block. Air and liquids are skipped and cost nothing.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.targets=fluffyalien_energistics:block_placer
 ## fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.icon=textures/fluffyalien/energistics/ui/tutorial_book/block_placer_icon
 fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.title=Block Placer
-fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.bullet0=Places the block in it's inventory in front of it while active.
-fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.bullet1=Consumes energy while active.
-fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.bullet2=Hoppers can insert items.
+fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.bullet0=Places a block from its inventory in front of it.
+fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.bullet1=Costs 10 energy per block.
+fluffyalien_energistics.ui.tutorialBook.entry.blockPlacer.bullet2=Hoppers can insert blocks.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.targets=fluffyalien_energistics:centrifuge
 ## fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.icon=textures/fluffyalien/energistics/ui/tutorial_book/centrifuge_icon
 fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.title=Centrifuge
-fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet0=Separates items from dirt, sand, gravel, and soul sand.
-fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet1=Consumes energy while active.
-fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet2=Hoppers can insert and extract items.
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet0=Spins dirt, gravel, sand, or soul sand apart. Each item gives four results at once.
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet1=Dirt gives seeds and saplings. Gravel and sand can give diamonds. Soul sand gives blaze powder, nether wart, ghast tears, and quartz.
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet2=Takes 16s and 768 energy per item.
+fluffyalien_energistics.ui.tutorialBook.entry.centrifuge.bullet3=Hoppers can insert and extract. It stops while its output slots are full, so keep a hopper underneath.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.targets=fluffyalien_energistics:coal_generator
 ## fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.icon=textures/fluffyalien/energistics/ui/tutorial_book/coal_generator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.title=Coal Generator
-fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet0=Generates energy while burning fuel.
-fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet1=Coal burns for 25s.
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet0=Burns one coal into 800 energy, over 25s.
+fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet1=Takes coal only, not charcoal or any other fuel.
 fluffyalien_energistics.ui.tutorialBook.entry.coalGenerator.bullet2=Hoppers can insert coal.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.crucible.targets=fluffyalien_energistics:crucible
 ## fluffyalien_energistics.ui.tutorialBook.entry.crucible.icon=textures/fluffyalien/energistics/ui/tutorial_book/crucible_icon
 fluffyalien_energistics.ui.tutorialBook.entry.crucible.title=Crucible
-fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet0=Melts cobblestone into lava.
-fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet1=Consumes energy while active.
-fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet2=Hoppers can insert items.
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet0=Melts one cobblestone into 32 lava, over 16s.
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet1=Consumes energy while active, at 64 energy per cobblestone.
+fluffyalien_energistics.ui.tutorialBook.entry.crucible.bullet2=Hoppers can insert cobblestone.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.crusher.targets=fluffyalien_energistics:crusher
 ## fluffyalien_energistics.ui.tutorialBook.entry.crusher.icon=textures/fluffyalien/energistics/ui/tutorial_book/crusher_icon
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.title=Crusher
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet0=Crushes stone into cobblestone, cobblestone into gravel, and gravel into sand.
-fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet1=Takes 5s and 80 energy per item.
 fluffyalien_energistics.ui.tutorialBook.entry.crusher.bullet2=Hoppers can insert and extract items.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.targets=fluffyalien_energistics:disposal_unit
 ## fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.icon=textures/fluffyalien/energistics/ui/tutorial_book/disposal_unit_icon
 fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.title=Disposal Unit
-fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet0=Destroys fluids and gases.
-fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet0=Destroys any fluid or gas sent to it.
+fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet1=Costs 1 energy for every 2 units destroyed.
+fluffyalien_energistics.ui.tutorialBook.entry.disposalUnit.bullet2=Useful for the half of a fluid separator's output you have no use for, which would otherwise back the machine up.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.targets=fluffyalien_energistics:fluid_separator
 ## fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.icon=textures/fluffyalien/energistics/ui/tutorial_book/fluid_separator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.title=Fluid Separator
-fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet0=Separates fluids into their gaseous components.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet0=Splits a fluid into the gases it is made of. Water gives 4 hydrogen and 2 oxygen. Oil gives 4 hydrogen and 2 carbon.
 fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet2=It takes the first fluid it receives and separates only that from then on.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet3=Both outputs must have somewhere to go or it stops. Send what you don't need to a disposal unit.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.targets=fluffyalien_energistics:fluid_tank
 ## fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.icon=textures/fluffyalien/energistics/ui/tutorial_book/fluid_tank_icon
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.title=Fluid Tank
-fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet0=Stores up to 9,600 of some fluid types.
-fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet1=Only accepts one type of fluid a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet0=Stores up to 9,600 of one fluid: water, lava, or oil.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet1=Holds one type at a time. Set it with the options button, or let it take the first type it receives.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet2=Interact with a bucket to move 100 in or out by hand.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.targets=fluffyalien_energistics:gas_canister
 ## fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.icon=textures/fluffyalien/energistics/ui/tutorial_book/gas_canister_icon
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.title=Gas Canister
-fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 9,600 of some gas types.
-fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Only accepts one type of gas a time. This can be manually set with the options button or it will automatically switch to the first type it recieves.
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 9,600 of one gas: ammonia, carbon, hydrogen, nitrogen, or oxygen.
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Holds one type at a time. Set it with the options button, or let it take the first type it receives.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.targets=fluffyalien_energistics:item_charger
 ## fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.icon=textures/fluffyalien/energistics/ui/tutorial_book/item_charger_icon
 fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.title=Item Charger
-fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet0=Charges items.
+fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet0=Charges any item that stores energy, including items from other add-ons.
 fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.bullet1=Consumes energy while active.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.targets=fluffyalien_energistics:lava_generator
 ## fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.icon=textures/fluffyalien/energistics/ui/tutorial_book/lava_generator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.title=Lava Generator
-fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.bullet0=Generates energy from lava.
+fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.bullet0=Burns lava into energy, at 5 energy per unit.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.targets=fluffyalien_energistics:network_monitor
 ## fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.icon=textures/fluffyalien/energistics/ui/tutorial_book/network_monitor_icon
 fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.title=Network Monitor
-fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet0=Displays information about the connected network.
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet0=Reports network details to your actionbar when looking at it.
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet1=For each thing the network carries, it shows the last allocation and the average of recent ones, as the amount before and after.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.targets=fluffyalien_energistics:oil_extractor
 ## fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.icon=textures/fluffyalien/energistics/ui/tutorial_book/oil_extractor_icon
 fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.title=Oil Extractor
-fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Generates oil while active.
-fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet0=Makes oil out of nothing, anywhere. It needs no particular block beneath it.
+fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.bullet1=Consumes energy while active, at 5 energy per unit of oil.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.targets=fluffyalien_energistics:oil_generator
 ## fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.icon=textures/fluffyalien/energistics/ui/tutorial_book/oil_generator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.title=Oil Generator
-fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.bullet0=Generates energy while burning oil.
+fluffyalien_energistics.ui.tutorialBook.entry.oilGenerator.bullet0=Burns oil into energy, at 10 energy per unit.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.targets=fluffyalien_energistics:organic_generator
 ## fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.icon=textures/fluffyalien/energistics/ui/tutorial_book/organic_generator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.title=Organic Generator
-fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet0=Generates energy while burning fuel.
-fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet1=Seeds burn for 13s and saplings burn for 19s.
+fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet0=Burns seeds and saplings into energy.
+fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet1=A seed burns for 13s and gives 260 energy. A sapling burns for 19s and gives 380.
 fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet2=Hoppers can insert fuel.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.targets=fluffyalien_energistics:solar_panel
 ## fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.icon=textures/fluffyalien/energistics/ui/tutorial_book/solar_panel_icon
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.title=Solar Panel
-fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet0=Generates energy during the day.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet0=Generates 10 energy per second during the day.
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet1=Only works in the overworld.
-fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet2=No energy is generated if the sky is obstructed.
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet2=Needs open sky. Anything above it stops it, including water and other fluids.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.targets=fluffyalien_energistics:powered_furnace
 ## fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.icon=textures/fluffyalien/energistics/ui/tutorial_book/powered_furnace_icon
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.title=Powered Furnace
-fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet0=Smelts items (only works on vanilla items).
-fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet0=Smelts items, 5s each. Only knows vanilla smelting recipes.
+fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet1=Costs 50 energy per item.
 fluffyalien_energistics.ui.tutorialBook.entry.poweredFurnace.bullet2=Hoppers can insert and extract items.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.pump.targets=fluffyalien_energistics:pump
 ## fluffyalien_energistics.ui.tutorialBook.entry.pump.icon=textures/fluffyalien/energistics/ui/tutorial_book/pump_icon
 fluffyalien_energistics.ui.tutorialBook.entry.pump.title=Pump
-fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet0=Generates either water or lava depending on the fluid it is placed on top of.
-fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet1=Consumes energy while active.
+fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet0=Makes water or lava, depending on which is directly below it. It never drains the source.
+fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet1=Consumes energy while active, at 6 energy per unit.
+fluffyalien_energistics.ui.tutorialBook.entry.pump.bullet2=Change the block below it and it switches over on its own.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.tesseract.targets=fluffyalien_energistics:tesseract
 ## fluffyalien_energistics.ui.tutorialBook.entry.tesseract.icon=textures/fluffyalien/energistics/ui/tutorial_book/tesseract_icon
 fluffyalien_energistics.ui.tutorialBook.entry.tesseract.title=Tesseract
-fluffyalien_energistics.ui.tutorialBook.entry.tesseract.bullet0=Transfers energy, gas, and fluid wirelessly to other tesseracts with the same name.
+fluffyalien_energistics.ui.tutorialBook.entry.tesseract.bullet0=Joins its network to every other tesseract sharing the same name, and passes energy, gas, and fluid between them.
+fluffyalien_energistics.ui.tutorialBook.entry.tesseract.bullet1=Distance does not matter, and neither do dimensions.
+fluffyalien_energistics.ui.tutorialBook.entry.tesseract.bullet2=Set the name with the options button. One with no name connects to nothing.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.targets=fluffyalien_energistics:void_miner
 ## fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.icon=textures/fluffyalien/energistics/ui/tutorial_book/void_miner_icon
 fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.title=Void Miner
-fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Generates resources.
-fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet1=Consumes energy while active.
-fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet2=Hoppers can extract items.
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet0=Mines ore out of nothing: coal, raw iron, raw gold, amethyst, emerald, and diamond.
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet1=Takes 16s and 800 energy per item, whatever it turns up. Coal is the most common result and diamond the rarest.
+fluffyalien_energistics.ui.tutorialBook.entry.voidMiner.bullet2=It stops as soon as something is sitting in its output slot, so keep a hopper underneath.
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.targets=fluffyalien_energistics:water_generator
 ## fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.icon=textures/fluffyalien/energistics/ui/tutorial_book/water_generator_icon
 fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.title=Water Generator
-fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.bullet0=Generates energy from water.
+fluffyalien_energistics.ui.tutorialBook.entry.waterGenerator.bullet0=Burns water into energy, at 3 energy per unit.

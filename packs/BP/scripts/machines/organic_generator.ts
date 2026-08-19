@@ -21,10 +21,13 @@ import { isMachineWorking } from "../utils/block";
 import {
   animateTiledIcon,
   createDoubleArrow,
+  createProgressFlame,
   createTiledIconElements,
+  updateProgressIcon,
 } from "../utils/ui";
 
 const TRANSFER_ARROW = createDoubleArrow("transfer", 5);
+const PROGRESS_FLAME = createProgressFlame("flame", 7);
 
 const INPUT_ITEMS = [
   "minecraft:beetroot_seeds",
@@ -77,12 +80,8 @@ export const organicGeneratorMachine: MachineDefinition = {
         },
         // slots 5-6
         ...createTiledIconElements(TRANSFER_ARROW),
-        // the flame sits below the arrow, where other machines show a working icon
-        flameIndicator: {
-          type: "progressIndicator",
-          index: 7,
-          indicator: "flame",
-        },
+        // slot 7, below the arrow, where other machines show a working icon
+        ...createTiledIconElements(PROGRESS_FLAME),
       },
     },
   },
@@ -94,9 +93,12 @@ export const organicGeneratorMachine: MachineDefinition = {
       return {
         progressIndicators: {
           ...animateTiledIcon(TRANSFER_ARROW, isMachineWorking(blockLocation)),
-          flameIndicator: progress
-            ? Math.floor((progress[0] / progress[1]) * 13)
-            : 0,
+          // a maximum of 0 leaves the flame empty, which is right when nothing is burning
+          ...updateProgressIcon(
+            PROGRESS_FLAME,
+            progress ? progress[0] : 0,
+            progress ? progress[1] : 0,
+          ),
         },
       };
     },

@@ -21,7 +21,10 @@
         // slots 5-7, centered in the gap between the fuel slot and the energy bar
         "transfer_indicator@fluffyalien_energistics:common.transfer_indicator": {
           "offset": [80, "50%-8px"],
-          "$start_index": 5
+          "$start_index": 5,
+          // the flame art is 12 wide, so it needs 3 more pixels than a working
+          // icon to sit under the middle of the arrow
+          "$status_icon_offset": [5, 16]
         }
       },
       {

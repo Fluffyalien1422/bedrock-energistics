@@ -39,6 +39,20 @@ const LONG_ARROW_RIGHT_ICONS = Array.from(
   (_, frame) => `long_arrow_right_${frame.toString()}`,
 );
 
+/**
+ * The highest frame index of the flame. The flame fills upwards, so the `tiled_icons`
+ * build filter generates one frame per pixel row, making this its height.
+ */
+const FLAME_MAX_FRAME = 16;
+
+/**
+ * The frames of the flame, in frame order.
+ */
+const FLAME_ICONS = Array.from(
+  { length: FLAME_MAX_FRAME + 1 },
+  (_, frame) => `flame_${frame.toString()}`,
+);
+
 export interface TiledIconOptions {
   /**
    * The base name of the generated elements.
@@ -312,11 +326,33 @@ export function createProgressArrow(
 }
 
 /**
- * Creates the `progressIndicators` update for a progress arrow, filled to show
- * `progress` out of `maxProgress`.
- * @see {@link createProgressArrow}
+ * Describes the flame that shows how far through its fuel a burner is, occupying 1 slot.
+ * @remarks
+ * The JSON UI counterpart is `fluffyalien_energistics:common.icon_1x1`, or the status
+ * icon of a `common.transfer_indicator` to draw it below a double arrow. The art is
+ * narrower than a full tile, so a transfer indicator holding one needs its
+ * `$status_icon_offset` set to line the flame up under the arrow.
  */
-export function updateProgressArrow(
+export function createProgressFlame(
+  name: string,
+  index: number,
+): TiledIconOptions {
+  return {
+    name: `${name}Flame`,
+    startIndex: index,
+    tilesX: 1,
+    tilesY: 1,
+    icons: FLAME_ICONS,
+  };
+}
+
+/**
+ * Creates the `progressIndicators` update for a progress icon, filled to show `progress`
+ * out of `maxProgress`.
+ * @see {@link createProgressArrow}
+ * @see {@link createProgressFlame}
+ */
+export function updateProgressIcon(
   options: TiledIconOptions,
   progress: number,
   maxProgress: number,

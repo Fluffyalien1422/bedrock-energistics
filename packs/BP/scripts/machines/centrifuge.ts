@@ -26,7 +26,7 @@ import {
 import {
   createProgressArrow,
   createTiledIconElements,
-  updateProgressArrow,
+  updateProgressIcon,
 } from "../utils/ui";
 
 const INPUT_ITEM_TYPES = [
@@ -134,7 +134,7 @@ export const centrifugeMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        progressIndicators: updateProgressArrow(
+        progressIndicators: updateProgressIcon(
           PROGRESS_ARROW,
           progressMap.get(uid) ?? 0,
           MAX_PROGRESS,

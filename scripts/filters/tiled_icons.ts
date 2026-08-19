@@ -15,12 +15,15 @@
  *
  * - `static` is a single icon, so `sun_icon.static.png` becomes the tiles
  *   `ui_sun_icon_${tileX}_${tileY}`.
- * - `progress_start` and `progress_end` are the first and last frame of one progress
- *   icon, so both images of a pair share a name. `arrow.progress_start.png` and
- *   `arrow.progress_end.png` become one icon per frame, `arrow_${frame}`, built by
- *   revealing the end image over the start image a pixel column at a time. The tiles of
- *   frame 3 are `ui_arrow_3_${tileX}_${tileY}`, and the highest frame is the width of
- *   the image.
+ * - `progress_${direction}_start` and `progress_${direction}_end` are the first and last
+ *   frame of one progress icon, so both images of a pair share a name.
+ *   `arrow.progress_right_start.png` and `arrow.progress_right_end.png` become one icon
+ *   per frame, `arrow_${frame}`, built by revealing the end image over the start image a
+ *   pixel at a time. The tiles of frame 3 are `ui_arrow_3_${tileX}_${tileY}`.
+ *
+ *   The direction is the way the icon fills. `right` grows from the left edge, which
+ *   suits an arrow, and its highest frame is the width of the image. `up` grows from the
+ *   bottom edge, which suits a flame, and its highest frame is the height.
  *
  * Each generated tile is written as a hidden item tagged as a Bedrock Energistics Core
  * UI item, a texture under `TEXTURE_BASE_PATH`, and an `item_texture.json` entry.
@@ -51,14 +54,27 @@ const TILE_SIZE = 16;
 const sourceDir = "data/tiled_icons";
 
 /**
+ * The direction a progress icon fills in, which is part of its composite method.
+ * @see {@link writeProgressIconFrames}
+ */
+type ProgressDirection = "right" | "up";
+
+/**
  * How a source image is turned into icons, declared as the second extension of its file
  * name. `sun_icon.static.png` is composited with the `static` method.
  * @remarks
- * `progress_start` and `progress_end` are the first and last frame of one progress icon,
- * so the two images of a pair share a name.
+ * A `progress_*_start` and `progress_*_end` are the first and last frame of one progress
+ * icon, so the two images of a pair share a name. The direction between them is the way
+ * the icon fills: `right` suits an arrow, `up` a flame.
  * @see {@link writeProgressIconFrames}
  */
-const COMPOSITE_METHODS = ["static", "progress_start", "progress_end"] as const;
+const COMPOSITE_METHODS = [
+  "static",
+  "progress_right_start",
+  "progress_right_end",
+  "progress_up_start",
+  "progress_up_end",
+] as const;
 type CompositeMethod = (typeof COMPOSITE_METHODS)[number];
 
 function iconFileName(name: string, method: CompositeMethod): string {
@@ -261,38 +277,86 @@ async function writeIconTiles(
 }
 
 /**
- * Builds the frames of a progress icon by revealing `endImg` over `startImg` one pixel
- * column at a time, left to right, and writes the tiles of each frame as the icon
+ * Builds the frames of a progress icon by revealing `endImg` over `startImg` one pixel at
+ * a time in `direction`, and writes the tiles of each frame as the icon
  * `${name}_${frame}`. Frame 0 is entirely `startImg` and the last frame is entirely
- * `endImg`, so the icon's highest frame index is the width of the image.
+ * `endImg`, so the icon's highest frame index is the width of the image for a `right`
+ * reveal and its height for an `up` reveal.
  * @remarks
- * Most of these tiles repeat: a tile only changes while the reveal is inside its own
- * column of the image, so every frame before that leaves it untouched and every frame
- * after leaves it fully revealed. `writeTile` redirects the repeats to the tile they
- * match rather than duplicating them.
+ * Most of these tiles repeat: a tile only changes while the reveal is inside it, so every
+ * frame before that leaves it untouched and every frame after leaves it fully revealed.
+ * `writeTile` redirects the repeats to the tile they match rather than duplicating them.
  */
 async function writeProgressIconFrames(
   name: string,
+  direction: ProgressDirection,
   startImg: imgManip.Image,
   endImg: imgManip.Image,
 ): Promise<void> {
   if (startImg.width !== endImg.width || startImg.height !== endImg.height) {
     throw new Error(
-      `Failed to generate the progress icon '${name}'. Its 'progress_start' image is ${startImg.width.toString()}x${startImg.height.toString()} but its 'progress_end' image is ${endImg.width.toString()}x${endImg.height.toString()}. Both must be the same size.`,
+      `Failed to generate the progress icon '${name}'. Its start image is ${startImg.width.toString()}x${startImg.height.toString()} but its end image is ${endImg.width.toString()}x${endImg.height.toString()}. Both must be the same size.`,
     );
   }
 
-  for (let frame = 0; frame <= startImg.width; frame++) {
+  const maxFrame = direction === "right" ? startImg.width : startImg.height;
+
+  for (let frame = 0; frame <= maxFrame; frame++) {
     const img = startImg.clone();
 
     if (frame > 0) {
       const revealed = endImg.clone();
-      revealed.crop(0, 0, frame, endImg.height);
 
-      img.composite(revealed);
+      if (direction === "right") {
+        // grow from the left edge
+        revealed.crop(0, 0, frame, endImg.height);
+        img.composite(revealed);
+      } else {
+        // grow from the bottom edge
+        revealed.crop(0, endImg.height - frame, endImg.width, frame);
+        img.composite(revealed, 0, endImg.height - frame);
+      }
     }
 
     await writeIconTiles(`${name}_${frame.toString()}`, img);
+  }
+}
+
+/**
+ * Reads the pair of images that make up a progress icon and writes its frames.
+ * @see {@link writeProgressIconFrames}
+ */
+async function writeProgressIcon(
+  name: string,
+  direction: ProgressDirection,
+): Promise<void> {
+  await writeProgressIconFrames(
+    name,
+    direction,
+    await readImg(
+      path.join(sourceDir, iconFileName(name, `progress_${direction}_start`)),
+    ),
+    await readImg(
+      path.join(sourceDir, iconFileName(name, `progress_${direction}_end`)),
+    ),
+  );
+}
+
+/**
+ * Throws unless the other half of a progress icon's pair is present. Without this the
+ * pair would be skipped without a word, since only the start half generates anything.
+ */
+function requireCounterpart(
+  fileName: string,
+  name: string,
+  counterpart: CompositeMethod,
+): void {
+  const counterpartFileName = iconFileName(name, counterpart);
+
+  if (!fs.existsSync(path.join(sourceDir, counterpartFileName))) {
+    throw new Error(
+      `Failed to read the progress icon '${fileName}'. A progress icon is a pair, so it also needs '${counterpartFileName}'.`,
+    );
   }
 }
 
@@ -307,29 +371,22 @@ for (const fileName of fs.readdirSync(sourceDir).sort()) {
       await writeIconTiles(iconName, await readImg(iconPath));
       break;
 
-    case "progress_start":
-      await writeProgressIconFrames(
-        iconName,
-        await readImg(iconPath),
-        await readImg(
-          path.join(sourceDir, iconFileName(iconName, "progress_end")),
-        ),
-      );
+    case "progress_right_start":
+      await writeProgressIcon(iconName, "right");
       break;
 
-    case "progress_end": {
-      // generated alongside its 'progress_start' counterpart, which has to exist or the
-      // pair would be skipped without a word
-      const startFileName = iconFileName(iconName, "progress_start");
-
-      if (!fs.existsSync(path.join(sourceDir, startFileName))) {
-        throw new Error(
-          `Failed to read the progress icon '${fileName}'. A progress icon is a pair, so it also needs '${startFileName}'.`,
-        );
-      }
-
+    case "progress_up_start":
+      await writeProgressIcon(iconName, "up");
       break;
-    }
+
+    // the start half of the pair generates both, so these only have to be accounted for
+    case "progress_right_end":
+      requireCounterpart(fileName, iconName, "progress_right_start");
+      break;
+
+    case "progress_up_end":
+      requireCounterpart(fileName, iconName, "progress_up_start");
+      break;
   }
 }
 

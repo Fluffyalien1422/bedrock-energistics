@@ -21,22 +21,29 @@
     ]
   },
 
-  // Indicates whether the machine is working or not. Occupies 1 slot.
-  "working_icon@fluffyalien_energisticscore:common_v2.container_slot_nobg_nohover": {},
+  // A tiled icon that is 1 tile wide and 1 tall. Occupies 1 slot.
+  "icon_1x1@fluffyalien_energisticscore:common_v2.container_slot_nobg_nohover": {},
 
-  // A double arrow with a working icon below it, which indicates a transfer with no
+  // Indicates whether the machine is working or not. Occupies 1 slot.
+  "working_icon@fluffyalien_energistics:common.icon_1x1": {},
+
+  // A double arrow with a status icon below it, which indicates a transfer with no
   // specific progress value. Occupies 3 slots: '$start_index' and '$start_index+1'
-  // are the arrow, '$start_index+2' is the working icon.
+  // are the arrow, '$start_index+2' is the status icon.
+  //
+  // The status icon is usually the working icon, but a fuel burner puts its flame there
+  // instead. Set '$status_icon_offset' to line up art that isn't a full 16 pixels wide.
   "transfer_indicator": {
     "type": "panel",
     "$start_index|default": 0,
+    "$status_icon_offset|default": [2, 16],
     "controls": [
       {
         "arrow@fluffyalien_energistics:common.icon_2x1": {}
       },
       {
-        "working_icon@fluffyalien_energistics:common.working_icon": {
-          "offset": [2, 16],
+        "status_icon@fluffyalien_energistics:common.icon_1x1": {
+          "offset": "$status_icon_offset",
           "$index": "($start_index+2)"
         }
       }

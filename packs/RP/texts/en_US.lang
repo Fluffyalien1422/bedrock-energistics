@@ -2,6 +2,7 @@ pack.name=Bedrock Energistics
 pack.description=Expands Bedrock with energistics! Adds many machines to Minecraft, with custom UI. Powered by Bedrock Energistics Core.
 
 item.fluffyalien_energistics:ui_options_button=Options
+item.fluffyalien_energistics:ui_recipe_button=Select Recipe
 
 item.fluffyalien_energistics:tutorial_book=Bedrock Energistics Guide Book
 item.fluffyalien_energistics:basic_machine_part=Basic Machine Part
@@ -198,7 +199,7 @@ fluffyalien_energistics.ui.tutorialBook.entry.fluidSeparator.bullet4=See Also: D
 ## fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.icon=textures/fluffyalien/energistics/ui/tutorial_book/fluid_tank_icon
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.title=Fluid Tank
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet0=Stores up to 9,600 of one fluid: water, lava, or oil.
-fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet1=Holds one type at a time. Set it with the options button, or let it take the first type it receives.
+fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet1=Holds one type at a time. Set it with the options button.
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet2=Interact with a bucket to move 100 in or out by hand.
 fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet3=See Also: Gas Canister, Battery
 
@@ -206,7 +207,7 @@ fluffyalien_energistics.ui.tutorialBook.entry.fluidTank.bullet3=See Also: Gas Ca
 ## fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.icon=textures/fluffyalien/energistics/ui/tutorial_book/gas_canister_icon
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.title=Gas Canister
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet0=Stores up to 9,600 of one gas: ammonia, carbon, hydrogen, nitrogen, or oxygen.
-fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Holds one type at a time. Set it with the options button, or let it take the first type it receives.
+fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet1=Holds one type at a time. Set it with the options button.
 fluffyalien_energistics.ui.tutorialBook.entry.gasCanister.bullet2=See Also: Fluid Tank, Battery
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.itemCharger.targets=fluffyalien_energistics:item_charger

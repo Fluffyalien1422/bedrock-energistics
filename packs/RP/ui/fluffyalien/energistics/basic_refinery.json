@@ -11,12 +11,6 @@
         }
       },
       {
-        "options_button@fluffyalien_energisticscore:common_v2.container_slot_nobg": {
-          "offset": ["100%-24px", 12],
-          "$index": 0
-        }
-      },
-      {
         "energy_bar@fluffyalien_energisticscore:common_v2.machine_storage_bar": {
           "offset": [8, 12],
           "$start_index": 1
@@ -50,6 +44,13 @@
         "arrow_indicator@fluffyalien_energistics:common.icon_2x1": {
           "offset": [115, 38],
           "$start_index": 11
+        }
+      },
+      {
+        // slot 0, directly below the arrow
+        "recipe_button@fluffyalien_energisticscore:common_v2.container_slot_nobg": {
+          "offset": [118, 54],
+          "$index": 0
         }
       },
       {

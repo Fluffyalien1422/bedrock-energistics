@@ -1,0 +1,6 @@
+{
+  "id": "fluffyalien_energistics:ui_recipe_button",
+  "states": {
+    "_default": "textures/fluffyalien/energistics/ui/recipe_button"
+  }
+}

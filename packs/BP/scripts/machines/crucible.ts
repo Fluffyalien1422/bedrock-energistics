@@ -21,7 +21,7 @@ import {
 import {
   createProgressArrow,
   createTiledIconElements,
-  updateProgressArrow,
+  updateProgressIcon,
 } from "../utils/ui";
 
 const PROGRESS_ARROW = createProgressArrow("progress", 9);
@@ -63,7 +63,7 @@ export const crucibleMachine: MachineDefinition = {
       const uid = blockLocationToUid(e.blockLocation);
 
       return {
-        progressIndicators: updateProgressArrow(
+        progressIndicators: updateProgressIcon(
           PROGRESS_ARROW,
           progressMap.get(uid) ?? 0,
           MAX_PROGRESS,

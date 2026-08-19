@@ -25,7 +25,7 @@ import {
 import {
   createProgressArrow,
   createTiledIconElements,
-  updateProgressArrow,
+  updateProgressIcon,
 } from "../utils/ui";
 
 const PROGRESS_ARROW = createProgressArrow("progress", 6);
@@ -77,7 +77,7 @@ export const voidMinerMachine: MachineDefinition = {
       const uid = blockLocationToUid(location);
 
       return {
-        progressIndicators: updateProgressArrow(
+        progressIndicators: updateProgressIcon(
           PROGRESS_ARROW,
           progressMap.get(uid) ?? 0,
           MAX_PROGRESS,

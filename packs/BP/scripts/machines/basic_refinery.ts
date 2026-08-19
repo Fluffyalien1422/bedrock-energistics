@@ -36,7 +36,7 @@ import {
 import {
   createProgressArrow,
   createTiledIconElements,
-  updateProgressArrow,
+  updateProgressIcon,
   updateTiledIcon,
 } from "../utils/ui";
 
@@ -95,11 +95,11 @@ export const basicRefineryMachine: MachineDefinition = {
     id: "fluffyalien_energistics:basic_refinery",
     ui: {
       elements: {
-        optionsBtn: {
+        recipeButton: {
           type: "button",
           index: 0,
           defaults: {
-            itemId: "fluffyalien_energistics:ui_options_button",
+            itemId: "fluffyalien_energistics:ui_recipe_button",
           },
         },
         energyBar: {
@@ -147,7 +147,7 @@ export const basicRefineryMachine: MachineDefinition = {
             type: recipe.fluidInput?.type,
           },
         },
-        progressIndicators: updateProgressArrow(
+        progressIndicators: updateProgressIcon(
           PROGRESS_ARROW,
           progressMap.get(uid) ?? 0,
           recipe.maxProgress,

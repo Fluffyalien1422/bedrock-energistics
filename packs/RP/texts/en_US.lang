@@ -46,6 +46,19 @@ fluffyalien_energistics.ui.genericStorageTypeContainer.options.type=Type
 fluffyalien_energistics.ui.tesseract.options.name=Name
 fluffyalien_energistics.ui.basicRefinery.options.recipe=Recipe
 
+fluffyalien_energistics.ui.networkMonitor.intro=This device sits on %s separate networks, one for each thing carried. Every line below is a network of its own.
+fluffyalien_energistics.ui.networkMonitor.intro.none=This device is not on any network that is moving anything.
+fluffyalien_energistics.ui.networkMonitor.legend="Transferred" is how much moved from one device to another. "In reserves" is what no device took, which stays with whatever offered it.
+fluffyalien_energistics.ui.networkMonitor.window=Averaged over the last %s seconds. A network only appears while something is flowing on it.
+fluffyalien_energistics.ui.networkMonitor.row.transferred=%s/s transferred
+fluffyalien_energistics.ui.networkMonitor.row.reserves=%s in reserves
+fluffyalien_energistics.ui.networkMonitor.row.idle=idle
+fluffyalien_energistics.ui.networkMonitor.category.energy=Energy
+fluffyalien_energistics.ui.networkMonitor.category.gas=Gas
+fluffyalien_energistics.ui.networkMonitor.category.fluid=Fluid
+fluffyalien_energistics.ui.networkMonitor.idleSummary=Idle networks not shown: %s.
+fluffyalien_energistics.ui.networkMonitor.showIdle=Show idle networks
+
 ## fluffyalien_energistics.ui.tutorialBook.entry.networks.icon=textures/fluffyalien/energistics/ui/tutorial_book/networks_icon
 fluffyalien_energistics.ui.tutorialBook.entry.networks.title=Networks
 fluffyalien_energistics.ui.tutorialBook.entry.networks.bullet0=A network is a group of devices that share energy, gas, or fluid.
@@ -213,9 +226,11 @@ fluffyalien_energistics.ui.tutorialBook.entry.lavaGenerator.bullet2=See Also: Pu
 ## fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.targets=fluffyalien_energistics:network_monitor
 ## fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.icon=textures/fluffyalien/energistics/ui/tutorial_book/network_monitor_icon
 fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.title=Network Monitor
-fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet0=Reports network details to your actionbar when you look at it from within 7 blocks.
-fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet1=For each thing the network carries, it shows the last allocation and the average of recent ones, as the amount before and after.
-fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet2=See Also: Networks
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet0=Interact with it to open a readout of every network it is on, grouped by energy, gas, and fluid.
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet1=Each network reports how much per second moved from one device to another, and how much no device took, which stays in reserves.
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet2=The figures are averaged over the last several seconds, and keep updating while the readout is open.
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet3=A network only appears while something is flowing on it.
+fluffyalien_energistics.ui.tutorialBook.entry.networkMonitor.bullet4=See Also: Networks
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.targets=fluffyalien_energistics:oil_extractor
 ## fluffyalien_energistics.ui.tutorialBook.entry.oilExtractor.icon=textures/fluffyalien/energistics/ui/tutorial_book/oil_extractor_icon

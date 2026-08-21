@@ -236,13 +236,13 @@ has only one thing on it.
 
 Which indicator a machine gets depends on what it has to say:
 
-| Machine                                         | Indicator                                                                      |
-| ----------------------------------------------- | ------------------------------------------------------------------------------ |
-| Converts one storage type into another per tick | `createTransferIndicator` — animated double arrow with a working icon below it |
-| Has a real progress value                       | `createProgressArrow` — long arrow that fills as it goes                       |
-| Consumes without producing anything shown       | `createWorkingIcon` — the working icon on its own                              |
-| Burns fuel                                      | The double arrow with a flame below it, in place of the working icon           |
-| Only stores                                     | Nothing                                                                        |
+| Machine                                         | Indicator                                                                             |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Converts one storage type into another per tick | `createTransferIndicator` — animated double arrow with a working icon below it        |
+| Has a real progress value                       | `createProgressArrow` — long arrow that fills as it goes                              |
+| Consumes without producing anything shown       | `createWorkingIcon` — the working icon on its own                                     |
+| Burns fuel                                      | `createDoubleArrow` with `createProgressFlame` below it, in place of the working icon |
+| Only stores                                     | Nothing                                                                               |
 
 A machine never gets both a progress arrow and a working icon; the arrow already
 says whether it's running.
@@ -250,12 +250,19 @@ says whether it's running.
 These helpers live in `packs/BP/scripts/utils/ui.ts` and each has a JSON UI
 counterpart in `packs/RP/ui/fluffyalien/energistics/common.json`.
 
+Set `$status_icon_offset` on a transfer indicator whose status icon is narrower
+than a full tile, to line the art up under the middle of the arrow.
+
 ### Tiled Icons
 
 Some large UI icons are split into tiles. The `tiled_icons` filter generates them
 from the images in `packs/data/tiled_icons`, each named `<name>.<method>.png`:
 
-| Method                           | What it produces                                                                                           |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `static`                         | One icon.                                                                                                  |
-| `progress_start`, `progress_end` | A pair, sharing a name, that becomes one icon per frame as the end image is revealed over the start image. |
+| Method                                       | What it produces                                                                                                                                                        |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `static`                                     | One icon.                                                                                                                                                               |
+| `progress_right_start`, `progress_right_end` | A pair, sharing a name, that becomes one icon per frame as the end image fills in over the start image from the left edge. Its highest frame is the width of the image. |
+| `progress_up_start`, `progress_up_end`       | The same, filling from the bottom edge. Its highest frame is the height of the image.                                                                                   |
+
+A frame identical to one already generated does not get an item of its own, so the
+frame count an icon declares is not necessarily the number of items it produces.

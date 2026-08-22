@@ -13,7 +13,7 @@ tile.fluffyalien_energistics:energy_conduit.name=Energy Conduit
 tile.fluffyalien_energistics:fluid_conduit.name=Fluid Conduit
 tile.fluffyalien_energistics:gas_conduit.name=Gas Conduit
 tile.fluffyalien_energistics:multi_conduit.name=Multi Conduit
-tile.fluffyalien_energistics:solar_panel.name=Solar Panel
+tile.fluffyalien_energistics:solar_panel.name=Solar Generator
 tile.fluffyalien_energistics:crusher.name=Crusher
 tile.fluffyalien_energistics:oil_extractor.name=Oil Extractor
 tile.fluffyalien_energistics:oil_generator.name=Oil Generator
@@ -257,7 +257,7 @@ fluffyalien_energistics.ui.tutorialBook.entry.organicGenerator.bullet3=See Also:
 
 ## fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.targets=fluffyalien_energistics:solar_panel
 ## fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.icon=textures/fluffyalien/energistics/ui/tutorial_book/solar_panel_icon
-fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.title=Solar Panel
+fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.title=Solar Generator
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet0=Generates 10 energy per second during the day.
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet1=Only works in the overworld.
 fluffyalien_energistics.ui.tutorialBook.entry.solarPanel.bullet2=Needs open sky. Anything above it stops it, including water and other fluids.

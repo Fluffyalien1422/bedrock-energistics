@@ -35,6 +35,7 @@ Every option is optional and is documented with a comment in the file. Remove an
 
 - [Online guide book](https://fluffyalien1422.github.io/bedrock-energistics/)
 - [CurseForge](https://www.curseforge.com/minecraft-bedrock/addons/bedrock-energistics)
+- [MCPEDL](https://mcpedl.com/bedrock-energistics/)
 - [Releases and changelogs](https://github.com/Fluffyalien1422/bedrock-energistics/releases)
 - [Bedrock Energistics Core](https://github.com/Fluffyalien1422/bedrock-energistics-core)
 - [Vatonage Discord](https://discord.gg/vQuFe77)

@@ -41,10 +41,6 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
         deals_damage: "no",
       },
     },
-    "minecraft:pushable": {
-      is_pushable: false,
-      is_pushable_by_piston: false,
-    },
     "minecraft:knockback_resistance": {
       value: 1,
     },

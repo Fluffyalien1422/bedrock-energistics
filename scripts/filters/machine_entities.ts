@@ -4,7 +4,7 @@ import * as path from "path";
 interface Machine {
   id: string;
   inventorySize: number;
-  persistent: boolean;
+  persistent?: boolean;
 }
 
 const bpDir = "BP";
@@ -22,67 +22,57 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
     fs.readFileSync(path.join(machineEntitiesDir, fileName), "utf8"),
   ) as Machine;
 
-  if (content.persistent) {
-    fs.writeFileSync(
-      path.join(entitiesDir, path.basename(fileName)),
-      JSON.stringify({
-        format_version: "1.21.0",
-        "minecraft:entity": {
-          description: {
-            identifier: content.id,
-            is_summonable: true,
-            is_spawnable: false,
-          },
-          components: {
-            "minecraft:persistent": {},
-            "minecraft:breathable": {
-              breathes_water: true,
-            },
-            "minecraft:physics": {
-              has_gravity: false,
-              has_collision: false,
-            },
-            "minecraft:damage_sensor": {
-              triggers: {
-                deals_damage: false,
-              },
-            },
-            "minecraft:pushable": {
-              is_pushable: false,
-              is_pushable_by_piston: false,
-            },
-            "minecraft:knockback_resistance": {
-              value: 1,
-            },
-            "minecraft:collision_box": {
-              width: 1,
-              height: 1,
-            },
-            "minecraft:inventory": {
-              container_type: "container",
-              inventory_size: content.inventorySize,
-            },
-            "minecraft:type_family": {
-              family: ["fluffyalien_energisticscore:machine_entity"],
-            },
-          },
-        },
-      }),
-    );
+  const description = {
+    identifier: content.id,
+    is_summonable: true,
+    is_spawnable: false,
+  };
 
-    continue;
-  }
+  const components = {
+    "minecraft:breathable": {
+      breathes_water: true,
+    },
+    "minecraft:physics": {
+      has_gravity: false,
+      has_collision: false,
+    },
+    "minecraft:damage_sensor": {
+      triggers: {
+        deals_damage: "no",
+      },
+    },
+    "minecraft:pushable": {
+      is_pushable: false,
+      is_pushable_by_piston: false,
+    },
+    "minecraft:knockback_resistance": {
+      value: 1,
+    },
+    "minecraft:collision_box": {
+      // must be bigger than the block's collision box (1x1 or less)
+      // so the player can interact with it.
+      width: 1.1,
+      height: 1.1,
+    },
+    "minecraft:inventory": {
+      container_type: "container",
+      inventory_size: content.inventorySize,
+    },
+    "minecraft:type_family": {
+      family: ["fluffyalien_energisticscore:machine_entity"],
+    },
+  };
 
-  fs.writeFileSync(
-    path.join(entitiesDir, path.basename(fileName)),
-    JSON.stringify({
-      format_version: "1.21.0",
-      "minecraft:entity": {
-        description: {
-          identifier: content.id,
-          is_summonable: true,
-          is_spawnable: false,
+  const entity = content.persistent
+    ? {
+        description,
+        components: {
+          "minecraft:persistent": {},
+          ...components,
         },
+      }
+    : {
+        description,
         component_groups: {
           "fluffyalien_energistics:despawn": {
             "minecraft:instant_despawn": {},
@@ -96,41 +86,12 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
             },
           },
           "minecraft:timer": {
-            time: 60,
+            time: { min: 60, max: 60 },
             time_down_event: {
               event: "fluffyalien_energistics:despawn",
             },
           },
-          "minecraft:breathable": {
-            breathes_water: true,
-          },
-          "minecraft:physics": {
-            has_gravity: false,
-            has_collision: false,
-          },
-          "minecraft:damage_sensor": {
-            triggers: {
-              deals_damage: false,
-            },
-          },
-          "minecraft:pushable": {
-            is_pushable: false,
-            is_pushable_by_piston: false,
-          },
-          "minecraft:knockback_resistance": {
-            value: 1,
-          },
-          "minecraft:collision_box": {
-            width: 1,
-            height: 1,
-          },
-          "minecraft:inventory": {
-            container_type: "container",
-            inventory_size: content.inventorySize,
-          },
-          "minecraft:type_family": {
-            family: ["fluffyalien_energisticscore:machine_entity"],
-          },
+          ...components,
         },
         events: {
           "fluffyalien_energistics:despawn": {
@@ -139,7 +100,13 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
             },
           },
         },
-      },
+      };
+
+  fs.writeFileSync(
+    path.join(entitiesDir, path.basename(fileName)),
+    JSON.stringify({
+      format_version: "1.26.60",
+      "minecraft:entity": entity,
     }),
   );
 }

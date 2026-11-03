@@ -16,8 +16,21 @@ Generate energy, move fluids and gases around a base, and put machines to work m
 
 ## Requirements
 
-- Minecraft: Bedrock Edition v26.30 or later.
+- Minecraft: Bedrock Edition v26.60 or later.
 - [Bedrock Energistics Core](https://github.com/Fluffyalien1422/bedrock-energistics-core) v0.12.0.
+
+## Versioning
+
+Versions are `major.minor.patch`.
+
+- **Major** versions are not backwards compatible. A world from an older major version may break when you update it.
+- **Minor** versions add new content and are backwards compatible.
+- **Patch** versions are fixes and are backwards compatible.
+
+> [!NOTE]
+> While this add-on is in beta (v0.x), minor versions may also be incompatible.
+
+The Minecraft and [Bedrock Energistics Core](https://github.com/Fluffyalien1422/bedrock-energistics-core) versions this add-on needs can change in any version, including a patch, so check the [release notes](https://github.com/Fluffyalien1422/bedrock-energistics/releases) before updating.
 
 ## Getting Started
 

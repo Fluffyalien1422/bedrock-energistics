@@ -45,10 +45,8 @@ for (const fileName of fs.readdirSync(machineEntitiesDir, {
       value: 1,
     },
     "minecraft:collision_box": {
-      // must be bigger than the block's collision box (1x1 or less)
-      // so the player can interact with it.
-      width: 1.1,
-      height: 1.1,
+      width: 1,
+      height: 1,
     },
     "minecraft:inventory": {
       container_type: "container",
